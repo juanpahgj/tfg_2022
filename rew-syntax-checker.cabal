@@ -1,0 +1,32 @@
+name:	rew-syntax-checker
+version: 	0.1
+cabal-version:	>= 1.2
+description: 	A tool for checking CS-TRSs and CS-CTRSs format 
+license: 	AllRightsReserved
+license-file: 	LICENSE
+copyright:
+author:	Raul Gutierrez
+maintainer:	r.gutierrez@upm.es
+build-type:	Simple
+stability:
+homepage:	
+package-url:
+synopsis:
+category:
+tested-with:
+
+Executable rew-syntax-check
+  buildable: True
+  main-is: Main.hs
+  other-modules: 
+    Interface.CLI
+    Parser.COPS.Parser
+    Parser.COPS.TRS.Grammar
+    Parser.COPS.TRS.Parser
+    Parser.COPS.TRS.Scanner
+    Parser.TPDB.Parser
+    Parser.TPDB.TRS.Parser
+  build-depends: 	base > 4, pretty, parsec, syb, containers, mtl
+  hs-source-dirs: 	src
+  ghc-options: -O2 -threaded
+  extensions: 
