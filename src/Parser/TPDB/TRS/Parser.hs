@@ -19,8 +19,8 @@ trsParser, term
 
 ) where
 
-import Parser.COPS.TRS.Grammar
-import Parser.COPS.TRS.Scanner
+import Parser.TPDB.TRS.Grammar
+import Parser.TPDB.TRS.Scanner
 
 import Text.ParserCombinators.Parsec (Parser(..), many, (<|>), many1, sepEndBy
   , option, char, sepBy, try, noneOf, digit)
@@ -33,20 +33,22 @@ import Control.Monad (liftM)
 
 -- |parse TRS specification
 trsParser :: Parser Spec
-trsParser = liftM Spec (many1 (whiteSpace >> parens decl))
+trsParser = liftM Spec (many (whiteSpace >> parens decl))
+--trsParser = liftM Spec (many1 (whiteSpace >> parens decl))
 
 -- | A declaration is form by a set of variables, a theory, a set of
 -- rules, a strategy an extra information
 decl :: Parser Decl
-decl = declVar <|> declRules -- <|> declComment
+decl = declVar -- <|> declRules <|> declTheory
 
--- | Condition type declaration is formed by a reserved word plus SEMI-EQUATIONAL, JOIN, or ORIENTED
-declCondType :: Parser Decl
-declCondType = reserved "CONDITIONTYPE" >> liftM CType (semiEq <|> join <|> oriented)
-
--- | Semi-equational conditions
-semiEq :: Parser CondType
-semiEq = reserved "SEMI-EQUATIONAL" >> return SemiEquational
+-- | Variables declaration is formed by a reserved word plus a set of
+--   variables
+declVar :: Parser Decl
+declVar = reserved "VAR" >> do { idList <- phrase
+                               ; return . Var $ idList
+                               }
+                               
+{-
 
 -- | Join conditions
 join :: Parser CondType
@@ -62,19 +64,11 @@ oriented = reserved "ORIENTED" >> return Oriented
 declRules :: Parser Decl
 declRules = reserved "RULES" >> liftM Rules (many rule)
 
--- | Variables declaration is formed by a reserved word plus a set of
---   variables
-declVar :: Parser Decl
-declVar = reserved "VAR" >> do { idList <- phrase
-                               ; return . Var $ idList
-                               }
+-}
 
--- | A term
-term :: Parser Term
-term =
- do n <- identifier
-    terms <- option [] (parens (commaSep' term))
-    return (T n terms)
+
+
+
 
 -- | Rule
 rule :: Parser Rule
@@ -92,6 +86,13 @@ simpleRule =
 
 -- | Rule options
 ruleOps = (reservedOp "->" >> return (:->))
+
+-- | A term
+term :: Parser Term
+term =
+ do n <- identifier
+    terms <- option [] (parens (commaSep' term))
+    return (T n terms)
 
 -- | Condition
 cond =
@@ -115,10 +116,6 @@ declCSStrategy =
     return $ Context strats
 
 -- | Extra information
-declComment =
- do reserved "COMMENT"
-    decls <- many $ noneOf ")"
-    return$ Comment decls
 
 -- | A phrase
 phrase = many identifier

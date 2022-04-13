@@ -22,7 +22,11 @@ parseTPDB
 )  where
 
 import Parser.TPDB.TRS.Parser (trsParser)
-import Parser.COPS.TRS.Grammar (Spec (..), Decl (..), TRSType(..), TRS (..), CondType (..)
+
+--import Parser.COPS.TRS.Grammar (Spec (..), Decl (..), TRSType(..), TRS (..), CondType (..)
+  --, Term (..), Rule (..), Id, TRSType (..), getTerms, nonVarLHS, isCRule, hasExtraVars)
+
+import Parser.TPDB.TRS.Grammar (Spec (..), Decl (..), TRSType(..), TRS (..)
   , Term (..), Rule (..), Id, TRSType (..), getTerms, nonVarLHS, isCRule, hasExtraVars)
 
 import Text.ParserCombinators.Parsec (parse, Parser, ParseError)
