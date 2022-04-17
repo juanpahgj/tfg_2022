@@ -17,12 +17,13 @@ module Parser.TPDB.TRS.Grammar (
 
 -- * Exported data
 
-Spec(..), Decl(..), Equation (..), SimpleRule (..)
-, Rule(..), Term (..), Id, TRSType (..), TRS (..)
+Spec(..), Decl(..), Thdecl (..), SimpleThdecl (..), Equation (..), SimpleEquation (..)
+,Term (..), Id, TRSType (..), TRS (..)
+-- , Rule(..), SimpleRule (..), 
 
 -- * Exported functions
 
-, getTerms, nonVarLHS, isCRule, hasExtraVars
+--, getTerms, nonVarLHS, isCRule, hasExtraVars
 
 ) where
 
@@ -43,9 +44,8 @@ data Spec = Spec [Decl] -- ^ List of declarations
 -- | List of declarations
 data Decl = Var [Id] -- ^ Set of variables
     | Theory [Thdecl] -- ^ Set of rules
-    | Rules [Rule] -- ^ Set of rules
-    | Strategy Strategydecl -- ^ Extra information
-    -- | Context [(Id, [Int])] -- ^ Context-Sensitive strategy
+    -- | Rules [Rule] -- ^ Set of rules
+    -- | Strategy Strategydecl -- ^ Extra information
       deriving (Eq, Show, Data, Typeable)
 
 -- | Theory declaration (para obligar a que haya min. uno??)
@@ -57,8 +57,6 @@ data SimpleThdecl = SimpleThdecl Id [Id]
     | Equations [Equation] 
       deriving (Eq, Data, Typeable)
 
-{-
-
 -- | Equation declaration (para obligar a que haya min. uno??)
 data Equation = Equation SimpleEquation [Equation]
       deriving (Eq, Data, Typeable)
@@ -66,6 +64,13 @@ data Equation = Equation SimpleEquation [Equation]
 -- | Simple equation declaration
 data SimpleEquation = Term :==: Term -- ^ Equation
       deriving (Eq, Data, Typeable)
+
+-- | Term declaration
+data Term = T Id [Term] -- ^ Term
+    deriving (Eq, Data, Typeable)
+
+
+{-
 
 -- | Rule declaration
 data Rule = Rule SimpleRule [Rule] -- ^ Conditional rewriting rule
@@ -79,10 +84,6 @@ data SimpleRule = Term :-> Term -- ^ Rewriting rule
 
 data Cond = Term :-> Term
     | Term :-><- Term
-    deriving (Eq, Data, Typeable)
-
--- | Term declaration
-data Term = T Id [Term] -- ^ Term
     deriving (Eq, Data, Typeable)
 
 -- | Strategy Declaration
@@ -101,9 +102,9 @@ type Id = String
 
 -- | TSR Type
 data TRSType = TRSStandard
-  | TRSConditional CondType
+  | TRSConditional --CondType
   | TRSContextSensitive 
-  | TRSContextSensitiveConditional CondType
+  | TRSContextSensitiveConditional --CondType
     deriving (Show)
 
 -- | Term Rewriting Systems (TRS, CTRS, CSTRS, CSCTRS)
@@ -111,7 +112,7 @@ data TRS
   = TRS { trsSignature :: Map Id Int
         , trsVariables :: Set Id
         , trsRMap :: [(Id, [Int])]
-        , trsRules :: [Rule]
+        -- , trsRules :: [Rule]
         , trsType :: TRSType
         } deriving (Show)
 
@@ -121,15 +122,28 @@ data TRS
 
 -- Show
 
-instance Show Equation where
+instance Show SimpleThdecl where 
+  show (SimpleThdecl id []) = show id
+  show (SimpleThdecl id ids) = show id ++ " | " ++ (concat . intersperse ", " . map show $ ids)
+  -- show (Equations eqs) = (concat . intersperse ", " . map show $ eqs)
+
+instance Show Thdecl where 
+  show (Thdecl t []) = show t
+  show (Thdecl t ths) = show t ++ " | " ++ (concat . intersperse ", " . map show $ ths)
+
+instance Show SimpleEquation where -- instance Show Equation where
   show (t1 :==: t2) = show t1 ++ " == " ++ show t2
+
+{-
 
 instance Show SimpleRule where 
   show (t1 :-> t2) = show t1 ++ " -> " ++ show t2
-
+  
 instance Show Rule where 
   show (Rule r []) = show r
   show (Rule r eqs) = show r ++ " | " ++ (concat . intersperse ", " . map show $ eqs)
+    
+-}
 
 instance Show Term where
     show (T f []) = f 
@@ -147,13 +161,19 @@ getVars vs (T idt ts) = let tsVars = unions . map (getVars vs) $ ts
                            else 
                              tsVars
 
+{-
+
 -- | gets all the terms from a rule
 getTerms :: Rule -> [Term]
 getTerms (Rule (l :-> r) eqs) = (l:r:concatMap getTermsEq eqs)
 
+-}
+
 -- | gets all the terms from a equation
-getTermsEq :: Equation -> [Term]
+getTermsEq :: SimpleEquation -> [Term]  -- getTermsEq :: Equation -> [Term]
 getTermsEq (l :==: r) = [l,r]
+
+{-
 
 -- | checks if the lhs is non-variable
 nonVarLHS :: Set Id -> Rule -> Bool
@@ -162,9 +182,11 @@ nonVarLHS vs (Rule ((T idt _) :-> r) eqs) = not . member idt $ vs
 -- | checks if the rule is conditional
 isCRule :: Rule -> Bool
 isCRule (Rule _ []) = False 
-isCRule _ = True 
+isCRule _ = True
 
 -- | checks if the non-conditional rule has extra variables
 hasExtraVars :: Set Id -> Rule -> Bool
 hasExtraVars vs (Rule (l :-> r) []) = not . S.null $ getVars vs r \\ getVars vs l
 hasExtraVars _ _ = error $ "Error: hasExtraVars only applies to non-conditional rules"
+
+-}

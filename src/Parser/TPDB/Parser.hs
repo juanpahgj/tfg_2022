@@ -23,11 +23,8 @@ parseTPDB
 
 import Parser.TPDB.TRS.Parser (trsParser)
 
---import Parser.COPS.TRS.Grammar (Spec (..), Decl (..), TRSType(..), TRS (..), CondType (..)
-  --, Term (..), Rule (..), Id, TRSType (..), getTerms, nonVarLHS, isCRule, hasExtraVars)
-
 import Parser.TPDB.TRS.Grammar (Spec (..), Decl (..), TRSType(..), TRS (..)
-  , Term (..), Rule (..), Id, TRSType (..), getTerms, nonVarLHS, isCRule, hasExtraVars)
+  , Term (..), Id, TRSType (..) ) -- ,Rule (..), getTerms, nonVarLHS, isCRule, hasExtraVars)
 
 import Text.ParserCombinators.Parsec (parse, Parser, ParseError)
 import Text.ParserCombinators.Parsec.Error (Message (..), newErrorMessage)
@@ -58,13 +55,15 @@ doParse s p = parse p "" s
 checkConsistency :: Either ParseError Spec -> Either ParseError TRS 
 checkConsistency (Left parseError) = Left parseError
 checkConsistency (Right (Spec decls)) 
-  = evalState (checkWellFormed decls) (TRS M.empty S.empty [] [] TRSStandard)
+  = evalState (checkWellFormed decls) (TRS M.empty S.empty [] TRSStandard) -- (TRS M.empty S.empty [] [] TRSStandard)
 
 -- | Extracts the signature and checks if the rules are well-formed wrt that
 -- signature. Precondition: Declarations are in order.
 checkWellFormed :: [Decl] -> State TRS (Either ParseError TRS)
 checkWellFormed [] = do { myTRS <- get 
                         ; return . Right $ myTRS}
+                      
+{-
 checkWellFormed (CType SemiEquational:rest) = do { myTRS <- get 
                                                  ; put $ myTRS { trsType = TRSConditional SemiEquational }
                                                  ; checkWellFormed rest
@@ -77,10 +76,15 @@ checkWellFormed (CType Oriented:rest) = do { myTRS <- get
                                            ; put $ myTRS { trsType = TRSConditional Oriented }
                                            ; checkWellFormed rest
                                            }
+
+-}
+
 checkWellFormed (Var vs:rest) = do { myTRS <- get 
                                    ; put $ myTRS { trsVariables = S.union (trsVariables myTRS) (S.fromList vs) }
                                    ; checkWellFormed rest
                                    }
+
+{-
 checkWellFormed (Context rmap:rest) = do { myTRS <- get 
                                          ; if (length . nub . map fst $ rmap) == length rmap then
                                              do { put $ myTRS { trsRMap = rmap
@@ -94,6 +98,10 @@ checkWellFormed (Context rmap:rest) = do { myTRS <- get
                                            else 
                                              return . Left $ newErrorMessage (UnExpect $ "duplicated symbols in replacement map declaration") (newPos "" 0 0)
                                          }
+
+-}
+
+{-
 checkWellFormed (Rules rs:rest) = do { result <- checkRules rs
                                      ; case result of
                                          Left parseError -> return . Left $ parseError
@@ -102,7 +110,6 @@ checkWellFormed (Rules rs:rest) = do { result <- checkRules rs
                                                        ; checkWellFormed rest
                                                        }
                                      }
-checkWellFormed (Comment _:rest) = checkWellFormed rest
 
 -- | Checks if the rules are well-formed wrt the extracted signature
 checkRules :: [Rule] -> State TRS (Either ParseError ())
@@ -128,6 +135,8 @@ checkRules (r:rs) = do { myTRS <- get
                            return . Left $ newErrorMessage (UnExpect $ "variable in the left-hand side of the rule " ++ (show r)) (newPos "" 0 0)
                        }
 
+-}
+{-
 -- | Checks if the terms are well-formed wrt the extracted signature
 checkTerms :: [Term] -> State TRS (Either ParseError ())
 checkTerms [] = return . Right $ ()
@@ -176,3 +185,5 @@ checkRMap ((f,rmap):rmaps) = do { myTRS <- get
                                                  else
                                                    return . Left $ newErrorMessage (UnExpect $ "replacement map for symbol " ++ f ++ " (must be empty" ++ (if arity > 0 then " or an ordered list of numbers in [1.." ++ (show arity) ++ "] separated by commas" else "") ++ ")") (newPos "" 0 0) 
                                 }
+
+-}

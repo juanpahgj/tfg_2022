@@ -48,6 +48,13 @@ declVar = reserved "VAR" >> do { idList <- phrase
                                ; return . Var $ idList
                                }
                                
+-- | A term
+term :: Parser Term
+term =
+ do n <- identifier
+    terms <- option [] (parens (commaSep' term))
+    return (T n terms)
+
 {-
 
 -- | Join conditions
@@ -67,8 +74,7 @@ declRules = reserved "RULES" >> liftM Rules (many rule)
 -}
 
 
-
-
+{-
 
 -- | Rule
 rule :: Parser Rule
@@ -86,13 +92,6 @@ simpleRule =
 
 -- | Rule options
 ruleOps = (reservedOp "->" >> return (:->))
-
--- | A term
-term :: Parser Term
-term =
- do n <- identifier
-    terms <- option [] (parens (commaSep' term))
-    return (T n terms)
 
 -- | Condition
 cond =
@@ -114,6 +113,9 @@ declCSStrategy =
                                return (a, map fromInteger b)
                            )
     return $ Context strats
+
+-}
+
 
 -- | Extra information
 

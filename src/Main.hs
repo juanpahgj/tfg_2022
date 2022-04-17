@@ -21,7 +21,7 @@ main
 
 ) where
 
-import Interface.CLI (Opt (..), Format (..), parseOptions, autoparse)
+import Interface.CLI (Opt (..), Format (..), parseOptions) --, autoparse)
 import Parser.TPDB.Parser (parseTPDB)
 
 import System.IO (hPutStr, stdout)
@@ -39,12 +39,21 @@ main =
              , inputContent = input
              , inputFormat = format } = opts
      filedata <- input
-     let !trs = case format of 
-                  Just TPDB -> 
-                          case parseTPDB filedata of
+     let !trs = case parseTPDB filedata of
                             Left parseerror
                                -> error$ "Parse Error (Main): " ++ show parseerror
                             Right sys
                               -> sys
-                  Nothing -> autoparse filename filedata
      hPutStr stdout (show trs) --- ""
+
+     {-
+     let !trs = case format of 
+      Just TPDB -> 
+              case parseTPDB filedata of
+                Left parseerror
+                   -> error$ "Parse Error (Main): " ++ show parseerror
+                Right sys
+                  -> sys
+      Nothing -> autoparse filename filedata
+
+      -}
