@@ -39,7 +39,7 @@ trsParser = liftM Spec (many (whiteSpace >> parens decl))
 -- | A declaration is form by a set of variables, a theory, a set of
 -- rules, a strategy an extra information
 decl :: Parser Decl
-decl = declVar -- <|> declRules <|> declTheory
+decl = declVar <|> declTheory <|> declRules 
 
 -- | Variables declaration is formed by a reserved word plus a set of
 --   variables
@@ -47,7 +47,43 @@ declVar :: Parser Decl
 declVar = reserved "VAR" >> do { idList <- phrase
                                ; return . Var $ idList
                                }
-                               
+
+-- | Theory declaration is formed by a reserved word plus a set of
+--   theory declarations
+declTheory :: Parser Decl
+declTheory = reserved "THEORY" >> liftM Theory (many thdecl)
+
+-- | Theory declaration
+thdecl :: Parser Thdecl
+thdecl =
+ do 
+    sthd <- parens $ simpleThdecl
+    listofthdecl <- option [] (many thdecl) --listofthdecl <- many thdecl
+    return (Thdecl sthd listofthdecl)
+
+-- | Simple theory declaration
+simpleThdecl :: Parser SimpleThdecl
+simpleThdecl = thlId <|> declEq
+
+-- | Theory identificator list
+thlId =
+ do id <- identifier
+    idlist <- option [] phrase 
+    return (Id id idlist)
+
+-- | Equation declaration
+declEq = reserved "EQUATIONS" >> liftM Equations (many eq)
+
+-- | Equation
+eq =
+ do t1 <- term
+    op <- eqOps
+    t2 <- term
+    return (op t1 t2)
+
+-- | Equation options
+eqOps = (reservedOp "==" >> return (:==:))
+
 -- | A term
 term :: Parser Term
 term =
@@ -55,26 +91,10 @@ term =
     terms <- option [] (parens (commaSep' term))
     return (T n terms)
 
-{-
-
--- | Join conditions
-join :: Parser CondType
-join = reserved "JOIN" >> return Join
-
--- | Oriented conditions
-oriented :: Parser CondType
-oriented = reserved "ORIENTED" >> return Oriented
-
-
 -- | Rules declaration is formed by a reserved word plus a set of
 --   rules
 declRules :: Parser Decl
 declRules = reserved "RULES" >> liftM Rules (many rule)
-
--}
-
-
-{-
 
 -- | Rule
 rule :: Parser Rule
@@ -91,18 +111,34 @@ simpleRule =
     return (op t1 t2)
 
 -- | Rule options
-ruleOps = (reservedOp "->" >> return (:->))
+ruleOps = try (reservedOp "->" >> return (:->){-(Flecha)-}) --do{ try (reservedOp "->"; return (:->) }
+        <|> (reservedOp "->=" >> return (:->=){-(FlechaIgual)-})
 
 -- | Condition
 cond =
- do option 1 (brackets natural)
+ do -- option 1 (brackets natural)
     t1 <- term
     op <- condOps
     t2 <- term
     return (op t1 t2)
 
 -- | Condition options
-condOps = (reservedOp "==" >> return (:==:))
+condOps = (reservedOp "-><-" >> return (:-><-))
+--condOps = try (reservedOp "->" >> return (:->)) --do{ try (reservedOp "->"; return (:->) }
+--        <|> (reservedOp "-><-" >> return (:-><-)) 
+
+{-
+
+-- | Oriented conditions
+oriented :: Parser CondType
+oriented = reserved "ORIENTED" >> return Oriented
+
+-}
+
+
+{-
+
+
 
 -- | Context-sensitive strategy
 declCSStrategy :: Parser Decl

@@ -24,7 +24,7 @@ parseTPDB
 import Parser.TPDB.TRS.Parser (trsParser)
 
 import Parser.TPDB.TRS.Grammar (Spec (..), Decl (..), TRSType(..), TRS (..)
-  , Term (..), Id, TRSType (..) ) -- ,Rule (..), getTerms, nonVarLHS, isCRule, hasExtraVars)
+  , Term (..), Id, TRSType (..), Cond (..)) -- ,Rule (..), getTerms, nonVarLHS, isCRule, hasExtraVars)
 
 import Text.ParserCombinators.Parsec (parse, Parser, ParseError)
 import Text.ParserCombinators.Parsec.Error (Message (..), newErrorMessage)
@@ -62,7 +62,15 @@ checkConsistency (Right (Spec decls))
 checkWellFormed :: [Decl] -> State TRS (Either ParseError TRS)
 checkWellFormed [] = do { myTRS <- get 
                         ; return . Right $ myTRS}
-                      
+
+checkWellFormed (Var vs:rest) = do { myTRS <- get 
+                                   ; put $ myTRS { trsVariables = S.union (trsVariables myTRS) (S.fromList vs) }
+                                   ; checkWellFormed rest
+                                   }
+
+checkWellFormed (Theory th:rest) = checkWellFormed rest
+checkWellFormed (Rules rl:rest) = checkWellFormed rest
+
 {-
 checkWellFormed (CType SemiEquational:rest) = do { myTRS <- get 
                                                  ; put $ myTRS { trsType = TRSConditional SemiEquational }
@@ -79,10 +87,7 @@ checkWellFormed (CType Oriented:rest) = do { myTRS <- get
 
 -}
 
-checkWellFormed (Var vs:rest) = do { myTRS <- get 
-                                   ; put $ myTRS { trsVariables = S.union (trsVariables myTRS) (S.fromList vs) }
-                                   ; checkWellFormed rest
-                                   }
+
 
 {-
 checkWellFormed (Context rmap:rest) = do { myTRS <- get 

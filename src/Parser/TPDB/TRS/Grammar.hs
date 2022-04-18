@@ -17,9 +17,8 @@ module Parser.TPDB.TRS.Grammar (
 
 -- * Exported data
 
-Spec(..), Decl(..), Thdecl (..), SimpleThdecl (..), Equation (..), SimpleEquation (..)
-,Term (..), Id, TRSType (..), TRS (..)
--- , Rule(..), SimpleRule (..), 
+Spec(..), Decl(..), Thdecl (..), SimpleThdecl (..), Equation (..) --, SimpleEquation (..)
+,Term (..), Id, TRSType (..), TRS (..), Rule(..), SimpleRule (..), Cond (..)
 
 -- * Exported functions
 
@@ -44,7 +43,7 @@ data Spec = Spec [Decl] -- ^ List of declarations
 -- | List of declarations
 data Decl = Var [Id] -- ^ Set of variables
     | Theory [Thdecl] -- ^ Set of rules
-    -- | Rules [Rule] -- ^ Set of rules
+    | Rules [Rule] -- ^ Set of rules
     -- | Strategy Strategydecl -- ^ Extra information
       deriving (Eq, Show, Data, Typeable)
 
@@ -53,10 +52,15 @@ data Thdecl = Thdecl SimpleThdecl [Thdecl]
       deriving (Eq, Data, Typeable)
 
 -- | Simple theory declaration
-data SimpleThdecl = SimpleThdecl Id [Id]
+data SimpleThdecl = Id Id [Id]
     | Equations [Equation] 
       deriving (Eq, Data, Typeable)
 
+-- | Equation declaration
+data Equation = Term :==: Term -- ^ Equation
+      deriving (Eq, Data, Typeable)
+
+{-
 -- | Equation declaration (para obligar a que haya min. uno??)
 data Equation = Equation SimpleEquation [Equation]
       deriving (Eq, Data, Typeable)
@@ -64,28 +68,26 @@ data Equation = Equation SimpleEquation [Equation]
 -- | Simple equation declaration
 data SimpleEquation = Term :==: Term -- ^ Equation
       deriving (Eq, Data, Typeable)
+-}
 
 -- | Term declaration
 data Term = T Id [Term] -- ^ Term
     deriving (Eq, Data, Typeable)
 
-
-{-
-
 -- | Rule declaration
-data Rule = Rule SimpleRule [Rule] -- ^ Conditional rewriting rule
+data Rule = Rule SimpleRule [Cond] -- ^ Conditional rewriting rule
       deriving (Eq, Data, Typeable)
 
 -- | Simple rule declaration
-data SimpleRule = Term :-> Term -- ^ Rewriting rule
-    | Term :->= Term
-    | Cond [Cond]
-      deriving (Eq, Data, Typeable)
-
-data Cond = Term :-> Term
-    | Term :-><- Term
+data SimpleRule = Term :-> Term  -- [Cond] -- Flecha Term Term [Cond] -- ^ Rewriting rule   
+    | Term :->= Term -- [Cond] -- FlechaIgual Term Term [Cond] 
     deriving (Eq, Data, Typeable)
 
+data Cond = Term :-><- Term --
+    -- | Term :-> Term
+    deriving (Eq, Data, Typeable)
+
+{-
 -- | Strategy Declaration
 data Strategydecl = INNERMOST
   | OUTERMOST
@@ -123,31 +125,32 @@ data TRS
 -- Show
 
 instance Show SimpleThdecl where 
-  show (SimpleThdecl id []) = show id
-  show (SimpleThdecl id ids) = show id ++ " | " ++ (concat . intersperse ", " . map show $ ids)
+  show (Id id []) = show id
+  show (Id id ids) = show id ++ " | " ++ (concat . intersperse ", " . map show $ ids)
   -- show (Equations eqs) = (concat . intersperse ", " . map show $ eqs)
 
 instance Show Thdecl where 
   show (Thdecl t []) = show t
   show (Thdecl t ths) = show t ++ " | " ++ (concat . intersperse ", " . map show $ ths)
 
-instance Show SimpleEquation where -- instance Show Equation where
+instance Show Equation where -- instance Show Equation where
   show (t1 :==: t2) = show t1 ++ " == " ++ show t2
 
-{-
+instance Show Term where
+  show (T f []) = f 
+  show (T f terms) = f ++ "(" ++ (concat . intersperse "," . map show $ terms) ++ ")" 
 
 instance Show SimpleRule where 
   show (t1 :-> t2) = show t1 ++ " -> " ++ show t2
+  show (t1 :->= t2) = show t1 ++ " ->= " ++ show t2
   
 instance Show Rule where 
   show (Rule r []) = show r
-  show (Rule r eqs) = show r ++ " | " ++ (concat . intersperse ", " . map show $ eqs)
-    
--}
+  show (Rule r conds) = show r ++ " | " ++ (concat . intersperse ", " . map show $ conds)
 
-instance Show Term where
-    show (T f []) = f 
-    show (T f terms) = f ++ "(" ++ (concat . intersperse "," . map show $ terms) ++ ")" 
+instance Show Cond where
+  show (t1 :-><- t2) = show t1 ++ " -><- " ++ show t2
+  -- show (t1 :-> t2) = show t1 ++ " -> " ++ show t2
 
 -----------------------------------------------------------------------------
 -- Functions
@@ -170,7 +173,7 @@ getTerms (Rule (l :-> r) eqs) = (l:r:concatMap getTermsEq eqs)
 -}
 
 -- | gets all the terms from a equation
-getTermsEq :: SimpleEquation -> [Term]  -- getTermsEq :: Equation -> [Term]
+getTermsEq :: Equation -> [Term]  -- getTermsEq :: SimpleEquation -> [Term]
 getTermsEq (l :==: r) = [l,r]
 
 {-
