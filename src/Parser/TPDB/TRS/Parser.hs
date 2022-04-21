@@ -88,7 +88,7 @@ eqOps = (reservedOp "==" >> return (:==:))
 term :: Parser Term
 term =
  do n <- identifier
-    terms <- option [] (parens (many (commaSep' term) ) )-- terms <- option [] (parens (commaSep' term))
+    terms <- option [] (parens (commaSep' term)) -- terms <- parens (many (commaSep' term) ) 
     return (T n terms)
 
 -- | Rules declaration is formed by a reserved word plus a set of
@@ -131,41 +131,51 @@ declstrategy :: Parser Decl
 declstrategy = reserved "STRATEGY" >> liftM Strategy (innermost <|> outermost <|> contextsensitive)
 
 -- | innermost strategy
-innermost :: Parser Strategy
+innermost :: Parser Strategydecl
 innermost = reserved "INNERMOST" >> return INNERMOST
 
 -- | outermost strategy
-outermost :: Parser Strategy
+outermost :: Parser Strategydecl
 outermost = reserved "OUTERMOST" >> return OUTERMOST
 
-{-
 -- | contextsensitive strategy
-contextsensitive :: Parser Strategy
-contextsensitive = reserved "CONTEXTSENSITIVE" >> liftM Csstratlist (many  --auxfunc)
--}
-
--- | contextsensitive strategy
-contextsensitive :: Parser Strategy
+contextsensitive :: Parser Strategydecl
 contextsensitive =
  do reserved "CONTEXTSENSITIVE"
     strats <- many$ parens (do a <- identifier
                                b <- many natural
-                               return (a, map fromInteger b) -- !!
+                               return $ Csstrat (a, map fromInteger b) -- !!
                            )
-    return $ Csstratlist strats
+    return $ CONTEXTSENSITIVE strats
+
+{- 
+-- | contextsensitive strategy - Option 2
+contextsensitive :: Parser Strategydecl
+contextsensitive = reserved "CONTEXTSENSITIVE" >> liftM CONTEXTSENSITIVE (many csstrat)
+csstrat :: Parser Csstrat
+csstrat =
+ do strats <- parens (do a <- identifier
+                         b <- many natural
+                         return (a, map fromInteger b) -- !!
+                     )
+    return$ Csstrat strats
+-}
 
 anylist :: Parser Decl
 anylist=
  do id <- identifier
-    idList <- option [] (many auxAnylist)
+    idList <- option [] (many identifier) --auxAnylist)
     return (AnyList id idList)
-
-auxAnylist= strats <- many$ parens (do a <- identifier
-                                    b <- many natural
-                                    return (a, map fromInteger b) -- !!
-                                )
+{-
+auxAnylist= do{ n <- identifier
+                ; m <- auxAnylist
+                ; return (concat $ n m)
+                }
+        <|>
+        <|>
+        <|> 
         return $ Csstratlist strats
-
+-}
 -- | Extra information
 
 -- | A phrase
