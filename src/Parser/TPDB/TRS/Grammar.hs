@@ -18,7 +18,9 @@ module Parser.TPDB.TRS.Grammar (
 -- * Exported data
 
 Spec(..), Decl(..), Thdecl (..), SimpleThdecl (..), Equation (..) --, SimpleEquation (..)
-,Term (..), Id, TRSType (..), TRS (..), Rule(..), SimpleRule (..), Cond (..)
+, Term (..), Rule(..), SimpleRule (..), Cond (..), Strategy (..)
+, Csstratlist (..), Id, TRSType (..), TRS (..)
+
 
 -- * Exported functions
 
@@ -44,7 +46,8 @@ data Spec = Spec [Decl] -- ^ List of declarations
 data Decl = Var [Id] -- ^ Set of variables
     | Theory [Thdecl] -- ^ Set of rules
     | Rules [Rule] -- ^ Set of rules
-    -- | Strategy Strategydecl -- ^ Extra information
+    | Strategy Strategy -- ^ Extra information
+    | AnyList Id [String]
       deriving (Eq, Show, Data, Typeable)
 
 -- | Theory declaration (para obligar a que haya min. uno??)
@@ -84,20 +87,18 @@ data SimpleRule = Term :-> Term  -- [Cond] -- Flecha Term Term [Cond] -- ^ Rewri
     deriving (Eq, Data, Typeable)
 
 data Cond = Term :-><- Term --
-    -- | Term :-> Term
+    | Arrow Term Term -- | Term :-> Term
     deriving (Eq, Data, Typeable)
 
-{-
 -- | Strategy Declaration
-data Strategydecl = INNERMOST
+data Strategy = INNERMOST
   | OUTERMOST
   | CONTEXTSENSITIVE Csstratlist
     deriving (Eq, Show, Data, Typeable)
 
 data Csstratlist = Csstratlist Id [Int] Csstratlist
-    deriving (Eq, Show, Data, Typeable)
+    deriving (Eq, {-Show,-} Data, Typeable)
 
--}
 
 -- | Identifier
 type Id = String
@@ -151,6 +152,10 @@ instance Show Rule where
 instance Show Cond where
   show (t1 :-><- t2) = show t1 ++ " -><- " ++ show t2
   -- show (t1 :-> t2) = show t1 ++ " -> " ++ show t2
+
+instance Show Csstratlist where
+  show (Csstratlist id [] csstratlist) = "(" ++ id ++ ")" ++ map show $ csstratlist
+  show (Csstratlist id nums csstratlist) = "(" ++ id ++ (concat . intersperse " " . map show $ nums) ++ ")" ++ show $ csstratlist
 
 -----------------------------------------------------------------------------
 -- Functions

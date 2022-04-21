@@ -39,7 +39,7 @@ trsParser = liftM Spec (many (whiteSpace >> parens decl))
 -- | A declaration is form by a set of variables, a theory, a set of
 -- rules, a strategy an extra information
 decl :: Parser Decl
-decl = declVar <|> declTheory <|> declRules 
+decl = declVar <|> declTheory <|> declRules <|> declstrategy <|> anylist
 
 -- | Variables declaration is formed by a reserved word plus a set of
 --   variables
@@ -88,7 +88,7 @@ eqOps = (reservedOp "==" >> return (:==:))
 term :: Parser Term
 term =
  do n <- identifier
-    terms <- option [] (parens (commaSep' term))
+    terms <- option [] (parens (many (commaSep' term) ) )-- terms <- option [] (parens (commaSep' term))
     return (T n terms)
 
 -- | Rules declaration is formed by a reserved word plus a set of
@@ -123,35 +123,48 @@ cond =
     return (op t1 t2)
 
 -- | Condition options
-condOps = (reservedOp "-><-" >> return (:-><-))
---condOps = try (reservedOp "->" >> return (:->)) --do{ try (reservedOp "->"; return (:->) }
+condOps = try (reservedOp "-><-" >> return (:-><-))
+        <|> (reservedOp "->" >> return (Arrow)) --do{ try (reservedOp "->"; return (:->) }
 --        <|> (reservedOp "-><-" >> return (:-><-)) 
 
+declstrategy :: Parser Decl
+declstrategy = reserved "STRATEGY" >> liftM Strategy (innermost <|> outermost <|> contextsensitive)
+
+-- | innermost strategy
+innermost :: Parser Strategy
+innermost = reserved "INNERMOST" >> return INNERMOST
+
+-- | outermost strategy
+outermost :: Parser Strategy
+outermost = reserved "OUTERMOST" >> return OUTERMOST
+
 {-
-
--- | Oriented conditions
-oriented :: Parser CondType
-oriented = reserved "ORIENTED" >> return Oriented
-
+-- | contextsensitive strategy
+contextsensitive :: Parser Strategy
+contextsensitive = reserved "CONTEXTSENSITIVE" >> liftM Csstratlist (many  --auxfunc)
 -}
 
-
-{-
-
-
-
--- | Context-sensitive strategy
-declCSStrategy :: Parser Decl
-declCSStrategy =
- do reserved "REPLACEMENT-MAP"
+-- | contextsensitive strategy
+contextsensitive :: Parser Strategy
+contextsensitive =
+ do reserved "CONTEXTSENSITIVE"
     strats <- many$ parens (do a <- identifier
-                               b <- commaSep' natural
-                               return (a, map fromInteger b)
+                               b <- many natural
+                               return (a, map fromInteger b) -- !!
                            )
-    return $ Context strats
+    return $ Csstratlist strats
 
--}
+anylist :: Parser Decl
+anylist=
+ do id <- identifier
+    idList <- option [] (many auxAnylist)
+    return (AnyList id idList)
 
+auxAnylist= strats <- many$ parens (do a <- identifier
+                                    b <- many natural
+                                    return (a, map fromInteger b) -- !!
+                                )
+        return $ Csstratlist strats
 
 -- | Extra information
 
