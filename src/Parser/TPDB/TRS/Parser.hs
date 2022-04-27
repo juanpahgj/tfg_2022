@@ -56,8 +56,7 @@ declTheory = reserved "THEORY" >> liftM Theory (many thdecl)
 -- | Theory declaration
 thdecl :: Parser Thdecl
 thdecl =
- do 
-    sthd <- parens $ simpleThdecl
+ do sthd <- parens $ simpleThdecl
     listofthdecl <- option [] (many thdecl) --listofthdecl <- many thdecl
     return (Thdecl sthd listofthdecl)
 
@@ -164,18 +163,14 @@ csstrat =
 anylist :: Parser Decl
 anylist=
  do id <- identifier
-    idList <- option [] (many identifier) --auxAnylist)
-    return (AnyList id idList)
-{-
-auxAnylist= do{ n <- identifier
-                ; m <- auxAnylist
-                ; return (concat $ n m)
-                }
-        <|>
-        <|>
-        <|> 
-        return $ Csstratlist strats
--}
+    list <- option [] (many ( try $ many auxAny
+                                <|> try $ many (parens auxAny)
+                                <|> try $ many (commaSep' auxAny)
+                            )
+                      ) --auxAnylist)
+    return (AnyList id list)
+
+auxAny = (try identifier) <|> (lexeme)
 -- | Extra information
 
 -- | A phrase
