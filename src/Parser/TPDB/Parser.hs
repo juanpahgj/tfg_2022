@@ -50,6 +50,8 @@ parseTRS s = doParse s trsParser
 -- parsed system.
 doParse :: String -> Parser a -> Either ParseError a
 doParse s p = parse p "" s
+--(parse p filePath input) runs a character parser p without user state.
+--The filePath is only used in error messages and may be the empty string.
 
 -- | Checks consistency (order, arguments and replacement map)
 checkConsistency :: Either ParseError Spec -> Either ParseError TRS 

@@ -39,7 +39,7 @@ trsParser = liftM Spec (many (whiteSpace >> parens decl))
 -- | A declaration is form by a set of variables, a theory, a set of
 -- rules, a strategy an extra information
 decl :: Parser Decl
-decl = declVar <|> declTheory <|> declRules <|> declstrategy <|> anylist
+decl = declVar <|> declTheory <|> declRules <|> declStrategy <|> declAnylist
 
 -- | Variables declaration is formed by a reserved word plus a set of
 --   variables
@@ -126,8 +126,8 @@ condOps = try (reservedOp "-><-" >> return (:-><-))
         <|> (reservedOp "->" >> return (Arrow)) --do{ try (reservedOp "->"; return (:->) }
 --        <|> (reservedOp "-><-" >> return (:-><-)) 
 
-declstrategy :: Parser Decl
-declstrategy = reserved "STRATEGY" >> liftM Strategy (innermost <|> outermost <|> contextsensitive)
+declStrategy :: Parser Decl
+declStrategy = reserved "STRATEGY" >> liftM Strategy (innermost <|> outermost <|> contextsensitive)
 
 -- | innermost strategy
 innermost :: Parser Strategydecl
@@ -160,17 +160,30 @@ csstrat =
     return$ Csstrat strats
 -}
 
-anylist :: Parser Decl
-anylist=
- do id <- identifier
-    list <- option [] (many ( try $ many auxAny
-                                <|> try $ many (parens auxAny)
-                                <|> try $ many (commaSep' auxAny)
-                            )
-                      ) --auxAnylist)
-    return (AnyList id list)
+declAnylist :: Parser Decl
+declAnylist=
+ do 
+    name <- identifier
+    decls <- many anyContent
+    return $ AnyList name decls
 
-auxAny = (try identifier) <|> (lexeme)
+anyContent :: Parser AnyContent
+anyContent = anyId <|> anySt <|> anyAC <|> (comma >> anyContent)
+    
+-- | Identifiers
+anyId :: Parser AnyContent
+anyId = liftM AnyId identifier
+
+-- | Strings
+anySt :: Parser AnyContent
+anySt = liftM AnySt stringLiteral
+
+-- | Others
+anyAC :: Parser AnyContent
+anyAC = liftM AnyAC (parens $ many anyContent)
+
+
+
 -- | Extra information
 
 -- | A phrase

@@ -19,7 +19,7 @@ module Parser.TPDB.TRS.Grammar (
 
 Spec(..), Decl(..), Thdecl (..), SimpleThdecl (..), Equation (..) --, SimpleEquation (..)
 , Term (..), Rule(..), SimpleRule (..), Cond (..), Strategydecl (..)
-, Csstrat (..), Id, TRSType (..), TRS (..)
+, Csstrat (..), AnyContent (..), Id, TRSType (..), TRS (..)
 
 
 -- * Exported functions
@@ -47,7 +47,7 @@ data Decl = Var [Id] -- ^ Set of variables
     | Theory [Thdecl] -- ^ Set of rules
     | Rules [Rule] -- ^ Set of rules
     | Strategy Strategydecl -- ^ Extra information
-    | AnyList Id [String]
+    | AnyList Id [AnyContent] --AnyList Id [String]
       deriving (Eq, Show, Data, Typeable)
 
 -- | Theory declaration (para obligar a que haya min. uno??)
@@ -99,6 +99,10 @@ data Strategydecl = INNERMOST
 data Csstrat = Csstrat (Id, [Int])
     deriving (Eq, {-Show,-} Data, Typeable)
 
+data AnyContent = AnyId Id
+  | AnySt String
+  | AnyAC [AnyContent]
+    deriving (Eq, Show, Data, Typeable)
 
 -- | Identifier
 type Id = String
