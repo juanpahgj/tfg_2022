@@ -40,7 +40,8 @@ import Control.Monad.State (State, evalState, get, put)
 
 -- | Parses a TPDB problem and return a COPS Problem
 parseTPDB :: String -> Either ParseError TRS
-parseTPDB = checkConsistency . parseTRS
+parseTPDB = checkConsistency . parseTRS 
+--checkConsistency . parseTRS = \string -> checkConsistency(parseTRS(string))
 
 -- | Parses a term rewriting system in TPDB format
 parseTRS :: String -> Either ParseError Spec
@@ -65,13 +66,53 @@ checkWellFormed :: [Decl] -> State TRS (Either ParseError TRS)
 checkWellFormed [] = do { myTRS <- get 
                         ; return . Right $ myTRS}
 
-checkWellFormed (Var vs:rest) = do { myTRS <- get 
-                                   ; put $ myTRS { trsVariables = S.union (trsVariables myTRS) (S.fromList vs) }
-                                   ; checkWellFormed rest
+checkWellFormed (Var vs:rest) = do { myTRS <- get
+                                   ; let vars = trsVariables myTRS
+                                   ; if (S.member vs vars) then
+                                      return . Left $ newErrorMessage (UnExpect $ "variable already declared") (newPos "" 0 0)
+                                   else
+                                      do{ put $ myTRS { trsVariables = S.union (trsVariables myTRS) (S.fromList vs) }
+                                        ; checkWellFormed rest
+                                        }
                                    }
 
+checkWellFormed (Rules rs:rest) = checkWellFormed rest
+{-
+checkWellFormed (Rules rs:rest) = do { result <- checkRules rs
+                                     ; case result of
+                                         Left parseError -> return . Left $ parseError
+                                         Right _ -> do { myTRS <- get
+                                                       ; put $ myTRS {trsRules = rs}
+                                                       ; checkWellFormed rest
+                                                       }
+                                     }
+
+-- | Checks if the rules are well-formed wrt the extracted signature
+  checkRules :: [Rule] -> State TRS (Either ParseError ())
+  checkRules [] = do { myTRS <- get
+                       -- first, we extract the arity of symbols, then we check RMap 
+                     ; case trsType myTRS of
+                         TRSContextSensitive -> checkRMap . trsRMap $ myTRS
+                         TRSContextSensitiveConditional _ -> checkRMap . trsRMap $ myTRS
+                         _ -> return . Right $ ()
+                     }
+  checkRules (r:rs) = do { myTRS <- get
+                         ; let vs = trsVariables myTRS
+                         ; if nonVarLHS vs r then -- lhs is non-variable 
+                             if isCRule r || (not . hasExtraVars vs $ r) then -- extra variables not allowed in non-conditional rules
+                               do { result <- checkTerms . getTerms $ r 
+                                  ; case result of
+                                      Left parseError -> return . Left $ parseError 
+                                      Right _ -> checkRules rs
+                                  }
+                             else
+                             return . Left $ newErrorMessage (UnExpect $ "extra variables in the rule " ++ (show r)) (newPos "" 0 0)
+                           else
+                             return . Left $ newErrorMessage (UnExpect $ "variable in the left-hand side of the rule " ++ (show r)) (newPos "" 0 0)
+                         }
+-}
+
 checkWellFormed (Theory th:rest) = checkWellFormed rest
-checkWellFormed (Rules rl:rest) = checkWellFormed rest
 
 {-
 checkWellFormed (CType SemiEquational:rest) = do { myTRS <- get 
@@ -108,41 +149,6 @@ checkWellFormed (Context rmap:rest) = do { myTRS <- get
 
 -}
 
-{-
-checkWellFormed (Rules rs:rest) = do { result <- checkRules rs
-                                     ; case result of
-                                         Left parseError -> return . Left $ parseError
-                                         Right _ -> do { myTRS <- get
-                                                       ; put $ myTRS {trsRules = rs}
-                                                       ; checkWellFormed rest
-                                                       }
-                                     }
-
--- | Checks if the rules are well-formed wrt the extracted signature
-checkRules :: [Rule] -> State TRS (Either ParseError ())
-checkRules [] = do { myTRS <- get
-                     -- first, we extract the arity of symbols, then we check RMap 
-                   ; case trsType myTRS of
-                       TRSContextSensitive -> checkRMap . trsRMap $ myTRS
-                       TRSContextSensitiveConditional _ -> checkRMap . trsRMap $ myTRS
-                       _ -> return . Right $ ()
-                   }
-checkRules (r:rs) = do { myTRS <- get
-                       ; let vs = trsVariables myTRS
-                       ; if nonVarLHS vs r then -- lhs is non-variable 
-                           if isCRule r || (not . hasExtraVars vs $ r) then -- extra variables not allowed in non-conditional rules
-                             do { result <- checkTerms . getTerms $ r 
-                                ; case result of
-                                    Left parseError -> return . Left $ parseError 
-                                    Right _ -> checkRules rs
-                                }
-                           else
-                           return . Left $ newErrorMessage (UnExpect $ "extra variables in the rule " ++ (show r)) (newPos "" 0 0)
-                         else
-                           return . Left $ newErrorMessage (UnExpect $ "variable in the left-hand side of the rule " ++ (show r)) (newPos "" 0 0)
-                       }
-
--}
 {-
 -- | Checks if the terms are well-formed wrt the extracted signature
 checkTerms :: [Term] -> State TRS (Either ParseError ())
