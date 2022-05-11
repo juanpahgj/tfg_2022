@@ -30,8 +30,8 @@ import Text.ParserCombinators.Parsec (parse, Parser, ParseError)
 import Text.ParserCombinators.Parsec.Error (Message (..), newErrorMessage)
 import Text.Parsec.Pos (newPos)
 import Data.Map as M (empty, lookup, insert)
-import Data.Set as S (empty, fromList, member, union)
-import Data.List (sort, nub)
+import Data.Set as S (empty, fromList, member, union, intersection, null, elems)
+import Data.List (sort, nub, intersperse)
 import Control.Monad.State (State, evalState, get, put)
 
 -----------------------------------------------------------------------------
@@ -62,21 +62,26 @@ checkConsistency (Right (Spec decls))
 
 -- | Extracts the signature and checks if the rules are well-formed wrt that
 -- signature. Precondition: Declarations are in order.
+--
+-- Must be sorted. 
 checkWellFormed :: [Decl] -> State TRS (Either ParseError TRS)
 checkWellFormed [] = do { myTRS <- get 
                         ; return . Right $ myTRS}
 
-checkWellFormed (Var vs:rest) = do { myTRS <- get
-                                   ; let vars = trsVariables myTRS
-                                   ; if (S.member vs vars) then
-                                      return . Left $ newErrorMessage (UnExpect $ "variable already declared") (newPos "" 0 0)
+checkWellFormed ((Var vs):rest) = do { myTRS <- get
+                                   ; let vars = trsVariables myTRS -- Set Char
+                                   ; let vsSet = S.fromList vs -- Set Char
+                                   ; let duplicated = S.intersection vsSet vars
+                                   ; if (not . S.null $ duplicated) then
+                                      return . Left $ newErrorMessage (UnExpect $ "variable(s) already declared: " ++ (concat . intersperse ", " . S.elems $ duplicated)) (newPos "" 0 0)
                                    else
-                                      do{ put $ myTRS { trsVariables = S.union (trsVariables myTRS) (S.fromList vs) }
-                                        ; checkWellFormed rest
-                                        }
+                                     do{ put $ myTRS { trsVariables = S.union vars vsSet }
+                                       ; checkWellFormed rest
+                                       }
                                    }
 
-checkWellFormed (Rules rs:rest) = checkWellFormed rest
+
+checkWellFormed ((Rules rs):rest) = checkWellFormed rest
 {-
 checkWellFormed (Rules rs:rest) = do { result <- checkRules rs
                                      ; case result of
@@ -87,7 +92,7 @@ checkWellFormed (Rules rs:rest) = do { result <- checkRules rs
                                                        }
                                      }
 
--- | Checks if the rules are well-formed wrt the extracted signature
+-- | Checks if the rules are well-formed w.r.t. the extracted signature
   checkRules :: [Rule] -> State TRS (Either ParseError ())
   checkRules [] = do { myTRS <- get
                        -- first, we extract the arity of symbols, then we check RMap 
@@ -112,7 +117,7 @@ checkWellFormed (Rules rs:rest) = do { result <- checkRules rs
                          }
 -}
 
-checkWellFormed (Theory th:rest) = checkWellFormed rest
+checkWellFormed ((Theory th):rest) = checkWellFormed rest
 
 {-
 checkWellFormed (CType SemiEquational:rest) = do { myTRS <- get 
