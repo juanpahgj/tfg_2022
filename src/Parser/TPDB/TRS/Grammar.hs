@@ -24,7 +24,7 @@ Spec(..), Decl(..), Thdecl (..), SimpleThdecl (..), Equation (..) --, SimpleEqua
 
 -- * Exported functions
 
---, getTerms, nonVarLHS, isCRule, hasExtraVars
+, getTerms, --nonVarLHS, isCRule, hasExtraVars
 
 ) where
 
@@ -118,8 +118,8 @@ data TRSType = TRSStandard
 data TRS 
   = TRS { trsSignature :: Map Id Int
         , trsVariables :: Set Id
-        , trsRMap :: [(Id, [Int])]
-        -- , trsRules :: [Rule]
+        --, trsRMap :: [(Id, [Int])]
+        , trsRules :: [Rule]
         , trsType :: TRSType
         } deriving (Show)
 
@@ -173,17 +173,17 @@ getVars vs (T idt ts) = let tsVars = unions . map (getVars vs) $ ts
                            else 
                              tsVars
 
-{-
 
 -- | gets all the terms from a rule
 getTerms :: Rule -> [Term]
-getTerms (Rule (l :-> r) eqs) = (l:r:concatMap getTermsEq eqs)
+getTerms (Rule (l :-> r) eqs) = (l:r:concatMap getTermsCond eqs)
 
--}
+
 
 -- | gets all the terms from a equation
-getTermsEq :: Equation -> [Term]  -- getTermsEq :: SimpleEquation -> [Term]
-getTermsEq (l :==: r) = [l,r]
+getTermsCond :: Cond -> [Term]  -- getTermsEq :: SimpleEquation -> [Term]
+getTermsCond (l :-><- r) = [l,r]
+getTermsCond (Arrow l r) = [l,r]
 
 {-
 

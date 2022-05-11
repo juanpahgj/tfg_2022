@@ -24,7 +24,7 @@ parseTPDB
 import Parser.TPDB.TRS.Parser (trsParser)
 
 import Parser.TPDB.TRS.Grammar (Spec (..), Decl (..), TRSType(..), TRS (..)
-  , Term (..), Id, TRSType (..), Cond (..)) -- ,Rule (..), getTerms, nonVarLHS, isCRule, hasExtraVars)
+  , Term (..), Id, TRSType (..), Cond (..), Rule (..), getTerms)--, nonVarLHS, isCRule, hasExtraVars)
 
 import Text.ParserCombinators.Parsec (parse, Parser, ParseError)
 import Text.ParserCombinators.Parsec.Error (Message (..), newErrorMessage)
@@ -65,7 +65,9 @@ checkConsistency (Right (Spec decls))
 checkWellFormed :: [Decl] -> State TRS (Either ParseError TRS)
 checkWellFormed [] = do { myTRS <- get 
                         ; return . Right $ myTRS}
-
+                        
+checkWellFormed (Var vs:rest) = checkWellFormed rest
+{-
 checkWellFormed (Var vs:rest) = do { myTRS <- get
                                    ; let vars = trsVariables myTRS
                                    ; if (S.member vs vars) then
@@ -75,9 +77,11 @@ checkWellFormed (Var vs:rest) = do { myTRS <- get
                                         ; checkWellFormed rest
                                         }
                                    }
+-}
 
-checkWellFormed (Rules rs:rest) = checkWellFormed rest
-{-
+checkWellFormed (Theory th:rest) = checkWellFormed rest
+
+--checkWellFormed (Rules rs:rest) = checkWellFormed rest
 checkWellFormed (Rules rs:rest) = do { result <- checkRules rs
                                      ; case result of
                                          Left parseError -> return . Left $ parseError
@@ -88,31 +92,63 @@ checkWellFormed (Rules rs:rest) = do { result <- checkRules rs
                                      }
 
 -- | Checks if the rules are well-formed wrt the extracted signature
-  checkRules :: [Rule] -> State TRS (Either ParseError ())
-  checkRules [] = do { myTRS <- get
-                       -- first, we extract the arity of symbols, then we check RMap 
-                     ; case trsType myTRS of
-                         TRSContextSensitive -> checkRMap . trsRMap $ myTRS
-                         TRSContextSensitiveConditional _ -> checkRMap . trsRMap $ myTRS
-                         _ -> return . Right $ ()
-                     }
-  checkRules (r:rs) = do { myTRS <- get
-                         ; let vs = trsVariables myTRS
-                         ; if nonVarLHS vs r then -- lhs is non-variable 
-                             if isCRule r || (not . hasExtraVars vs $ r) then -- extra variables not allowed in non-conditional rules
-                               do { result <- checkTerms . getTerms $ r 
-                                  ; case result of
-                                      Left parseError -> return . Left $ parseError 
-                                      Right _ -> checkRules rs
-                                  }
-                             else
-                             return . Left $ newErrorMessage (UnExpect $ "extra variables in the rule " ++ (show r)) (newPos "" 0 0)
-                           else
-                             return . Left $ newErrorMessage (UnExpect $ "variable in the left-hand side of the rule " ++ (show r)) (newPos "" 0 0)
-                         }
--}
+checkRules :: [Rule] -> State TRS (Either ParseError ())
+checkRules [] = do { myTRS <- get
+                   ; return . Right $ ()
+                      -- first, we extract the arity of symbols, then we check RMap 
+                    --; case trsType myTRS of
+                    --  TRSContextSensitive -> checkRMap . trsRMap $ myTRS
+                    --  TRSContextSensitiveConditional _ -> checkRMap . trsRMap $ myTRS
+                    -- _ -> return . Right $ ()
+                    }
+checkRules (r:rs) = do { myTRS <- get
+                        ; let vs = trsVariables myTRS
+                        --; if nonVarLHS vs r then -- lhs is non-variable 
+                            --if isCRule r || (not . hasExtraVars vs $ r) then -- extra variables not allowed in non-conditional rules
+                        ; do { result <- checkTerms . getTerms $ r 
+                            ; case result of
+                                Left parseError -> return . Left $ parseError 
+                                Right _ -> checkRules rs
+                            }
+                            --else
+                            --return . Left $ newErrorMessage (UnExpect $ "extra variables in the rule " ++ (show r)) (newPos "" 0 0)
+                          --else
+                            --return . Left $ newErrorMessage (UnExpect $ "variable in the left-hand side of the rule " ++ (show r)) (newPos "" 0 0)
+                        }
 
-checkWellFormed (Theory th:rest) = checkWellFormed rest
+-- | Checks if the terms are well-formed wrt the extracted signature
+checkTerms :: [Term] -> State TRS (Either ParseError ())
+checkTerms [] = return . Right $ ()
+checkTerms (t:ts) = do { result <- checkTerm t 
+                        ; case result of
+                            Left parseError -> return . Left $ parseError
+                            Right _ -> checkTerms ts
+                        }
+
+-- | Checks if the term is well-formed wrt the extracted signature
+checkTerm :: Term -> State TRS (Either ParseError ())
+checkTerm (T id terms) = do { myTRS <- get
+                            ; let vars = trsVariables myTRS
+                            ; let funcs = trsSignature myTRS
+                            ; let arglen = length terms
+                            ; case (S.member id vars, M.lookup id funcs) of 
+                                (False, Nothing) -> do { put $ myTRS { trsSignature = M.insert id (length terms) $ funcs }
+                                                      ; checkTerms terms
+                                                      }
+                                (False, Just len) -> if (arglen == len) then 
+                                                      checkTerms terms 
+                                                    else
+                                                      return . Left $ newErrorMessage (UnExpect $ "symbol " ++ id ++ " with arity " ++ (show arglen) ++ " in term " ++ (show $ T id terms)) (newPos "" 0 0)
+                                (True, Nothing) -> if (arglen == 0) then 
+                                                    return . Right $ ()
+                                                  else
+                                                    return . Left $ newErrorMessage (UnExpect $ "arguments in variable " ++ id) (newPos "" 0 0)
+                                -- next case is not possible
+                                _ -> return . Left $ newErrorMessage (UnExpect $ "variable and function symbols declaration " ++ id) (newPos "" 0 0)
+                            }
+
+
+
 
 {-
 checkWellFormed (CType SemiEquational:rest) = do { myTRS <- get 
@@ -150,36 +186,7 @@ checkWellFormed (Context rmap:rest) = do { myTRS <- get
 -}
 
 {-
--- | Checks if the terms are well-formed wrt the extracted signature
-checkTerms :: [Term] -> State TRS (Either ParseError ())
-checkTerms [] = return . Right $ ()
-checkTerms (t:ts) = do { result <- checkTerm t 
-                       ; case result of
-                           Left parseError -> return . Left $ parseError
-                           Right _ -> checkTerms ts
-                       }
 
--- | Checks if the term is well-formed wrt the extracted signature
-checkTerm :: Term -> State TRS (Either ParseError ())
-checkTerm (T id terms) = do { myTRS <- get
-                            ; let vars = trsVariables myTRS
-                            ; let funcs = trsSignature myTRS
-                            ; let arglen = length terms
-                            ; case (S.member id vars, M.lookup id funcs) of 
-                               (False, Nothing) -> do { put $ myTRS { trsSignature = M.insert id (length terms) $ funcs }
-                                                      ; checkTerms terms
-                                                      }
-                               (False, Just len) -> if (arglen == len) then 
-                                                      checkTerms terms 
-                                                    else
-                                                      return . Left $ newErrorMessage (UnExpect $ "symbol " ++ id ++ " with arity " ++ (show arglen) ++ " in term " ++ (show $ T id terms)) (newPos "" 0 0)
-                               (True, Nothing) -> if (arglen == 0) then 
-                                                    return . Right $ ()
-                                                  else
-                                                    return . Left $ newErrorMessage (UnExpect $ "arguments in variable " ++ id) (newPos "" 0 0)
-                               -- next case is not possible
-                               _ -> return . Left $ newErrorMessage (UnExpect $ "variable and function symbols declaration " ++ id) (newPos "" 0 0)
-                            }
 
 -- | Checks if the replacement map satisfies arity restriction and increasing order
 checkRMap :: [(Id, [Int])] -> State TRS (Either ParseError ())
