@@ -40,7 +40,7 @@ import Control.Monad.State (State, evalState, get, put)
 
 -- | Parses a TPDB problem and return a COPS Problem
 parseTPDB :: String -> Either ParseError TRS
-parseTPDB = checkConsistency . checkBlocks . parseTRS
+parseTPDB = checkConsistency . checkSortBlocks . parseTRS
 --parseTPDB = checkConsistency . parseTRS 
 --checkConsistency . parseTRS = \string -> checkConsistency(parseTRS(string))
 
@@ -58,10 +58,11 @@ doParse s p = parse p "" s
 
 
 -- | Must have at least one Var and one Rules block
-checkBlocks :: Either ParseError Spec -> Either ParseError Spec -- 
-checkBlocks (Left parseError) = Left parseError
-checkBlocks (Right (Spec decls))= do{ if (hasVar decls) then 
-                                        Right (Spec decls)
+checkSortBlocks :: Either ParseError Spec -> Either ParseError Spec -- 
+checkSortBlocks (Left parseError) = Left parseError
+checkSortBlocks (Right (Spec decls))= do{ let sortedDecls = sort decls
+                                    ;  if (hasVar sortedDecls) then 
+                                        Right (Spec sortedDecls)
                                       else
                                         Left $ newErrorMessage (UnExpect $ "there is no required blocks") (newPos "" 0 0)
                                     }

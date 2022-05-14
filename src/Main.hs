@@ -27,6 +27,9 @@ import Parser.TPDB.Parser (parseTPDB, parseTRS)
 import System.IO (hPutStr, stdout)
 
 import Parser.TPDB.TRS.Grammar (Spec (..),Decl(..))
+
+--import Data.List(sort)
+
 -----------------------------------------------------------------------------
 -- Functions
 -----------------------------------------------------------------------------
@@ -75,6 +78,7 @@ main =
 --- Aux. fun.
 specToDecl :: Spec -> [Decl]
 specToDecl (Spec decls) = decls
+--specToDecl (Spec decls) = sort decls
 
 hasVar :: [Decl] -> Bool
 hasVar [] = False

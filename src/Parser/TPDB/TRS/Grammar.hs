@@ -40,7 +40,7 @@ import Data.List (intersperse)
 
 -- | Specification declaration
 data Spec = Spec [Decl] -- ^ List of declarations
-      deriving (Eq, Show, Data, Typeable)
+      deriving (Eq, Ord, Show, Data, Typeable)
 
 -- | List of declarations
 data Decl = Var [Id] -- ^ Set of variables
@@ -48,20 +48,20 @@ data Decl = Var [Id] -- ^ Set of variables
     | Rules [Rule] -- ^ Set of rules
     | Strategy Strategydecl -- ^ Extra information
     | AnyList Id [AnyContent] --AnyList Id [String]
-      deriving (Eq, Show, Data, Typeable)
+      deriving (Eq, Ord, Show, Data, Typeable)
 
 -- | Theory declaration (para obligar a que haya min. uno??)
 data Thdecl = Thdecl SimpleThdecl [Thdecl]
-      deriving (Eq, Data, Typeable)
+      deriving (Eq, Ord, Data, Typeable)
 
 -- | Simple theory declaration
 data SimpleThdecl = Id Id [Id]
     | Equations [Equation] 
-      deriving (Eq, Data, Typeable)
+      deriving (Eq, Ord, Data, Typeable)
 
 -- | Equation declaration
 data Equation = Term :==: Term -- ^ Equation
-      deriving (Eq, Data, Typeable)
+      deriving (Eq, Ord, Data, Typeable)
 
 {-
 -- | Equation declaration (para obligar a que haya min. uno??)
@@ -75,34 +75,34 @@ data SimpleEquation = Term :==: Term -- ^ Equation
 
 -- | Term declaration
 data Term = T Id [Term] -- ^ Term
-    deriving (Eq, Data, Typeable)
+    deriving (Eq, Ord, Data, Typeable)
 
 -- | Rule declaration
 data Rule = Rule SimpleRule [Cond] -- ^ Conditional rewriting rule
-      deriving (Eq, Data, Typeable)
+      deriving (Eq, Ord, Data, Typeable)
 
 -- | Simple rule declaration
 data SimpleRule = Term :-> Term  -- [Cond] -- Flecha Term Term [Cond] -- ^ Rewriting rule   
     | Term :->= Term -- [Cond] -- FlechaIgual Term Term [Cond] 
-    deriving (Eq, Data, Typeable)
+    deriving (Eq, Ord, Data, Typeable)
 
 data Cond = Term :-><- Term --
     | Arrow Term Term -- | Term :-> Term
-    deriving (Eq, Data, Typeable)
+    deriving (Eq, Ord, Data, Typeable)
 
 -- | Strategy Declaration
 data Strategydecl = INNERMOST
   | OUTERMOST
   | CONTEXTSENSITIVE [Csstrat]
-    deriving (Eq, Show, Data, Typeable)
+    deriving (Eq, Ord, Show, Data, Typeable)
 
 data Csstrat = Csstrat (Id, [Int])
-    deriving (Eq, {-Show,-} Data, Typeable)
+    deriving (Eq, Ord, {-Show,-} Data, Typeable)
 
 data AnyContent = AnyId Id
   | AnySt String
   | AnyAC [AnyContent]
-    deriving (Eq, Show, Data, Typeable)
+    deriving (Eq, Ord, Show, Data, Typeable)
 
 -- | Identifier
 type Id = String
@@ -160,6 +160,25 @@ instance Show Cond where
 instance Show Csstrat where
   show (Csstrat (id, [])) = "(" ++ id ++ ")"
   show (Csstrat (id, nums)) = "(" ++ id ++  (concat . intersperse " " . map show $ nums) ++ ")"
+
+{-
+instance Eq Decl where
+  Var == Var = True
+  Theory == Theory = True
+  Rules == Rules = True
+  Strategy == Strategy = True
+  AnyList == AnyList = True
+  _ == _ = False
+-}
+{-
+instance Ord Decl where
+  -- Var _ <= _ = True
+  Theory _ <= Var _ = True
+  Rules _ <= Theory _ = True
+  Strategy _ <= Rules _ = True
+  AnyList _ _ <= _ = True
+  _ < _ = False
+-}
 
 -----------------------------------------------------------------------------
 -- Functions
