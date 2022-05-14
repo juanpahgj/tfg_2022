@@ -20,3 +20,4 @@
   and(x, false) -> false
   and(x, or(x, y)) -> x
 )
+(VAR a b c)

@@ -22,10 +22,11 @@ main
 ) where
 
 import Interface.CLI (Opt (..), Format (..), parseOptions) --, autoparse)
-import Parser.TPDB.Parser (parseTPDB)
+import Parser.TPDB.Parser (parseTPDB, parseTRS)
 
 import System.IO (hPutStr, stdout)
 
+import Parser.TPDB.TRS.Grammar (Spec (..),Decl(..))
 -----------------------------------------------------------------------------
 -- Functions
 -----------------------------------------------------------------------------
@@ -39,12 +40,25 @@ main =
              , inputContent = input
              , inputFormat = format } = opts
      filedata <- input
+     --
+     let !decls = case parseTRS filedata of
+                            Left parseerror
+                               -> error$ "Parse Error (Main): " ++ show parseerror
+                            --Right (Spec decl)
+                            Right decl
+                               -> decl
+     --
      let !trs = case parseTPDB filedata of
                             Left parseerror
                                -> error$ "Parse Error (Main): " ++ show parseerror
                             Right sys
                               -> sys
-     hPutStr stdout (show trs) --- ""
+     hPutStr stdout ("Spec (decl list):\n\n" ++ (show $ specToDecl decls) ++ "\n---------\n" ++ "TRS:\n\n" ++ show trs)--printOp spec
+     hPutStr stdout ("\n\nPruebas:\n"
+                     ++ "longitud de la lista (num. de bloques): " ++ (show $ length $ specToDecl decls) 
+                     -- ++ "\nTiene var y rule: \n" ++ (show $ hasVar (specToDecl decls))
+                    )
+     --hPutStr stdout (show trs) --- ""
 
      {-
      let !trs = case format of 
@@ -57,3 +71,43 @@ main =
       Nothing -> autoparse filename filedata
 
       -}
+
+--- Aux. fun.
+specToDecl :: Spec -> [Decl]
+specToDecl (Spec decls) = decls
+
+hasVar :: [Decl] -> Bool
+hasVar [] = False
+hasVar (Var vs:rest)= hasRule rest
+hasVar (d:ds) = hasVar ds
+      
+hasRule [] = False
+hasRule (Rules r:_) = True
+hasRule (d:ds) = hasRule ds
+
+{-
+
+--hasVarRule= (Left parseError) = Left parseError
+hasVarRule (Spec decls) = do {let arglen = length decls
+                                     ; case (S.member id vars) of
+                                        (True) -> if (arglen == 0) then 
+                                                            return . Right $ ()
+                                                           else
+                                                            return . Left $ newErrorMessage (UnExpect $ "arguments in variable " ++ id) (newPos "" 0 0)
+
+                                        _ -> return . Left $ newErrorMessage (UnExpect $ "variable and function symbols declaration " ++ id) (newPos "" 0 0)
+                              }
+-}
+
+{-
+--------------------Borrar, imprimir decl
+showOp :: [Decl] -> String
+showOp [] = [] -- the empty list is a String
+showOp (o:os) = showo ++ ('\n' : showos)
+   where showo = (show o) -- this is a String, i.e. [Char]
+         showos = showOp os -- this is also a String
+
+printOp :: [Decl] -> IO ()
+printOp xs = putStr $ showOp xs
+----------------------
+-}

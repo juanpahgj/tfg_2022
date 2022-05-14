@@ -17,7 +17,7 @@ module Parser.TPDB.Parser (
 
 -- * Exported functions
 
-parseTPDB
+parseTPDB, parseTRS
 
 )  where
 
@@ -40,8 +40,10 @@ import Control.Monad.State (State, evalState, get, put)
 
 -- | Parses a TPDB problem and return a COPS Problem
 parseTPDB :: String -> Either ParseError TRS
-parseTPDB = checkConsistency . parseTRS 
+parseTPDB = checkConsistency . checkBlocks . parseTRS
+--parseTPDB = checkConsistency . parseTRS 
 --checkConsistency . parseTRS = \string -> checkConsistency(parseTRS(string))
+
 
 -- | Parses a term rewriting system in TPDB format
 parseTRS :: String -> Either ParseError Spec
@@ -53,6 +55,26 @@ doParse :: String -> Parser a -> Either ParseError a
 doParse s p = parse p "" s
 --(parse p filePath input) runs a character parser p without user state.
 --The filePath is only used in error messages and may be the empty string.
+
+
+-- | Must have at least one Var and one Rules block
+checkBlocks :: Either ParseError Spec -> Either ParseError Spec -- 
+checkBlocks (Left parseError) = Left parseError
+checkBlocks (Right (Spec decls))= do{ if (hasVar decls) then 
+                                        Right (Spec decls)
+                                      else
+                                        Left $ newErrorMessage (UnExpect $ "there is no required blocks") (newPos "" 0 0)
+                                    }
+
+hasVar :: [Decl] -> Bool
+hasVar [] = False
+hasVar (Var vs:rest)= hasRule rest
+hasVar (d:ds) = hasVar ds
+      
+hasRule [] = False
+hasRule (Rules r:_) = True
+hasRule (d:ds) = hasRule ds
+
 
 -- | Checks consistency (order, arguments and replacement map)
 checkConsistency :: Either ParseError Spec -> Either ParseError TRS 
