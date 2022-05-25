@@ -18,7 +18,7 @@ module Parser.TPDB.TRS.Grammar (
 -- * Exported data
 
 Spec(..), Decl(..), Thdecl (..), SimpleThdecl (..), Equation (..) --, SimpleEquation (..)
-, Term (..), Rule(..), SimpleRule (..), Cond (..), Strategydecl (..)
+, Term (..), XmlTerm (..), Rule(..), SimpleRule (..), Cond (..), Strategydecl (..)
 , Csstrat (..), AnyContent (..), Id, TRSType (..), TRS (..)
 
 
@@ -75,6 +75,12 @@ data SimpleEquation = Term :==: Term -- ^ Equation
 
 -- | Term declaration
 data Term = T Id [Term] -- ^ Term
+    | XTerm XmlTerm
+    deriving (Eq, Ord, Data, Typeable)
+
+-- | Term declaration fot xml
+data XmlTerm = Tfun String [Term] -- ^ Term
+    | Tvar String -- Added to XML format
     deriving (Eq, Ord, Data, Typeable)
 
 -- | Rule declaration

@@ -22,6 +22,7 @@ parseTPDB, parseTRS
 )  where
 
 import Parser.TPDB.TRS.Parser (trsParser)
+import Parser.TPDB.TRS_XML.Parser (trsXmlParser)
 
 import Parser.TPDB.TRS.Grammar (Spec (..), Decl (..), TRSType(..), TRS (..)
   , Term (..), Id, TRSType (..), Cond (..), Rule (..), getTerms)--, nonVarLHS, isCRule, hasExtraVars)
@@ -47,7 +48,7 @@ parseTPDB = checkConsistency . checkSortBlocks . parseTRS
 
 -- | Parses a term rewriting system in TPDB format
 parseTRS :: String -> Either ParseError Spec
-parseTRS s = doParse s trsParser
+parseTRS s = doParse s trsXmlParser
 
 -- | Parses the system an returns the parsing error or the succesful
 -- parsed system.
@@ -107,12 +108,6 @@ checkWellFormed ((Var vs):rest) = do { myTRS <- get
                                        }
                                    }
 
-checkWellFormed (Theory th:rest) = checkWellFormed rest
---checkWellFormed ((Theory th):rest) = checkWellFormed rest
-
---checkWellFormed (Rules rs:rest) = checkWellFormed rest
--- checkWellFormed ((Rules rs):rest) = checkWellFormed rest
-
 checkWellFormed (Rules rs:rest) = do { result <- checkRules rs
                                      ; case result of
                                          Left parseError -> return . Left $ parseError
@@ -122,6 +117,9 @@ checkWellFormed (Rules rs:rest) = do { result <- checkRules rs
                                                        }
                                      }
 
+checkWellFormed (Theory th:rest) = checkWellFormed rest
+checkWellFormed (Strategy st:rest) = checkWellFormed rest
+checkWellFormed ((AnyList _ _):rest ) = checkWellFormed rest
 
 -- | Checks if the rules are well-formed wrt the extracted signature
 checkRules :: [Rule] -> State TRS (Either ParseError ())
