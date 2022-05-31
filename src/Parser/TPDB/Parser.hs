@@ -24,8 +24,9 @@ parseTPDB, parseTRS
 import Parser.TPDB.TRS.Parser (trsParser)
 import Parser.TPDB.TRS_XML.Parser (trsXmlParser)
 
-import Parser.TPDB.TRS.Grammar (Spec (..), Decl (..), TRSType(..), TRS (..)
-  , Term (..), Id, TRSType (..), Cond (..), Rule (..), getTerms)--, nonVarLHS, isCRule, hasExtraVars)
+-- import Parser.TPDB.TRS.Grammar
+import Parser.TPDB.Grammar (Spec (..), Decl (..), TRSType(..), TRS (..)
+  , Term (..), Id, TRSType (..), Cond (..), Rule (..), Predecl (..), getTerms) --, nonVarLHS, isCRule, hasExtraVars)
 
 import Text.ParserCombinators.Parsec (parse, Parser, ParseError)
 import Text.ParserCombinators.Parsec.Error (Message (..), newErrorMessage)
@@ -41,7 +42,7 @@ import Control.Monad.State (State, evalState, get, put)
 
 -- | Parses a TPDB problem and return a COPS Problem
 parseTPDB :: String -> Either ParseError TRS
-parseTPDB = checkConsistency . checkSortBlocks . parseTRS
+parseTPDB = checkConsistency {-. checkSortBlocks-} . parseTRS
 --parseTPDB = checkConsistency . parseTRS 
 --checkConsistency . parseTRS = \string -> checkConsistency(parseTRS(string))
 
@@ -81,8 +82,12 @@ hasRule (d:ds) = hasRule ds
 -- | Checks consistency (order, arguments and replacement map)
 checkConsistency :: Either ParseError Spec -> Either ParseError TRS 
 checkConsistency (Left parseError) = Left parseError
+
 checkConsistency (Right (Spec decls)) 
   = evalState (checkWellFormed decls) (TRS M.empty S.empty [] TRSStandard) -- (TRS M.empty S.empty [] [] TRSStandard)
+
+checkConsistency (Right (Pre (Decs decls:_))) 
+  = evalState (checkWellFormed decls) (TRS M.empty S.empty [] TRSStandard)
 
 -- | Extracts the signature and checks if the rules are well-formed wrt that
 -- signature. Precondition: Declarations are in order.
@@ -93,8 +98,10 @@ checkWellFormed [] = do { myTRS <- get
                         ; return . Right $ myTRS}
   
 
---checkWellFormed (Var vs:rest) = checkWellFormed rest
-
+checkWellFormed (Var vs:rest) = checkWellFormed rest
+checkWellFormed (Rules rs:rest) =  checkWellFormed rest
+checkWellFormed (CType ct:rest) =  checkWellFormed rest
+{-
 checkWellFormed ((Var vs):rest) = do { myTRS <- get
                                    ; let vars = trsVariables myTRS -- Set Char
                                    ; let vsSet = S.fromList vs -- Set Char
@@ -116,7 +123,7 @@ checkWellFormed (Rules rs:rest) = do { result <- checkRules rs
                                                        ; checkWellFormed rest
                                                        }
                                      }
-
+-}
 checkWellFormed (Theory th:rest) = checkWellFormed rest
 checkWellFormed (Strategy st:rest) = checkWellFormed rest
 checkWellFormed ((AnyList _ _):rest ) = checkWellFormed rest

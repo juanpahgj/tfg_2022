@@ -26,7 +26,7 @@ import Parser.TPDB.Parser (parseTPDB, parseTRS)
 
 import System.IO (hPutStr, stdout)
 
-import Parser.TPDB.TRS.Grammar (Spec (..),Decl(..))
+import Parser.TPDB.Grammar (Spec (..),Decl (..), Predecl (..)) --import Parser.TPDB.TRS.Grammar (Spec (..),Decl(..))
 
 --import Data.List(sort)
 
@@ -78,6 +78,7 @@ main =
 --- Aux. fun.
 specToDecl :: Spec -> [Decl]
 specToDecl (Spec decls) = decls
+specToDecl (Pre (Decs decls:_)) = decls
 --specToDecl (Spec decls) = sort decls
 
 hasVar :: [Decl] -> Bool

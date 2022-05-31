@@ -19,7 +19,7 @@ trsXmlParser, term
 
 ) where
 
-import Parser.TPDB.TRS.Grammar
+import Parser.TPDB.Grammar -- import Parser.TPDB.TRS.Grammar
 import Parser.TPDB.TRS_XML.Scanner
 
 import Text.ParserCombinators.Parsec (Parser(..), many, (<|>), many1, sepEndBy, between
@@ -33,36 +33,36 @@ import Control.Monad (liftM)
 
 -- |parse TRS specification
 trsXmlParser :: Parser Spec
-trsXmlParser = liftM Spec (many (whiteSpace >> (reservedLb "problem" decl) ))
---trsXmlParser = liftM Spec (many1 (whiteSpace >> parens decl))
-reservedLb q p= between (aux1 q) (aux2 q) p
+trsXmlParser = whiteSpace >> (reservedLb "problem" $ liftM Pre (many preDecl)) 
+    --whiteSpace >> (reservedLb "problem" (many $ trs <|> strategy))
 
-aux1 q=do{(symbol "<")
-       ;(reserved q)
-       ;(symbol ">")
-       }
+--liftM Spec (whiteSpace >> (reservedLb "trs" $ many (whiteSpace >> decl)) )
 
-aux2 q=do{(symbol "<")
-       ;(symbol "/")
-       ;(reserved q)
-       ;(symbol ">")
-       }
+preDecl =  trs <|> strategy
+
+strategy :: Parser Predecl
+strategy = reservedLb "strategy" $ liftM Strgy (innermost <|> outermost <|> contextsensitive)
+
+trs :: Parser Predecl
+trs = reservedLb "trs" $ liftM Decs (many decl)
 
 -- | A declaration is form by a set of variables, a theory, a set of
 -- rules, a strategy an extra information
 decl :: Parser Decl
-decl =  (reservedLb "trs" declRules)  -- <|> (reservedLb "theory" declTheory) <|> (reservedLb "" declStrategy) <|> declAnylist <|> declVar
+decl = declRules <|> ctypeDecl {-<|> (reservedLb "signature" declSigntr)-}  -- <|> declAnylist <|> declVar
+
+--declSigntr = (reservedLb "theory" declTheory)
 
 -- | Rules declaration is formed by a reserved word plus a set of
 --   rules
 declRules :: Parser Decl
-declRules = liftM Rules (many (reservedLb "rules" rule))
+declRules = reservedLb "rules" $ liftM Rules (many $ reservedLb "rule" rule)
 
 -- | Rule
 rule :: Parser Rule
 rule =
- do sr <- reservedLb "rule" simpleRule
-    conds <- reservedLb "conditions" ( option [] (many $ reservedLb "condition" cond))
+ do sr <- simpleRule
+    conds <- option [] (reservedLb "conditions" (many $ reservedLb "condition" cond))
     return (Rule sr conds)
 
 -- | Simple rule
@@ -73,8 +73,7 @@ simpleRule =
     return (op t1 t2)
 
 -- | Rule options
-ruleOps = try ({-reservedOp "->" >>-} return (:->){-(Flecha)-}) --do{ try (reservedOp "->"; return (:->) }
-        -- <|> (reservedOp "->=" >> return (:->=){-(FlechaIgual)-})
+ruleOps = try (return (:->)) 
 
 -- | Condition
 cond =
@@ -85,10 +84,7 @@ cond =
     return (op t1 t2)
 
 -- | Condition options
-condOps = try {-(reservedOp "-><-" >> return (:-><-))
-        <|>-} ({-reservedOp "->" >>-} return (Arrow)) --do{ try (reservedOp "->"; return (:->) }
---        <|> (reservedOp "-><-" >> return (:-><-)) 
-
+condOps = try (return (Arrow))
 -- | A term
 term :: Parser Term
 term =                                         -- !!!!!!!ests mal-incompleto
@@ -101,7 +97,7 @@ termVar = liftM Tvar (reservedLb "var" identifier)
 termFun :: Parser XmlTerm
 termFun =                                              -- !!!!!!!ests mal-incompleto
  do n <- reservedLb "name" identifier
-    terms <- option [] (many1 (reservedLb "arg" term)) -- terms <- parens (many (commaSep' term) ) 
+    terms <- (many1 (try $ reservedLb "arg" term)) -- terms <- parens (many (commaSep' term) ) 
     return (Tfun n terms)
 
 {-
@@ -148,9 +144,8 @@ termFun =                                              -- !!!!!!!ests mal-incomp
     eqOps = (reservedOp "==" >> return (:==:))
 -}
 
-{-
-declStrategy :: Parser Decl
-declStrategy = reserved "STRATEGY" >> liftM Strategy (innermost <|> outermost <|> contextsensitive)
+--strategy :: Parser Spec
+--strategy = reservedLb "strategy" $ liftM Strtgy (innermost <|> outermost <|> contextsensitive)
 
 -- | innermost strategy
 innermost :: Parser Strategydecl
@@ -162,26 +157,29 @@ outermost = reserved "OUTERMOST" >> return OUTERMOST
 
 -- | contextsensitive strategy
 contextsensitive :: Parser Strategydecl
-contextsensitive =
- do reserved "CONTEXTSENSITIVE"
+contextsensitive = reserved "FULL" >> return FULL
+ {-do reserved "CONTEXTSENSITIVE"
     strats <- many$ parens (do a <- identifier
                                b <- many natural
                                return $ Csstrat (a, map fromInteger b) -- !!
                            )
     return $ CONTEXTSENSITIVE strats
--}
-{- 
--- | contextsensitive strategy - Option 2
-contextsensitive :: Parser Strategydecl
-contextsensitive = reserved "CONTEXTSENSITIVE" >> liftM CONTEXTSENSITIVE (many csstrat)
-csstrat :: Parser Csstrat
-csstrat =
- do strats <- parens (do a <- identifier
-                         b <- many natural
-                         return (a, map fromInteger b) -- !!
-                     )
-    return$ Csstrat strats
--}
+ -}
+
+ctypeDecl :: Parser Decl
+ctypeDecl = liftM CType (try ( reservedLb "conditiontype" (join <|> oriented <|> other) ))
+
+-- | innermost strategy
+join :: Parser CondType
+join = reserved "JOIN" >> return JOIN
+
+-- | outermost strategy
+oriented :: Parser CondType
+oriented = reserved "ORIENTED" >> return ORIENTED
+
+-- | contextsensitive strategy
+other :: Parser CondType
+other = reserved "OTHER" >> return OTHER
 
 declAnylist :: Parser Decl
 declAnylist=
@@ -208,6 +206,20 @@ anyAC = liftM AnyAC (parens $ many anyContent)
 
 
 -- | Extra information
+
+-- | XML labels
+reservedLb q p=between (try $ aux1 q) (try $ aux2 q) p -- (try(aux1 q)) (aux2 q) p
+
+aux1 q=do{(symbol "<")
+         ;(reserved q)
+         ;(symbol ">")
+         }
+
+aux2 q=do{(symbol "<")
+         ;(symbol "/")
+         ;(reserved q)
+         ;(symbol ">")
+         }
 
 -- | A phrase
 phrase = many identifier

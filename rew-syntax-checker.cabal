@@ -26,10 +26,11 @@ Executable rew-syntax-check
     Parser.COPS.TRS.Scanner
     Parser.TPDB.Parser
     Parser.TPDB.TRS.Parser
-    Parser.TPDB.TRS.Grammar
+    -- Parser.TPDB.TRS.Grammar
     Parser.TPDB.TRS.Scanner
     Parser.TPDB.TRS_XML.Parser
     Parser.TPDB.TRS_XML.Scanner
+    Parser.TPDB.Grammar
   build-depends: 	base > 4, pretty, parsec, syb, containers, mtl
   hs-source-dirs: 	src
   ghc-options: -O2 -threaded

@@ -1,4 +1,5 @@
-   <trs>
+<problem>
+    <trs> 
         <rules>
             <rule>
                 <lhs>
@@ -6,24 +7,6 @@
                         <name>plus</name>
                         <arg>
                             <funapp>
-                                <name>0</name>
-                            </funapp>
-                        </arg>
-                        <arg>
-                            <var>y</var>
-                        </arg>
-                    </funapp>
-                </lhs>
-                <rhs>
-                    <var>y</var>
-                </rhs>
-            </rule>
-            <rule>
-                <lhs>
-                    <funapp>
-                        <name>plus</name>
-                        <arg>
-                            <funapp>
                                 <name>s</name>
                                 <arg>
                                     <var>x</var>
@@ -51,48 +34,9 @@
                         </arg>
                     </funapp>
                 </rhs>
-            </rule>
-            <rule>
-                <lhs>
-                    <funapp>
-                        <name>f</name>
-                        <arg>
-                            <var>x</var>
-                        </arg>
-                        <arg>
-                            <var>y</var>
-                        </arg>
-                    </funapp>
-                </lhs>
-                <rhs>
-                    <var>z</var>
-                </rhs>
-                <conditions>
-                    <condition>
-                        <lhs>
-                            <funapp>
-                                <name>plus</name>
-                                <arg>
-                                    <var>x</var>
-                                </arg>
-                                <arg>
-                                    <var>y</var>
-                                </arg>
-                            </funapp>
-                        </lhs>
-                        <rhs>
-                            <funapp>
-                                <name>plus</name>
-                                <arg>
-                                    <var>z</var>
-                                </arg>
-                                <arg>
-                                    <var>z'</var>
-                                </arg>
-                            </funapp>
-                        </rhs>
-                    </condition>
-                </conditions>
             </rule>
         </rules>
+        <conditiontype>ORIENTED</conditiontype>
     </trs>
+    <strategy>FULL</strategy>
+</problem>

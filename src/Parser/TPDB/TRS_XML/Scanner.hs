@@ -22,7 +22,7 @@ lexer, whiteSpace, lexeme, symbol, natural, parens, comma, semi
 
 ) where
 
-import Text.ParserCombinators.Parsec (oneOf, CharParser, (<|>), alphaNum, between, string)
+import Text.ParserCombinators.Parsec (oneOf, CharParser, (<|>), alphaNum, string)
 import qualified Text.ParserCombinators.Parsec.Token as P (stringLiteral, reserved, reservedOp, identifier, semi, comma, parens, brackets, natural, symbol, lexeme, whiteSpace, makeTokenParser, TokenParser, caseSensitive, reservedNames, reservedOpNames, opLetter, opStart, identLetter, identStart, nestedComments, commentEnd, commentStart, commentLine, LanguageDef, commaSep)
 import Text.ParserCombinators.Parsec.Language(haskellStyle, emptyDef)
 
@@ -42,15 +42,10 @@ trsXMLDef = emptyDef {
    , P.opStart = oneOf ")(\"-"
    , P.opLetter = oneOf ")(\",><="
    , P.reservedNames= ["problem", "trs", "rules", "rule", "lhs", "rhs", "conditions", 
-              "condition", "var", "funapp", "name", "arg"]
-     
-   {-["<problem>", "</problem>", "<trs>", "</trs>", "<rules>", "</rules",
-          "<rule>", "</rule>", "<lhs>", "</lhs>", "<rhs>", "</rhs>", "<conditions>", "</conditions>",
-          "<condition>", "</condition>", "<var>", "</var>", "<funapp>", "</funapp>", "<name>", "</name>", 
-          "<arg>", "</arg>"]-}
+              "condition", "var", "funapp", "name", "arg", "strategy", "signature", 
+              "conditiontype", "INNERMOST", "OUTERMOST", "FULL"]
 --"CONTEXTSENSITIVE", "EQUATIONS", "INNERMOST", "OUTERMOST" , "RULES", "STRATEGY", "THEORY", "VAR"]
-   , P.reservedOpNames = []
---"->","==", "->=", "-><-", "|"]
+   , P.reservedOpNames = [] --"->","==", "->=", "-><-", "|"]
    , P.caseSensitive = True
    }
 
