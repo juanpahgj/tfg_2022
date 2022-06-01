@@ -20,6 +20,7 @@ module Parser.TPDB.Grammar (
 Spec(..), Decl(..), Thdecl (..), SimpleThdecl (..), Equation (..) --, SimpleEquation (..)
 , Term (..), XmlTerm (..), Rule(..), SimpleRule (..), Cond (..), Strategydecl (..)
 , Csstrat (..), AnyContent (..), Id, TRSType (..), TRS (..), CondType (..), Predecl (..)
+, Signdecl (..), Signthry (..)
 
 
 -- * Exported functions
@@ -52,10 +53,10 @@ data Predecl = Decs [Decl]
 data Decl = Var [Id] -- ^ Set of variables
     | Theory [Thdecl] -- ^ Set of rules
     | Rules [Rule] -- ^ Set of rules
-    | Strategy Strategydecl -- ^ Extra information
     | AnyList Id [AnyContent] --AnyList Id [String]
-    -- | Signature
+    | Strategy Strategydecl -- ^ Extra information
     | CType CondType -- ^ Type of conditional rules (XML format)
+    | Signature [Signdecl] -- ^ Type of signature (XML format)
       deriving (Eq, Ord, Show, Data, Typeable)
 
 -- | Theory declaration (para obligar a que haya min. uno??)
@@ -72,13 +73,13 @@ data Equation = Term :==: Term -- ^ Equation
       deriving (Eq, Ord, Data, Typeable)
 
 {-
--- | Equation declaration (para obligar a que haya min. uno??)
-data Equation = Equation SimpleEquation [Equation]
-      deriving (Eq, Data, Typeable)
+  -- | Equation declaration (para obligar a que haya min. uno??)
+  data Equation = Equation SimpleEquation [Equation]
+        deriving (Eq, Data, Typeable)
 
--- | Simple equation declaration
-data SimpleEquation = Term :==: Term -- ^ Equation
-      deriving (Eq, Data, Typeable)
+  -- | Simple equation declaration
+  data SimpleEquation = Term :==: Term -- ^ Equation
+        deriving (Eq, Data, Typeable)
 -}
 
 -- | Term declaration
@@ -125,14 +126,24 @@ data CondType = JOIN
   | OTHER
   deriving (Eq, Ord, Show, Data, Typeable)
 
+-- | Signature declaration (for xml)
+data Signdecl = S Id Int
+  | STh Id Int Signthry
+    deriving (Eq, Ord, Data, Typeable)
+
+data Signthry = A
+  | C
+  | AC
+  deriving (Eq, Ord, Show, Data, Typeable)
+
 -- | Identifier
 type Id = String
 
 -- | TSR Type
 data TRSType = TRSStandard
-  | TRSConditional --CondType
+  | TRSConditional CondType
   | TRSContextSensitive 
-  | TRSContextSensitiveConditional --CondType
+  | TRSContextSensitiveConditional CondType
     deriving (Show)
 
 -- | Term Rewriting Systems (TRS, CTRS, CSTRS, CSCTRS)
@@ -187,6 +198,11 @@ instance Show Cond where
 instance Show Csstrat where
   show (Csstrat (id, [])) = "(" ++ id ++ ")"
   show (Csstrat (id, nums)) = "(" ++ id ++  (concat . intersperse " " . map show $ nums) ++ ")"
+
+instance Show Signdecl where 
+  show (S t i) = show t ++ show i
+  show (STh t i th) = show t ++ show i ++ show th
+
 
 {-
 instance Eq Decl where

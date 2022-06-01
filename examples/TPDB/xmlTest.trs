@@ -37,6 +37,21 @@
             </rule>
         </rules>
         <conditiontype>ORIENTED</conditiontype>
+        <signature>
+            <funcsym>
+                <name>plus</name>
+                    <arity>2</arity>
+                <theory>AC</theory>
+            </funcsym>
+            <funcsym>
+                <name>0</name>
+                <arity>0</arity>
+            </funcsym>
+            <funcsym>
+                <name>s</name>
+                <arity>1</arity>
+            </funcsym>
+        </signature>
     </trs>
     <strategy>FULL</strategy>
 </problem>

@@ -101,6 +101,8 @@ checkWellFormed [] = do { myTRS <- get
 checkWellFormed (Var vs:rest) = checkWellFormed rest
 checkWellFormed (Rules rs:rest) =  checkWellFormed rest
 checkWellFormed (CType ct:rest) =  checkWellFormed rest
+checkWellFormed (Signature sg:rest) =  checkWellFormed rest
+
 {-
 checkWellFormed ((Var vs):rest) = do { myTRS <- get
                                    ; let vars = trsVariables myTRS -- Set Char

@@ -49,7 +49,7 @@ trs = reservedLb "trs" $ liftM Decs (many decl)
 -- | A declaration is form by a set of variables, a theory, a set of
 -- rules, a strategy an extra information
 decl :: Parser Decl
-decl = declRules <|> ctypeDecl {-<|> (reservedLb "signature" declSigntr)-}  -- <|> declAnylist <|> declVar
+decl = declRules <|> ctypeDecl <|> declSignature {-<|> (reservedLb "signature" declSigntr)-}  -- <|> declAnylist <|> declVar
 
 --declSigntr = (reservedLb "theory" declTheory)
 
@@ -167,7 +167,7 @@ contextsensitive = reserved "FULL" >> return FULL
  -}
 
 ctypeDecl :: Parser Decl
-ctypeDecl = liftM CType (try ( reservedLb "conditiontype" (join <|> oriented <|> other) ))
+ctypeDecl = reservedLb "conditiontype" $ liftM CType (join <|> oriented <|> other)
 
 -- | innermost strategy
 join :: Parser CondType
@@ -181,45 +181,74 @@ oriented = reserved "ORIENTED" >> return ORIENTED
 other :: Parser CondType
 other = reserved "OTHER" >> return OTHER
 
-declAnylist :: Parser Decl
-declAnylist=
- do 
-    name <- identifier
-    decls <- many anyContent
-    return $ AnyList name decls
+{-
+    declAnylist :: Parser Decl
+    declAnylist=
+    do 
+        name <- identifier
+        decls <- many anyContent
+        return $ AnyList name decls
 
-anyContent :: Parser AnyContent
-anyContent = anyId <|> anySt <|> anyAC <|> (comma >> anyContent)
-    
--- | Identifiers
-anyId :: Parser AnyContent
-anyId = liftM AnyId identifier
+    anyContent :: Parser AnyContent
+    anyContent = anyId <|> anySt <|> anyAC <|> (comma >> anyContent)
+        
+    -- | Identifiers
+    anyId :: Parser AnyContent
+    anyId = liftM AnyId identifier
 
--- | Strings
-anySt :: Parser AnyContent
-anySt = liftM AnySt stringLiteral
+    -- | Strings
+    anySt :: Parser AnyContent
+    anySt = liftM AnySt stringLiteral
 
--- | Others
-anyAC :: Parser AnyContent
-anyAC = liftM AnyAC (parens $ many anyContent)
+    -- | Others
+    anyAC :: Parser AnyContent
+    anyAC = liftM AnyAC (parens $ many anyContent)
+-}
 
+-- | Signature declaration is formed by list of functions with arity
+declSignature :: Parser Decl
+declSignature = reservedLb "signature" $ liftM Signature (many (reservedLb "funcsym" fun)) --reserved "SIG" >> liftM Signature (many (parens fun))
+
+-- | Function symbol
+fun :: Parser Signdecl -- (Id,Int)
+fun = try (do{ n <- reservedLb "name" identifier
+        ; m <- reservedLb "arity" (many1 digit)
+        ; th <- reservedLb "theory" thsig
+        ; return (STh n (read m) th)
+        })
+    <|> do{ n <- reservedLb "name" identifier
+          ; m <- reservedLb "arity" (many1 digit)
+          ; return (S n (read m))
+          }
+
+thsig = (thSigA <|> thSigC <|> thSigAC)
+
+thSigA :: Parser Signthry 
+thSigA = reserved "A" >> return A
+
+thSigC :: Parser Signthry 
+thSigC = reserved "C" >> return C
+
+thSigAC :: Parser Signthry 
+thSigAC = reserved "AC" >> return AC
 
 
 -- | Extra information
 
 -- | XML labels
+--reservedLb :: CharParser st a -> CharParser st a
 reservedLb q p=between (try $ aux1 q) (try $ aux2 q) p -- (try(aux1 q)) (aux2 q) p
 
 aux1 q=do{(symbol "<")
-         ;(reserved q)
-         ;(symbol ">")
-         }
+;(reserved q)
+;(symbol ">")
+}
 
 aux2 q=do{(symbol "<")
-         ;(symbol "/")
-         ;(reserved q)
-         ;(symbol ">")
-         }
+;(symbol "/")
+;(reserved q)
+;(symbol ">")
+}
 
 -- | A phrase
 phrase = many identifier
@@ -234,32 +263,3 @@ semicolonSep' :: Text.ParserCombinators.Parsec.Prim.GenParser Char () a
              -> Text.ParserCombinators.Parsec.Prim.GenParser Char () [a]
 semicolonSep' = (`sepBy` semi)
 
-{-- | Signature declaration is formed by list of functions with arity
-declSignature :: Parser Decl
-declSignature = reserved "SIG" >> liftM Signature (many (parens fun))
-
--- | Function symbol
-fun :: Parser (Id,Int)
-fun =
- do n <- identifier
-    m <- many1 digit
-    return (n,read m)
---}
-
-
-
-{-
-do{ char '?'
-               ; reservedLb
-               ; char ')'
-               ; reservedLb
-               }
-<|> return ()
--}
-{-
--- | XML labels
-reservedLb :: CharParser st a -> CharParser st a
-reservedLb r= between (string "trs") (string "trs") lexer
-
---reservedLbAux p= between (symbol "<") (symbol ">") p
--}
