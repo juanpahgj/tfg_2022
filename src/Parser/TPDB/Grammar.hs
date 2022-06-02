@@ -128,7 +128,8 @@ data CondType = JOIN
 
 -- | Signature declaration (for xml)
 data Signdecl = S Id Int
-  | STh Id Int Signthry
+  | Sth Id Int Signthry
+  | Srp Id Int [Int]  --replacementmap
     deriving (Eq, Ord, Data, Typeable)
 
 data Signthry = A
@@ -201,7 +202,8 @@ instance Show Csstrat where
 
 instance Show Signdecl where 
   show (S t i) = show t ++ show i
-  show (STh t i th) = show t ++ show i ++ show th
+  show (Sth t i th) = show t ++ show i ++ show th
+  show (Srp t i rps) = show t ++ show i ++ (concat . intersperse " " . map show $ rps)
 
 
 {-

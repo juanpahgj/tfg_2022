@@ -49,9 +49,7 @@ trs = reservedLb "trs" $ liftM Decs (many decl)
 -- | A declaration is form by a set of variables, a theory, a set of
 -- rules, a strategy an extra information
 decl :: Parser Decl
-decl = declRules <|> ctypeDecl <|> declSignature {-<|> (reservedLb "signature" declSigntr)-}  -- <|> declAnylist <|> declVar
-
---declSigntr = (reservedLb "theory" declTheory)
+decl = declRules <|> ctypeDecl <|> declSignature -- <|> declAnylist <|> declVar
 
 -- | Rules declaration is formed by a reserved word plus a set of
 --   rules
@@ -100,49 +98,8 @@ termFun =                                              -- !!!!!!!ests mal-incomp
     terms <- (many1 (try $ reservedLb "arg" term)) -- terms <- parens (many (commaSep' term) ) 
     return (Tfun n terms)
 
-{-
-    -- | Variables declaration is formed by a reserved word plus a set of
-    --   variables
-    declVar :: Parser Decl
-    declVar = reserved "VAR" >> do { idList <- phrase
-                                ; return . Var $ idList
-                                }
 
-    -- | Theory declaration is formed by a reserved word plus a set of
-    --   theory declarations
-    declTheory :: Parser Decl
-    declTheory = reserved "THEORY" >> liftM Theory (many thdecl)
 
-    -- | Theory declaration
-    thdecl :: Parser Thdecl
-    thdecl =
-    do sthd <- parens $ simpleThdecl
-        listofthdecl <- option [] (many thdecl) --listofthdecl <- many thdecl
-        return (Thdecl sthd listofthdecl)
-
-    -- | Simple theory declaration
-    simpleThdecl :: Parser SimpleThdecl
-    simpleThdecl = thlId <|> declEq
-
-    -- | Theory identificator list
-    thlId =
-    do id <- identifier
-        idlist <- option [] phrase 
-        return (Id id idlist)
-
-    -- | Equation declaration
-    declEq = reserved "EQUATIONS" >> liftM Equations (many eq)
-
-    -- | Equation
-    eq =
-    do t1 <- term
-        op <- eqOps
-        t2 <- term
-        return (op t1 t2)
-
-    -- | Equation options
-    eqOps = (reservedOp "==" >> return (:==:))
--}
 
 --strategy :: Parser Spec
 --strategy = reservedLb "strategy" $ liftM Strtgy (innermost <|> outermost <|> contextsensitive)
@@ -181,6 +138,56 @@ oriented = reserved "ORIENTED" >> return ORIENTED
 other :: Parser CondType
 other = reserved "OTHER" >> return OTHER
 
+-- | Signature declaration is formed by list of functions with arity
+declSignature :: Parser Decl
+declSignature = reservedLb "signature" $ liftM Signature (many (reservedLb "funcsym" fun)) --reserved "SIG" >> liftM Signature (many (parens fun))
+
+-- | Function symbol
+fun :: Parser Signdecl -- (Id,Int)
+fun = try (do{ n <- reservedLb "name" identifier
+             ; m <- reservedLb "arity" natural -- (many1 digit)
+             ; th <- reservedLb "theory" thsig
+             ;  return (Sth n (fromInteger m) th) -- return (Sth n (read m) th)
+             })
+    <|> try (do{ n <- reservedLb "name" identifier
+               ; m <- reservedLb "arity" natural -- m <- reservedLb "arity" (many1 digit)
+               ; rp <- reservedLb "replacementmap" (many $ reservedLb "entry" natural)
+               ; return (Srp n (fromInteger m) (map fromInteger rp)) -- return (Srp n (read m) (rp))
+               })
+    <|> do{ n <- reservedLb "name" identifier
+          ; m <- reservedLb "arity" natural -- m <- reservedLb "arity" (many1 digit)
+          ; return (S n (fromInteger m)) -- return (S n (read m))
+          }
+
+thsig = (thSigA <|> thSigC <|> thSigAC)
+
+thSigA :: Parser Signthry 
+thSigA = reserved "A" >> return A
+
+thSigC :: Parser Signthry 
+thSigC = reserved "C" >> return C
+
+thSigAC :: Parser Signthry 
+thSigAC = reserved "AC" >> return AC
+
+{-
+    -- | Theory identificator list
+    thlId =
+    do id <- identifier
+        idlist <- option [] phrase 
+        return (Id id idlist)
+
+-}
+
+{-
+    -- | Variables declaration is formed by a reserved word plus a set of
+    --   variables
+    declVar :: Parser Decl
+    declVar = reserved "VAR" >> do { idList <- phrase
+                                ; return . Var $ idList
+                                }
+-}
+
 {-
     declAnylist :: Parser Decl
     declAnylist=
@@ -204,33 +211,6 @@ other = reserved "OTHER" >> return OTHER
     anyAC :: Parser AnyContent
     anyAC = liftM AnyAC (parens $ many anyContent)
 -}
-
--- | Signature declaration is formed by list of functions with arity
-declSignature :: Parser Decl
-declSignature = reservedLb "signature" $ liftM Signature (many (reservedLb "funcsym" fun)) --reserved "SIG" >> liftM Signature (many (parens fun))
-
--- | Function symbol
-fun :: Parser Signdecl -- (Id,Int)
-fun = try (do{ n <- reservedLb "name" identifier
-        ; m <- reservedLb "arity" (many1 digit)
-        ; th <- reservedLb "theory" thsig
-        ; return (STh n (read m) th)
-        })
-    <|> do{ n <- reservedLb "name" identifier
-          ; m <- reservedLb "arity" (many1 digit)
-          ; return (S n (read m))
-          }
-
-thsig = (thSigA <|> thSigC <|> thSigAC)
-
-thSigA :: Parser Signthry 
-thSigA = reserved "A" >> return A
-
-thSigC :: Parser Signthry 
-thSigC = reserved "C" >> return C
-
-thSigAC :: Parser Signthry 
-thSigAC = reserved "AC" >> return AC
 
 
 -- | Extra information

@@ -46,6 +46,9 @@
             <funcsym>
                 <name>0</name>
                 <arity>0</arity>
+                <replacementmap>
+                <entry>1</entry>
+                </replacementmap>
             </funcsym>
             <funcsym>
                 <name>s</name>
