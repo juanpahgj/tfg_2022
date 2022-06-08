@@ -26,7 +26,7 @@ import Parser.TPDB.TRS_XML.Parser (trsXmlParser)
 
 -- import Parser.TPDB.TRS.Grammar
 import Parser.TPDB.Grammar (Spec (..), Decl (..), TRSType(..), TRS (..), Term (..), XmlTerm (..)
-  , Id, TRSType (..), Cond (..), Rule (..), CondType (..), Strategydecl (..), Signdecl (..) {-Predecl (..),-} 
+  , Id, TRSType (..), Cond (..), Rule (..), CondType (..), Strategydecl (..), Signdecl (..)
   , getTerms, nonVarLHS, isCRule, hasExtraVars)
 
 import Text.ParserCombinators.Parsec (parse, Parser, ParseError)
@@ -87,10 +87,6 @@ checkConsistency (Left parseError) = Left parseError
 checkConsistency (Right (Spec decls)) 
   = evalState (checkWellFormed decls) (TRS M.empty S.empty [] [] TRSStandard undefined) -- (TRS M.empty S.empty [] [] TRSStandard)
 
-{-
-checkConsistency (Right (Pre (Decs decls:_))) 
-  = evalState (checkWellFormed decls) (TRS M.empty S.empty [] TRSStandard)
--}
 
 -- | Extracts the signature and checks if the rules are well-formed wrt that
 -- signature. Precondition: Declarations are in order.

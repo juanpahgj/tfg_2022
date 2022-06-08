@@ -19,7 +19,7 @@ module Parser.TPDB.Grammar (
 
 Spec(..), Decl(..), Thdecl (..), SimpleThdecl (..), Equation (..) --, SimpleEquation (..)
 , Term (..), XmlTerm (..), Rule(..), SimpleRule (..), Cond (..), Strategydecl (..)
-, Csstrat (..), AnyContent (..), Id, TRSType (..), TRS (..), CondType (..) -- , Predecl (..)
+, Csstrat (..), AnyContent (..), Id, TRSType (..), TRS (..), CondType (..)
 , Signdecl (..), Signthry (..)
 
 
@@ -42,14 +42,6 @@ import Data.List (intersperse)
 -- | Specification declaration
 data Spec = Spec [Decl] -- ^ List of declarations
       deriving (Eq, Ord, Show, Data, Typeable)
-    -- | Pre [Predecl] -- XML format
-
-{-
-  -- | Pre-declaration (xml)
-  data Predecl = Decs [Decl] 
-      | Strgy Strategydecl
-        deriving (Eq, Ord, Show, Data, Typeable)
--}
 
 -- | List of declarations
 data Decl = Var [Id] -- ^ Set of variables

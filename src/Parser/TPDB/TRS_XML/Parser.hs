@@ -38,32 +38,21 @@ trsXmlParser = whiteSpace >> (reservedLb "problem" $ do{d <- reservedLb "trs" (m
                                                        ; st <- strategy
                                                        ; return $ Spec (st:d) --Spec (insert st d)
                                                        })
-   -- (liftM Spec . insert) (strategy (reservedLb "trs" (many decl)) ) )
-
---trsXmlParser = whiteSpace >> (reservedLb "problem" $ 
-  --  (reservedLb "trs" (liftM Spec (many decl) )) {->> (liftM Spec (many strategy) )-})
-
---trsXmlParser = whiteSpace >> (reservedLb "problem" $ liftM Spec . concat $ many $ decls)
 
 {-
-    --trsXmlParser = whiteSpace >> (reservedLb "problem" $ liftM Spec (many preDecl))
+    -- (liftM Spec . insert) (strategy (reservedLb "trs" (many decl)) ) )
 
-    -- preDecl =  trs <|> strategy
-    trs :: Parser Decl -- Predecl
-    trs = reservedLb "trs" $ liftM Decs (many decl)
+    --trsXmlParser = whiteSpace >> (reservedLb "problem" $ 
+    --  (reservedLb "trs" (liftM Spec (many decl) )) >> (liftM Spec (many strategy) ))
 
-    strategy = reservedLb "strategy" $ liftM Strgy (innermost <|> outermost <|> contextsensitive)
+    --trsXmlParser = whiteSpace >> (reservedLb "problem" $ liftM Spec . concat $ many $ decls)
+
+    --aplanar :: Parser [[Decl]] -> Parser [Decl]
+    --aplanar l = concat l
+
+    --decls :: Parser [[Decl]]
+    --decls = decl <|> strategy
 -}
-
---aplanar :: Parser [[Decl]] -> Parser [Decl]
---aplanar l = concat l
-
---decls :: Parser [[Decl]]
---decls = decl <|> strategy
-
-strategy :: Parser Decl -- [Decl] -- Predecl
-strategy = reservedLb "strategy" $ liftM Strategy (innermost <|> outermost <|> contextsensitive)
-
 
 -- | A declaration is form by a set of variables, a theory, a set of
 -- rules, a strategy an extra information
@@ -118,10 +107,8 @@ termFun =                                              -- !!!!!!!ests mal-incomp
     return (Tfun n terms)
 
 
-
-
---strategy :: Parser Spec
---strategy = reservedLb "strategy" $ liftM Strtgy (innermost <|> outermost <|> contextsensitive)
+strategy :: Parser Decl -- [Decl]
+strategy = reservedLb "strategy" $ liftM Strategy (innermost <|> outermost <|> contextsensitive)
 
 -- | innermost strategy
 innermost :: Parser Strategydecl
