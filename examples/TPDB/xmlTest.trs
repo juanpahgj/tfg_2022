@@ -44,17 +44,9 @@
                 <theory>AC</theory>
             </funcsym>
             <funcsym>
-                <name>0</name>
-                <arity>0</arity>
-                <replacementmap>
-                <entry>1</entry>
-                </replacementmap>
-            </funcsym>
-            <funcsym>
                 <name>s</name>
                 <arity>1</arity>
             </funcsym>
         </signature>
     </trs>
-    <strategy>FULL</strategy>
 </problem>

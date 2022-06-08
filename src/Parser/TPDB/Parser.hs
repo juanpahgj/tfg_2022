@@ -25,14 +25,15 @@ import Parser.TPDB.TRS.Parser (trsParser)
 import Parser.TPDB.TRS_XML.Parser (trsXmlParser)
 
 -- import Parser.TPDB.TRS.Grammar
-import Parser.TPDB.Grammar (Spec (..), Decl (..), TRSType(..), TRS (..)
-  , Term (..), Id, TRSType (..), Cond (..), Rule (..), Predecl (..), getTerms) --, nonVarLHS, isCRule, hasExtraVars)
+import Parser.TPDB.Grammar (Spec (..), Decl (..), TRSType(..), TRS (..), Term (..), XmlTerm (..)
+  , Id, TRSType (..), Cond (..), Rule (..), CondType (..), Strategydecl (..), Signdecl (..) {-Predecl (..),-} 
+  , getTerms, nonVarLHS, isCRule, hasExtraVars)
 
 import Text.ParserCombinators.Parsec (parse, Parser, ParseError)
 import Text.ParserCombinators.Parsec.Error (Message (..), newErrorMessage)
 import Text.Parsec.Pos (newPos)
 import Data.Map as M (empty, lookup, insert)
-import Data.Set as S (empty, fromList, member, union, intersection, null, elems)
+import Data.Set as S (empty, fromList, member, union, intersection, null, elems, insert)
 import Data.List (sort, nub, intersperse)
 import Control.Monad.State (State, evalState, get, put)
 
@@ -84,10 +85,12 @@ checkConsistency :: Either ParseError Spec -> Either ParseError TRS
 checkConsistency (Left parseError) = Left parseError
 
 checkConsistency (Right (Spec decls)) 
-  = evalState (checkWellFormed decls) (TRS M.empty S.empty [] TRSStandard) -- (TRS M.empty S.empty [] [] TRSStandard)
+  = evalState (checkWellFormed decls) (TRS M.empty S.empty [] [] TRSStandard FULL) -- (TRS M.empty S.empty [] [] TRSStandard)
 
+{-
 checkConsistency (Right (Pre (Decs decls:_))) 
   = evalState (checkWellFormed decls) (TRS M.empty S.empty [] TRSStandard)
+-}
 
 -- | Extracts the signature and checks if the rules are well-formed wrt that
 -- signature. Precondition: Declarations are in order.
@@ -96,14 +99,10 @@ checkConsistency (Right (Pre (Decs decls:_)))
 checkWellFormed :: [Decl] -> State TRS (Either ParseError TRS)
 checkWellFormed [] = do { myTRS <- get 
                         ; return . Right $ myTRS}
-  
 
-checkWellFormed (Var vs:rest) = checkWellFormed rest
-checkWellFormed (Rules rs:rest) =  checkWellFormed rest
-checkWellFormed (CType ct:rest) =  checkWellFormed rest
-checkWellFormed (Signature sg:rest) =  checkWellFormed rest
+-- checkWellFormed (Var vs:rest) = checkWellFormed rest
+-- checkWellFormed (Rules rs:rest) =  checkWellFormed rest
 
-{-
 checkWellFormed ((Var vs):rest) = do { myTRS <- get
                                    ; let vars = trsVariables myTRS -- Set Char
                                    ; let vsSet = S.fromList vs -- Set Char
@@ -125,10 +124,94 @@ checkWellFormed (Rules rs:rest) = do { result <- checkRules rs
                                                        ; checkWellFormed rest
                                                        }
                                      }
+
+{-
+checkWellFormed (CType SemiEquational:rest) = do { myTRS <- get 
+                                                 ; put $ myTRS { trsType = TRSConditional SemiEquational }
+                                                 ; checkWellFormed rest
+                                                 }
 -}
+checkWellFormed (CType OTHER:rest) = do { myTRS <- get 
+                                                 ; put $ myTRS { trsType = TRSConditional OTHER }
+                                                 ; checkWellFormed rest
+                                                 }
+checkWellFormed (CType JOIN:rest) = do { myTRS <- get 
+                                       ; put $ myTRS { trsType = TRSConditional JOIN }
+                                       ; checkWellFormed rest
+                                       }
+checkWellFormed (CType ORIENTED:rest) = do { myTRS <- get 
+                                           ; put $ myTRS { trsType = TRSConditional ORIENTED }
+                                           ; checkWellFormed rest
+                                           }
+
+checkWellFormed (Strategy INNERMOST:rest) = do { myTRS <- get 
+                                                 ; put $ myTRS { trsStrategy = INNERMOST }
+                                                 ; checkWellFormed rest
+                                                 }
+checkWellFormed (Strategy OUTERMOST:rest) = do { myTRS <- get 
+                                       ; put $ myTRS { trsStrategy = OUTERMOST }
+                                       ; checkWellFormed rest
+                                       }
+checkWellFormed (Strategy FULL:rest) = do { myTRS <- get 
+                                           ; put $ myTRS { trsStrategy = FULL }
+                                           ; checkWellFormed rest
+                                           }
+
+
+checkWellFormed (Signature sg:rest) = do { result <- checkSignatures sg
+                                         ; case result of
+                                            Left parseError -> return . Left $ parseError
+                                            Right _ -> checkWellFormed rest
+                                         }
+
 checkWellFormed (Theory th:rest) = checkWellFormed rest
-checkWellFormed (Strategy st:rest) = checkWellFormed rest
 checkWellFormed ((AnyList _ _):rest ) = checkWellFormed rest
+
+-- | Checks if the signature agree wrt the extracted rules signature
+checkSignatures [] = do { myTRS <- get
+                        ; return . Right $ ()
+                            -- first, we extract the arity of symbols, then we check RMap 
+                          --; case trsType myTRS of
+                          --  TRSContextSensitive -> checkRMap . trsRMap $ myTRS
+                          --  TRSContextSensitiveConditional _ -> checkRMap . trsRMap $ myTRS
+                          -- _ -> return . Right $ ()
+                        }
+checkSignatures (s:ss) = do { result <- checkSignature s 
+                            ; case result of
+                                Left parseError -> return . Left $ parseError 
+                                Right _ -> checkSignatures ss
+                            }
+checkSignature (S id arity) = do { myTRS <- get
+                                         ; let funcs = trsSignature myTRS
+                                         ; case (M.lookup id funcs) of 
+                                            (Just len) -> if (arity == len) then 
+                                                    return . Right $ ()
+                                                   else
+                                                    return . Left $ newErrorMessage (UnExpect $ "arity in signature does not match " ++ id) (newPos "" 0 0)
+                                            -- next case is not possible
+                                            _ -> return . Left $ newErrorMessage (UnExpect $ "signature of function not in rules " ++ id) (newPos "" 0 0)
+                                         }
+checkSignature (Sth id arity _) = do { myTRS <- get
+                                         ; let funcs = trsSignature myTRS
+                                         ; case (M.lookup id funcs) of 
+                                            (Just len) -> if (arity == len) then 
+                                                    return . Right $ ()
+                                                   else
+                                                    return . Left $ newErrorMessage (UnExpect $ "arity in signature does not match " ++ id) (newPos "" 0 0)
+                                            -- next case is not possible
+                                            _ -> return . Left $ newErrorMessage (UnExpect $ "signature of function not in rules " ++ id) (newPos "" 0 0)
+                                         }
+checkSignature (Srp id arity _) = do { myTRS <- get
+                                         ; let funcs = trsSignature myTRS
+                                         ; case (M.lookup id funcs) of 
+                                            (Just len) -> if (arity == len) then 
+                                                    return . Right $ ()
+                                                   else
+                                                    return . Left $ newErrorMessage (UnExpect $ "arity in signature does not match " ++ id) (newPos "" 0 0)
+                                            -- next case is not possible
+                                            _ -> return . Left $ newErrorMessage (UnExpect $ "signature of function not in rules " ++ id) (newPos "" 0 0)
+                                         }
+
 
 -- | Checks if the rules are well-formed wrt the extracted signature
 checkRules :: [Rule] -> State TRS (Either ParseError ())
@@ -142,17 +225,17 @@ checkRules [] = do { myTRS <- get
                     }
 checkRules (r:rs) = do { myTRS <- get
                         ; let vs = trsVariables myTRS
-                        --; if nonVarLHS vs r then -- lhs is non-variable 
-                            --if isCRule r || (not . hasExtraVars vs $ r) then -- extra variables not allowed in non-conditional rules
-                        ; do { result <- checkTerms . getTerms $ r 
-                            ; case result of
-                                Left parseError -> return . Left $ parseError 
-                                Right _ -> checkRules rs
-                            }
-                            --else
-                            --return . Left $ newErrorMessage (UnExpect $ "extra variables in the rule " ++ (show r)) (newPos "" 0 0)
-                          --else
-                            --return . Left $ newErrorMessage (UnExpect $ "variable in the left-hand side of the rule " ++ (show r)) (newPos "" 0 0)
+                        ; if nonVarLHS vs r then -- lhs (left-hand side of the rule) is non-variable 
+                            if isCRule r || (not . hasExtraVars vs $ r) then -- extra variables not allowed in non-conditional rules
+                              do { result <- checkTerms . getTerms $ r 
+                                ; case result of
+                                    Left parseError -> return . Left $ parseError 
+                                    Right _ -> checkRules rs
+                                }
+                            else
+                              return . Left $ newErrorMessage (UnExpect $ "extra variables in the rule " ++ (show r)) (newPos "" 0 0)
+                          else
+                            return . Left $ newErrorMessage (UnExpect $ "variable in the left-hand side of the rule " ++ (show r)) (newPos "" 0 0)
                         }
 
 
@@ -181,30 +264,34 @@ checkTerm (T id terms) = do { myTRS <- get
                                                       return . Left $ newErrorMessage (UnExpect $ "symbol " ++ id ++ " with arity " ++ (show arglen) ++ " in term " ++ (show $ T id terms)) (newPos "" 0 0)
                                 (True, Nothing) -> if (arglen == 0) then 
                                                     return . Right $ ()
-                                                  else
+                                                   else
                                                     return . Left $ newErrorMessage (UnExpect $ "arguments in variable " ++ id) (newPos "" 0 0)
                                 -- next case is not possible
                                 _ -> return . Left $ newErrorMessage (UnExpect $ "variable and function symbols declaration " ++ id) (newPos "" 0 0)
                             }
-                            
-
-{-
-checkWellFormed (CType SemiEquational:rest) = do { myTRS <- get 
-                                                 ; put $ myTRS { trsType = TRSConditional SemiEquational }
-                                                 ; checkWellFormed rest
-                                                 }
-checkWellFormed (CType Join:rest) = do { myTRS <- get 
-                                       ; put $ myTRS { trsType = TRSConditional Join }
-                                       ; checkWellFormed rest
+checkTerm (XTerm (Tfun id terms)) = do { myTRS <- get
+                                       ; let funcs = trsSignature myTRS
+                                       ; let arglen = length terms
+                                       -- let vsSet = S.fromList vs -- Set Char
+                                       ; case (M.lookup id funcs) of
+                                            Nothing -> do { put $ myTRS { trsSignature = M.insert id (length terms) $ funcs }
+                                                          ; checkTerms terms
+                                                          }
+                                            (Just len) -> if (arglen == len) then 
+                                                            checkTerms terms 
+                                                          else
+                                                            return . Left $ newErrorMessage (UnExpect $ "symbol " ++ id ++ " with arity " ++ (show arglen) ++ " in term " ++ (show $ T id terms)) (newPos "" 0 0)
                                        }
-checkWellFormed (CType Oriented:rest) = do { myTRS <- get 
-                                           ; put $ myTRS { trsType = TRSConditional Oriented }
-                                           ; checkWellFormed rest
-                                           }
 
--}
-
-
+checkTerm (XTerm (Tvar id)) = do { myTRS <- get
+                                 ; let vars = trsVariables myTRS
+                                 -- let vsSet = S.fromList vs -- Set Char
+                                 ; case (S.member id vars) of
+                                   False -> do { put $ myTRS { trsVariables = S.insert id $ vars }
+                                               ; return . Right $ ()
+                                               }
+                                   _ -> return . Right $ () -- return . Left $ newErrorMessage (UnExpect $ "variable already declared " ++ id) (newPos "" 0 0)
+                                  }
 
 {-
 checkWellFormed (Context rmap:rest) = do { myTRS <- get 

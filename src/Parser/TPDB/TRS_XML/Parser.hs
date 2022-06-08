@@ -26,6 +26,7 @@ import Text.ParserCombinators.Parsec (Parser(..), many, (<|>), many1, sepEndBy, 
   , option, char, sepBy, try, noneOf, digit)
 import Text.ParserCombinators.Parsec.Prim (GenParser)
 import Control.Monad (liftM)
+import Data.List (concat, insert)
 
 -----------------------------------------------------------------------------
 -- Functions
@@ -33,23 +34,41 @@ import Control.Monad (liftM)
 
 -- |parse TRS specification
 trsXmlParser :: Parser Spec
-trsXmlParser = whiteSpace >> (reservedLb "problem" $ liftM Pre (many preDecl)) 
-    --whiteSpace >> (reservedLb "problem" (many $ trs <|> strategy))
+trsXmlParser = whiteSpace >> (reservedLb "problem" $ do{d <- reservedLb "trs" (many decl)
+                                                       ; st <- strategy
+                                                       ; return Spec (insert d st)
+                                                       })
+   -- (liftM Spec . insert) (strategy (reservedLb "trs" (many decl)) ) )
 
---liftM Spec (whiteSpace >> (reservedLb "trs" $ many (whiteSpace >> decl)) )
+--trsXmlParser = whiteSpace >> (reservedLb "problem" $ 
+  --  (reservedLb "trs" (liftM Spec (many decl) )) {->> (liftM Spec (many strategy) )-})
 
-preDecl =  trs <|> strategy
+--trsXmlParser = whiteSpace >> (reservedLb "problem" $ liftM Spec . concat $ many $ decls)
 
-strategy :: Parser Predecl
-strategy = reservedLb "strategy" $ liftM Strgy (innermost <|> outermost <|> contextsensitive)
+{-
+    --trsXmlParser = whiteSpace >> (reservedLb "problem" $ liftM Spec (many preDecl))
 
-trs :: Parser Predecl
-trs = reservedLb "trs" $ liftM Decs (many decl)
+    -- preDecl =  trs <|> strategy
+    trs :: Parser Decl -- Predecl
+    trs = reservedLb "trs" $ liftM Decs (many decl)
+
+    strategy = reservedLb "strategy" $ liftM Strgy (innermost <|> outermost <|> contextsensitive)
+-}
+
+--aplanar :: Parser [[Decl]] -> Parser [Decl]
+--aplanar l = concat l
+
+--decls :: Parser [[Decl]]
+--decls = decl <|> strategy
+
+strategy :: Parser Decl -- [Decl] -- Predecl
+strategy = reservedLb "strategy" $ liftM Strategy (innermost <|> outermost <|> contextsensitive)
+
 
 -- | A declaration is form by a set of variables, a theory, a set of
 -- rules, a strategy an extra information
-decl :: Parser Decl
-decl = declRules <|> ctypeDecl <|> declSignature -- <|> declAnylist <|> declVar
+decl :: Parser Decl -- [Decl]
+decl = declRules <|> declSignature <|> ctypeDecl -- <|> declAnylist <|> declVar
 
 -- | Rules declaration is formed by a reserved word plus a set of
 --   rules
@@ -151,8 +170,13 @@ fun = try (do{ n <- reservedLb "name" identifier
              })
     <|> try (do{ n <- reservedLb "name" identifier
                ; m <- reservedLb "arity" natural -- m <- reservedLb "arity" (many1 digit)
-               ; rp <- reservedLb "replacementmap" (many $ reservedLb "entry" natural)
+               ; rp <- reservedLb "replacementmap" (many1 $ reservedLb "entry" natural)
                ; return (Srp n (fromInteger m) (map fromInteger rp)) -- return (Srp n (read m) (rp))
+               })
+    <|> try (do{ n <- reservedLb "name" identifier
+               ; m <- reservedLb "arity" natural -- m <- reservedLb "arity" (many1 digit)
+               ; (try $ emptyReservedLb "replacementmap")
+               ; return (Srp n (fromInteger m) [])
                })
     <|> do{ n <- reservedLb "name" identifier
           ; m <- reservedLb "arity" natural -- m <- reservedLb "arity" (many1 digit)
@@ -229,6 +253,13 @@ aux2 q=do{(symbol "<")
 ;(reserved q)
 ;(symbol ">")
 }
+
+emptyReservedLb q = do {(symbol "<")
+                       ;(reserved q)
+                       ;(symbol "/")
+                       ;(symbol ">")
+                       }
+
 
 -- | A phrase
 phrase = many identifier
