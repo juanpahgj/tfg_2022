@@ -85,7 +85,7 @@ checkConsistency :: Either ParseError Spec -> Either ParseError TRS
 checkConsistency (Left parseError) = Left parseError
 
 checkConsistency (Right (Spec decls)) 
-  = evalState (checkWellFormed decls) (TRS M.empty S.empty [] [] TRSStandard FULL) -- (TRS M.empty S.empty [] [] TRSStandard)
+  = evalState (checkWellFormed decls) (TRS M.empty S.empty [] [] TRSStandard undefined) -- (TRS M.empty S.empty [] [] TRSStandard)
 
 {-
 checkConsistency (Right (Pre (Decs decls:_))) 

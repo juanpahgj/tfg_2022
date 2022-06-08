@@ -49,4 +49,5 @@
             </funcsym>
         </signature>
     </trs>
+    <strategy>FULL</strategy>
 </problem>

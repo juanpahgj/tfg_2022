@@ -36,7 +36,7 @@ import Data.List (concat, insert)
 trsXmlParser :: Parser Spec
 trsXmlParser = whiteSpace >> (reservedLb "problem" $ do{d <- reservedLb "trs" (many decl)
                                                        ; st <- strategy
-                                                       ; return Spec (insert d st)
+                                                       ; return $ Spec (st:d) --Spec (insert st d)
                                                        })
    -- (liftM Spec . insert) (strategy (reservedLb "trs" (many decl)) ) )
 
