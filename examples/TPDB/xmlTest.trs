@@ -1,4 +1,6 @@
-<problem>
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../xml/xtcHTML.xsl"?>
+<problem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="termination" xsi:noNamespaceSchemaLocation="../../xml/xtc.xsd">
     <trs> 
         <rules>
             <rule>
@@ -36,7 +38,7 @@
                 </rhs>
             </rule>
         </rules>
-        <conditiontype>ORIENTED</conditiontype>
+        <!--conditiontype>ORIENTED</conditiontype-->
         <signature>
             <funcsym>
                 <name>plus</name>
@@ -46,8 +48,12 @@
             <funcsym>
                 <name>s</name>
                 <arity>1</arity>
+                <theory>A</theory>
             </funcsym>
         </signature>
     </trs>
     <strategy>FULL</strategy>
+     <metainformation>
+        <originalfilename>./TRS/AG01/#3.1.trs</originalfilename>
+    </metainformation>
 </problem>

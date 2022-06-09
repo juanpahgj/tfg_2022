@@ -103,9 +103,10 @@ data Cond = Term :-><- Term --
 data Strategydecl = INNERMOST
   | OUTERMOST
   | CONTEXTSENSITIVE [Csstrat] --replacementmap
-  | FULL -- Added for XML format . Equivalent to CONTEXTSENSITIVE??
+  | FULL -- Added for XML format. Equivalent to CONTEXTSENSITIVE
     deriving (Eq, Ord, Show, Data, Typeable)
 
+-- | Context-Sensitive strategy
 data Csstrat = Csstrat (Id, [Int]) --replacementmap
     deriving (Eq, Ord, {-Show,-} Data, Typeable)
 
@@ -117,7 +118,8 @@ data AnyContent = AnyId Id
 -- | Condition Type
 data CondType = JOIN
   | ORIENTED
-  | OTHER
+  | OTHER -- -- Added for XML format. Equivalent to SEMIEQUATIONAL
+  | SEMIEQUATIONAL
   deriving (Eq, Ord, Show, Data, Typeable)
 
 -- | Signature declaration (for xml)
@@ -136,10 +138,10 @@ type Id = String
 
 -- | TSR Type
 data TRSType = TRSStandard
+  | TRSEquational
   | TRSConditional CondType
   | TRSContextSensitive 
   | TRSContextSensitiveConditional CondType
-  -- | TRSEquational ??
     deriving (Show)
 
 -- | Term Rewriting Systems (TRS, CTRS, CSTRS, CSCTRS)

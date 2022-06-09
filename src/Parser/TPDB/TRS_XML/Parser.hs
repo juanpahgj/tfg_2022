@@ -23,7 +23,7 @@ import Parser.TPDB.Grammar -- import Parser.TPDB.TRS.Grammar
 import Parser.TPDB.TRS_XML.Scanner
 
 import Text.ParserCombinators.Parsec (Parser(..), many, (<|>), many1, sepEndBy, between
-  , option, char, sepBy, try, noneOf, digit)
+  , option, char, sepBy, try, noneOf, digit, anyChar, skipMany, manyTill, string)
 import Text.ParserCombinators.Parsec.Prim (GenParser)
 import Control.Monad (liftM)
 import Data.List (concat, insert)
@@ -34,10 +34,13 @@ import Data.List (concat, insert)
 
 -- |parse TRS specification
 trsXmlParser :: Parser Spec
-trsXmlParser = whiteSpace >> (reservedLb "problem" $ do{d <- reservedLb "trs" (many decl)
-                                                       ; st <- strategy
-                                                       ; return $ Spec (st:d) --Spec (insert st d)
-                                                       })
+trsXmlParser = whiteSpace >> (many $ try metainf) >> whiteSpace >>
+    (reservedLb "problem" $ do{d <- reservedLb "trs" (many decl)
+                             ; st <- strategy
+                             ; (try metainf)
+                             ; whiteSpace
+                             ; return $ Spec (st:d) --Spec (insert st d)
+                             })
 
 {-
     -- (liftM Spec . insert) (strategy (reservedLb "trs" (many decl)) ) )
@@ -230,23 +233,31 @@ thSigAC = reserved "AC" >> return AC
 --reservedLb :: CharParser st a -> CharParser st a
 reservedLb q p=between (try $ aux1 q) (try $ aux2 q) p -- (try(aux1 q)) (aux2 q) p
 
-aux1 q=do{(symbol "<")
-;(reserved q)
-;(symbol ">")
-}
+aux1 q=do{ (symbol "<")
+         ; (reserved q)
+         ; manyTill anyChar (try (symbol ">")) -- (symbol ">")
+         }
 
-aux2 q=do{(symbol "<")
-;(symbol "/")
-;(reserved q)
-;(symbol ">")
-}
+aux2 q=do{ (symbol "<")
+         ; (symbol "/")
+         ; (reserved q)
+         ; (symbol ">")
+         }
 
-emptyReservedLb q = do {(symbol "<")
-                       ;(reserved q)
-                       ;(symbol "/")
-                       ;(symbol ">")
+emptyReservedLb q = do { (symbol "<")
+                       ; (reserved q)
+                       ; (symbol "/")
+                       ; (symbol ">")
                        }
 
+metainf = try (do{ whiteSpace
+                 ; string "<?"
+                 ; manyTill anyChar (try (string "?>"))
+                 })
+          <|> (do{ whiteSpace
+                 ; string "<metainformation>"
+                 ; manyTill anyChar (try (string "</metainformation>"))
+                 })
 
 -- | A phrase
 phrase = many identifier

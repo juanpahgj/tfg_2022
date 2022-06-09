@@ -33,8 +33,8 @@ import Text.ParserCombinators.Parsec.Language(haskellStyle, emptyDef)
 -- | Parsec list of reserved symbols
 trsXMLDef :: P.LanguageDef st
 trsXMLDef = emptyDef {
-     P.commentStart = ""
-   , P.commentEnd = ""
+     P.commentStart = "<!--"
+   , P.commentEnd = "-->"
    , P.commentLine = ""
    , P.nestedComments = True
    , P.identStart = alphaNum <|> oneOf "~!·$%&/.:;-_{}[]^*+ç¡'¿?=#@" -- start characters of identifiers. Not accepted:'(', ')', '"' and ','

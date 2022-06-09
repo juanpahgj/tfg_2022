@@ -97,21 +97,19 @@ checkWellFormed [] = do { myTRS <- get
                         ; return . Right $ myTRS}
 
 -- checkWellFormed (Var vs:rest) = checkWellFormed rest
--- checkWellFormed (Rules rs:rest) =  checkWellFormed rest
-
 checkWellFormed ((Var vs):rest) = do { myTRS <- get
                                    ; let vars = trsVariables myTRS -- Set Char
                                    ; let vsSet = S.fromList vs -- Set Char
                                    ; let duplicated = S.intersection vsSet vars
                                    ; if (not . S.null $ duplicated) then
                                       return . Left $ newErrorMessage (UnExpect $ "variable(s) already declared: " ++ (concat . intersperse ", " . S.elems $ duplicated)) (newPos "" 0 0)
-
-                                   else
-                                     do{ put $ myTRS { trsVariables = S.union vars vsSet }
-                                       ; checkWellFormed rest
-                                       }
+                                     else
+                                      do{ put $ myTRS { trsVariables = S.union vars vsSet }
+                                        ; checkWellFormed rest
+                                        }
                                    }
 
+-- checkWellFormed (Rules rs:rest) =  checkWellFormed rest
 checkWellFormed (Rules rs:rest) = do { result <- checkRules rs
                                      ; case result of
                                          Left parseError -> return . Left $ parseError
@@ -121,14 +119,12 @@ checkWellFormed (Rules rs:rest) = do { result <- checkRules rs
                                                        }
                                      }
 
-{-
-checkWellFormed (CType SemiEquational:rest) = do { myTRS <- get 
-                                                 ; put $ myTRS { trsType = TRSConditional SemiEquational }
+checkWellFormed (CType SEMIEQUATIONAL:rest) = do { myTRS <- get 
+                                                 ; put $ myTRS { trsType = TRSConditional SEMIEQUATIONAL }
                                                  ; checkWellFormed rest
                                                  }
--}
 checkWellFormed (CType OTHER:rest) = do { myTRS <- get 
-                                                 ; put $ myTRS { trsType = TRSConditional OTHER }
+                                                 ; put $ myTRS { trsType = TRSConditional SEMIEQUATIONAL }
                                                  ; checkWellFormed rest
                                                  }
 checkWellFormed (CType JOIN:rest) = do { myTRS <- get 
@@ -160,10 +156,15 @@ checkWellFormed (Signature sg:rest) = do { result <- checkSignatures sg
                                             Right _ -> checkWellFormed rest
                                          }
 
-checkWellFormed (Theory th:rest) = checkWellFormed rest
+checkWellFormed (Theory th:rest) = do { myTRS <- get 
+                                      ; put $ myTRS { trsType = TRSEquational } -- Comprobar si esta en context sensitive?? o conditional???
+                                      ; checkWellFormed rest
+                                      }
+
 checkWellFormed ((AnyList _ _):rest ) = checkWellFormed rest
 
 -- | Checks if the signature agree wrt the extracted rules signature
+checkSignatures :: [Signdecl] -> State TRS (Either ParseError ())
 checkSignatures [] = do { myTRS <- get
                         ; return . Right $ ()
                             -- first, we extract the arity of symbols, then we check RMap 
@@ -177,6 +178,7 @@ checkSignatures (s:ss) = do { result <- checkSignature s
                                 Left parseError -> return . Left $ parseError 
                                 Right _ -> checkSignatures ss
                             }
+
 checkSignature (S id arity) = do { myTRS <- get
                                          ; let funcs = trsSignature myTRS
                                          ; case (M.lookup id funcs) of 
@@ -191,9 +193,18 @@ checkSignature (Sth id arity _) = do { myTRS <- get
                                          ; let funcs = trsSignature myTRS
                                          ; case (M.lookup id funcs) of 
                                             (Just len) -> if (arity == len) then 
-                                                    return . Right $ ()
+                                                      --return . Right $ ()
+                                                      do { myTRS <- get 
+                                                         ; case trsType myTRS of
+                                                              TRSStandard -> do { put $ myTRS {trsType = TRSEquational }
+                                                                                ; return . Right $ ()
+                                                                                }
+                                                              TRSEquational -> return . Right $ ()
+                                                              _ -> return . Left $ newErrorMessage (UnExpect $ "found theory in non equational type") (newPos "" 0 0)
+                                                         }
+                                                        
                                                    else
-                                                    return . Left $ newErrorMessage (UnExpect $ "arity in signature does not match " ++ id) (newPos "" 0 0)
+                                                      return . Left $ newErrorMessage (UnExpect $ "arity in signature does not match " ++ id) (newPos "" 0 0)
                                             -- next case is not possible
                                             _ -> return . Left $ newErrorMessage (UnExpect $ "signature of function not in rules " ++ id) (newPos "" 0 0)
                                          }
@@ -283,10 +294,10 @@ checkTerm (XTerm (Tvar id)) = do { myTRS <- get
                                  ; let vars = trsVariables myTRS
                                  -- let vsSet = S.fromList vs -- Set Char
                                  ; case (S.member id vars) of
-                                   False -> do { put $ myTRS { trsVariables = S.insert id $ vars }
-                                               ; return . Right $ ()
-                                               }
-                                   _ -> return . Right $ () -- return . Left $ newErrorMessage (UnExpect $ "variable already declared " ++ id) (newPos "" 0 0)
+                                    False -> do { put $ myTRS { trsVariables = S.insert id $ vars }
+                                                ; return . Right $ ()
+                                                }
+                                    _ -> return . Right $ () -- return . Left $ newErrorMessage (UnExpect $ "variable already declared " ++ id) (newPos "" 0 0)
                                   }
 
 {-
