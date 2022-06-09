@@ -37,7 +37,7 @@ trsXmlParser :: Parser Spec
 trsXmlParser = whiteSpace >> (many $ try metainf) >> whiteSpace >>
     (reservedLb "problem" $ do{d <- reservedLb "trs" (many decl)
                              ; st <- strategy
-                             ; (try metainf)
+                             ; (many $ try metainf)
                              ; whiteSpace
                              ; return $ Spec (st:d) --Spec (insert st d)
                              })
@@ -60,7 +60,7 @@ trsXmlParser = whiteSpace >> (many $ try metainf) >> whiteSpace >>
 -- | A declaration is form by a set of variables, a theory, a set of
 -- rules, a strategy an extra information
 decl :: Parser Decl -- [Decl]
-decl = declRules <|> declSignature <|> ctypeDecl -- <|> declAnylist <|> declVar
+decl = declRules <|> declSignature <|> declComment <|> ctypeDecl -- <|> declAnylist <|> declVar
 
 -- | Rules declaration is formed by a reserved word plus a set of
 --   rules
@@ -183,6 +183,10 @@ thSigC = reserved "C" >> return C
 
 thSigAC :: Parser Signthry 
 thSigAC = reserved "AC" >> return AC
+
+
+-- | Extra information
+declComment = liftM Comment (reservedLb "comment" (many $ noneOf "<"))
 
 {-
     -- | Theory identificator list

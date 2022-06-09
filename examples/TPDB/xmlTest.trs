@@ -38,17 +38,24 @@
                 </rhs>
             </rule>
         </rules>
+        <comment>dfjsodijfo</comment>
         <!--conditiontype>ORIENTED</conditiontype-->
         <signature>
             <funcsym>
                 <name>plus</name>
-                    <arity>2</arity>
-                <theory>AC</theory>
+                <arity>2</arity>
+                <replacementmap>
+                    <entry>1</entry>
+                </replacementmap>
+                <!--theory>AC</theory-->
             </funcsym>
             <funcsym>
                 <name>s</name>
                 <arity>1</arity>
-                <theory>A</theory>
+                <replacementmap>
+                    <entry>1</entry>
+                </replacementmap>
+                <!--theory>A</theory-->
             </funcsym>
         </signature>
     </trs>

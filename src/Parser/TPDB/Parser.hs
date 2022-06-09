@@ -161,17 +161,36 @@ checkWellFormed (Theory th:rest) = do { myTRS <- get
                                       ; checkWellFormed rest
                                       }
 
+checkWellFormed (Comment cm:rest ) = checkWellFormed rest
 checkWellFormed ((AnyList _ _):rest ) = checkWellFormed rest
+
+{-
+checkWellFormed (Context rmap:rest) = do { myTRS <- get 
+                                          ; if (length . nub . map fst $ rmap) == length rmap then
+                                              do { put $ myTRS { trsRMap = rmap
+                                                              , trsType 
+                                                                  = case trsType myTRS of
+                                                                      TRSStandard -> TRSContextSensitive
+                                                                      TRSConditional typ -> TRSContextSensitiveConditional typ
+                                                              }
+                                                ; checkWellFormed rest
+                                                }
+                                            else 
+                                              return . Left $ newErrorMessage (UnExpect $ "duplicated symbols in replacement map declaration") (newPos "" 0 0)
+                                          }
+
+-}
+
 
 -- | Checks if the signature agree wrt the extracted rules signature
 checkSignatures :: [Signdecl] -> State TRS (Either ParseError ())
 checkSignatures [] = do { myTRS <- get
-                        ; return . Right $ ()
+                        --; return . Right $ ()
                             -- first, we extract the arity of symbols, then we check RMap 
-                          --; case trsType myTRS of
-                          --  TRSContextSensitive -> checkRMap . trsRMap $ myTRS
-                          --  TRSContextSensitiveConditional _ -> checkRMap . trsRMap $ myTRS
-                          -- _ -> return . Right $ ()
+                        ; case trsType myTRS of
+                            TRSContextSensitive -> checkRMap . trsRMap $ myTRS
+                            TRSContextSensitiveConditional _ -> checkRMap . trsRMap $ myTRS
+                            _ -> return . Right $ ()
                         }
 checkSignatures (s:ss) = do { result <- checkSignature s 
                             ; case result of
@@ -208,17 +227,27 @@ checkSignature (Sth id arity _) = do { myTRS <- get
                                             -- next case is not possible
                                             _ -> return . Left $ newErrorMessage (UnExpect $ "signature of function not in rules " ++ id) (newPos "" 0 0)
                                          }
-checkSignature (Srp id arity _) = do { myTRS <- get
-                                         ; let funcs = trsSignature myTRS
-                                         ; case (M.lookup id funcs) of 
-                                            (Just len) -> if (arity == len) then 
-                                                    return . Right $ ()
-                                                   else
-                                                    return . Left $ newErrorMessage (UnExpect $ "arity in signature does not match " ++ id) (newPos "" 0 0)
-                                            -- next case is not possible
-                                            _ -> return . Left $ newErrorMessage (UnExpect $ "signature of function not in rules " ++ id) (newPos "" 0 0)
-                                         }
-
+checkSignature (Srp id arity intlist) = do { myTRS <- get
+                                           ; let funcs = trsSignature myTRS
+                                           ; let rmap = ((id, intlist):(trsRMap myTRS))
+                                           ; case trsType myTRS of
+                                                TRSEquational -> return . Left $ newErrorMessage (UnExpect $ "found theory in non equational type") (newPos "" 0 0)
+                                                _ -> do{put $ myTRS { trsRMap = rmap
+                                                                     , trsType = case trsType myTRS of
+                                                                                    TRSStandard -> TRSContextSensitive
+                                                                                    TRSConditional typ -> TRSContextSensitiveConditional typ
+                                                                                    TRSContextSensitive -> TRSContextSensitive
+                                                                                    TRSContextSensitiveConditional typ -> TRSContextSensitiveConditional typ
+                                                                     }
+                                                        ; case (M.lookup id funcs) of 
+                                                            (Just len) -> if (arity == len) then
+                                                                            return . Right $ ()
+                                                                          else
+                                                                            return . Left $ newErrorMessage (UnExpect $ "arity in signature does not match " ++ id) (newPos "" 0 0)
+                                                            -- next case is not possible
+                                                            _ -> return . Left $ newErrorMessage (UnExpect $ "signature of function not in rules " ++ id) (newPos "" 0 0)
+                                                        }
+                                           }
 
 -- | Checks if the rules are well-formed wrt the extracted signature
 checkRules :: [Rule] -> State TRS (Either ParseError ())
@@ -244,7 +273,6 @@ checkRules (r:rs) = do { myTRS <- get
                           else
                             return . Left $ newErrorMessage (UnExpect $ "variable in the left-hand side of the rule " ++ (show r)) (newPos "" 0 0)
                         }
-
 
 -- | Checks if the terms are well-formed wrt the extracted signature
 checkTerms :: [Term] -> State TRS (Either ParseError ())
@@ -279,7 +307,6 @@ checkTerm (T id terms) = do { myTRS <- get
 checkTerm (XTerm (Tfun id terms)) = do { myTRS <- get
                                        ; let funcs = trsSignature myTRS
                                        ; let arglen = length terms
-                                       -- let vsSet = S.fromList vs -- Set Char
                                        ; case (M.lookup id funcs) of
                                             Nothing -> do { put $ myTRS { trsSignature = M.insert id (length terms) $ funcs }
                                                           ; checkTerms terms
@@ -289,36 +316,14 @@ checkTerm (XTerm (Tfun id terms)) = do { myTRS <- get
                                                           else
                                                             return . Left $ newErrorMessage (UnExpect $ "symbol " ++ id ++ " with arity " ++ (show arglen) ++ " in term " ++ (show $ T id terms)) (newPos "" 0 0)
                                        }
-
 checkTerm (XTerm (Tvar id)) = do { myTRS <- get
                                  ; let vars = trsVariables myTRS
-                                 -- let vsSet = S.fromList vs -- Set Char
                                  ; case (S.member id vars) of
                                     False -> do { put $ myTRS { trsVariables = S.insert id $ vars }
                                                 ; return . Right $ ()
                                                 }
                                     _ -> return . Right $ () -- return . Left $ newErrorMessage (UnExpect $ "variable already declared " ++ id) (newPos "" 0 0)
                                   }
-
-{-
-checkWellFormed (Context rmap:rest) = do { myTRS <- get 
-                                         ; if (length . nub . map fst $ rmap) == length rmap then
-                                             do { put $ myTRS { trsRMap = rmap
-                                                              , trsType 
-                                                                  = case trsType myTRS of
-                                                                      TRSStandard -> TRSContextSensitive
-                                                                      TRSConditional typ -> TRSContextSensitiveConditional typ
-                                                              }
-                                                ; checkWellFormed rest
-                                                }
-                                           else 
-                                             return . Left $ newErrorMessage (UnExpect $ "duplicated symbols in replacement map declaration") (newPos "" 0 0)
-                                         }
-
--}
-
-{-
-
 
 -- | Checks if the replacement map satisfies arity restriction and increasing order
 checkRMap :: [(Id, [Int])] -> State TRS (Either ParseError ())
@@ -335,7 +340,6 @@ checkRMap ((f,rmap):rmaps) = do { myTRS <- get
                                                  if (rmap == srmap) && (head rmap >= 1) && (last rmap <= arity) then
                                                    checkRMap rmaps 
                                                  else
-                                                   return . Left $ newErrorMessage (UnExpect $ "replacement map for symbol " ++ f ++ " (must be empty" ++ (if arity > 0 then " or an ordered list of numbers in [1.." ++ (show arity) ++ "] separated by commas" else "") ++ ")") (newPos "" 0 0) 
+                                                  return . Left $ newErrorMessage (UnExpect $ "replacement map for symbol " ++ f ++ " (must be empty" ++ (if arity > 0 then " or an ordered list of numbers in [1.." ++ (show arity) ++ "] " else "") ++ ")") (newPos "" 0 0) 
+                                                  --return . Left $ newErrorMessage (UnExpect $ "replacement map for symbol " ++ f ++ " (must be empty" ++ (if arity > 0 then " or an ordered list of numbers in [1.." ++ (show arity) ++ "] separated by commas" else "") ++ ")") (newPos "" 0 0) 
                                 }
-
--}

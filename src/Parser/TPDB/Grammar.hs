@@ -51,6 +51,7 @@ data Decl = Var [Id] -- ^ Set of variables
     | Strategy Strategydecl -- ^ Extra information
     | CType CondType -- ^ Type of conditional rules (XML format)
     | Signature [Signdecl] -- ^ Type of signature (XML format)
+    | Comment String -- ^ Extra information
       deriving (Eq, Ord, Show, Data, Typeable)
 
 -- | Theory declaration (para obligar a que haya min. uno??)

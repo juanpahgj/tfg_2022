@@ -44,7 +44,7 @@ trsXMLDef = emptyDef {
    , P.reservedNames= ["problem", "trs", "rules", "rule", "lhs", "rhs", "conditions", 
               "condition", "var", "funapp", "name", "arg", "strategy", "signature", 
               "conditiontype", "INNERMOST", "OUTERMOST", "FULL", "funcsym", "arity",
-              "theory", "A", "C", "AC", "replacementmap", "entry"]
+              "theory", "A", "C", "AC", "replacementmap", "entry", "comment"]
 --"CONTEXTSENSITIVE", "EQUATIONS", "INNERMOST", "OUTERMOST" , "RULES", "STRATEGY", "THEORY", "VAR"]
    , P.reservedOpNames = [] --"->","==", "->=", "-><-", "|"]
    , P.caseSensitive = True
