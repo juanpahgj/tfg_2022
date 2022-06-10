@@ -17,7 +17,7 @@ module Parser.TPDB.Parser (
 
 -- * Exported functions
 
-parseTPDB, parseTRS
+parseTPDB, parseTPDB_XML, parseTRS, parseTRS_XML
 
 )  where
 
@@ -41,16 +41,27 @@ import Control.Monad.State (State, evalState, get, put)
 -- Functions
 -----------------------------------------------------------------------------
 
--- | Parses a TPDB problem and return a COPS Problem
+-- | Parses a TPDB problem
 parseTPDB :: String -> Either ParseError TRS
-parseTPDB = checkConsistency {-. checkSortBlocks-} . parseTRS
+parseTPDB = checkConsistency . checkSortBlocks . parseTRS
 --parseTPDB = checkConsistency . parseTRS 
 --checkConsistency . parseTRS = \string -> checkConsistency(parseTRS(string))
 
-
 -- | Parses a term rewriting system in TPDB format
 parseTRS :: String -> Either ParseError Spec
-parseTRS s = doParse s trsXmlParser
+parseTRS s = doParse s trsParser
+
+-----------------------------------------------------------------------------
+
+-- | Parses a TPDB-XML problem
+parseTPDB_XML :: String -> Either ParseError TRS
+parseTPDB_XML = checkConsistency . parseTRS_XML
+
+-- | Parses a term rewriting system in TPDB format
+parseTRS_XML :: String -> Either ParseError Spec
+parseTRS_XML s = doParse s trsXmlParser
+
+-----------------------------------------------------------------------------
 
 -- | Parses the system an returns the parsing error or the succesful
 -- parsed system.

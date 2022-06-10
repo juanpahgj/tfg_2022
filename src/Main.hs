@@ -21,8 +21,8 @@ main
 
 ) where
 
-import Interface.CLI (Opt (..), Format (..), parseOptions) --, autoparse)
-import Parser.TPDB.Parser (parseTPDB, parseTRS)
+import Interface.CLI (Opt (..), Format (..), parseOptions, autoparse)
+import Parser.TPDB.Parser (parseTPDB, parseTPDB_XML, parseTRS, parseTRS_XML)
 
 import System.IO (hPutStr, stdout)
 
@@ -44,18 +44,26 @@ main =
              , inputFormat = format } = opts
      filedata <- input
      --
-     let !decls = case parseTRS filedata of
+     -- >>> Bloque para pruebas
+     
+     --let !decls = case parseTRS filedata of
+     let !decls = case parseTRS_XML filedata of
                             Left parseerror
                                -> error$ "Parse Error (Main): " ++ show parseerror
                             --Right (Spec decl)
                             Right decl
                                -> decl
+     -- <<<
+     
      --
+     let !trs = autoparse filename filedata
+{-
      let !trs = case parseTPDB filedata of
                             Left parseerror
                                -> error$ "Parse Error (Main): " ++ show parseerror
                             Right sys
                               -> sys
+-}
      hPutStr stdout ("Spec (decl list):\n\n" ++ (show $ specToDecl decls) ++ "\n---------\n" ++ "TRS:\n\n" ++ show trs)--printOp spec
      hPutStr stdout ("\n\nPruebas:\n"
                      ++ "longitud de la lista (num. de bloques): " ++ (show $ length $ specToDecl decls) 

@@ -1,5 +1,5 @@
 (VAR x y)
-(VAR x y z)
+(VAR z)
 (VAR c d e)
 (RULES
 minus(x,0)  -> x

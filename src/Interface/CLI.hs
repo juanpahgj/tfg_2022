@@ -26,13 +26,14 @@ Opt(..), Format (..)
 
 -- * Exported functions
 
-, parseOptions --, autoparse
+, parseOptions, autoparse
 
 ) where
 
 --import Parser.COPS.Parser (parseCOPS)
-import Parser.TPDB.Parser (parseTPDB)
-import Parser.COPS.TRS.Grammar (TRS)
+import Parser.TPDB.Parser (parseTPDB, parseTPDB_XML)
+--import Parser.COPS.TRS.Grammar (TRS)
+import Parser.TPDB.Grammar (TRS)
 import System.Environment (getProgName, getArgs)
 import System.Exit (ExitCode(ExitSuccess,ExitFailure), exitWith, exitFailure)
 import System.IO (hPutStrLn, stderr, hFlush)
@@ -120,10 +121,11 @@ parseOptions = do (optsActions, rest, errors) <- getArgs
                   -- apply actions to the default parameters
                   return (opts, rest)
 
-{-
+----------------
+
 -- | File extensions
 fileExtensions :: [(String, String -> Either ParseError TRS)]
-fileExtensions = [(".trs", parseTPDB), (".trs", parseCOPS)]
+fileExtensions = [(".trs", parseTPDB), (".xml", parseTPDB_XML){-, (".trs", parseCOPS)-}]
 
 -- | Parse file into a TRS
 autoparse :: String -> String -> TRS
@@ -141,4 +143,3 @@ autoparse fname = maybe (error "Error (CLI): File Extension not supported")
                  Right sys
                      -> sys
 
--}
