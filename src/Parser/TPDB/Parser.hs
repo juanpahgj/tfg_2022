@@ -96,7 +96,7 @@ checkConsistency :: Either ParseError Spec -> Either ParseError TRS
 checkConsistency (Left parseError) = Left parseError
 
 checkConsistency (Right (Spec decls)) 
-  = evalState (checkWellFormed decls) (TRS M.empty S.empty [] [] TRSStandard undefined) -- (TRS M.empty S.empty [] [] TRSStandard)
+  = evalState (checkWellFormed decls) (TRS M.empty S.empty [] [] TRSStandard Nothing) -- (TRS M.empty S.empty [] [] TRSStandard)
 
 
 -- | Extracts the signature and checks if the rules are well-formed wrt that
@@ -148,17 +148,17 @@ checkWellFormed (CType ORIENTED:rest) = do { myTRS <- get
                                            }
 
 checkWellFormed (Strategy INNERMOST:rest) = do { myTRS <- get 
-                                                 ; put $ myTRS { trsStrategy = INNERMOST }
-                                                 ; checkWellFormed rest
-                                                 }
+                                               ; put $ myTRS { trsStrategy = Just INNERMOST }
+                                               ; checkWellFormed rest
+                                               }
 checkWellFormed (Strategy OUTERMOST:rest) = do { myTRS <- get 
-                                       ; put $ myTRS { trsStrategy = OUTERMOST }
-                                       ; checkWellFormed rest
-                                       }
+                                               ; put $ myTRS { trsStrategy = Just OUTERMOST }
+                                               ; checkWellFormed rest
+                                               }
 checkWellFormed (Strategy FULL:rest) = do { myTRS <- get 
-                                           ; put $ myTRS { trsStrategy = FULL }
-                                           ; checkWellFormed rest
-                                           }
+                                          ; put $ myTRS { trsStrategy = Just FULL }
+                                          ; checkWellFormed rest
+                                          }
 
 
 checkWellFormed (Signature sg:rest) = do { result <- checkSignatures sg

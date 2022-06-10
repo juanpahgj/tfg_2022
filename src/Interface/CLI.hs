@@ -31,8 +31,8 @@ Opt(..), Format (..)
 ) where
 
 --import Parser.COPS.Parser (parseCOPS)
-import Parser.TPDB.Parser (parseTPDB, parseTPDB_XML)
 --import Parser.COPS.TRS.Grammar (TRS)
+import Parser.TPDB.Parser (parseTPDB, parseTPDB_XML)
 import Parser.TPDB.Grammar (TRS)
 import System.Environment (getProgName, getArgs)
 import System.Exit (ExitCode(ExitSuccess,ExitFailure), exitWith, exitFailure)
@@ -84,6 +84,10 @@ options = [ Option "h" ["help"]
                    (NoArg (\opt -> do return opt { inputFormat = Just TPDB })
                    )
                    "Parse a TPDB file"
+          , Option "" ["xml"]
+                   (NoArg (\opt -> do return opt { inputFormat = Just XMLTPDB })
+                   )
+                   "Parse a TPDB XML file"        
           , Option "v" ["version"]
                    (NoArg (\_ -> do hPutStrLn stderr "rew-syntax-check, version 0.1"
                                     exitWith ExitSuccess))

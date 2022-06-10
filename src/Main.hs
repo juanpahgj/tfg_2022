@@ -38,14 +38,31 @@ import Parser.TPDB.Grammar (Spec (..), Decl (..)) --import Parser.TPDB.TRS.Gramm
 -- error if incorrect
 main :: IO ()
 main =
-  do (opts, _) <- parseOptions
-     let Opt { inputName = filename 
-             , inputContent = input
-             , inputFormat = format } = opts
-     filedata <- input
+   do (opts, _) <- parseOptions
+      let Opt { inputName = filename 
+               , inputContent = input
+               , inputFormat = format } = opts
+      filedata <- input
+      --
+      let !trs = case format of 
+               Just TPDB -> 
+                     case parseTPDB filedata of
+                        Left parseerror
+                           -> error$ "Parse Error (Main): " ++ show parseerror
+                        Right sys
+                           -> sys
+               Just XMLTPDB -> 
+                     case parseTPDB_XML filedata of
+                        Left parseerror
+                           -> error$ "Parse Error (Main): " ++ show parseerror
+                        Right sys
+                           -> sys
+               Nothing -> autoparse filename filedata
+
+      hPutStr stdout (" TRS:\n" ++ show trs ++ "\n") --printOp spec
      --
-     -- >>> Bloque para pruebas
-     
+     -- >>>> Bloque para pruebas
+     {-
      --let !decls = case parseTRS filedata of
      let !decls = case parseTRS_XML filedata of
                             Left parseerror
@@ -53,35 +70,26 @@ main =
                             --Right (Spec decl)
                             Right decl
                                -> decl
-     -- <<<
-     
+
+     hPutStr stdout ("\n\nPruebas:\n"
+            ++ "Spec (decl list):\n\n" ++ (show $ specToDecl decls) ++ "\n---------\n"
+            ++ "longitud de la lista (num. de bloques): " ++ (show $ length $ specToDecl decls) 
+            -- ++ "\nTiene var y rule: \n" ++ (show $ hasVar (specToDecl decls))
+                    )
+     -- <<<<
+     -}
      --
-     let !trs = autoparse filename filedata
+
 {-
+     --let !trs = autoparse filename filedata
      let !trs = case parseTPDB filedata of
                             Left parseerror
                                -> error$ "Parse Error (Main): " ++ show parseerror
                             Right sys
                               -> sys
 -}
-     hPutStr stdout ("Spec (decl list):\n\n" ++ (show $ specToDecl decls) ++ "\n---------\n" ++ "TRS:\n\n" ++ show trs)--printOp spec
-     hPutStr stdout ("\n\nPruebas:\n"
-                     ++ "longitud de la lista (num. de bloques): " ++ (show $ length $ specToDecl decls) 
-                     -- ++ "\nTiene var y rule: \n" ++ (show $ hasVar (specToDecl decls))
-                    )
+
      --hPutStr stdout (show trs) --- ""
-
-     {-
-     let !trs = case format of 
-      Just TPDB -> 
-              case parseTPDB filedata of
-                Left parseerror
-                   -> error$ "Parse Error (Main): " ++ show parseerror
-                Right sys
-                  -> sys
-      Nothing -> autoparse filename filedata
-
-      -}
 
 --- Aux. fun.
 specToDecl :: Spec -> [Decl]

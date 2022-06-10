@@ -152,7 +152,7 @@ data TRS
         , trsRMap :: [(Id, [Int])]
         , trsRules :: [Rule]
         , trsType :: TRSType
-        , trsStrategy :: Strategydecl
+        , trsStrategy :: Maybe Strategydecl
         } deriving (Show)
 
 -----------------------------------------------------------------------------
