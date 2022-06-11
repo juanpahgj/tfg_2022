@@ -59,26 +59,23 @@ main =
                            -> sys
                Nothing -> autoparse filename filedata
 
-      hPutStr stdout (" TRS:\n" ++ show trs ++ "\n") --printOp spec
-     --
-     -- >>>> Bloque para pruebas
-     {-
-     --let !decls = case parseTRS filedata of
-     let !decls = case parseTRS_XML filedata of
-                            Left parseerror
-                               -> error$ "Parse Error (Main): " ++ show parseerror
-                            --Right (Spec decl)
-                            Right decl
-                               -> decl
+      hPutStr stdout ("\n TRS:\n" ++ show trs ++ "\n") --printOp spec
+      --
 
-     hPutStr stdout ("\n\nPruebas:\n"
-            ++ "Spec (decl list):\n\n" ++ (show $ specToDecl decls) ++ "\n---------\n"
-            ++ "longitud de la lista (num. de bloques): " ++ (show $ length $ specToDecl decls) 
-            -- ++ "\nTiene var y rule: \n" ++ (show $ hasVar (specToDecl decls))
-                    )
-     -- <<<<
-     -}
-     --
+      -- >>>> Bloque para pruebas
+      let !decls = case parseTRS filedata of --let !decls = case parseTRS filedata of
+                              Left parseerror
+                                 -> error$ "Parse Error (Main): " ++ show parseerror
+                              --Right (Spec decl)
+                              Right decl
+                                 -> decl
+
+      hPutStr stdout ("\n Pruebas:\n"
+               ++ "Spec (decl list):\n\n" ++ (show $ specToDecl decls) ++ "\n---------\n"
+               ++ "longitud de la lista (num. de bloques): " ++ (show $ length $ specToDecl decls) 
+               -- ++ "\nTiene var y rule: \n" ++ (show $ hasVar (specToDecl decls))
+                     )
+      -- <<<<
 
 {-
      --let !trs = autoparse filename filedata
@@ -88,8 +85,6 @@ main =
                             Right sys
                               -> sys
 -}
-
-     --hPutStr stdout (show trs) --- ""
 
 --- Aux. fun.
 specToDecl :: Spec -> [Decl]

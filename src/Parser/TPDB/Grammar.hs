@@ -19,7 +19,7 @@ module Parser.TPDB.Grammar (
 
 Spec(..), Decl(..), Thdecl (..), SimpleThdecl (..), Equation (..) --, SimpleEquation (..)
 , Term (..), XmlTerm (..), Rule(..), SimpleRule (..), Cond (..), Strategydecl (..)
-, Csstrat (..), AnyContent (..), Id, TRSType (..), TRS (..), CondType (..)
+, AnyContent (..), Id, TRSType (..), TRS (..), CondType (..) --, Csstrat (..)
 , Signdecl (..), Signthry (..)
 
 
@@ -103,13 +103,15 @@ data Cond = Term :-><- Term --
 -- | Strategy Declaration
 data Strategydecl = INNERMOST
   | OUTERMOST
-  | CONTEXTSENSITIVE [Csstrat] --replacementmap
+  | CONTEXTSENSITIVE [(Id, [Int])] -- [Csstrat] --replacementmap
   | FULL -- Added for XML format. Equivalent to CONTEXTSENSITIVE
     deriving (Eq, Ord, Show, Data, Typeable)
 
+{-
 -- | Context-Sensitive strategy
 data Csstrat = Csstrat (Id, [Int]) --replacementmap
     deriving (Eq, Ord, {-Show,-} Data, Typeable)
+-}
 
 data AnyContent = AnyId Id
   | AnySt String
@@ -195,9 +197,11 @@ instance Show Cond where
   show (t1 :-><- t2) = show t1 ++ " -><- " ++ show t2
   -- show (t1 :-> t2) = show t1 ++ " -> " ++ show t2
 
+{-
 instance Show Csstrat where
   show (Csstrat (id, [])) = "(" ++ id ++ ")"
   show (Csstrat (id, nums)) = "(" ++ id ++  (concat . intersperse " " . map show $ nums) ++ ")"
+-}
 
 instance Show Signdecl where 
   show (S t i) = show t ++ " arity: " ++ show i

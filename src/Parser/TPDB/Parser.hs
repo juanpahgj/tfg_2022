@@ -107,7 +107,6 @@ checkWellFormed :: [Decl] -> State TRS (Either ParseError TRS)
 checkWellFormed [] = do { myTRS <- get 
                         ; return . Right $ myTRS}
 
--- checkWellFormed (Var vs:rest) = checkWellFormed rest
 checkWellFormed ((Var vs):rest) = do { myTRS <- get
                                    ; let vars = trsVariables myTRS -- Set Char
                                    ; let vsSet = S.fromList vs -- Set Char
@@ -120,24 +119,23 @@ checkWellFormed ((Var vs):rest) = do { myTRS <- get
                                         }
                                    }
 
--- checkWellFormed (Rules rs:rest) =  checkWellFormed rest
-checkWellFormed (Rules rs:rest) = do { result <- checkRules rs
-                                     ; case result of
-                                         Left parseError -> return . Left $ parseError
-                                         Right _ -> do { myTRS <- get
-                                                       ; put $ myTRS {trsRules = rs}
-                                                       ; checkWellFormed rest
-                                                       }
-                                     }
+checkWellFormed ((Rules rs):rest) = do { result <- checkRules rs
+                                       ; case result of
+                                           Left parseError -> return . Left $ parseError
+                                           Right _ -> do { myTRS <- get
+                                                         ; put $ myTRS {trsRules = rs}
+                                                         ; checkWellFormed rest
+                                                         }
+                                       }
 
 checkWellFormed (CType SEMIEQUATIONAL:rest) = do { myTRS <- get 
                                                  ; put $ myTRS { trsType = TRSConditional SEMIEQUATIONAL }
                                                  ; checkWellFormed rest
                                                  }
 checkWellFormed (CType OTHER:rest) = do { myTRS <- get 
-                                                 ; put $ myTRS { trsType = TRSConditional SEMIEQUATIONAL }
-                                                 ; checkWellFormed rest
-                                                 }
+                                        ; put $ myTRS { trsType = TRSConditional SEMIEQUATIONAL }
+                                        ; checkWellFormed rest
+                                        }
 checkWellFormed (CType JOIN:rest) = do { myTRS <- get 
                                        ; put $ myTRS { trsType = TRSConditional JOIN }
                                        ; checkWellFormed rest
@@ -155,11 +153,34 @@ checkWellFormed (Strategy OUTERMOST:rest) = do { myTRS <- get
                                                ; put $ myTRS { trsStrategy = Just OUTERMOST }
                                                ; checkWellFormed rest
                                                }
-checkWellFormed (Strategy FULL:rest) = do { myTRS <- get 
-                                          ; put $ myTRS { trsStrategy = Just FULL }
-                                          ; checkWellFormed rest
-                                          }
+checkWellFormed (Strategy (CONTEXTSENSITIVE rmap):rest) = do { myTRS <- get
+                                                              ; case trsType myTRS of
+                                                                TRSEquational -> return . Left $ newErrorMessage (UnExpect $ "found theory in non equational type") (newPos "" 0 0)
+                                                                _ -> do{put $ myTRS { trsRMap = rmap
+                                                                                      , trsStrategy = Just FULL
+                                                                                      , trsType = case trsType myTRS of
+                                                                                                    TRSStandard -> TRSContextSensitive
+                                                                                                    TRSConditional typ -> TRSContextSensitiveConditional typ
+                                                                                                    TRSContextSensitive -> TRSContextSensitive
+                                                                                                    TRSContextSensitiveConditional typ -> TRSContextSensitiveConditional typ
+                                                                                    }
+                                                                        ;checkWellFormed rest
+                                                                        }
+                                                             }
 
+checkWellFormed (Strategy FULL:rest) = do { myTRS <- get 
+                                          ; case trsType myTRS of
+                                            TRSEquational -> return . Left $ newErrorMessage (UnExpect $ "found theory in non equational type") (newPos "" 0 0)
+                                            _ -> do{put $ myTRS { trsStrategy = Just FULL
+                                                                  , trsType = case trsType myTRS of
+                                                                                TRSStandard -> TRSContextSensitive
+                                                                                TRSConditional typ -> TRSContextSensitiveConditional typ
+                                                                                TRSContextSensitive -> TRSContextSensitive
+                                                                                TRSContextSensitiveConditional typ -> TRSContextSensitiveConditional typ
+                                                                }
+                                                    ;checkWellFormed rest
+                                                   } 
+                                          }
 
 checkWellFormed (Signature sg:rest) = do { result <- checkSignatures sg
                                          ; case result of
@@ -174,7 +195,7 @@ checkWellFormed (Theory th:rest) = do { myTRS <- get
 
 checkWellFormed (Comment cm:rest ) = checkWellFormed rest
 checkWellFormed ((AnyList _ _):rest ) = checkWellFormed rest
-
+-- checkWellFormed (Context rmap:rest) = addContextSensitive rmap
 {-
 checkWellFormed (Context rmap:rest) = do { myTRS <- get 
                                           ; if (length . nub . map fst $ rmap) == length rmap then
@@ -191,7 +212,6 @@ checkWellFormed (Context rmap:rest) = do { myTRS <- get
                                           }
 
 -}
-
 
 -- | Checks if the signature agree wrt the extracted rules signature
 checkSignatures :: [Signdecl] -> State TRS (Either ParseError ())
@@ -226,7 +246,7 @@ checkSignature (Sth id arity _) = do { myTRS <- get
                                                       --return . Right $ ()
                                                       do { myTRS <- get 
                                                          ; case trsType myTRS of
-                                                              TRSStandard -> do { put $ myTRS {trsType = TRSEquational }
+                                                              TRSStandard -> do { put $ myTRS {trsType = TRSEquational}
                                                                                 ; return . Right $ ()
                                                                                 }
                                                               TRSEquational -> return . Right $ ()
@@ -249,7 +269,7 @@ checkSignature (Srp id arity intlist) = do { myTRS <- get
                                                                                     TRSConditional typ -> TRSContextSensitiveConditional typ
                                                                                     TRSContextSensitive -> TRSContextSensitive
                                                                                     TRSContextSensitiveConditional typ -> TRSContextSensitiveConditional typ
-                                                                     }
+                                                                    }
                                                         ; case (M.lookup id funcs) of 
                                                             (Just len) -> if (arity == len) then
                                                                             return . Right $ ()
@@ -263,22 +283,22 @@ checkSignature (Srp id arity intlist) = do { myTRS <- get
 -- | Checks if the rules are well-formed wrt the extracted signature
 checkRules :: [Rule] -> State TRS (Either ParseError ())
 checkRules [] = do { myTRS <- get
-                   ; return . Right $ ()
                       -- first, we extract the arity of symbols, then we check RMap 
-                    --; case trsType myTRS of
-                    --  TRSContextSensitive -> checkRMap . trsRMap $ myTRS
-                    --  TRSContextSensitiveConditional _ -> checkRMap . trsRMap $ myTRS
-                    -- _ -> return . Right $ ()
-                    }
+                   ;case trsType myTRS of
+                        TRSContextSensitive -> checkRMap . trsRMap $ myTRS
+                        TRSContextSensitiveConditional _ -> checkRMap . trsRMap $ myTRS
+                        --TRSStandard ->  return . Left $ newErrorMessage (UnExpect $ "uuuuu") (newPos "" 0 0)
+                        _ -> return . Right $ ()
+                   }
 checkRules (r:rs) = do { myTRS <- get
                         ; let vs = trsVariables myTRS
                         ; if nonVarLHS vs r then -- lhs (left-hand side of the rule) is non-variable 
                             if isCRule r || (not . hasExtraVars vs $ r) then -- extra variables not allowed in non-conditional rules
-                              do { result <- checkTerms . getTerms $ r 
-                                ; case result of
-                                    Left parseError -> return . Left $ parseError 
-                                    Right _ -> checkRules rs
-                                }
+                                do { result <- checkTerms . getTerms $ r 
+                                   ; case result of
+                                        Left parseError -> return . Left $ parseError 
+                                        Right _ -> checkRules rs
+                                   }
                             else
                               return . Left $ newErrorMessage (UnExpect $ "extra variables in the rule " ++ (show r)) (newPos "" 0 0)
                           else
@@ -346,11 +366,11 @@ checkRMap ((f,[]):rmaps) = do { myTRS <- get
                               }
 checkRMap ((f,rmap):rmaps) = do { myTRS <- get 
                                 ; case M.lookup f (trsSignature myTRS) of 
-                                   Nothing -> return . Left $ newErrorMessage (UnExpect $ "function symbol " ++ f ++ " in replacement map (the symbol does not appear in rules)") (newPos "" 0 0)
-                                   Just arity -> let srmap = sort rmap in
-                                                 if (rmap == srmap) && (head rmap >= 1) && (last rmap <= arity) then
-                                                   checkRMap rmaps 
-                                                 else
-                                                  return . Left $ newErrorMessage (UnExpect $ "replacement map for symbol " ++ f ++ " (must be empty" ++ (if arity > 0 then " or an ordered list of numbers in [1.." ++ (show arity) ++ "] " else "") ++ ")") (newPos "" 0 0) 
+                                    Nothing -> return . Left $ newErrorMessage (UnExpect $ "function symbol " ++ f ++ " in replacement map (the symbol does not appear in rules)") (newPos "" 0 0)
+                                    (Just arity) -> let srmap = sort rmap in
+                                                  if (rmap == srmap) && (head rmap >= 1) && (last rmap <= arity) then
+                                                    checkRMap rmaps 
+                                                  else
+                                                    return . Left $ newErrorMessage (UnExpect $ "replacement map for symbol " ++ f ++ " (must be empty" ++ (if arity > 0 then " or an ordered list of numbers in [1.." ++ (show arity) ++ "] " else "") ++ ")") (newPos "" 0 0) 
                                                   --return . Left $ newErrorMessage (UnExpect $ "replacement map for symbol " ++ f ++ " (must be empty" ++ (if arity > 0 then " or an ordered list of numbers in [1.." ++ (show arity) ++ "] separated by commas" else "") ++ ")") (newPos "" 0 0) 
                                 }

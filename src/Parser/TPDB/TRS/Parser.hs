@@ -143,7 +143,8 @@ contextsensitive =
  do reserved "CONTEXTSENSITIVE"
     strats <- many$ parens (do a <- identifier
                                b <- many natural
-                               return $ Csstrat (a, map fromInteger b) -- !!
+                               return (a, map fromInteger b)
+                               -- return $ Csstrat (a, map fromInteger b) -- !!
                            )
     return $ CONTEXTSENSITIVE strats
 
