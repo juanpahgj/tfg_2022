@@ -1,16 +1,3 @@
------------------------------------------------------------------------------
--- |
--- Module      :  Parser.COPS.TRS.Scanner
--- Copyright   :  (c) muterm development team
--- License     :  see LICENSE
---
--- Maintainer  :  r.gutierrez@upm.es
--- Stability   :  unstable
--- Portability :  non-portable
---
--- This module manage the scanner options for TRSs in COPS format
---
------------------------------------------------------------------------------
 
 module Parser.TPDB.TRS_XML.Scanner (
 

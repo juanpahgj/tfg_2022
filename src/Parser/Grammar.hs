@@ -1,37 +1,25 @@
 {-# LANGUAGE DeriveDataTypeable #-}
------------------------------------------------------------------------------
--- |
--- Module      :  Parser.COPS.TRS.Grammar
--- Copyright   :  (c) muterm development team
--- License     :  see LICENSE
---
--- Maintainer  :  r.gutierrez@upm.es
--- Stability   :  unstable
--- Portability :  non-portable
---
--- This module manage the grammar for TRSs in COPS
---
------------------------------------------------------------------------------
 
-module Parser.TPDB.TRS.Grammar (
+module Parser.Grammar (
 
 -- * Exported data
 
 Spec(..), Decl(..), Thdecl (..), SimpleThdecl (..), Equation (..) --, SimpleEquation (..)
 , Term (..), XmlTerm (..), Rule(..), SimpleRule (..), Cond (..), Strategydecl (..)
-, Csstrat (..), AnyContent (..), Id, TRSType (..), TRS (..)
+, AnyContent (..), Id, TRSType (..), TRS (..), CondType (..) --, Csstrat (..)
+, Signdecl (..), Signthry (..)
 
 
 -- * Exported functions
 
-, getTerms, --nonVarLHS, isCRule, hasExtraVars
+, getTerms, nonVarLHS, isCRule, hasExtraVars
 
 ) where
 
 import Data.Typeable
 import Data.Generics
 import Data.Map (Map)
-import Data.Set as S (Set, member, unions, insert, (\\), null)
+import Data.Set as S (Set, member, unions, insert, (\\), null, empty)
 import Data.List (intersperse)
 
 -----------------------------------------------------------------------------
@@ -46,8 +34,12 @@ data Spec = Spec [Decl] -- ^ List of declarations
 data Decl = Var [Id] -- ^ Set of variables
     | Theory [Thdecl] -- ^ Set of rules
     | Rules [Rule] -- ^ Set of rules
-    | Strategy Strategydecl -- ^ Extra information
     | AnyList Id [AnyContent] --AnyList Id [String]
+    | Strategy Strategydecl -- ^ Extra information
+    | CType CondType -- ^ Type of conditional rules (XML format)
+    | Signature [Signdecl] -- ^ Type of signature (XML format)
+    | Comment String -- ^ Extra information
+    | Context [(Id, [Int])] -- ^ Context-Sensitive strategy (COPS format)
       deriving (Eq, Ord, Show, Data, Typeable)
 
 -- | Theory declaration (para obligar a que haya min. uno??)
@@ -64,13 +56,13 @@ data Equation = Term :==: Term -- ^ Equation
       deriving (Eq, Ord, Data, Typeable)
 
 {-
--- | Equation declaration (para obligar a que haya min. uno??)
-data Equation = Equation SimpleEquation [Equation]
-      deriving (Eq, Data, Typeable)
+  -- | Equation declaration (para obligar a que haya min. uno??)
+  data Equation = Equation SimpleEquation [Equation]
+        deriving (Eq, Data, Typeable)
 
--- | Simple equation declaration
-data SimpleEquation = Term :==: Term -- ^ Equation
-      deriving (Eq, Data, Typeable)
+  -- | Simple equation declaration
+  data SimpleEquation = Term :==: Term -- ^ Equation
+        deriving (Eq, Data, Typeable)
 -}
 
 -- | Term declaration
@@ -78,13 +70,14 @@ data Term = T Id [Term] -- ^ Term
     | XTerm XmlTerm
     deriving (Eq, Ord, Data, Typeable)
 
--- | Term declaration fot xml
-data XmlTerm = Tfun String [Term] -- ^ Term
-    | Tvar String -- Added to XML format
+-- | XmlTerm declaration (for xml)
+data XmlTerm = Tfun Id [Term] -- ^ Term
+    | Tvar Id -- Added for XML format
     deriving (Eq, Ord, Data, Typeable)
 
 -- | Rule declaration
 data Rule = Rule SimpleRule [Cond] -- ^ Conditional rewriting rule
+      | COPSrule SimpleRule [Equation] -- ^ COPS format
       deriving (Eq, Ord, Data, Typeable)
 
 -- | Simple rule declaration
@@ -99,34 +92,58 @@ data Cond = Term :-><- Term --
 -- | Strategy Declaration
 data Strategydecl = INNERMOST
   | OUTERMOST
-  | CONTEXTSENSITIVE [Csstrat]
+  | CONTEXTSENSITIVE [(Id, [Int])] -- [Csstrat] --replacementmap
+  | FULL -- Added for XML format. Equivalent to CONTEXTSENSITIVE
     deriving (Eq, Ord, Show, Data, Typeable)
 
-data Csstrat = Csstrat (Id, [Int])
+{-
+-- | Context-Sensitive strategy
+data Csstrat = Csstrat (Id, [Int]) --replacementmap
     deriving (Eq, Ord, {-Show,-} Data, Typeable)
+-}
 
 data AnyContent = AnyId Id
   | AnySt String
   | AnyAC [AnyContent]
     deriving (Eq, Ord, Show, Data, Typeable)
 
+-- | Condition Type
+data CondType = JOIN
+  | ORIENTED
+  | OTHER  -- Added for XML format. Equivalent to SEMIEQUATIONAL
+  | SEMIEQUATIONAL -- COPS
+  deriving (Eq, Ord, Show, Data, Typeable)
+
+-- | Signature declaration (for xml)
+data Signdecl = S Id Int
+  | Sth Id Int Signthry
+  | Srp Id Int [Int]  -- | Srp Csstrat  --replacementmap  
+    deriving (Eq, Ord, Data, Typeable)
+
+data Signthry = A
+  | C
+  | AC
+  deriving (Eq, Ord, Show, Data, Typeable)
+
 -- | Identifier
 type Id = String
 
 -- | TSR Type
 data TRSType = TRSStandard
-  | TRSConditional --CondType
+  | TRSEquational
+  | TRSConditional CondType
   | TRSContextSensitive 
-  | TRSContextSensitiveConditional --CondType
+  | TRSContextSensitiveConditional CondType
     deriving (Show)
 
 -- | Term Rewriting Systems (TRS, CTRS, CSTRS, CSCTRS)
 data TRS 
   = TRS { trsSignature :: Map Id Int
         , trsVariables :: Set Id
-        --, trsRMap :: [(Id, [Int])]
+        , trsRMap :: [(Id, [Int])]
         , trsRules :: [Rule]
         , trsType :: TRSType
+        , trsStrategy :: Maybe Strategydecl
         } deriving (Show)
 
 -----------------------------------------------------------------------------
@@ -147,9 +164,15 @@ instance Show Thdecl where
 instance Show Equation where -- instance Show Equation where
   show (t1 :==: t2) = show t1 ++ " == " ++ show t2
 
+instance Show XmlTerm where
+  show (Tfun f []) = f 
+  show (Tfun f terms) = f ++ "(" ++ (concat . intersperse "," . map show $ terms) ++ ")" 
+  show (Tvar v) = v
+
 instance Show Term where
   show (T f []) = f 
   show (T f terms) = f ++ "(" ++ (concat . intersperse "," . map show $ terms) ++ ")" 
+  show (XTerm xterm) = show xterm
 
 instance Show SimpleRule where 
   show (t1 :-> t2) = show t1 ++ " -> " ++ show t2
@@ -163,9 +186,17 @@ instance Show Cond where
   show (t1 :-><- t2) = show t1 ++ " -><- " ++ show t2
   -- show (t1 :-> t2) = show t1 ++ " -> " ++ show t2
 
+{-
 instance Show Csstrat where
   show (Csstrat (id, [])) = "(" ++ id ++ ")"
   show (Csstrat (id, nums)) = "(" ++ id ++  (concat . intersperse " " . map show $ nums) ++ ")"
+-}
+
+instance Show Signdecl where 
+  show (S t i) = show t ++ " arity: " ++ show i
+  show (Sth t i th) = show t ++ " arity: " ++ show i ++ " theory: " ++ show th
+  show (Srp t i rps) = show t ++ " arity: " ++ show i ++ " rpmap: " ++ (concat . intersperse " " . map show $ rps)
+
 
 {-
 instance Eq Decl where
@@ -192,29 +223,36 @@ instance Ord Decl where
 
 -- | gets all the terms from a rule
 getVars :: Set Id -> Term -> Set Id
-getVars vs (T idt ts) = let tsVars = unions . map (getVars vs) $ ts
+getVars vs (T idt ts) = getVarsAux vs idt ts
+getVars vs (XTerm (Tfun idt ts)) = getVarsAux vs idt ts
+getVars vs (XTerm (Tvar idt)) = let tsVars = S.empty
+                                      in if member idt vs then
+                                          insert idt tsVars 
+                                        else 
+                                          tsVars
+
+getVarsAux vs idt ts= let tsVars = unions . map (getVars vs) $ ts
                         in if member idt vs then
                              insert idt tsVars 
                            else 
                              tsVars
 
-
 -- | gets all the terms from a rule
 getTerms :: Rule -> [Term]
-getTerms (Rule (l :-> r) eqs) = (l:r:concatMap getTermsCond eqs)
-
-
+getTerms (Rule (l :-> r) conds) = (l:r:concatMap getTermsCond conds)
+getTerms (Rule (l :->= r) conds) = (l:r:concatMap getTermsCond conds)
 
 -- | gets all the terms from a equation
 getTermsCond :: Cond -> [Term]  -- getTermsEq :: SimpleEquation -> [Term]
 getTermsCond (l :-><- r) = [l,r]
 getTermsCond (Arrow l r) = [l,r]
 
-{-
-
 -- | checks if the lhs is non-variable
 nonVarLHS :: Set Id -> Rule -> Bool
-nonVarLHS vs (Rule ((T idt _) :-> r) eqs) = not . member idt $ vs 
+nonVarLHS vs (Rule ((T idt _) :-> r) conds) = not . member idt $ vs
+nonVarLHS vs (Rule ((T idt _) :->= r) conds) = not . member idt $ vs
+nonVarLHS vs (Rule ((XTerm (Tfun idt _)) :-> r) conds) = not . member idt $ vs
+nonVarLHS vs (Rule ((XTerm (Tvar idt)) :-> r) conds) = not . member idt $ vs
 
 -- | checks if the rule is conditional
 isCRule :: Rule -> Bool
@@ -224,6 +262,6 @@ isCRule _ = True
 -- | checks if the non-conditional rule has extra variables
 hasExtraVars :: Set Id -> Rule -> Bool
 hasExtraVars vs (Rule (l :-> r) []) = not . S.null $ getVars vs r \\ getVars vs l
+hasExtraVars vs (Rule (l :->= r) []) = not . S.null $ getVars vs r \\ getVars vs l
 hasExtraVars _ _ = error $ "Error: hasExtraVars only applies to non-conditional rules"
 
--}

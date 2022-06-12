@@ -15,11 +15,11 @@ module Parser.COPS.TRS.Parser (
 
 -- * Exported functions
 
-trsParser, term
+trsCOPSParser, term
 
 ) where
 
-import Parser.COPS.TRS.Grammar
+import Parser.Grammar
 import Parser.COPS.TRS.Scanner
 
 import Text.ParserCombinators.Parsec (Parser(..), many, (<|>), many1, sepEndBy
@@ -32,8 +32,8 @@ import Control.Monad (liftM)
 -----------------------------------------------------------------------------
 
 -- |parse TRS specification
-trsParser :: Parser Spec
-trsParser = liftM Spec (many1 (whiteSpace >> parens decl))
+trsCOPSParser :: Parser Spec
+trsCOPSParser = liftM Spec (many1 (whiteSpace >> parens decl))
 
 -- | A declaration is form by a set of variables, a theory, a set of
 -- rules, a strategy an extra information
@@ -46,15 +46,15 @@ declCondType = reserved "CONDITIONTYPE" >> liftM CType (semiEq <|> join <|> orie
 
 -- | Semi-equational conditions
 semiEq :: Parser CondType
-semiEq = reserved "SEMI-EQUATIONAL" >> return SemiEquational
+semiEq = reserved "SEMI-EQUATIONAL" >> return SEMIEQUATIONAL --SemiEquational
 
 -- | Join conditions
 join :: Parser CondType
-join = reserved "JOIN" >> return Join
+join = reserved "JOIN" >> return JOIN --Join
 
 -- | Oriented conditions
 oriented :: Parser CondType
-oriented = reserved "ORIENTED" >> return Oriented
+oriented = reserved "ORIENTED" >> return ORIENTED --Oriented
 
 
 -- | Rules declaration is formed by a reserved word plus a set of
@@ -81,7 +81,7 @@ rule :: Parser Rule
 rule =
  do sr <- simpleRule
     conds <- option [] (reservedOp "|" >> commaSep' cond)
-    return (Rule sr conds)
+    return (COPSrule sr conds) --return (Rule sr conds)
 
 -- | Simple rule
 simpleRule =

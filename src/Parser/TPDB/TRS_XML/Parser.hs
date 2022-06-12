@@ -1,16 +1,4 @@
------------------------------------------------------------------------------
--- |
--- Module      :  Parser.TPDB.TRS.Parser
--- Copyright   :  (c) muterm development team
--- License     :  see LICENSE
---
--- Maintainer  :  r.gutierrez@upm.es
--- Stability   :  unstable
--- Portability :  non-portable
---
--- This module manage the parser for TRSs in TPDB format
---
------------------------------------------------------------------------------
+
 module Parser.TPDB.TRS_XML.Parser (
 
 -- * Exported functions
@@ -19,7 +7,7 @@ trsXmlParser, term
 
 ) where
 
-import Parser.TPDB.Grammar -- import Parser.TPDB.TRS.Grammar
+import Parser.Grammar
 import Parser.TPDB.TRS_XML.Scanner
 
 import Text.ParserCombinators.Parsec (Parser(..), many, (<|>), many1, sepEndBy, between

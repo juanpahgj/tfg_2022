@@ -1,31 +1,18 @@
 {-# LANGUAGE FlexibleContexts #-}
------------------------------------------------------------------------------
--- |
--- Module      :  Parser.TPDB.Parser
--- Copyright   :  (c) muterm development team
--- License     :  see LICENSE
---
--- Maintainer  :  r.gutierrez@upm.es
--- Stability   :  unstable
--- Portability :  non-portable
---
--- This module manage the parser for TRSs in the TPDB format.
---
------------------------------------------------------------------------------
 
-module Parser.TPDB.Parser (
+module Parser.Parser (
 
 -- * Exported functions
 
-parseTPDB, parseTPDB_XML, parseTRS, parseTRS_XML
+parseTPDB, parseTPDB_XML, parseTRS, parseTRS_XML, parseCOPS, parseTRS_COPS
 
 )  where
 
 import Parser.TPDB.TRS.Parser (trsParser)
 import Parser.TPDB.TRS_XML.Parser (trsXmlParser)
+import Parser.COPS.TRS.Parser (trsCOPSParser)
 
--- import Parser.TPDB.TRS.Grammar
-import Parser.TPDB.Grammar (Spec (..), Decl (..), TRSType(..), TRS (..), Term (..), XmlTerm (..)
+import Parser.Grammar (Spec (..), Decl (..), TRSType(..), TRS (..), Term (..), XmlTerm (..)
   , Id, TRSType (..), Cond (..), Rule (..), CondType (..), Strategydecl (..), Signdecl (..)
   , getTerms, nonVarLHS, isCRule, hasExtraVars)
 
@@ -60,6 +47,16 @@ parseTPDB_XML = checkConsistency . parseTRS_XML
 -- | Parses a term rewriting system in TPDB format
 parseTRS_XML :: String -> Either ParseError Spec
 parseTRS_XML s = doParse s trsXmlParser
+
+-----------------------------------------------------------------------------
+
+-- | Parses a TPDB-XML problem
+parseCOPS :: String -> Either ParseError TRS
+parseCOPS = checkConsistency . parseTRS_COPS
+
+-- | Parses a term rewriting system in TPDB format
+parseTRS_COPS :: String -> Either ParseError Spec
+parseTRS_COPS s = doParse s trsCOPSParser
 
 -----------------------------------------------------------------------------
 
@@ -193,10 +190,10 @@ checkWellFormed (Theory th:rest) = do { myTRS <- get
                                       ; checkWellFormed rest
                                       }
 
-checkWellFormed (Comment cm:rest ) = checkWellFormed rest
+checkWellFormed (Comment _:rest) = checkWellFormed rest
 checkWellFormed ((AnyList _ _):rest ) = checkWellFormed rest
+
 -- checkWellFormed (Context rmap:rest) = addContextSensitive rmap
-{-
 checkWellFormed (Context rmap:rest) = do { myTRS <- get 
                                           ; if (length . nub . map fst $ rmap) == length rmap then
                                               do { put $ myTRS { trsRMap = rmap
@@ -211,7 +208,7 @@ checkWellFormed (Context rmap:rest) = do { myTRS <- get
                                               return . Left $ newErrorMessage (UnExpect $ "duplicated symbols in replacement map declaration") (newPos "" 0 0)
                                           }
 
--}
+
 
 -- | Checks if the signature agree wrt the extracted rules signature
 checkSignatures :: [Signdecl] -> State TRS (Either ParseError ())

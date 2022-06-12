@@ -22,11 +22,11 @@ main
 ) where
 
 import Interface.CLI (Opt (..), Format (..), parseOptions, autoparse)
-import Parser.TPDB.Parser (parseTPDB, parseTPDB_XML, parseTRS, parseTRS_XML)
+import Parser.Parser (parseTPDB, parseTRS, parseTPDB_XML, parseTRS_XML, parseCOPS, parseTRS_COPS)
 
 import System.IO (hPutStr, stdout)
 
-import Parser.TPDB.Grammar (Spec (..), Decl (..)) --import Parser.TPDB.TRS.Grammar (Spec (..),Decl(..))
+import Parser.Grammar (Spec (..), Decl (..)) --import Parser.TPDB.Grammar (Spec (..),Decl(..))
 
 --import Data.List(sort)
 
@@ -53,6 +53,12 @@ main =
                            -> sys
                Just XMLTPDB -> 
                      case parseTPDB_XML filedata of
+                        Left parseerror
+                           -> error$ "Parse Error (Main): " ++ show parseerror
+                        Right sys
+                           -> sys
+               Just COPS -> 
+                     case parseCOPS filedata of
                         Left parseerror
                            -> error$ "Parse Error (Main): " ++ show parseerror
                         Right sys

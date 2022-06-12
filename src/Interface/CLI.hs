@@ -30,10 +30,8 @@ Opt(..), Format (..)
 
 ) where
 
---import Parser.COPS.Parser (parseCOPS)
---import Parser.COPS.TRS.Grammar (TRS)
-import Parser.TPDB.Parser (parseTPDB, parseTPDB_XML)
-import Parser.TPDB.Grammar (TRS)
+import Parser.Parser (parseTPDB, parseTPDB_XML, parseCOPS)
+import Parser.Grammar (TRS)
 import System.Environment (getProgName, getArgs)
 import System.Exit (ExitCode(ExitSuccess,ExitFailure), exitWith, exitFailure)
 import System.IO (hPutStrLn, stderr, hFlush)
@@ -87,6 +85,10 @@ options = [ Option "h" ["help"]
           , Option "" ["xml"]
                    (NoArg (\opt -> do return opt { inputFormat = Just XMLTPDB })
                    )
+                   "Parse a TPDB XML file"
+         , Option "" ["cops"]
+                   (NoArg (\opt -> do return opt { inputFormat = Just COPS })
+                   )
                    "Parse a TPDB XML file"        
           , Option "v" ["version"]
                    (NoArg (\_ -> do hPutStrLn stderr "rew-syntax-check, version 0.1"
@@ -129,7 +131,7 @@ parseOptions = do (optsActions, rest, errors) <- getArgs
 
 -- | File extensions
 fileExtensions :: [(String, String -> Either ParseError TRS)]
-fileExtensions = [(".trs", parseTPDB), (".xml", parseTPDB_XML){-, (".trs", parseCOPS)-}]
+fileExtensions = [(".trs", parseTPDB), (".xml", parseTPDB_XML), (".trs", parseCOPS)]
 
 -- | Parse file into a TRS
 autoparse :: String -> String -> TRS
