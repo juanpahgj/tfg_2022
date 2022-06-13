@@ -43,6 +43,21 @@ main =
                , inputContent = input
                , inputFormat = format } = opts
       filedata <- input
+      
+      -- >>>> Bloque para pruebas
+      let !decls = case parseTRS filedata of --let !decls = case parseTRS filedata of
+                              Left parseerror
+                                 -> error$ "Parse Error (Main): " ++ show parseerror
+                              --Right (Spec decl)
+                              Right decl
+                                 -> decl
+
+      hPutStr stdout ("\n Pruebas:\n"
+               ++ "+ Spec (decl list):\n  " ++ (show $ specToDecl decls) ++ "\n"
+               ++ "+ Longitud de la lista (num. de bloques):   " ++ (show $ length $ specToDecl decls) ++ "\n"
+               -- ++ "\nTiene var y rule: \n" ++ (show $ hasVar (specToDecl decls))
+                     )
+      -- <<<<
       --
       let !trs = case format of 
                Just TPDB -> 
@@ -65,23 +80,10 @@ main =
                            -> sys
                Nothing -> autoparse filename filedata
 
-      hPutStr stdout ("\n TRS:\n" ++ show trs ++ "\n") --printOp spec
+      hPutStr stdout ("\n TRS:\n" ++ show trs ++ "\n\n") --printOp spec
       --
 
-      -- >>>> Bloque para pruebas
-      let !decls = case parseTRS filedata of --let !decls = case parseTRS filedata of
-                              Left parseerror
-                                 -> error$ "Parse Error (Main): " ++ show parseerror
-                              --Right (Spec decl)
-                              Right decl
-                                 -> decl
-
-      hPutStr stdout ("\n Pruebas:\n"
-               ++ "Spec (decl list):\n\n" ++ (show $ specToDecl decls) ++ "\n---------\n"
-               ++ "longitud de la lista (num. de bloques): " ++ (show $ length $ specToDecl decls) 
-               -- ++ "\nTiene var y rule: \n" ++ (show $ hasVar (specToDecl decls))
-                     )
-      -- <<<<
+      
 
 {-
      --let !trs = autoparse filename filedata

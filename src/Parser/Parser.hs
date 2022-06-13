@@ -30,9 +30,8 @@ import Control.Monad.State (State, evalState, get, put)
 
 -- | Parses a TPDB problem
 parseTPDB :: String -> Either ParseError TRS
-parseTPDB = checkConsistency . checkSortBlocks . parseTRS
+parseTPDB = (checkConsistency (checkTPDBDeclaration)) . checkSortBlocks . parseTRS
 --parseTPDB = checkConsistency . parseTRS 
---checkConsistency . parseTRS = \string -> checkConsistency(parseTRS(string))
 
 -- | Parses a term rewriting system in TPDB format
 parseTRS :: String -> Either ParseError Spec
@@ -42,7 +41,7 @@ parseTRS s = doParse s trsParser
 
 -- | Parses a TPDB-XML problem
 parseTPDB_XML :: String -> Either ParseError TRS
-parseTPDB_XML = checkConsistency . parseTRS_XML
+parseTPDB_XML = (checkConsistency (checkXMLDeclaration)) . parseTRS_XML
 
 -- | Parses a term rewriting system in TPDB format
 parseTRS_XML :: String -> Either ParseError Spec
@@ -50,11 +49,11 @@ parseTRS_XML s = doParse s trsXmlParser
 
 -----------------------------------------------------------------------------
 
--- | Parses a TPDB-XML problem
+-- | Parses a COPS problem
 parseCOPS :: String -> Either ParseError TRS
-parseCOPS = checkConsistency . parseTRS_COPS
+parseCOPS = (checkConsistency (checkCOPSDeclaration)). parseTRS_COPS
 
--- | Parses a term rewriting system in TPDB format
+-- | Parses a term rewriting system in COPS format
 parseTRS_COPS :: String -> Either ParseError Spec
 parseTRS_COPS s = doParse s trsCOPSParser
 
@@ -68,15 +67,86 @@ doParse s p = parse p "" s
 --The filePath is only used in error messages and may be the empty string.
 
 
+-- ****************************************************************************
+
+-- | Checks declaration order for TPDB
+checkTPDBDeclaration :: Either ParseError Spec -> Decl -> Either ParseError Spec
+checkTPDBDeclaration (Left parseError) _ = Left parseError
+checkTPDBDeclaration (Right (Spec [])) (Var vs) = Right . Spec $ [Var vs]
+checkTPDBDeclaration (Right (Spec [])) (Rules rs) = Right . Spec $ [Rules rs]
+checkTPDBDeclaration (Right (Spec [])) (Theory th) = Right . Spec $ [Theory th]
+checkTPDBDeclaration (Right (Spec [])) (Strategy st) = Right . Spec $ [Strategy st]
+checkTPDBDeclaration (Right (Spec [])) (AnyList id al) = Right . Spec $ [AnyList id al]
+checkTPDBDeclaration (Right (Spec (Var vs:rest))) (Var vss) = Right . Spec $ (Var vss:Var vs:rest)
+checkTPDBDeclaration (Right (Spec (Var vs:rest))) (Rules rs) = Right . Spec $ (Rules rs:Var vs:rest)
+checkTPDBDeclaration (Right (Spec (Var vs:rest))) (Theory th) = Right . Spec $ (Theory th:Var vs:rest)
+checkTPDBDeclaration (Right (Spec (Var vs:rest))) (Strategy st) = Right . Spec $ [Strategy st, Var vs]
+checkTPDBDeclaration (Right (Spec (Var vs:rest))) (AnyList id al) = Right . Spec $ ((AnyList id al):Var vs:rest)
+checkTPDBDeclaration (Right (Spec (Theory th:rest))) (Var vss) = Right . Spec $ (Var vss:Theory th:rest)
+checkTPDBDeclaration (Right (Spec (Theory th:rest))) (Rules rs) = Right . Spec $ (Rules rs:Theory th:rest)
+checkTPDBDeclaration (Right (Spec (Theory th:rest))) (Strategy st) = Right . Spec $ [Strategy st, Theory th]
+checkTPDBDeclaration (Right (Spec (Theory th:rest))) (AnyList id al) = Right . Spec $ ((AnyList id al):Theory th:rest)
+checkTPDBDeclaration (Right (Spec (Rules rs:rest))) (Var vss) = Right . Spec $ (Var vss:Rules rs:rest)
+checkTPDBDeclaration (Right (Spec (Rules rs:rest))) (Strategy st) = Right . Spec $ [Strategy st, Rules rs]
+checkTPDBDeclaration (Right (Spec (Rules rs:rest))) (AnyList id al) = Right . Spec $ ((AnyList id al):Rules rs:rest)
+checkTPDBDeclaration (Right (Spec [Strategy st])) (Var vs) = Right . Spec $ [Var vs, Strategy st] -- checkTPDBDeclaration (Right (Spec [Strategy st])) (Rules rs) = Right . Spec $ [Rules rs, Strategy st]
+checkTPDBDeclaration (Right (Spec [Strategy st])) (AnyList id al) = Right . Spec $ [(AnyList id al), Strategy st]
+checkTPDBDeclaration _ (Var _) = Left $ newErrorMessage (UnExpect "VAR block") (newPos "" 0 0)
+checkTPDBDeclaration _ (Rules _) = Left $ newErrorMessage (UnExpect "RULES block") (newPos "" 0 0)
+checkTPDBDeclaration _ (Theory _) = Left $ newErrorMessage (UnExpect "THEORY block") (newPos "" 0 0)
+checkTPDBDeclaration _ (Strategy _) = Left $ newErrorMessage (UnExpect "STRATEGY block") (newPos "" 0 0)
+checkTPDBDeclaration _ (AnyList _ _) = Left $ newErrorMessage (UnExpect "ANYLIST block") (newPos "" 0 0)
+
+-- | Checks declaration order for TPDB xml
+checkXMLDeclaration :: Either ParseError Spec -> Decl -> Either ParseError Spec
+checkXMLDeclaration (Left parseError) _ = Left parseError
+checkXMLDeclaration (Right (Spec [])) (Strategy stgy) = Right . Spec $ [Strategy stgy]
+checkXMLDeclaration (Right (Spec [Strategy stgy])) (Rules rs) = Right . Spec $ [Rules rs,Strategy stgy]
+checkXMLDeclaration (Right (Spec (Rules rs:rest))) (Signature sg) = Right . Spec $ (Signature sg:Rules rs:rest)
+checkXMLDeclaration (Right (Spec (Rules rs:rest))) (Comment c) = Right . Spec $ [Comment c, Rules rs]
+checkXMLDeclaration (Right (Spec (Signature sg:rest))) (CType ctype) = Right . Spec $ [CType ctype, Signature sg]
+checkXMLDeclaration (Right (Spec (Signature sg:rest))) (Comment c) = Right . Spec $ [Comment c, Signature sg]
+checkXMLDeclaration (Right (Spec [CType ctype])) (Comment c) = Right . Spec $ [Comment c, CType ctype]
+checkXMLDeclaration _ (CType _) = Left $ newErrorMessage (UnExpect "CONDITIONTYPE block") (newPos "" 0 0)
+checkXMLDeclaration _ (Strategy _) = Left $ newErrorMessage (UnExpect "STRATEGY block") (newPos "" 0 0)
+checkXMLDeclaration _ (Signature _) = Left $ newErrorMessage (UnExpect "SIGNATURE block") (newPos "" 0 0)
+checkXMLDeclaration _ (Rules _) = Left $ newErrorMessage (UnExpect "RULES block") (newPos "" 0 0)
+checkXMLDeclaration _ (Comment _) = Left $ newErrorMessage (UnExpect "COMMENT block") (newPos "" 0 0)
+
+
+-- | Checks declaration order for COPS
+checkCOPSDeclaration :: Either ParseError Spec -> Decl -> Either ParseError Spec
+checkCOPSDeclaration (Left parseError) _ = Left parseError
+checkCOPSDeclaration (Right (Spec [])) (CType ctype) = Right . Spec $ [CType ctype]
+checkCOPSDeclaration (Right (Spec [])) (Var vs) = Right . Spec $ [Var vs]
+checkCOPSDeclaration (Right (Spec [])) (Context rmap) = Right . Spec $ [Context rmap]
+checkCOPSDeclaration (Right (Spec [])) (Rules rs) = Right . Spec $ [Rules rs]
+checkCOPSDeclaration (Right (Spec [CType ctype])) (Var vs) = Right . Spec $ [Var vs, CType ctype]
+checkCOPSDeclaration (Right (Spec [CType ctype])) (Context rmap) = Right . Spec $ [Context rmap, CType ctype]
+checkCOPSDeclaration (Right (Spec [CType ctype])) (Rules rs) = Right . Spec $ [Rules rs, CType ctype]
+checkCOPSDeclaration (Right (Spec (Var vs:rest))) (Context rmap) = Right . Spec $ (Context rmap:Var vs:rest)
+checkCOPSDeclaration (Right (Spec (Var vs:rest))) (Rules rs) = Right . Spec $ (Rules rs:Var vs:rest)
+checkCOPSDeclaration (Right (Spec (Context rmap:rest))) (Rules rs) = Right . Spec $ (Rules rs:Context rmap:rest)
+checkCOPSDeclaration (Right (Spec (Rules rs:rest))) (Comment c) = Right . Spec $ (Comment c:Rules rs:rest)
+checkCOPSDeclaration _ (CType _) = Left $ newErrorMessage (UnExpect "CONDITIONTYPE block") (newPos "" 0 0)
+checkCOPSDeclaration _ (Var _) = Left $ newErrorMessage (UnExpect "VAR block") (newPos "" 0 0)
+checkCOPSDeclaration _ (Context _) = Left $ newErrorMessage (UnExpect "REPLACEMENT-MAP block") (newPos "" 0 0)
+checkCOPSDeclaration _ (Rules _) = Left $ newErrorMessage (UnExpect "RULES block") (newPos "" 0 0)
+checkCOPSDeclaration _ (Comment _) = Left $ newErrorMessage (UnExpect "COMMENT block") (newPos "" 0 0)
+
+
+-- ****************************************************************************
+
+
 -- | Must have at least one Var and one Rules block
-checkSortBlocks :: Either ParseError Spec -> Either ParseError Spec -- 
+checkSortBlocks :: Either ParseError Spec -> Either ParseError Spec
 checkSortBlocks (Left parseError) = Left parseError
 checkSortBlocks (Right (Spec decls))= do{ let sortedDecls = sort decls
-                                    ;  if (hasVar sortedDecls) then 
-                                        Right (Spec sortedDecls)
-                                      else
-                                        Left $ newErrorMessage (UnExpect $ "there is no required blocks") (newPos "" 0 0)
-                                    }
+                                        ;  if (hasVar sortedDecls) then 
+                                            Right (Spec sortedDecls)
+                                          else
+                                            Left $ newErrorMessage (UnExpect $ "there is no required blocks") (newPos "" 0 0)
+                                        }
 
 hasVar :: [Decl] -> Bool
 hasVar [] = False
@@ -89,12 +159,17 @@ hasRule (d:ds) = hasRule ds
 
 
 -- | Checks consistency (order, arguments and replacement map)
-checkConsistency :: Either ParseError Spec -> Either ParseError TRS 
-checkConsistency (Left parseError) = Left parseError
+checkConsistency :: (Either ParseError Spec -> Decl -> Either ParseError Spec) -> Either ParseError Spec -> Either ParseError TRS 
+checkConsistency _ (Left parseError) = Left parseError
+checkConsistency checkDclFun (Right (Spec decls)) 
+  = case foldl checkDclFun (Right (Spec [])) decls of
+        Left parseError -> Left parseError
+        Right (Spec _) -> evalState (checkWellFormed decls) (TRS M.empty S.empty [] [] TRSStandard Nothing) -- (TRS M.empty S.empty [] [] TRSStandard)
 
+{-
 checkConsistency (Right (Spec decls)) 
   = evalState (checkWellFormed decls) (TRS M.empty S.empty [] [] TRSStandard Nothing) -- (TRS M.empty S.empty [] [] TRSStandard)
-
+-}
 
 -- | Extracts the signature and checks if the rules are well-formed wrt that
 -- signature. Precondition: Declarations are in order.

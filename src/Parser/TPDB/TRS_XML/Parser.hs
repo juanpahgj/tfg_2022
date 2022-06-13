@@ -82,6 +82,7 @@ cond =
 
 -- | Condition options
 condOps = try (return (Arrow))
+
 -- | A term
 term :: Parser Term
 term =                                         -- !!!!!!!ests mal-incompleto
@@ -94,7 +95,7 @@ termVar = liftM Tvar (reservedLb "var" identifier)
 termFun :: Parser XmlTerm
 termFun =                                              -- !!!!!!!ests mal-incompleto
  do n <- reservedLb "name" identifier
-    terms <- (many1 (try $ reservedLb "arg" term)) -- terms <- parens (many (commaSep' term) ) 
+    terms <- (many (try $ reservedLb "arg" term)) -- terms <- parens (many (commaSep' term) ) 
     return (Tfun n terms)
 
 

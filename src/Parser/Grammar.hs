@@ -178,13 +178,15 @@ instance Show SimpleRule where
   show (t1 :-> t2) = show t1 ++ " -> " ++ show t2
   show (t1 :->= t2) = show t1 ++ " ->= " ++ show t2
   
-instance Show Rule where 
+instance Show Rule where
   show (Rule r []) = show r
+  show (COPSrule r []) = show r
   show (Rule r conds) = show r ++ " | " ++ (concat . intersperse ", " . map show $ conds)
+  show (COPSrule r eqs) = show r ++ " | " ++ (concat . intersperse ", " . map show $ eqs)
 
 instance Show Cond where
   show (t1 :-><- t2) = show t1 ++ " -><- " ++ show t2
-  -- show (t1 :-> t2) = show t1 ++ " -> " ++ show t2
+  show (Arrow t1 t2) = show t1 ++ " -> " ++ show t2 -- show (t1 :-> t2) = show t1 ++ " -> " ++ show t2
 
 {-
 instance Show Csstrat where
@@ -199,22 +201,22 @@ instance Show Signdecl where
 
 
 {-
-instance Eq Decl where
-  Var == Var = True
-  Theory == Theory = True
-  Rules == Rules = True
-  Strategy == Strategy = True
-  AnyList == AnyList = True
-  _ == _ = False
+  instance Eq Decl where
+    Var == Var = True
+    Theory == Theory = True
+    Rules == Rules = True
+    Strategy == Strategy = True
+    AnyList == AnyList = True
+    _ == _ = False
 -}
 {-
-instance Ord Decl where
-  -- Var _ <= _ = True
-  Theory _ <= Var _ = True
-  Rules _ <= Theory _ = True
-  Strategy _ <= Rules _ = True
-  AnyList _ _ <= _ = True
-  _ < _ = False
+  instance Ord Decl where
+    -- Var _ <= _ = True
+    Theory _ <= Var _ = True
+    Rules _ <= Theory _ = True
+    Strategy _ <= Rules _ = True
+    AnyList _ _ <= _ = True
+    _ < _ = False
 -}
 
 -----------------------------------------------------------------------------
@@ -241,9 +243,14 @@ getVarsAux vs idt ts= let tsVars = unions . map (getVars vs) $ ts
 getTerms :: Rule -> [Term]
 getTerms (Rule (l :-> r) conds) = (l:r:concatMap getTermsCond conds)
 getTerms (Rule (l :->= r) conds) = (l:r:concatMap getTermsCond conds)
+getTerms (COPSrule (l :-> r) eqs) = (l:r:concatMap getTermsEq eqs)
 
 -- | gets all the terms from a equation
-getTermsCond :: Cond -> [Term]  -- getTermsEq :: SimpleEquation -> [Term]
+getTermsEq :: Equation -> [Term]
+getTermsEq (l :==: r) = [l,r]
+
+-- | gets all the terms from a equation
+getTermsCond :: Cond -> [Term]
 getTermsCond (l :-><- r) = [l,r]
 getTermsCond (Arrow l r) = [l,r]
 
@@ -253,15 +260,18 @@ nonVarLHS vs (Rule ((T idt _) :-> r) conds) = not . member idt $ vs
 nonVarLHS vs (Rule ((T idt _) :->= r) conds) = not . member idt $ vs
 nonVarLHS vs (Rule ((XTerm (Tfun idt _)) :-> r) conds) = not . member idt $ vs
 nonVarLHS vs (Rule ((XTerm (Tvar idt)) :-> r) conds) = not . member idt $ vs
+nonVarLHS vs (COPSrule ((T idt _) :-> r) eqs) = not . member idt $ vs 
 
 -- | checks if the rule is conditional
 isCRule :: Rule -> Bool
-isCRule (Rule _ []) = False 
+isCRule (Rule _ []) = False
+isCRule (COPSrule _ []) = False
 isCRule _ = True
 
 -- | checks if the non-conditional rule has extra variables
 hasExtraVars :: Set Id -> Rule -> Bool
 hasExtraVars vs (Rule (l :-> r) []) = not . S.null $ getVars vs r \\ getVars vs l
 hasExtraVars vs (Rule (l :->= r) []) = not . S.null $ getVars vs r \\ getVars vs l
+hasExtraVars vs (COPSrule (l :-> r) []) = not . S.null $ getVars vs r \\ getVars vs l
 hasExtraVars _ _ = error $ "Error: hasExtraVars only applies to non-conditional rules"
 
