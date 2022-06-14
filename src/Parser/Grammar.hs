@@ -30,12 +30,12 @@ import Data.List (intersperse)
 data Spec = Spec [Decl] -- ^ List of declarations
       deriving (Eq, Ord, Show, Data, Typeable)
 
--- | List of declarations
+-- | List of declarations  (The order of the constructors in this data type is important for later semantic checking in the parser module !!)
 data Decl = Var [Id] -- ^ Set of variables
-    | Theory [Thdecl] -- ^ Set of rules
-    | Rules [Rule] -- ^ Set of rules
-    | AnyList Id [AnyContent] --AnyList Id [String]
     | Strategy Strategydecl -- ^ Extra information
+    | Rules [Rule] -- ^ Set of rules
+    | Theory [Thdecl] -- ^ Set of rules
+    | AnyList Id [AnyContent] --AnyList Id [String]
     | CType CondType -- ^ Type of conditional rules (XML format)
     | Signature [Signdecl] -- ^ Type of signature (XML format)
     | Comment String -- ^ Extra information
