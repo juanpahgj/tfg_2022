@@ -1,4 +1,5 @@
 {-# LANGUAGE BangPatterns #-}
+{-# LANGUAGE DoAndIfThenElse #-}
 --------------------------------------------------------------------------
 -- |
 -- Module      :  Main
@@ -30,6 +31,9 @@ import Parser.Grammar (Spec (..), Decl (..)) --import Parser.TPDB.Grammar (Spec 
 
 --import Data.List(sort)
 
+import System.Directory (doesDirectoryExist, getDirectoryContents, listDirectory)
+import System.FilePath ((</>))
+
 -----------------------------------------------------------------------------
 -- Functions
 -----------------------------------------------------------------------------
@@ -41,49 +45,57 @@ main =
    do (opts, _) <- parseOptions
       let Opt { inputName = filename 
                , inputContent = input
+               , inputDir = dir
                , inputFormat = format } = opts
-      filedata <- input
+
+      existDir <- doesDirectoryExist dir
+      if (existDir) then do
+         --hPutStr stdout ("\n dir path:" ++ show dir ++ "\n")
+         fileNms <- listDirectory dir -- FilePath -> IO [FilePath]
+         --hPutStr stdout ("\n files paths:" ++ show fileNms ++ "\n")
+         parseFiles dir (fileNms)
+      else do
       
-      -- >>>> Bloque para pruebas
-      let !decls = case parseTRS filedata of --let !decls = case parseTRS filedata of
-                              Left parseerror
-                                 -> error$ "Parse Error (Main): " ++ show parseerror
-                              --Right (Spec decl)
-                              Right decl
-                                 -> decl
+         filedata <- input
+         
+         -- >>>> Bloque para pruebas
+         let !decls = case parseTRS filedata of --let !decls = case parseTRS filedata of
+                                 Left parseerror
+                                    -> error$ "Parse Error (Main): " ++ show parseerror
+                                 --Right (Spec decl)
+                                 Right decl
+                                    -> decl
 
-      hPutStr stdout ("\n Pruebas:\n"
-               ++ "+ Spec (decl list):\n  " ++ (show $ specToDecl decls) ++ "\n"
-               ++ "+ Longitud de la lista (num. de bloques):   " ++ (show $ length $ specToDecl decls) ++ "\n"
-               -- ++ "\nTiene var y rule: \n" ++ (show $ hasVar (specToDecl decls))
-                     )
-      -- <<<<
-      --
-      let !trs = case format of 
-               Just TPDB -> 
-                     case parseTPDB filedata of
-                        Left parseerror
-                           -> error$ "Parse Error (Main): " ++ show parseerror
-                        Right sys
-                           -> sys
-               Just XMLTPDB -> 
-                     case parseTPDB_XML filedata of
-                        Left parseerror
-                           -> error$ "Parse Error (Main): " ++ show parseerror
-                        Right sys
-                           -> sys
-               Just COPS -> 
-                     case parseCOPS filedata of
-                        Left parseerror
-                           -> error$ "Parse Error (Main): " ++ show parseerror
-                        Right sys
-                           -> sys
-               Nothing -> autoparse filename filedata
+         hPutStr stdout ("\n Pruebas:\n"
+                  ++ "+ Spec (decl list):\n  " ++ (show $ specToDecl decls) ++ "\n"
+                  ++ "+ Longitud de la lista (num. de bloques):   " ++ (show $ length $ specToDecl decls) ++ "\n"
+                  -- ++ "\nTiene var y rule: \n" ++ (show $ hasVar (specToDecl decls))
+                        )
+         -- <<<<
+         --
+         let !trs = case format of 
+                  Just TPDB -> 
+                        case parseTPDB filedata of
+                           Left parseerror
+                              -> error$ "Parse Error (Main): " ++ show parseerror
+                           Right sys
+                              -> sys
+                  Just XMLTPDB -> 
+                        case parseTPDB_XML filedata of
+                           Left parseerror
+                              -> error$ "Parse Error (Main): " ++ show parseerror
+                           Right sys
+                              -> sys
+                  Just COPS -> 
+                        case parseCOPS filedata of
+                           Left parseerror
+                              -> error$ "Parse Error (Main): " ++ show parseerror
+                           Right sys
+                              -> sys
+                  Nothing -> autoparse filename filedata
 
-      hPutStr stdout ("\n TRS:\n" ++ show trs ++ "\n\n") --printOp spec
-      --
-
-      
+         hPutStr stdout ("\n TRS:\n" ++ show trs ++ "\n\n") --printOp spec
+         --
 
 {-
      --let !trs = autoparse filename filedata
@@ -93,6 +105,8 @@ main =
                             Right sys
                               -> sys
 -}
+
+
 
 --- Aux. fun.
 specToDecl :: Spec -> [Decl]
@@ -106,6 +120,17 @@ hasVar (d:ds) = hasVar ds
 hasRule [] = False
 hasRule (Rules r:_) = True
 hasRule (d:ds) = hasRule ds
+
+-- | Parse all files in the given directory
+parseFiles :: FilePath -> [FilePath] -> IO ()
+parseFiles _ [] = hPutStr stdout(" ------------- END OF DIR -------------- ")
+parseFiles dirPath (filep:rest) = do 
+      let absPath= dirPath </> filep
+      hPutStr stdout ("\n++ File:" ++ show absPath ++ " :\n")
+      input <- readFile absPath -- readFile :: FilePath -> IO String
+      let !trs = autoparse filep input  -- autoparse :: String -> String -> TRS
+      hPutStr stdout (show trs ++ "\n")
+      parseFiles dirPath rest
 
 {-
 

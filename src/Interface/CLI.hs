@@ -51,6 +51,7 @@ data Format = TPDB | COPS | XMLTPDB
 -- | Command line options
 data Opt = Opt { inputName :: String -- ^ Input file name
                , inputContent :: IO String -- ^ Input file content
+               , inputDir :: FilePath
                , inputFormat :: Maybe Format -- ^ Input format (Nothing implies automatic)
                }
 
@@ -64,6 +65,7 @@ startOpt
   = Opt { inputName = "foo.trs"
         , inputContent = exitErrorHelp "use -i option to set input"
         -- a simple way to handle mandatory flags
+        , inputDir = ""
         , inputFormat = Nothing
         }
 
@@ -78,6 +80,11 @@ options = [ Option "h" ["help"]
                            "FILE"
                    )
                    "Input TPDB/COPS/XML file"
+           , Option "" ["dir"]
+                   (ReqArg (\arg opt -> do return opt {inputDir = arg})
+                           "DIR"
+                   )
+                   "Input dir"
           , Option "" ["tpdb"]
                    (NoArg (\opt -> do return opt { inputFormat = Just TPDB })
                    )
