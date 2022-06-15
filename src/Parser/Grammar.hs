@@ -32,11 +32,11 @@ data Spec = Spec [Decl] -- ^ List of declarations
 
 -- | List of declarations  (The order of the constructors in this data type is important for later semantic checking in the parser module !!)
 data Decl = Var [Id] -- ^ Set of variables
+    | CType CondType -- ^ Type of conditional rules (XML format)
     | Strategy Strategydecl -- ^ Extra information
     | Context [(Id, [Int])] -- ^ Context-Sensitive strategy (COPS format)
     | Theory [Thdecl] -- ^ Set of rules
     | Rules [Rule] -- ^ Set of rules
-    | CType CondType -- ^ Type of conditional rules (XML format)
     | Signature [Signdecl] -- ^ Type of signature (XML format)
     | AnyList Id [AnyContent] --AnyList Id [String]
     | Comment String -- ^ Extra information

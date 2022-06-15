@@ -2,7 +2,6 @@
 (STRATEGY CONTEXTSENSITIVE 
   (0)
   (s 1)
-  (nil)
   (cons 1)
   (nats)
   (pairs)
