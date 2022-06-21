@@ -79,19 +79,19 @@ main =
                            Left parseerror
                               -> error$ "Parse Error (Main): " ++ show parseerror
                            Right sys
-                              -> sys
+                              -> "Success: " ++ show sys
                   Just XMLTPDB -> 
                         case parseTPDB_XML filedata of
                            Left parseerror
                               -> error$ "Parse Error (Main): " ++ show parseerror
                            Right sys
-                              -> sys
+                              -> "Success: " ++ show sys
                   Just COPS -> 
                         case parseCOPS filedata of
                            Left parseerror
                               -> error$ "Parse Error (Main): " ++ show parseerror
                            Right sys
-                              -> sys
+                              -> "Success: " ++ show sys
                   Nothing -> autoparse filename filedata
 
          hPutStr stdout ("\n TRS:\n" ++ show trs ++ "\n\n") --printOp spec

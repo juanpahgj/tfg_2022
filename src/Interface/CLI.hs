@@ -141,7 +141,7 @@ fileExtensions :: [(String, String -> Either ParseError TRS)]
 fileExtensions = [(".trs", parseTPDB), (".xml", parseTPDB_XML), (".trs", parseCOPS)]
 
 -- | Parse file into a TRS
-autoparse :: String -> String -> TRS
+autoparse :: String -> String -> String -- TRS
 autoparse fname = maybe (error "Error (CLI): File Extension not supported")
                         parseWithFailure
                         matchParser
@@ -154,5 +154,5 @@ autoparse fname = maybe (error "Error (CLI): File Extension not supported")
                  Left parseerror
                      -> error$ "Parse Error (CLI): " ++ show parseerror
                  Right sys
-                     -> sys
+                     -> "Success: " ++ show sys
 
