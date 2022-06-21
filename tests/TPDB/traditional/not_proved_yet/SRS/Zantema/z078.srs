@@ -1,0 +1,7 @@
+(RULES
+f 0 -> s 0 ,
+d 0 -> 0 ,
+d s -> s s d p s ,
+f s -> d f p s ,
+p s -> )
+(COMMENT: computation of exponential function in functional program)

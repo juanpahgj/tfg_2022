@@ -1,0 +1,9 @@
+(RULES
+a b  -> d ,
+b a  -> a b ,
+d c  -> f a b b c ,
+d f  -> f a b,
+a f -> a
+)
+(COMMENT coding of while n<k do n := n+1
+a^k b^n c ->* a^k b^n+1 c if n < k)

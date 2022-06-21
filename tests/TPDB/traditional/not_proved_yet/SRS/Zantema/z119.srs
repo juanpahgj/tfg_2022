@@ -1,0 +1,7 @@
+(RULES
+a b  -> b d ,
+a c  -> d d d ,
+b d  -> a c b ,
+c f  -> d d c ,
+d d  -> f ,
+f f  -> a )

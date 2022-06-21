@@ -1,0 +1,16 @@
+(RULES
+a  -> b ,
+a a  -> a b a ,
+a b  -> b b b ,
+a a a  -> a a b a a ,
+a a b  -> a b b a b ,
+a b a  -> b a b b a ,
+a b b  -> b b b b b ,
+a a  -> a b a ,
+b a  -> b b b ,
+a a a  -> a a b a a ,
+a b a  -> a b b a b ,
+b a a  -> b a b b a ,
+b b a  -> b b b b b )
+(COMMENT: extended SRS aX -> XbX, Xa -> XbX for all
+strings X of length at most 2)

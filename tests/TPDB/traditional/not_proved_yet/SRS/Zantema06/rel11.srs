@@ -1,0 +1,7 @@
+(RULES
+b p b -> b a p b ,
+p ->= a p a , 
+a p a a ->= p 
+)
+(COMMENT: invariant after first rule:
+left from p more a's than right from p )

@@ -1,0 +1,11 @@
+(RULES
+a l  -> l a ,
+a c  -> c a ,
+c a r  -> r a ,
+l r a  -> a l c c r 
+)
+(COMMENT
+a's right from l r are moved to 
+left, followed by two steps the
+other way around)
+

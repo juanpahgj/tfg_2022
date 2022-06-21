@@ -1,0 +1,6 @@
+(RULES
+a  -> g d ,
+b b b  -> c d c ,
+b b  -> a g g ,
+c d  -> g g ,
+g g g  -> b b )

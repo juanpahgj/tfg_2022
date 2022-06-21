@@ -1,0 +1,14 @@
+(RULES
+p 0 -> 0 s s p ,
+p s -> ,
+p p s -> p ,
+
+f s -> p s g p s s  ,
+g s -> p p s s s j s p s p s ,
+j s -> p s s p s f p s p p s ,
+
+half 0 -> 0 s s half p s p s ,
+half s s  -> s half p p s s ,
+
+rd 0 -> 0 s 0 0 0 0 s 0 rd
+)

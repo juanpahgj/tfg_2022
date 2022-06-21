@@ -1,0 +1,17 @@
+(RULES
+q0 a  -> x q1 ,
+q1 a  -> a q1 ,
+q1 y  -> y q1 ,
+a q1 b -> q2 a y ,
+a q2 a -> q2 a a ,
+a q2 y -> q2 a y ,
+y q1 b -> q2 y y ,
+y q2 a -> q2 y a ,
+y q2 y -> q2 y y ,
+q2 x  -> x q0 ,
+q0 y -> y q3 ,
+q3 y -> y q3 ,
+q3 bl -> bl q4 )
+(comment: turing machine 
+accepting a^n b^n )
+

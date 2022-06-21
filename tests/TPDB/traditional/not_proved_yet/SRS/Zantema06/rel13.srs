@@ -1,0 +1,11 @@
+(RULES
+L  ->= L n ,
+R  ->= n R ,
+o l  -> r ,
+n l o  -> r o ,
+L l o  -> L r o ,
+r o  -> l ,
+o r n  -> o l ,
+o r R  -> o l R 
+)
+(COMMENT: liveness of cars over the bridge)

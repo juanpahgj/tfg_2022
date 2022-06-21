@@ -1,0 +1,5 @@
+(RULES
+a b a a b -> c c c c a ,
+c -> b a a b 
+)
+

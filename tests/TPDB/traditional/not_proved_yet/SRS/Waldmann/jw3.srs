@@ -1,0 +1,10 @@
+( RULES 
+a b b -> P a b , 
+a P -> P a x , 
+a x -> x a ,
+b P -> b Q , 
+Q x -> a Q , 
+Q a -> b b a )
+(COMMENT b a^{k+1} b b ->* b a^k b b a^{k+1} b,
+yielding non-primitive recursive derivation length)
+

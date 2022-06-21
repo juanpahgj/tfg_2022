@@ -1,0 +1,5 @@
+(RULES
+b b b -> a a ,
+a a -> b a b )
+(COMMENT: has a loop: aaaabbab ->6 baaaabbabb)
+

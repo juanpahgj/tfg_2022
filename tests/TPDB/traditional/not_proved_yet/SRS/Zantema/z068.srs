@@ -1,0 +1,12 @@
+(RULES
+C -> c ,
+c c -> ,
+b b -> B ,
+B B -> b ,
+c B c b c -> B c b c B c b ,
+b B -> ,
+B b -> ,
+c C -> ,
+C c -> )
+(COMMENT From LeChenadec, Canonical Forms in Finitely Presented 
+Algebras, 1986, page 147)

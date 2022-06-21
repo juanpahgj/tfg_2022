@@ -1,0 +1,11 @@
+(RULES
+R -> r ,
+r p -> p p r P ,
+r r -> ,
+r P P -> P P r ,
+p P -> ,
+P p -> ,
+r R -> ,
+R r -> )
+(COMMENT From LeChenadec, Canonical Forms in Finitely Presented 
+Algebras, 1986, page 143)

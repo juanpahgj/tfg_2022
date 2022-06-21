@@ -1,0 +1,4 @@
+(RULES a a b b -> b b c c a a ,
+       b b c c -> c c b b b b ,
+       b b a a -> a a c c b b)
+(COMMENT duplicate of z018.srs)

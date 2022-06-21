@@ -1,0 +1,12 @@
+(RULES
+t f -> t c n ,
+n f -> f n ,
+o f -> f o ,
+n s -> f s ,
+o s -> f s ,
+c f -> f c ,
+c n -> n c ,
+c o -> o c ,
+c o -> o )
+(COMMENT: from Liveness in Rewriting, Giesl and Zantema, RTA2003,
+LNCS 2706, 2003, page 333/334)

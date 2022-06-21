@@ -1,0 +1,22 @@
+(RULES
+Mr R -> Ml cr R ,
+L Ml -> L Mr cr ,
+Mr o -> Ml cr ,
+Mr n -> Ml cr ,
+o Ml -> Mr cr ,
+n Ml -> Mr cr ,
+Mr o ->= Mr ,
+Mr n ->= Mr ,
+o Ml ->= Ml ,
+n Ml ->= Ml ,
+Ml cr ->= cl Ml ,
+Mr cr ->= cl Mr ,
+L ->= L n ,
+R ->= n R ,
+cr n ->= n cr ,
+cr o ->= o cr ,
+cr o ->= o ,
+n cl ->= cl n ,
+o cl ->= cl o ,
+o cl ->= o 
+)

@@ -1,0 +1,12 @@
+( RULES
+a b -> b b b ,
+b a -> a a a ,
+a -> ,
+b -> 
+)
+( COMMENT
+Example 3.2.35 from 
+Helene Touzet, Proprietes combinatoires pour la 
+terminaison de systemes de reecriture. Ph.D. thesis, 
+Universite Henri Poincare, Nancy, France, 1997. )
+

@@ -1,0 +1,4 @@
+(RULES a a b b b b a a -> a a c c a a b b ,
+       a a c c -> c c c c a a ,
+       c c c c c c -> b b c c b b)
+(COMMENT: duplicate of z089.srs)

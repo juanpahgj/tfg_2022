@@ -1,0 +1,8 @@
+(RULES
+t  ->= t c n, 
+n s  -> s ,
+o s  -> s ,
+c n  ->= n c ,
+c o  ->= o c ,
+c o  ->= o )
+(comment: liveness in single waiting line)

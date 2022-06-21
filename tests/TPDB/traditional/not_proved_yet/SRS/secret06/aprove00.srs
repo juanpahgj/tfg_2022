@@ -1,0 +1,7 @@
+(RULES
+  a s -> s s s p s b p p s s,
+  b s -> s s s p p s s c p s p s,
+  c s -> p s p s a p s p s,
+  p p s -> p,
+  p s -> 
+)

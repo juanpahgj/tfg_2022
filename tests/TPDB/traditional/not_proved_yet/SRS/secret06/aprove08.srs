@@ -1,0 +1,11 @@
+(RULES
+  i 0 -> p s p s 0 p s p s ,
+  i s -> p s p s s j p s p s p p p p s s s s ,
+
+  j 0 -> p s p p s s 0 p s p s ,
+  j s -> s s s s p p s s i p s p s ,
+
+  p p s -> p ,
+  p s -> ,
+  p 0 -> 0 s s s s s s s s
+)

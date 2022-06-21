@@ -1,0 +1,2 @@
+(RULES b a b b b a b b -> b b a b b b a b a b b b a b)
+(COMMENT: encoding of z041.srs)

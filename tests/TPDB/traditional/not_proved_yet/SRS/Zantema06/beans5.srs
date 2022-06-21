@@ -1,0 +1,9 @@
+(RULES 
+b a a -> a b c , 
+c a -> a c , 
+c b -> b a , 
+a a -> a b a )
+(COMMENT describes generalization of van Oostroms bean problem
+for finitely many bowls, allowing splitting of bowls:
+a^n b a^{k+2} b a^m ->* a^{n+1} b a^k b a^{m+1} 
+a^{n+m} ->* a^n b a^m  for n,m > 0) 

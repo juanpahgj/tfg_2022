@@ -104,6 +104,7 @@ checkTPDBDeclaration (Right (Spec (Var vs:rest))) (Theory th) = Right . Spec $ (
 checkTPDBDeclaration (Right (Spec (Var vs:rest))) (Rules rs) = Right . Spec $ (Rules rs:Var vs:rest)
 checkTPDBDeclaration (Right (Spec (Strategy st:rest))) (Theory th) = Right . Spec $ (Theory th:Strategy st:rest)
 checkTPDBDeclaration (Right (Spec (Strategy st:rest))) (Rules rs) = Right . Spec $ (Rules rs:Strategy st:rest)
+checkTPDBDeclaration (Right (Spec (Theory th:rest))) (Theory thh) = Right . Spec $ (Theory thh:Theory th:rest)
 checkTPDBDeclaration (Right (Spec (Theory th:rest))) (Rules rs) = Right . Spec $ (Rules rs:Theory th:rest)
 checkTPDBDeclaration (Right (Spec (Rules rs:rest))) (AnyList id al) = Right . Spec $ ((AnyList id al):Rules rs:rest)
 checkTPDBDeclaration _ (Var _) = Left $ newErrorMessage (UnExpect "VAR block") (newPos "" 0 0)

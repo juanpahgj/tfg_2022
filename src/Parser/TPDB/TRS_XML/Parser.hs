@@ -45,13 +45,11 @@ trsXmlParser = whiteSpace >> (many $ try metainf) >> whiteSpace >>
     --decls = decl <|> strategy
 -}
 
--- | A declaration is form by a set of variables, a theory, a set of
--- rules, a strategy an extra information
-decl :: Parser Decl -- [Decl]
-decl = declRules <|> declSignature <|> declComment <|> ctypeDecl -- <|> declAnylist <|> declVar
+-- | A declaration is form by a set of variables, a signatures and a condition type
+decl :: Parser Decl
+decl = declRules <|> declSignature <|> ctypeDecl <|> declComment
 
--- | Rules declaration is formed by a reserved word plus a set of
---   rules
+-- | Rules declaration is formed by reserved tags plus a set of rules
 declRules :: Parser Decl
 declRules = reservedLb "rules" $ liftM Rules (many $ reservedLb "rule" rule)
 
@@ -99,7 +97,7 @@ termFun =                                              -- !!!!!!!ests mal-incomp
     return (Tfun n terms)
 
 
-strategy :: Parser Decl -- [Decl]
+strategy :: Parser Decl
 strategy = reservedLb "strategy" $ liftM Strategy (innermost <|> outermost <|> contextsensitive)
 
 -- | innermost strategy
@@ -110,7 +108,7 @@ innermost = reserved "INNERMOST" >> return INNERMOST
 outermost :: Parser Strategydecl
 outermost = reserved "OUTERMOST" >> return OUTERMOST
 
--- | contextsensitive strategy
+-- | full strategy
 contextsensitive :: Parser Strategydecl
 contextsensitive = reserved "FULL" >> return FULL
  {-do reserved "CONTEXTSENSITIVE"
@@ -124,15 +122,15 @@ contextsensitive = reserved "FULL" >> return FULL
 ctypeDecl :: Parser Decl
 ctypeDecl = reservedLb "conditiontype" $ liftM CType (join <|> oriented <|> other)
 
--- | innermost strategy
+-- | join condition type
 join :: Parser CondType
 join = reserved "JOIN" >> return JOIN
 
--- | outermost strategy
+-- | oriented condition type
 oriented :: Parser CondType
 oriented = reserved "ORIENTED" >> return ORIENTED
 
--- | contextsensitive strategy
+-- | other condition type
 other :: Parser CondType
 other = reserved "OTHER" >> return OTHER
 
@@ -145,7 +143,7 @@ fun :: Parser Signdecl -- (Id,Int)
 fun = try (do{ n <- reservedLb "name" identifier
              ; m <- reservedLb "arity" natural -- (many1 digit)
              ; th <- reservedLb "theory" thsig
-             ;  return (Sth n (fromInteger m) th) -- return (Sth n (read m) th)
+             ; return (Sth n (fromInteger m) th) -- return (Sth n (read m) th)
              })
     <|> try (do{ n <- reservedLb "name" identifier
                ; m <- reservedLb "arity" natural -- m <- reservedLb "arity" (many1 digit)

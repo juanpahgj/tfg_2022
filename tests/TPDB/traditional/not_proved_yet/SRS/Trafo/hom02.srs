@@ -1,0 +1,8 @@
+(RULES
+a -> b b ,
+a b b -> b b c c c a, 
+b b -> c c c,
+c c c b b -> a, 
+)
+(COMMENT: homomorphism applied to z012.srs)
+

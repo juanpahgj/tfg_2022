@@ -1,0 +1,2 @@
+(RULES b b a b b a b b b b -> b b b b b a b b a b b a b)
+(COMMENT: encoding of z028.srs)

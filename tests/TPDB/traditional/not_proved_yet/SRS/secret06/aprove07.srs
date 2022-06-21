@@ -1,0 +1,11 @@
+(RULES
+  foo 0 -> 0 s p p p s s s p s ,
+  foo s -> p s p p p s s p s s p s foo p p s s p s bar p p s s p s ,
+
+  bar 0 -> 0 p s s s ,
+  bar s -> p s p p s s foo s p p s s ,
+
+  p p s -> p ,
+  p s -> ,
+  p 0 -> 0 s s s s
+)

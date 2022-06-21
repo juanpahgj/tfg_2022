@@ -1,0 +1,6 @@
+(RULES
+f -> n c c ,
+c f -> f c c ,
+c c -> c,
+n s -> f s s ,
+n f -> f n )
