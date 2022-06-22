@@ -24,7 +24,7 @@ trsXMLDef = emptyDef {
    , P.commentEnd = "-->"
    , P.commentLine = ""
    , P.nestedComments = True
-   , P.identStart = alphaNum <|> oneOf "~!·$%&/.:;-_{}[]^*+ç¡'¿?=#@" -- start characters of identifiers. Not accepted:'(', ')', '"' and ','
+   , P.identStart = alphaNum <|> oneOf "~!·$%&/.:;-_{}[]^*+ç¡'¿?=#@\\" -- start characters of identifiers. Not accepted:'(', ')', '"' and ','
    , P.identLetter = P.identStart trsXMLDef -- tail characters of identifiers
    , P.opStart = oneOf ")(\"-"
    , P.opLetter = oneOf ")(\",><="

@@ -36,7 +36,7 @@ trsDef = emptyDef {
    , P.commentEnd = ""
    , P.commentLine = ""
    , P.nestedComments = True
-   , P.identStart = alphaNum <|> oneOf "<>~!·$%&/.:;-_{}[]^*+ç¡'¿?=#@"
+   , P.identStart = alphaNum <|> oneOf "<>~!·$%&/.:;-_{}[]^*+ç¡'¿?=#@\\"
    , P.identLetter = P.identStart trsDef
    , P.opStart = oneOf ")(\"-"
    , P.opLetter = oneOf ")(\",><="
