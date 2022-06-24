@@ -123,15 +123,17 @@ hasRule (d:ds) = hasRule ds
 
 -- | Parse all files in the given directory
 parseFiles :: FilePath -> [FilePath] -> IO ()
-parseFiles _ [] = hPutStr stdout(" ------------- END OF DIR -------------- ")
+parseFiles _ [] = hPutStr stdout (" ------------- END OF DIR -------------- ")
 parseFiles dirPath (filep:rest) = do 
       let absPath= dirPath </> filep
-      hPutStr stdout ("\n++ File:" ++ show absPath ++ " :\n")
       input <- readFile absPath -- readFile :: FilePath -> IO String
       let !trs = autoparse filep input  -- autoparse :: String -> String -> TRS
-      hPutStr stdout (show trs ++ "\n")
-      let writePath = dirPath </> "Parse_results.txt"
-      writeFile dirPath trs
+      let trsOut = ("\n++ File:" ++ show absPath ++ " :\n" ++ show trs ++ "\n")
+      let writePath = dirPath </> "parser_results.txt"
+      --hPutStr stdout ("\n++ File:" ++ show absPath ++ " :\n")
+      --hPutStr stdout (show trs ++ "\n")
+      hPutStr stdout trsOut
+      appendFile writePath trsOut
       parseFiles dirPath rest
 
 {-
