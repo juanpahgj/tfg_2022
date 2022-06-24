@@ -130,6 +130,8 @@ parseFiles dirPath (filep:rest) = do
       input <- readFile absPath -- readFile :: FilePath -> IO String
       let !trs = autoparse filep input  -- autoparse :: String -> String -> TRS
       hPutStr stdout (show trs ++ "\n")
+      let writePath = dirPath </> "Parse_results.txt"
+      writeFile dirPath trs
       parseFiles dirPath rest
 
 {-

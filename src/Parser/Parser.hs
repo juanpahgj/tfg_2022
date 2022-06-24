@@ -60,7 +60,7 @@ parseTRS_COPS s = sortSpec (doParse s trsCOPSParser)
 
 -----------------------------------------------------------------------------
 
--- | Parses the system an returns the parsing error or the succesful
+-- | Parses the system and returns the parsing error or the succesful
 -- parsed system.
 doParse :: String -> Parser a -> Either ParseError a
 doParse s p = parse p "" s

@@ -27,7 +27,7 @@ trsParser = liftM Spec (many (whiteSpace >> parens decl))
 -- | A declaration is form by a set of variables, a theory, a set of
 -- rules, a strategy an extra information
 decl :: Parser Decl
-decl = declVar <|> declTheory <|> declRules <|> declStrategy <|> declAnylist
+decl = declVar <|> declRules <|> declStrategy <|> declTheory <|> declAnylist
 
 -- | Variables declaration is formed by a reserved word plus a set of
 --   variables
@@ -36,47 +36,6 @@ declVar = reserved "VAR" >> do { idList <- phrase
                                ; return . Var $ idList
                                }
 
--- | Theory declaration is formed by a reserved word plus a set of
---   theory declarations
-declTheory :: Parser Decl
-declTheory = reserved "THEORY" >> liftM Theory (many thdecl)
-
--- | Theory declaration
-thdecl :: Parser Thdecl
-thdecl =
- do sthd <- parens $ simpleThdecl
-    listofthdecl <- option [] (many thdecl) --listofthdecl <- many thdecl
-    return (Thdecl sthd listofthdecl)
-
--- | Simple theory declaration
-simpleThdecl :: Parser SimpleThdecl
-simpleThdecl = thlId <|> declEq
-
--- | Theory identificator list
-thlId =
- do id <- identifier
-    idlist <- option [] phrase 
-    return (Id id idlist)
-
--- | Equation declaration
-declEq = reserved "EQUATIONS" >> liftM Equations (many eq)
-
--- | Equation
-eq =
- do t1 <- term
-    op <- eqOps
-    t2 <- term
-    return (op t1 t2)
-
--- | Equation options
-eqOps = (reservedOp "==" >> return (:==:))
-
--- | A term
-term :: Parser Term
-term =
- do n <- identifier
-    terms <- option [] (parens (commaSep' term)) -- terms <- parens (many (commaSep' term) ) 
-    return (T n terms)
 
 -- | Rules declaration is formed by a reserved word plus a set of
 --   rules
@@ -114,6 +73,14 @@ condOps = try (reservedOp "-><-" >> return (:-><-))
         <|> (reservedOp "->" >> return (Arrow)) --do{ try (reservedOp "->"; return (:->) }
 --        <|> (reservedOp "-><-" >> return (:-><-)) 
 
+-- | A term
+term :: Parser Term
+term =
+ do n <- identifier
+    terms <- option [] (parens (commaSep' term)) -- terms <- parens (many (commaSep' term) ) 
+    return (T n terms)
+
+
 declStrategy :: Parser Decl
 declStrategy = reserved "STRATEGY" >> liftM Strategy (innermost <|> outermost <|> contextsensitive)
 
@@ -128,13 +95,13 @@ outermost = reserved "OUTERMOST" >> return OUTERMOST
 -- | contextsensitive strategy
 contextsensitive :: Parser Strategydecl
 contextsensitive =
- do reserved "CONTEXTSENSITIVE"
-    strats <- many$ parens (do a <- identifier
-                               b <- many natural
-                               return (a, map fromInteger b)
-                               -- return $ Csstrat (a, map fromInteger b) -- !!
-                           )
-    return $ CONTEXTSENSITIVE strats
+    do  reserved "CONTEXTSENSITIVE"
+        strats <- many$ parens (do a <- identifier
+                                   b <- many natural
+                                   return (a, map fromInteger b)
+                                   -- return $ Csstrat (a, map fromInteger b) -- !!
+                                )
+        return $ CONTEXTSENSITIVE strats
 
 {- 
 -- | contextsensitive strategy - Option 2
@@ -142,12 +109,49 @@ contextsensitive :: Parser Strategydecl
 contextsensitive = reserved "CONTEXTSENSITIVE" >> liftM CONTEXTSENSITIVE (many csstrat)
 csstrat :: Parser Csstrat
 csstrat =
- do strats <- parens (do a <- identifier
-                         b <- many natural
-                         return (a, map fromInteger b) -- !!
-                     )
+    do strats <- parens (do a <- identifier
+                            b <- many natural
+                            return (a, map fromInteger b) -- !!
+                        )
     return$ Csstrat strats
 -}
+
+
+-- | Theory declaration is formed by a reserved word plus a set of
+--   theory declarations
+declTheory :: Parser Decl
+declTheory = reserved "THEORY" >> liftM Theory (many thdecl)
+
+-- | Theory declaration
+thdecl :: Parser Thdecl
+thdecl =
+ do sthd <- parens $ simpleThdecl
+    listofthdecl <- option [] (many thdecl) --listofthdecl <- many thdecl
+    return (Thdecl sthd listofthdecl)
+
+-- | Simple theory declaration
+simpleThdecl :: Parser SimpleThdecl
+simpleThdecl = thlId <|> declEq
+
+-- | Theory identificator list
+thlId =
+ do id <- identifier
+    idlist <- option [] phrase 
+    return (Id id idlist)
+
+-- | Equation declaration
+declEq = reserved "EQUATIONS" >> liftM Equations (many eq)
+
+-- | Equation
+eq =
+ do t1 <- term
+    op <- eqOps
+    t2 <- term
+    return (op t1 t2)
+
+-- | Equation options
+eqOps = (reservedOp "==" >> return (:==:))
+
 
 declAnylist :: Parser Decl
 declAnylist=
@@ -172,9 +176,7 @@ anyAC :: Parser AnyContent
 anyAC = liftM AnyAC (parens $ many anyContent)
 
 
-
 -- | Extra information
-
 -- | A phrase
 phrase = many identifier
 
@@ -187,6 +189,7 @@ commaSep' = (`sepEndBy` comma)
 semicolonSep' :: Text.ParserCombinators.Parsec.Prim.GenParser Char () a
              -> Text.ParserCombinators.Parsec.Prim.GenParser Char () [a]
 semicolonSep' = (`sepBy` semi)
+
 
 {-- | Signature declaration is formed by list of functions with arity
 declSignature :: Parser Decl

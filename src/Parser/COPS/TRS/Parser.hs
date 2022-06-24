@@ -38,29 +38,7 @@ trsCOPSParser = liftM Spec (many1 (whiteSpace >> parens decl))
 -- | A declaration is form by a set of variables, a theory, a set of
 -- rules, a strategy an extra information
 decl :: Parser Decl
-decl = declCondType <|> declVar <|> declSignature <|> declCSStrategy <|> declRules <|> declComment
-
--- | Condition type declaration is formed by a reserved word plus SEMI-EQUATIONAL, JOIN, or ORIENTED
-declCondType :: Parser Decl
-declCondType = reserved "CONDITIONTYPE" >> liftM CType (semiEq <|> join <|> oriented)
-
--- | Semi-equational conditions
-semiEq :: Parser CondType
-semiEq = reserved "SEMI-EQUATIONAL" >> return SEMIEQUATIONAL --SemiEquational
-
--- | Join conditions
-join :: Parser CondType
-join = reserved "JOIN" >> return JOIN --Join
-
--- | Oriented conditions
-oriented :: Parser CondType
-oriented = reserved "ORIENTED" >> return ORIENTED --Oriented
-
-
--- | Rules declaration is formed by a reserved word plus a set of
---   rules
-declRules :: Parser Decl
-declRules = reserved "RULES" >> liftM Rules (many rule)
+decl = declVar <|> declRules <|>  declCSStrategy <|> declCondType <|> declSignature <|> declComment
 
 -- | Variables declaration is formed by a reserved word plus a set of
 --   variables
@@ -69,23 +47,11 @@ declVar = reserved "VAR" >> do { idList <- phrase
                                ; return . Var $ idList
                                }
 
--- | Signature declaration is formed by list of functions with arity
-declSignature :: Parser Decl
-declSignature = reserved "SIG" >> liftM Signature (many (parens fun))
 
--- | Function symbol
-fun :: Parser Signdecl  --fun :: Parser (Id,Int)
-fun =
- do n <- identifier
-    m <- many1 digit
-    return (S n (read m))   --return (n,read m)
-
--- | A term
-term :: Parser Term
-term =
- do n <- identifier
-    terms <- option [] (parens (commaSep' term))
-    return (T n terms)
+-- | Rules declaration is formed by a reserved word plus a set of
+--   rules
+declRules :: Parser Decl
+declRules = reserved "RULES" >> liftM Rules (many rule)
 
 -- | Rule
 rule :: Parser Rule
@@ -106,7 +72,7 @@ ruleOps = (reservedOp "->" >> return (:->))
 
 -- | Condition
 cond =
- do option 1 (brackets natural)
+ do -- option 1 (brackets natural)
     t1 <- term
     op <- condOps
     t2 <- term
@@ -115,22 +81,61 @@ cond =
 -- | Condition options
 condOps = (reservedOp "==" >> return (:==:))
 
+-- | A term
+term :: Parser Term
+term =
+ do n <- identifier
+    terms <- option [] (parens (commaSep' term))
+    return (T n terms)
+
+
 -- | Context-sensitive strategy
 declCSStrategy :: Parser Decl
 declCSStrategy =
  do reserved "REPLACEMENT-MAP"
-    strats <- many$ parens (do a <- identifier
-                               b <- commaSep' natural
-                               return (a, map fromInteger b)
-                           )
+    strats <- many1$ parens (do a <- identifier
+                                b <- commaSep' natural
+                                return (a, map fromInteger b)
+                            )
     return $ Context strats
 
--- | Extra information
+
+-- | Condition type declaration is formed by a reserved word plus SEMI-EQUATIONAL, JOIN, or ORIENTED
+declCondType :: Parser Decl
+declCondType = reserved "CONDITIONTYPE" >> liftM CType (semiEq <|> join <|> oriented)
+
+-- | Semi-equational conditions
+semiEq :: Parser CondType
+semiEq = reserved "SEMI-EQUATIONAL" >> return SEMIEQUATIONAL --SemiEquational
+
+-- | Join conditions
+join :: Parser CondType
+join = reserved "JOIN" >> return JOIN --Join
+
+-- | Oriented conditions
+oriented :: Parser CondType
+oriented = reserved "ORIENTED" >> return ORIENTED --Oriented
+
+
+-- | Signature declaration is formed by list of functions with arity
+declSignature :: Parser Decl
+declSignature = reserved "SIG" >> liftM Signature (many (parens fun))
+
+-- | Function symbol
+fun :: Parser Signdecl  --fun :: Parser (Id,Int)
+fun =
+ do n <- identifier
+    m <- many1 digit
+    return (S n (read m))   --return (n,read m)
+
+
 declComment =
  do reserved "COMMENT"
     decls <- many $ noneOf ")"
     return$ Comment decls
 
+
+-- | Extra information
 -- | A phrase
 phrase = many identifier
 
