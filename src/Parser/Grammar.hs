@@ -136,7 +136,6 @@ data TRSType = TRSStandard
   | TRSContextSensitiveConditional CondType
     deriving (Show)
 
--- | Term Rewriting Systems (TRS, CTRS, CSTRS, CSCTRS)
 data TRS 
   = TRS { trsSignature :: Map Id Int
         , trsVariables :: Set Id

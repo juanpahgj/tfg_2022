@@ -1,0 +1,60 @@
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Waldmann\\jwttt.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,f(a,y)) -> f(a,f(f(a,h(f(a,x))),y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Waldmann\\jwtpa2.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,f(a,y)) -> f(a,f(f(f(a,x),h(a)),y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Waldmann\\jwtpa1.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(f(a,x),y) -> f(y,f(x,f(a,f(h(a),a))))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Waldmann\\jwteparla2.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(f(a,f(a,a)),a),x) -> f(x,f(x,a))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Waldmann\\jwteparla1.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x,f(a,f(f(a,a),a))) -> f(f(a,x),x)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Waldmann\\jwno9.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,f(a,y)) -> f(a,f(f(f(a,a),y),x))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Waldmann\\jwno8.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,f(y,a)) -> f(a,f(f(f(x,a),a),y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Waldmann\\jwno7.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,f(y,a)) -> h(f(a,f(f(x,a),y)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Waldmann\\jwno6.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,h(y)) -> h(f(f(h(a),y),x))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Waldmann\\jwno5.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,f(y,a)) -> f(a,f(f(x,a),y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Waldmann\\jwno4.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(h(x),y) -> h(f(y,f(x,h(a))))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Waldmann\\jwno3.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(f(a,x),y) -> h(h(f(f(x,f(a,y)),a)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Waldmann\\jwno2.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,f(y,a)) -> f(f(a,a),f(f(x,a),y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Waldmann\\jwno1.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(h(x),y) -> h(f(y,f(x,h(f(a,a)))))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Waldmann\\jwmatchb2.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [h(f(x,y)) -> f(f(a,h(h(y))),x)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Waldmann\\jwmatchb1.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [h(f(x,y)) -> f(y,f(h(h(x)),a))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Waldmann\\jwcime2.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,f(y,a)) -> f(f(f(f(a,a),y),h(a)),x)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Waldmann\\jwcime1.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,f(y,a)) -> f(f(f(f(a,x),y),a),h(a))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Waldmann\\jwaprove2.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(f(a,x),y) -> f(a,f(f(x,h(y)),a))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Waldmann\\jwaprove1.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,f(y,a)) -> f(f(a,f(h(x),y)),a)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}

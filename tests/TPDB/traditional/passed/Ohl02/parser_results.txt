@@ -1,0 +1,12 @@
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Ohl02\\quotrem.trs" :
+TRS {trsSignature = fromList [("0",0),("false",0),("less",2),("minus",2),("pair",2),("quotrem",2),("s",1),("true",0)], trsVariables = fromList ["q","r","x","y"], trsRMap = [], trsRules = [less(x,0) -> false,less(0,s(x)) -> true,less(s(x),s(y)) -> less(x,y),minus(0,s(y)) -> 0,minus(x,0) -> x,minus(s(x),s(y)) -> minus(x,y),quotrem(0,s(y)) -> pair(0,0),quotrem(s(x),s(y)) -> pair(0,s(x)) | less(x,y) -> true,quotrem(s(x),s(y)) -> pair(s(q),r) | less(x,y) -> false, quotrem(minus(x,y),s(y)) -> pair(q,r)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Ohl02\\quicksort.trs" :
+TRS {trsSignature = fromList [("0",0),("app",2),("cons",2),("false",0),("le",2),("nil",0),("pair",2),("pairs",2),("qsort",1),("s",1),("split",2),("true",0)], trsVariables = fromList ["x","xs","y","ys","zs"], trsRMap = [], trsRules = [le(0,x) -> true,le(s(x),0) -> false,le(s(x),s(y)) -> le(x,y),app(nil,x) -> x,app(cons(x,xs),ys) -> cons(x,app(xs,ys)),split(x,nil) -> pair(nil,nil),split(x,cons(y,ys)) -> pair(xs,cons(y,zs)) | split(x,ys) -> pairs(xs,zs), le(x,y) -> true,split(x,cons(y,ys)) -> pair(cons(y,xs),zs) | split(x,ys) -> pairs(xs,zs), le(x,y) -> false,qsort(nil) -> nil,qsort(cons(x,xs)) -> app(qsort(ys),cons(x,qsort(zs))) | split(x,xs) -> pair(ys,zs)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Ohl02\\gcd.trs" :
+TRS {trsSignature = fromList [("0",0),("false",0),("gcd",2),("less",2),("minus",2),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [less(x,0) -> false,less(0,s(x)) -> true,less(s(x),s(y)) -> less(x,y),minus(0,s(y)) -> 0,minus(x,0) -> x,minus(s(x),s(y)) -> minus(x,y),gcd(x,x) -> x,gcd(s(x),0) -> s(x),gcd(0,s(y)) -> s(y),gcd(s(x),s(y)) -> gcd(minus(x,y),s(y)) | less(y,x) -> true,gcd(s(x),s(y)) -> gcd(s(x),minus(y,x)) | less(x,y) -> true], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Ohl02\\fib.trs" :
+TRS {trsSignature = fromList [("0",0),("fib",1),("pair",2),("plus",2),("s",1)], trsVariables = fromList ["x","x'","y","y'","z"], trsRMap = [], trsRules = [plus(x,y) -> y' | x -> 0, y -> y',plus(x,y) -> s(plus(x',y')) | x -> s(x'), y -> y',fib(0) -> pair(0,s(0)),fib(s(x)) -> pair(z,plus(y,z)) | fib(x) -> pair(y,z)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}

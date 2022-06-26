@@ -138,7 +138,7 @@ parseOptions = do (optsActions, rest, errors) <- getArgs
 
 -- | File extensions
 aivailableFormats :: [(String, String -> Either ParseError TRS)]
-aivailableFormats = [{-(".trs", parseTPDB), -}(".xml", parseTPDB_XML), (".trs", parseCOPS)]
+aivailableFormats = [(".trs", parseTPDB), (".xml", parseTPDB_XML), (".trs", parseCOPS)]
 
 -- | Parse file into a TRS
 autoparse :: String -> String -> TRS  --String

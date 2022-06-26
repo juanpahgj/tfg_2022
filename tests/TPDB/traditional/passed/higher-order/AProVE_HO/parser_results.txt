@@ -1,0 +1,27 @@
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\higher-order\\AProVE_HO\\TypeEx5.trs" :
+TRS {trsSignature = fromList [("ap",2),("app",2),("f",0),("g",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [ap(ap(g,x),y) -> y,ap(f,x) -> ap(f,app(g,x))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\higher-order\\AProVE_HO\\TypeEx3.trs" :
+TRS {trsSignature = fromList [("0",0),("app",2),("cons",0),("hd",0),("map",0),("nil",0)], trsVariables = fromList ["f","n","x","xs"], trsRMap = [], trsRules = [app(app(f,0),n) -> app(app(hd,app(app(map,f),app(app(cons,0),nil))),n),app(app(map,f),nil) -> nil,app(app(map,f),app(app(cons,x),xs)) -> app(app(cons,app(f,x)),app(app(map,f),xs))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\higher-order\\AProVE_HO\\TypeEx1.trs" :
+TRS {trsSignature = fromList [("ap",2),("cons",0),("ff",0),("nil",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [ap(ap(ff,x),x) -> ap(ap(x,ap(ff,x)),ap(ap(cons,x),nil))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\higher-order\\AProVE_HO\\termMonTypes.trs" :
+TRS {trsSignature = fromList [("0",0),("ap",2),("f",0),("g",0),("s",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [ap(f,x) -> x,ap(ap(ap(g,x),y),ap(s,z)) -> ap(ap(ap(g,x),y),ap(ap(x,y),0))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\higher-order\\AProVE_HO\\TakeDropWhile.trs" :
+TRS {trsSignature = fromList [("app",2),("cons",0),("dropWhile",0),("if",0),("nil",0),("takeWhile",0),("true",0)], trsVariables = fromList ["p","x","xs","y"], trsRMap = [], trsRules = [app(app(app(if,true),x),y) -> x,app(app(app(if,true),x),y) -> y,app(app(takeWhile,p),nil) -> nil,app(app(takeWhile,p),app(app(cons,x),xs)) -> app(app(app(if,app(p,x)),app(app(cons,x),app(app(takeWhile,p),xs))),nil),app(app(dropWhile,p),nil) -> nil,app(app(dropWhile,p),app(app(cons,x),xs)) -> app(app(app(if,app(p,x)),app(app(dropWhile,p),xs)),app(app(cons,x),xs))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\higher-order\\AProVE_HO\\ReverseLastInit.trs" :
+TRS {trsSignature = fromList [("app",2),("compose",0),("cons",0),("hd",0),("init",0),("last",0),("nil",0),("reverse",0),("reverse2",0),("tl",0)], trsVariables = fromList ["f","g","l","x","xs"], trsRMap = [], trsRules = [app(app(app(compose,f),g),x) -> app(g,app(f,x)),app(reverse,l) -> app(app(reverse2,l),nil),app(app(reverse2,nil),l) -> l,app(app(reverse2,app(app(cons,x),xs)),l) -> app(app(reverse2,xs),app(app(cons,x),l)),app(hd,app(app(cons,x),xs)) -> x,app(tl,app(app(cons,x),xs)) -> xs,last -> app(app(compose,hd),reverse),init -> app(app(compose,reverse),app(app(compose,tl),reverse))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\higher-order\\AProVE_HO\\nonTermF.trs" :
+TRS {trsSignature = fromList [("ap",2),("cons",0),("f",0),("foldr",0),("nil",0)], trsVariables = fromList ["g","h","x","xs"], trsRMap = [], trsRules = [ap(ap(f,x),x) -> ap(ap(x,ap(f,x)),ap(ap(cons,x),nil)),ap(ap(ap(foldr,g),h),nil) -> h,ap(ap(ap(foldr,g),h),ap(ap(cons,x),xs)) -> ap(ap(g,x),ap(ap(ap(foldr,g),h),xs))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\higher-order\\AProVE_HO\\mapDivMinusHard.trs" :
+TRS {trsSignature = fromList [("0",0),("app",2),("cons",0),("div",0),("map",0),("minus",0),("nil",0),("p",0),("s",0)], trsVariables = fromList ["f","x","xs","y"], trsRMap = [], trsRules = [app(app(map,f),nil) -> nil,app(app(map,f),app(app(cons,x),xs)) -> app(app(cons,app(f,x)),app(app(map,f),xs)),app(app(minus,x),0) -> x,app(app(minus,app(s,x)),app(s,y)) -> app(app(minus,app(p,app(s,x))),app(p,app(s,y))),app(p,app(s,x)) -> x,app(app(div,0),app(s,y)) -> 0,app(app(div,app(s,x)),app(s,y)) -> app(s,app(app(div,app(app(minus,x),y)),app(s,y)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\higher-order\\AProVE_HO\\mapDivMinus.trs" :
+TRS {trsSignature = fromList [("0",0),("app",2),("cons",0),("div",0),("map",0),("minus",0),("nil",0),("s",0)], trsVariables = fromList ["f","x","xs","y"], trsRMap = [], trsRules = [app(app(map,f),nil) -> nil,app(app(map,f),app(app(cons,x),xs)) -> app(app(cons,app(f,x)),app(app(map,f),xs)),app(app(minus,x),0) -> x,app(app(minus,app(s,x)),app(s,y)) -> app(app(minus,x),y),app(app(div,0),app(s,y)) -> 0,app(app(div,app(s,x)),app(s,y)) -> app(s,app(app(div,app(app(minus,x),y)),app(s,y)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}

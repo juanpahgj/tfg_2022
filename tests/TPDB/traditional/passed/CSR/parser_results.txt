@@ -1,0 +1,153 @@
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\ExSec4_2_DLMMU04.trs" :
+TRS {trsSignature = fromList [("0",0),("afterNth",2),("cons",2),("fst",1),("head",1),("natsFrom",1),("nil",0),("pair",2),("s",1),("sel",2),("snd",1),("splitAt",2),("tail",1),("take",2),("u",4)], trsVariables = fromList ["N","X","XS","YS","ZS"], trsRMap = [("0",[]),("s",[1]),("nil",[]),("cons",[1]),("pair",[1,2]),("natsFrom",[1]),("fst",[1]),("snd",[1]),("splitAt",[1,2]),("head",[1]),("tail",[1]),("sel",[1,2]),("take",[1,2]),("afterNth",[1,2]),("u",[1])], trsRules = [natsFrom(N) -> cons(N,natsFrom(s(N))),fst(pair(XS,YS)) -> XS,snd(pair(XS,YS)) -> YS,splitAt(0,XS) -> pair(nil,XS),splitAt(s(N),cons(X,XS)) -> u(splitAt(N,XS),N,X,XS),u(pair(YS,ZS),N,X,XS) -> pair(cons(X,YS),ZS),head(cons(N,XS)) -> N,tail(cons(N,XS)) -> XS,sel(N,XS) -> head(afterNth(N,XS)),take(N,XS) -> fst(splitAt(N,XS)),afterNth(N,XS) -> snd(splitAt(N,XS))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\ExSec11_1_Luc02a.trs" :
+TRS {trsSignature = fromList [("0",0),("add",2),("cons",2),("dbl",1),("first",2),("half",1),("nil",0),("recip",1),("s",1),("sqr",1),("terms",1)], trsVariables = fromList ["N","X","Y","Z"], trsRMap = [("terms",[1]),("cons",[1]),("recip",[1]),("sqr",[1]),("s",[1]),("0",[]),("add",[1,2]),("dbl",[1]),("first",[1,2]),("nil",[]),("half",[1])], trsRules = [terms(N) -> cons(recip(sqr(N)),terms(s(N))),sqr(0) -> 0,sqr(s(X)) -> s(add(sqr(X),dbl(X))),dbl(0) -> 0,dbl(s(X)) -> s(s(dbl(X))),add(0,X) -> X,add(s(X),Y) -> s(add(X,Y)),first(0,X) -> nil,first(s(X),cons(Y,Z)) -> cons(Y,first(X,Z)),half(0) -> 0,half(s(0)) -> 0,half(s(s(X))) -> s(half(X)),half(dbl(X)) -> X], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\ExProp7_Luc06.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("f",1),("p",1),("s",1)], trsVariables = fromList ["X"], trsRMap = [("f",[1]),("0",[]),("cons",[1]),("s",[1]),("p",[1])], trsRules = [f(0) -> cons(0,f(s(0))),f(s(0)) -> f(p(s(0))),p(s(X)) -> X], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\ExIntrod_Zan97.trs" :
+TRS {trsSignature = fromList [("0",0),("add",2),("fact",1),("false",0),("if",3),("p",1),("prod",2),("s",1),("true",0),("zero",1)], trsVariables = fromList ["X","Y"], trsRMap = [("fact",[1]),("if",[1]),("zero",[1]),("s",[1]),("0",[]),("prod",[1,2]),("p",[1]),("add",[1,2]),("true",[]),("false",[])], trsRules = [fact(X) -> if(zero(X),s(0),prod(X,fact(p(X)))),add(0,X) -> X,add(s(X),Y) -> s(add(X,Y)),prod(0,X) -> 0,prod(s(X),Y) -> add(Y,prod(X,Y)),if(true,X,Y) -> X,if(false,X,Y) -> Y,zero(0) -> true,zero(s(X)) -> false,p(s(X)) -> X], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\ExIntrod_GM99.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("divides",2),("false",0),("filter",2),("from",1),("head",1),("if",3),("primes",0),("s",1),("sieve",1),("tail",1),("true",0)], trsVariables = fromList ["X","Y","Z"], trsRMap = [("primes",[]),("sieve",[1]),("from",[1]),("s",[1]),("0",[]),("cons",[1]),("head",[1]),("tail",[1]),("if",[1]),("true",[]),("false",[]),("filter",[1,2]),("divides",[1,2])], trsRules = [primes -> sieve(from(s(s(0)))),from(X) -> cons(X,from(s(X))),head(cons(X,Y)) -> X,tail(cons(X,Y)) -> Y,if(true,X,Y) -> X,if(false,X,Y) -> Y,filter(s(s(X)),cons(Y,Z)) -> if(divides(s(s(X)),Y),filter(s(s(X)),Z),cons(Y,filter(X,sieve(Y)))),sieve(cons(X,Y)) -> cons(X,filter(X,sieve(Y)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\ExIntrod_GM04.trs" :
+TRS {trsSignature = fromList [("0",0),("adx",1),("cons",2),("hd",1),("incr",1),("nats",0),("s",1),("tl",1),("zeros",0)], trsVariables = fromList ["X","Y"], trsRMap = [("nats",[]),("adx",[1]),("zeros",[]),("cons",[]),("0",[]),("incr",[1]),("s",[]),("hd",[1]),("tl",[1])], trsRules = [nats -> adx(zeros),zeros -> cons(0,zeros),incr(cons(X,Y)) -> cons(s(X),incr(Y)),adx(cons(X,Y)) -> incr(cons(X,adx(Y))),hd(cons(X,Y)) -> X,tl(cons(X,Y)) -> Y], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\ExIntrod_GM01.trs" :
+TRS {trsSignature = fromList [("0",0),("adx",1),("cons",2),("head",1),("incr",1),("nats",0),("nil",0),("s",1),("tail",1),("zeros",0)], trsVariables = fromList ["L","X"], trsRMap = [("incr",[1]),("nil",[]),("cons",[1]),("s",[1]),("adx",[1]),("nats",[]),("zeros",[]),("0",[]),("head",[1]),("tail",[1])], trsRules = [incr(nil) -> nil,incr(cons(X,L)) -> cons(s(X),incr(L)),adx(nil) -> nil,adx(cons(X,L)) -> incr(cons(X,adx(L))),nats -> adx(zeros),zeros -> cons(0,zeros),head(cons(X,L)) -> X,tail(cons(X,L)) -> L], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\ExConc_Zan97.trs" :
+TRS {trsSignature = fromList [("f",1),("g",1),("h",1)], trsVariables = fromList ["X"], trsRMap = [("f",[1]),("g",[]),("h",[1])], trsRules = [f(X) -> g(h(f(X)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex9_Luc06.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",3)], trsVariables = fromList ["X"], trsRMap = [("f",[2]),("a",[]),("b",[])], trsRules = [f(a,X,X) -> f(X,b,b),b -> a], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex9_Luc04.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",3)], trsVariables = fromList ["X"], trsRMap = [("f",[1,3]),("a",[]),("b",[]),("c",[])], trsRules = [f(a,b,X) -> f(X,X,X),c -> a,c -> b], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex9_BLR02.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("filter",3),("nats",1),("s",1),("sieve",1),("zprimes",0)], trsVariables = fromList ["M","N","X","Y"], trsRMap = [("filter",[1,2,3]),("cons",[1]),("0",[]),("s",[1]),("sieve",[1]),("nats",[1]),("zprimes",[])], trsRules = [filter(cons(X,Y),0,M) -> cons(0,filter(Y,M,M)),filter(cons(X,Y),s(N),M) -> cons(X,filter(Y,N,M)),sieve(cons(0,Y)) -> cons(0,sieve(Y)),sieve(cons(s(N),Y)) -> cons(s(N),sieve(filter(Y,N,N))),nats(N) -> cons(N,nats(s(N))),zprimes -> sieve(nats(s(s(0))))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex8_BLR02.trs" :
+TRS {trsSignature = fromList [("0",0),("add",2),("cons",2),("fib",1),("fib1",2),("s",1),("sel",2)], trsVariables = fromList ["N","X","XS","Y"], trsRMap = [("fib",[1]),("sel",[1,2]),("fib1",[1,2]),("s",[1]),("0",[]),("cons",[1]),("add",[1,2])], trsRules = [fib(N) -> sel(N,fib1(s(0),s(0))),fib1(X,Y) -> cons(X,fib1(Y,add(X,Y))),add(0,X) -> X,add(s(X),Y) -> s(add(X,Y)),sel(0,cons(X,XS)) -> X,sel(s(N),cons(X,XS)) -> sel(N,XS)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex7_BLR02.trs" :
+TRS {trsSignature = fromList [("0",0),("2nd",1),("cons",2),("from",1),("head",1),("nil",0),("s",1),("sel",2),("take",2)], trsVariables = fromList ["N","X","XS"], trsRMap = [("from",[1]),("cons",[1]),("s",[1]),("head",[1]),("2nd",[1]),("take",[1,2]),("0",[]),("nil",[]),("sel",[1,2])], trsRules = [from(X) -> cons(X,from(s(X))),head(cons(X,XS)) -> X,2nd(cons(X,XS)) -> head(XS),take(0,XS) -> nil,take(s(N),cons(X,XS)) -> cons(X,take(N,XS)),sel(0,cons(X,XS)) -> X,sel(s(N),cons(X,XS)) -> sel(N,XS)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex6_Luc98.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("first",2),("from",1),("nil",0),("s",1)], trsVariables = fromList ["X","Y","Z"], trsRMap = [("first",[1,2]),("0",[]),("nil",[]),("s",[1]),("cons",[1]),("from",[1])], trsRules = [first(0,X) -> nil,first(s(X),cons(Y,Z)) -> cons(Y,first(X,Z)),from(X) -> cons(X,from(s(X)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex6_GM04.trs" :
+TRS {trsSignature = fromList [("c",0),("f",1),("g",1)], trsVariables = fromList ["X"], trsRMap = [("c",[]),("f",[]),("g",[])], trsRules = [c -> f(g(c)),f(g(X)) -> g(X)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex6_9_Luc02c.trs" :
+TRS {trsSignature = fromList [("2nd",1),("cons",2),("cons1",2),("from",1),("s",1)], trsVariables = fromList ["X","X1","Y","Z"], trsRMap = [("2nd",[1]),("cons",[1]),("from",[1]),("s",[1]),("cons1",[1,2])], trsRules = [2nd(cons1(X,cons(Y,Z))) -> Y,2nd(cons(X,X1)) -> 2nd(cons1(X,X1)),from(X) -> cons(X,from(s(X)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex6_15_AEL02.trs" :
+TRS {trsSignature = fromList [("0",0),("01",0),("cons",2),("cons1",2),("fcons",2),("first",2),("first1",2),("from",1),("nil",0),("nil1",0),("quote",1),("quote1",1),("s",1),("s1",1),("sel",2),("sel1",2),("unquote",1),("unquote1",1)], trsVariables = fromList ["X","Y","Z"], trsRMap = [("sel",[1,2]),("s",[1]),("cons",[1]),("0",[]),("first",[1,2]),("nil",[]),("from",[1]),("sel1",[1,2]),("quote",[]),("first1",[1,2]),("nil1",[]),("cons1",[1,2]),("01",[]),("quote1",[]),("s1",[1]),("unquote",[1]),("unquote1",[1]),("fcons",[1,2])], trsRules = [sel(s(X),cons(Y,Z)) -> sel(X,Z),sel(0,cons(X,Z)) -> X,first(0,Z) -> nil,first(s(X),cons(Y,Z)) -> cons(Y,first(X,Z)),from(X) -> cons(X,from(s(X))),sel1(s(X),cons(Y,Z)) -> sel1(X,Z),sel1(0,cons(X,Z)) -> quote(X),first1(0,Z) -> nil1,first1(s(X),cons(Y,Z)) -> cons1(quote(Y),first1(X,Z)),quote(0) -> 01,quote1(cons(X,Z)) -> cons1(quote(X),quote1(Z)),quote1(nil) -> nil1,quote(s(X)) -> s1(quote(X)),quote(sel(X,Z)) -> sel1(X,Z),quote1(first(X,Z)) -> first1(X,Z),unquote(01) -> 0,unquote(s1(X)) -> s(unquote(X)),unquote1(nil1) -> nil,unquote1(cons1(X,Z)) -> fcons(unquote(X),unquote1(Z)),fcons(X,Z) -> cons(X,Z)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex5_Zan97.trs" :
+TRS {trsSignature = fromList [("c",0),("f",1),("false",0),("if",3),("true",0)], trsVariables = fromList ["X","Y"], trsRMap = [("f",[1]),("if",[1,2]),("c",[]),("true",[]),("false",[])], trsRules = [f(X) -> if(X,c,f(true)),if(true,X,Y) -> X,if(false,X,Y) -> Y], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex5_DLMMU04.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("incr",1),("nil",0),("oddNs",0),("pair",2),("pairNs",0),("repItems",1),("s",1),("tail",1),("take",2),("zip",2)], trsVariables = fromList ["N","X","XS","Y","YS"], trsRMap = [("pairNs",[]),("cons",[1]),("0",[]),("incr",[1]),("oddNs",[]),("s",[1]),("take",[1,2]),("nil",[]),("zip",[1,2]),("pair",[1,2]),("tail",[1]),("repItems",[1])], trsRules = [pairNs -> cons(0,incr(oddNs)),oddNs -> incr(pairNs),incr(cons(X,XS)) -> cons(s(X),incr(XS)),take(0,XS) -> nil,take(s(N),cons(X,XS)) -> cons(X,take(N,XS)),zip(nil,XS) -> nil,zip(X,nil) -> nil,zip(cons(X,XS),cons(Y,YS)) -> cons(pair(X,Y),zip(XS,YS)),tail(cons(X,XS)) -> XS,repItems(nil) -> nil,repItems(cons(X,XS)) -> cons(X,cons(X,repItems(XS)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex5_7_Luc97.trs" :
+TRS {trsSignature = fromList [("0",0),("01",0),("cons",2),("dbl",1),("dbl1",1),("dbls",1),("from",1),("indx",2),("nil",0),("quote",1),("s",1),("s1",1),("sel",2),("sel1",2)], trsVariables = fromList ["X","Y","Z"], trsRMap = [("dbl",[1]),("0",[]),("s",[]),("dbls",[1]),("nil",[]),("cons",[]),("sel",[1,2]),("indx",[1]),("from",[]),("dbl1",[1]),("01",[]),("s1",[1]),("sel1",[1,2]),("quote",[1])], trsRules = [dbl(0) -> 0,dbl(s(X)) -> s(s(dbl(X))),dbls(nil) -> nil,dbls(cons(X,Y)) -> cons(dbl(X),dbls(Y)),sel(0,cons(X,Y)) -> X,sel(s(X),cons(Y,Z)) -> sel(X,Z),indx(nil,X) -> nil,indx(cons(X,Y),Z) -> cons(sel(X,Z),indx(Y,Z)),from(X) -> cons(X,from(s(X))),dbl1(0) -> 01,dbl1(s(X)) -> s1(s1(dbl1(X))),sel1(0,cons(X,Y)) -> X,sel1(s(X),cons(Y,Z)) -> sel1(X,Z),quote(0) -> 01,quote(s(X)) -> s1(quote(X)),quote(dbl(X)) -> dbl1(X),quote(sel(X,Y)) -> sel1(X,Y)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex4_Zan97.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("f",1),("g",1),("s",1),("sel",2)], trsVariables = fromList ["X","Y","Z"], trsRMap = [("f",[1]),("cons",[1]),("g",[1]),("0",[]),("s",[1]),("sel",[1,2])], trsRules = [f(X) -> cons(X,f(g(X))),g(0) -> s(0),g(s(X)) -> s(s(g(X))),sel(0,cons(X,Y)) -> X,sel(s(X),cons(Y,Z)) -> sel(X,Z)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex4_DLMMU04.trs" :
+TRS {trsSignature = fromList [("0",0),("and",2),("cons",2),("isNat",1),("isNatIList",1),("isNatList",1),("length",1),("nil",0),("s",1),("take",2),("tt",0),("uLength",2),("uTake1",1),("uTake2",4),("zeros",0)], trsVariables = fromList ["IL","L","M","N","T"], trsRMap = [("isNat",[]),("isNatIList",[]),("isNatList",[]),("tt",[]),("and",[1,2]),("0",[]),("s",[1]),("zeros",[]),("nil",[]),("cons",[1]),("take",[1,2]),("length",[1]),("uTake1",[1]),("uTake2",[1]),("uLength",[1])], trsRules = [and(tt,T) -> T,isNatIList(IL) -> isNatList(IL),isNat(0) -> tt,isNat(s(N)) -> isNat(N),isNat(length(L)) -> isNatList(L),isNatIList(zeros) -> tt,isNatIList(cons(N,IL)) -> and(isNat(N),isNatIList(IL)),isNatList(nil) -> tt,isNatList(cons(N,L)) -> and(isNat(N),isNatList(L)),isNatList(take(N,IL)) -> and(isNat(N),isNatIList(IL)),zeros -> cons(0,zeros),take(0,IL) -> uTake1(isNatIList(IL)),uTake1(tt) -> nil,take(s(M),cons(N,IL)) -> uTake2(and(isNat(M),and(isNat(N),isNatIList(IL))),M,N,IL),uTake2(tt,M,N,IL) -> cons(N,take(M,IL)),length(cons(N,L)) -> uLength(and(isNat(N),isNatList(L)),L),uLength(tt,L) -> s(length(L))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex4_7_77_Bor03.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("tail",1),("zeros",0)], trsVariables = fromList ["X","XS"], trsRMap = [("zeros",[]),("cons",[1]),("0",[]),("tail",[1])], trsRules = [zeros -> cons(0,zeros),tail(cons(X,XS)) -> XS], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex4_7_56_Bor03.trs" :
+TRS {trsSignature = fromList [("0",0),("after",2),("cons",2),("from",1),("s",1)], trsVariables = fromList ["N","X","XS"], trsRMap = [("from",[1]),("cons",[1]),("s",[1]),("after",[1,2]),("0",[])], trsRules = [from(X) -> cons(X,from(s(X))),after(0,XS) -> XS,after(s(N),cons(X,XS)) -> after(N,XS)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex4_7_37_Bor03.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("from",1),("minus",2),("nil",0),("quot",2),("s",1),("sel",2),("zWquot",2)], trsVariables = fromList ["N","X","XS","Y","YS"], trsRMap = [("from",[1]),("cons",[1]),("s",[1]),("sel",[1,2]),("0",[]),("minus",[1,2]),("quot",[1,2]),("zWquot",[1,2]),("nil",[])], trsRules = [from(X) -> cons(X,from(s(X))),sel(0,cons(X,XS)) -> X,sel(s(N),cons(X,XS)) -> sel(N,XS),minus(X,0) -> 0,minus(s(X),s(Y)) -> minus(X,Y),quot(0,s(Y)) -> 0,quot(s(X),s(Y)) -> s(quot(minus(X,Y),s(Y))),zWquot(XS,nil) -> nil,zWquot(nil,XS) -> nil,zWquot(cons(X,XS),cons(Y,YS)) -> cons(quot(X,Y),zWquot(XS,YS))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex4_7_15_Bor03.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("f",1),("p",1),("s",1)], trsVariables = fromList [], trsRMap = [("f",[1]),("0",[]),("cons",[1]),("s",[1]),("p",[1])], trsRules = [f(0) -> cons(0,f(s(0))),f(s(0)) -> f(p(s(0))),p(s(0)) -> 0], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex4_4_Luc96b.trs" :
+TRS {trsSignature = fromList [("f",2),("g",1)], trsVariables = fromList ["X","Y"], trsRMap = [("f",[1]),("g",[1])], trsRules = [f(g(X),Y) -> f(X,f(g(X),Y))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex49_GM04.trs" :
+TRS {trsSignature = fromList [("0",0),("div",2),("false",0),("geq",2),("if",3),("minus",2),("s",1),("true",0)], trsVariables = fromList ["X","Y"], trsRMap = [("minus",[]),("0",[]),("s",[1]),("geq",[]),("true",[]),("false",[]),("div",[1]),("if",[1])], trsRules = [minus(0,Y) -> 0,minus(s(X),s(Y)) -> minus(X,Y),geq(X,0) -> true,geq(0,s(Y)) -> false,geq(s(X),s(Y)) -> geq(X,Y),div(0,s(Y)) -> 0,div(s(X),s(Y)) -> if(geq(X,Y),s(div(minus(X,Y),s(Y))),0),if(true,X,Y) -> X,if(false,X,Y) -> Y], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex3_3_25_Bor03.trs" :
+TRS {trsSignature = fromList [("app",2),("cons",2),("from",1),("nil",0),("prefix",1),("s",1),("zWadr",2)], trsVariables = fromList ["L","X","XS","Y","YS"], trsRMap = [("app",[1,2]),("nil",[]),("cons",[1]),("from",[1]),("s",[1]),("zWadr",[1,2]),("prefix",[1])], trsRules = [app(nil,YS) -> YS,app(cons(X,XS),YS) -> cons(X,app(XS,YS)),from(X) -> cons(X,from(s(X))),zWadr(nil,YS) -> nil,zWadr(XS,nil) -> nil,zWadr(cons(X,XS),cons(Y,YS)) -> cons(app(Y,cons(X,nil)),zWadr(XS,YS)),prefix(L) -> cons(nil,zWadr(L,prefix(L)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex3_2_Luc97.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("dbl",1),("dbls",1),("from",1),("indx",2),("nil",0),("s",1),("sel",2)], trsVariables = fromList ["X","Y","Z"], trsRMap = [("dbl",[1]),("0",[]),("s",[]),("dbls",[1]),("nil",[]),("cons",[]),("sel",[1,2]),("indx",[1]),("from",[])], trsRules = [dbl(0) -> 0,dbl(s(X)) -> s(s(dbl(X))),dbls(nil) -> nil,dbls(cons(X,Y)) -> cons(dbl(X),dbls(Y)),sel(0,cons(X,Y)) -> X,sel(s(X),cons(Y,Z)) -> sel(X,Z),indx(nil,X) -> nil,indx(cons(X,Y),Z) -> cons(sel(X,Z),indx(Y,Z)),from(X) -> cons(X,from(s(X)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex3_12_Luc96a.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("from",1),("s",1),("sel",2)], trsVariables = fromList ["X","Y","Z"], trsRMap = [("from",[1]),("cons",[1]),("s",[1]),("sel",[1,2]),("0",[])], trsRules = [from(X) -> cons(X,from(s(X))),sel(0,cons(X,Y)) -> X,sel(s(X),cons(Y,Z)) -> sel(X,Z)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex2_Luc03b.trs" :
+TRS {trsSignature = fromList [("0",0),("add",2),("cons",2),("from",1),("fst",2),("len",1),("nil",0),("s",1)], trsVariables = fromList ["X","Y","Z"], trsRMap = [("0",[]),("s",[]),("nil",[]),("cons",[1]),("fst",[1,2]),("from",[1]),("add",[1,2]),("len",[1])], trsRules = [fst(0,Z) -> nil,fst(s(X),cons(Y,Z)) -> cons(Y,fst(X,Z)),from(X) -> cons(X,from(s(X))),add(0,X) -> X,add(s(X),Y) -> s(add(X,Y)),len(nil) -> 0,len(cons(X,Z)) -> s(len(Z))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex2_Luc02a.trs" :
+TRS {trsSignature = fromList [("0",0),("add",2),("cons",2),("dbl",1),("first",2),("nil",0),("recip",1),("s",1),("sqr",1),("terms",1)], trsVariables = fromList ["N","X","Y","Z"], trsRMap = [("terms",[1]),("cons",[1]),("recip",[1]),("sqr",[1]),("s",[1]),("0",[]),("add",[1,2]),("dbl",[1]),("first",[1,2]),("nil",[])], trsRules = [terms(N) -> cons(recip(sqr(N)),terms(s(N))),sqr(0) -> 0,sqr(s(X)) -> s(add(sqr(X),dbl(X))),dbl(0) -> 0,dbl(s(X)) -> s(s(dbl(X))),add(0,X) -> X,add(s(X),Y) -> s(add(X,Y)),first(0,X) -> nil,first(s(X),cons(Y,Z)) -> cons(Y,first(X,Z))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex26_Luc03b.trs" :
+TRS {trsSignature = fromList [("0",0),("add",2),("cons",2),("dbl",1),("first",2),("nil",0),("recip",1),("s",1),("sqr",1),("terms",1)], trsVariables = fromList ["N","X","Y","Z"], trsRMap = [("terms",[1]),("cons",[1]),("recip",[1]),("sqr",[1]),("s",[]),("0",[]),("add",[1,2]),("dbl",[1]),("first",[1,2]),("nil",[])], trsRules = [terms(N) -> cons(recip(sqr(N)),terms(s(N))),sqr(0) -> 0,sqr(s(X)) -> s(add(sqr(X),dbl(X))),dbl(0) -> 0,dbl(s(X)) -> s(s(dbl(X))),add(0,X) -> X,add(s(X),Y) -> s(add(X,Y)),first(0,X) -> nil,first(s(X),cons(Y,Z)) -> cons(Y,first(X,Z))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex25_Luc06.trs" :
+TRS {trsSignature = fromList [("c",1),("d",1),("f",1),("g",1),("h",1)], trsVariables = fromList ["X"], trsRMap = [("f",[1]),("c",[]),("g",[]),("d",[]),("h",[1])], trsRules = [f(f(X)) -> c(f(g(f(X)))),c(X) -> d(X),h(X) -> c(d(X))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex24_Luc06.trs" :
+TRS {trsSignature = fromList [("b",0),("c",0),("f",3)], trsVariables = fromList ["X"], trsRMap = [("f",[2]),("b",[]),("c",[])], trsRules = [f(b,X,c) -> f(X,c,X),c -> b], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex24_GM04.trs" :
+TRS {trsSignature = fromList [("b",0),("c",0),("f",3),("g",1)], trsVariables = fromList ["X","Y"], trsRMap = [("f",[]),("g",[1]),("b",[]),("c",[])], trsRules = [f(X,g(X),Y) -> f(Y,Y,Y),g(b) -> c,b -> c], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex23_Luc06.trs" :
+TRS {trsSignature = fromList [("a",0),("c",1),("f",1),("g",1)], trsVariables = fromList [], trsRMap = [("f",[1]),("a",[]),("c",[]),("g",[1])], trsRules = [f(f(a)) -> c(f(g(f(a))))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex1_Zan97.trs" :
+TRS {trsSignature = fromList [("c",0),("d",0),("g",1),("h",1)], trsVariables = fromList ["X"], trsRMap = [("g",[]),("h",[]),("c",[]),("d",[])], trsRules = [g(X) -> h(X),c -> d,h(d) -> g(c)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex1_Luc04b_GM.trs" :
+TRS {trsSignature = fromList [("0",0),("a__head",1),("a__incr",1),("a__nats",0),("a__odds",0),("a__pairs",0),("a__tail",1),("cons",2),("head",1),("incr",1),("mark",1),("nats",0),("nil",0),("odds",0),("pairs",0),("s",1),("tail",1)], trsVariables = fromList ["X","X1","X2","XS"], trsRMap = [], trsRules = [a__nats -> cons(0,incr(nats)),a__pairs -> cons(0,incr(odds)),a__odds -> a__incr(a__pairs),a__incr(cons(X,XS)) -> cons(s(mark(X)),incr(XS)),a__head(cons(X,XS)) -> mark(X),a__tail(cons(X,XS)) -> mark(XS),mark(nats) -> a__nats,mark(pairs) -> a__pairs,mark(odds) -> a__odds,mark(incr(X)) -> a__incr(mark(X)),mark(head(X)) -> a__head(mark(X)),mark(tail(X)) -> a__tail(mark(X)),mark(0) -> 0,mark(s(X)) -> s(mark(X)),mark(nil) -> nil,mark(cons(X1,X2)) -> cons(mark(X1),X2),a__nats -> nats,a__pairs -> pairs,a__odds -> odds,a__incr(X) -> incr(X),a__head(X) -> head(X),a__tail(X) -> tail(X)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex1_Luc02b.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("first",2),("from",1),("nil",0),("s",1),("sel",2)], trsVariables = fromList ["X","Y","Z"], trsRMap = [("from",[1]),("cons",[1]),("s",[1]),("first",[1,2]),("0",[]),("nil",[]),("sel",[1,2])], trsRules = [from(X) -> cons(X,from(s(X))),first(0,Z) -> nil,first(s(X),cons(Y,Z)) -> cons(Y,first(X,Z)),sel(0,cons(X,Z)) -> X,sel(s(X),cons(Y,Z)) -> sel(X,Z)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex1_GM99.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",3)], trsVariables = fromList ["X"], trsRMap = [("f",[3]),("a",[]),("b",[]),("c",[])], trsRules = [f(a,b,X) -> f(X,X,X),c -> a,c -> b], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex1_GM03.trs" :
+TRS {trsSignature = fromList [("0",0),("diff",2),("false",0),("if",3),("leq",2),("p",1),("s",1),("true",0)], trsVariables = fromList ["X","Y"], trsRMap = [("p",[1]),("0",[]),("s",[1]),("leq",[1,2]),("true",[]),("false",[]),("if",[1]),("diff",[1,2])], trsRules = [p(0) -> 0,p(s(X)) -> X,leq(0,Y) -> true,leq(s(X),0) -> false,leq(s(X),s(Y)) -> leq(X,Y),if(true,X,Y) -> X,if(false,X,Y) -> Y,diff(X,Y) -> if(leq(X,Y),0,s(diff(p(X),Y)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex1_GL02a.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("eq",2),("false",0),("inf",1),("length",1),("nil",0),("s",1),("take",2),("true",0)], trsVariables = fromList ["L","X","Y"], trsRMap = [("eq",[]),("0",[]),("true",[]),("s",[]),("false",[]),("inf",[1]),("cons",[]),("take",[1,2]),("nil",[]),("length",[1])], trsRules = [eq(0,0) -> true,eq(s(X),s(Y)) -> eq(X,Y),eq(X,Y) -> false,inf(X) -> cons(X,inf(s(X))),take(0,X) -> nil,take(s(X),cons(Y,L)) -> cons(Y,take(X,L)),length(nil) -> 0,length(cons(X,L)) -> s(length(L))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex1_2_Luc02c.trs" :
+TRS {trsSignature = fromList [("2nd",1),("cons",2),("from",1),("s",1)], trsVariables = fromList ["X","Y","Z"], trsRMap = [("2nd",[1]),("cons",[1]),("from",[1]),("s",[1])], trsRules = [2nd(cons(X,cons(Y,Z))) -> Y,from(X) -> cons(X,from(s(X)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex18_Luc06.trs" :
+TRS {trsSignature = fromList [("a",0),("f",1),("g",1)], trsVariables = fromList [], trsRMap = [("f",[1]),("a",[]),("g",[])], trsRules = [f(f(a)) -> f(g(f(a)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex16_Luc06.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",2)], trsVariables = fromList ["X"], trsRMap = [("f",[1]),("a",[]),("b",[])], trsRules = [f(X,X) -> f(a,b),b -> a], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex15_Luc98.trs" :
+TRS {trsSignature = fromList [("0",0),("add",2),("and",2),("cons",2),("false",0),("first",2),("from",1),("if",3),("nil",0),("s",1),("true",0)], trsVariables = fromList ["X","Y","Z"], trsRMap = [("and",[1]),("true",[]),("false",[]),("if",[1]),("add",[1]),("0",[]),("s",[]),("first",[1,2]),("nil",[]),("cons",[]),("from",[])], trsRules = [and(true,X) -> X,and(false,Y) -> false,if(true,X,Y) -> X,if(false,X,Y) -> Y,add(0,X) -> X,add(s(X),Y) -> s(add(X,Y)),first(0,X) -> nil,first(s(X),cons(Y,Z)) -> cons(Y,first(X,Z)),from(X) -> cons(X,from(s(X)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex15_Luc06.trs" :
+TRS {trsSignature = fromList [("a",0),("f",1),("g",1)], trsVariables = fromList [], trsRMap = [("f",[]),("a",[]),("g",[1])], trsRules = [f(f(a)) -> f(g(f(a)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex14_Luc06.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",2),("g",2),("h",1)], trsVariables = fromList ["X"], trsRMap = [("h",[1]),("g",[1]),("a",[]),("f",[1]),("b",[])], trsRules = [h(X) -> g(X,X),g(a,X) -> f(b,X),f(X,X) -> h(a),a -> b], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\CSR\\Ex14_AEGL02.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("from",1),("length",1),("length1",1),("nil",0),("s",1)], trsVariables = fromList ["X","Y"], trsRMap = [("from",[1]),("cons",[1]),("s",[1]),("length",[]),("nil",[]),("0",[]),("length1",[])], trsRules = [from(X) -> cons(X,from(s(X))),length(nil) -> 0,length(cons(X,Y)) -> s(length1(Y)),length1(X) -> length(X)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = False}

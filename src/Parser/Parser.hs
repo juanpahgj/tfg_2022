@@ -226,23 +226,9 @@ checkWellFormed (Strategy OUTERMOST:rest) = do { myTRS <- get
                                                ; put $ myTRS { trsStrategy = Just OUTERMOST }
                                                ; checkWellFormed rest
                                                }
-checkWellFormed (Strategy (CONTEXTSENSITIVE rmap):rest) = do { myTRS <- get
-                                                              ; case trsType myTRS of
-                                                                TRSEquational -> return . Left $ newErrorMessage (UnExpect $ "found theory in non equational type") (newPos "" 0 0)
-                                                                _ -> do{put $ myTRS { trsRMap = rmap
-                                                                                      , trsStrategy = Just FULL
-                                                                                      , trsType = case trsType myTRS of
-                                                                                                    TRSStandard -> TRSContextSensitive
-                                                                                                    TRSConditional typ -> TRSContextSensitiveConditional typ
-                                                                                                    TRSContextSensitive -> TRSContextSensitive
-                                                                                                    TRSContextSensitiveConditional typ -> TRSContextSensitiveConditional typ
-                                                                                    }
-                                                                        ;checkWellFormed rest
-                                                                        }
-                                                             }
 checkWellFormed (Strategy FULL:rest) = do { myTRS <- get 
                                           ; put $ myTRS { trsStrategy = Just FULL }
-                                          ;checkWellFormed rest
+                                          ; checkWellFormed rest
                                           }
 {-
   checkWellFormed (Strategy FULL:rest) = do { myTRS <- get 
@@ -259,6 +245,58 @@ checkWellFormed (Strategy FULL:rest) = do { myTRS <- get
                                                     } 
                                             }
 -}
+checkWellFormed (Strategy (CONTEXTSENSITIVE rmap):rest) = 
+     do { myTRS <- get
+        ; if (length . nub . map fst $ rmap) == length rmap then
+            case trsType myTRS of
+              TRSEquational -> return . Left $ newErrorMessage (UnExpect $ "found theory in non equational type") (newPos "" 0 0)
+              _ -> do{put $ myTRS { trsRMap = rmap
+                                    , trsStrategy = Just FULL
+                                    , trsType = case trsType myTRS of
+                                                  TRSStandard -> TRSContextSensitive
+                                                  TRSConditional typ -> TRSContextSensitiveConditional typ
+                                                  TRSContextSensitive -> TRSContextSensitive
+                                                  TRSContextSensitiveConditional typ -> TRSContextSensitiveConditional typ
+                                  }
+                      ;checkWellFormed rest
+                      }
+          else 
+            return . Left $ newErrorMessage (UnExpect $ "duplicated symbols in replacement map declaration") (newPos "" 0 0)
+        }
+
+-- checkWellFormed (Context rmap:rest) = addContextSensitive rmap
+checkWellFormed (Context rmap:rest) = 
+     do { myTRS <- get 
+        ; if (length . nub . map fst $ rmap) == length rmap then
+            do { put $ myTRS { trsRMap = rmap
+                            , trsType 
+                                = case trsType myTRS of
+                                    TRSStandard -> TRSContextSensitive
+                                    TRSConditional typ -> TRSContextSensitiveConditional typ
+                            }
+              ; checkWellFormed rest
+              }
+          else 
+            return . Left $ newErrorMessage (UnExpect $ "duplicated symbols in replacement map declaration") (newPos "" 0 0)
+        }
+
+checkWellFormed (Theory th:rest) =
+    do { myTRS <- get 
+          ; case trsType myTRS of
+              TRSStandard -> do{put $ myTRS { trsType = TRSEquational } 
+                                ;checkWellFormed rest
+                                }
+              TRSEquational -> checkWellFormed rest
+              _ -> return . Left $ newErrorMessage (UnExpect $ "replacementmap or condition type in equational type") (newPos "" 0 0)
+        }
+{-
+checkWellFormed (Theory th:rest) =
+    do { myTRS <- get 
+        ;put $ myTRS { trsType = TRSEquational } -- Comprobar si esta en context sensitive?? o conditional???
+        ;checkWellFormed rest
+        }
+-}
+
 checkWellFormed (Signature sg:rest) = do { myTRS <- get 
                                          ; put $ myTRS { signatureBlock = True}
                                          ; result <- checkSignatures sg
@@ -267,29 +305,8 @@ checkWellFormed (Signature sg:rest) = do { myTRS <- get
                                             Right _ -> checkWellFormed rest
                                          }
 
-checkWellFormed (Theory th:rest) = do { myTRS <- get 
-                                      ; put $ myTRS { trsType = TRSEquational } -- Comprobar si esta en context sensitive?? o conditional???
-                                      ; checkWellFormed rest
-                                      }
-
 checkWellFormed (Comment _:rest) = checkWellFormed rest
 checkWellFormed ((AnyList _ _):rest ) = checkWellFormed rest
-
--- checkWellFormed (Context rmap:rest) = addContextSensitive rmap
-checkWellFormed (Context rmap:rest) = do { myTRS <- get 
-                                          ; if (length . nub . map fst $ rmap) == length rmap then
-                                              do { put $ myTRS { trsRMap = rmap
-                                                              , trsType 
-                                                                  = case trsType myTRS of
-                                                                      TRSStandard -> TRSContextSensitive
-                                                                      TRSConditional typ -> TRSContextSensitiveConditional typ
-                                                              }
-                                                ; checkWellFormed rest
-                                                }
-                                            else 
-                                              return . Left $ newErrorMessage (UnExpect $ "duplicated symbols in replacement map declaration") (newPos "" 0 0)
-                                          }
-
 
 
 -- | Checks if the signature agree wrt the extracted rules signature

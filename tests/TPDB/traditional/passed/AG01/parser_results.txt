@@ -1,0 +1,255 @@
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.7.trs" :
+TRS {trsSignature = fromList [("0",0),("1",0),("f",1),("g",2),("s",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(s(x)) -> f(g(x,x)),g(0,1) -> s(0),0 -> 1], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.4.trs" :
+TRS {trsSignature = fromList [("f",3),("g",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(g(x),x,y) -> f(y,y,g(y)),g(g(x)) -> g(x)], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.37a.trs" :
+TRS {trsSignature = fromList [("c",2),("f",1),("g",1),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(c(s(x),y)) -> f(c(x,s(y))),g(c(x,s(y))) -> g(c(s(x),y)),g(s(f(x))) -> g(f(x))], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.37.trs" :
+TRS {trsSignature = fromList [("c",2),("f",1),("g",1),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(c(s(x),y)) -> f(c(x,s(y))),g(c(x,s(y))) -> g(c(s(x),y))], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.36.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("eq",2),("false",0),("if_min",2),("if_replace",4),("le",2),("min",1),("nil",0),("replace",3),("s",1),("sort",1),("true",0)], trsVariables = fromList ["k","m","n","x"], trsRMap = [], trsRules = [eq(0,0) -> true,eq(0,s(m)) -> false,eq(s(n),0) -> false,eq(s(n),s(m)) -> eq(n,m),le(0,m) -> true,le(s(n),0) -> false,le(s(n),s(m)) -> le(n,m),min(cons(0,nil)) -> 0,min(cons(s(n),nil)) -> s(n),min(cons(n,cons(m,x))) -> if_min(le(n,m),cons(n,cons(m,x))),if_min(true,cons(n,cons(m,x))) -> min(cons(n,x)),if_min(false,cons(n,cons(m,x))) -> min(cons(m,x)),replace(n,m,nil) -> nil,replace(n,m,cons(k,x)) -> if_replace(eq(n,k),n,m,cons(k,x)),if_replace(true,n,m,cons(k,x)) -> cons(m,x),if_replace(false,n,m,cons(k,x)) -> cons(k,replace(n,m,x)),sort(nil) -> nil,sort(cons(n,x)) -> cons(min(cons(n,x)),sort(replace(min(cons(n,x)),n,x)))], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.35.trs" :
+TRS {trsSignature = fromList [("and",2),("apply",2),("cons",2),("eq",2),("false",0),("if",3),("lambda",2),("nil",0),("ren",3),("true",0),("var",1)], trsVariables = fromList ["k","l","l'","s","s'","t","t'","x","x'","y","z"], trsRMap = [], trsRules = [and(true,y) -> y,and(false,y) -> false,eq(nil,nil) -> true,eq(cons(t,l),nil) -> false,eq(nil,cons(t,l)) -> false,eq(cons(t,l),cons(t',l')) -> and(eq(t,t'),eq(l,l')),eq(var(l),var(l')) -> eq(l,l'),eq(var(l),apply(t,s)) -> false,eq(var(l),lambda(x,t)) -> false,eq(apply(t,s),var(l)) -> false,eq(apply(t,s),apply(t',s')) -> and(eq(t,t'),eq(s,s')),eq(apply(t,s),lambda(x,t)) -> false,eq(lambda(x,t),var(l)) -> false,eq(lambda(x,t),apply(t,s)) -> false,eq(lambda(x,t),lambda(x',t')) -> and(eq(x,x'),eq(t,t')),if(true,var(k),var(l')) -> var(k),if(false,var(k),var(l')) -> var(l'),ren(var(l),var(k),var(l')) -> if(eq(l,l'),var(k),var(l')),ren(x,y,apply(t,s)) -> apply(ren(x,y,t),ren(x,y,s)),ren(x,y,lambda(z,t)) -> lambda(var(cons(x,cons(y,cons(lambda(z,t),nil)))),ren(x,y,ren(z,var(cons(x,cons(y,cons(lambda(z,t),nil)))),t)))], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.34.trs" :
+TRS {trsSignature = fromList [("0",0),("1",0),("c",1),("f",1),("false",0),("g",2),("if",3),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(0) -> true,f(1) -> false,f(s(x)) -> f(x),if(true,x,y) -> x,if(false,x,y) -> y,g(s(x),s(y)) -> if(f(x),s(x),s(y)),g(x,c(y)) -> g(x,g(s(c(y)),y))], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.33.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("nil",0),("s",1),("sum",2),("weight",1)], trsVariables = fromList ["m","n","x","y"], trsRMap = [], trsRules = [sum(cons(s(n),x),cons(m,y)) -> sum(cons(n,x),cons(s(m),y)),sum(cons(0,x),y) -> sum(x,y),sum(nil,y) -> y,weight(cons(n,cons(m,x))) -> weight(sum(cons(n,cons(m,x)),cons(0,x))),weight(cons(n,nil)) -> n], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.32.trs" :
+TRS {trsSignature = fromList [("c",1),("f",2),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,c(y)) -> f(x,s(f(y,y))),f(s(x),s(y)) -> f(x,s(c(s(y))))], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.31.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1),("c",1),("d",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a(d(x)) -> d(c(b(a(x)))),b(c(x)) -> c(d(a(b(x)))),a(c(x)) -> x,b(d(x)) -> x], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.30c.trs" :
+TRS {trsSignature = fromList [("0",0),("false",0),("gcd",2),("if_gcd",3),("le",2),("minus",2),("pred",1),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [le(0,y) -> true,le(s(x),0) -> false,le(s(x),s(y)) -> le(x,y),pred(s(x)) -> x,minus(x,0) -> x,minus(x,s(y)) -> pred(minus(x,y)),gcd(0,y) -> y,gcd(s(x),0) -> s(x),gcd(s(x),s(y)) -> if_gcd(le(y,x),s(x),s(y)),if_gcd(true,x,y) -> gcd(minus(x,y),y),if_gcd(false,x,y) -> gcd(minus(y,x),x)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.30b.trs" :
+TRS {trsSignature = fromList [("0",0),("false",0),("if_mod",3),("le",2),("minus",2),("mod",2),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [le(0,y) -> true,le(s(x),0) -> false,le(s(x),s(y)) -> le(x,y),minus(x,0) -> x,minus(s(x),s(y)) -> minus(x,y),mod(0,y) -> 0,mod(s(x),0) -> 0,mod(s(x),s(y)) -> if_mod(le(y,x),s(x),s(y)),if_mod(true,x,y) -> mod(minus(x,y),y),if_mod(false,s(x),s(y)) -> s(x)], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.30a.trs" :
+TRS {trsSignature = fromList [("0",0),("false",0),("le",2),("minus",2),("quot",2),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [minus(x,0) -> x,minus(s(x),s(y)) -> minus(x,y),le(0,y) -> true,le(s(x),0) -> false,le(s(x),s(y)) -> le(x,y),quot(0,s(y)) -> 0,quot(s(x),s(y)) -> s(quot(minus(s(x),s(y)),s(y)))], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.30.trs" :
+TRS {trsSignature = fromList [("0",0),("false",0),("if_quot",3),("le",2),("minus",2),("quot",2),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [minus(x,0) -> x,minus(s(x),s(y)) -> minus(x,y),le(0,y) -> true,le(s(x),0) -> false,le(s(x),s(y)) -> le(x,y),quot(x,s(y)) -> if_quot(le(s(y),x),x,s(y)),if_quot(true,x,y) -> s(quot(minus(x,y),y)),if_quot(false,x,y) -> 0], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.3.trs" :
+TRS {trsSignature = fromList [("f",3),("g",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(g(x,y),x,z) -> f(z,z,z),g(x,y) -> x,g(x,y) -> y], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.29.trs" :
+TRS {trsSignature = fromList [("0",0),("even",1),("false",0),("half",1),("if_times",3),("plus",2),("s",1),("times",2),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [even(0) -> true,even(s(0)) -> false,even(s(s(x))) -> even(x),half(0) -> 0,half(s(s(x))) -> s(half(x)),plus(0,y) -> y,plus(s(x),y) -> s(plus(x,y)),times(0,y) -> 0,times(s(x),y) -> if_times(even(s(x)),s(x),y),if_times(true,s(x),y) -> plus(times(half(s(x)),y),times(half(s(x)),y)),if_times(false,s(x),y) -> plus(y,times(x,y))], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.28.trs" :
+TRS {trsSignature = fromList [("0",0),("bits",1),("half",1),("s",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [half(0) -> 0,half(s(0)) -> 0,half(s(s(x))) -> s(half(x)),bits(0) -> 0,bits(s(x)) -> s(bits(half(s(x))))], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.27.trs" :
+TRS {trsSignature = fromList [("0",0),("false",0),("if",3),("le",2),("minus",2),("p",1),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [p(0) -> 0,p(s(x)) -> x,le(0,y) -> true,le(s(x),0) -> false,le(s(x),s(y)) -> le(x,y),minus(x,0) -> x,minus(x,s(y)) -> if(le(x,s(y)),0,p(minus(x,p(s(y))))),if(true,x,y) -> x,if(false,x,y) -> y], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.26.trs" :
+TRS {trsSignature = fromList [("0",0),("false",0),("if",3),("le",2),("minus",2),("p",1),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [p(0) -> 0,p(s(x)) -> x,le(0,y) -> true,le(s(x),0) -> false,le(s(x),s(y)) -> le(x,y),minus(x,y) -> if(le(x,y),x,y),if(true,x,y) -> 0,if(false,x,y) -> s(minus(p(x),y))], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.25.trs" :
+TRS {trsSignature = fromList [("f",2),("g",1),("s",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x,x) -> f(g(x),x),g(x) -> s(x)], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.24.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("int",2),("intlist",1),("nil",0),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [intlist(nil) -> nil,intlist(cons(x,y)) -> cons(s(x),intlist(y)),int(0,0) -> cons(0,nil),int(0,s(y)) -> cons(0,int(s(0),s(y))),int(s(x),0) -> nil,int(s(x),s(y)) -> intlist(int(x,y))], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.23.trs" :
+TRS {trsSignature = fromList [("0",0),("plus",2),("quot",3),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [quot(0,s(y),s(z)) -> 0,quot(s(x),s(y),z) -> quot(x,y,z),plus(0,y) -> y,plus(s(x),y) -> s(plus(x,y)),quot(x,0,s(z)) -> s(quot(x,plus(z,s(0)),s(z)))], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.22.trs" :
+TRS {trsSignature = fromList [("0",0),("quot",3),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [quot(0,s(y),s(z)) -> 0,quot(s(x),s(y),z) -> quot(x,y,z),quot(x,0,s(z)) -> s(quot(x,s(z),s(z)))], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.21.trs" :
+TRS {trsSignature = fromList [("0",0),("1",0),("f",1),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(1) -> f(g(1)),f(f(x)) -> f(x),g(0) -> g(f(0)),g(g(x)) -> g(x)], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.20a.trs" :
+TRS {trsSignature = fromList [("0",0),("f",1),("g",1),("s",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(x)) -> f(x),f(s(x)) -> f(x),g(s(0)) -> g(f(s(0)))], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.20.trs" :
+TRS {trsSignature = fromList [("0",0),("f",1),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(x)) -> f(x),g(0) -> g(f(0))], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.2.trs" :
+TRS {trsSignature = fromList [("0",0),("f",3),("g",1),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(g(x),s(0),y) -> f(y,y,g(x)),g(s(x)) -> s(g(x)),g(0) -> 0], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.19.trs" :
+TRS {trsSignature = fromList [("c",1),("f",3),("g",2),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(x,c(x),c(y)) -> f(y,y,f(y,x,y)),f(s(x),y,z) -> f(x,s(c(y)),c(z)),f(c(x),x,y) -> c(y),g(x,y) -> x,g(x,y) -> y], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.18.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a(b(a(b(x)))) -> b(a(b(a(a(b(x))))))], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.17.trs" :
+TRS {trsSignature = fromList [("0",0),("f",3),("g",1),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(g(x),s(0),y) -> f(g(s(0)),y,g(x)),g(s(x)) -> s(g(x)),g(0) -> 0], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.16.trs" :
+TRS {trsSignature = fromList [("0",0),("f",2),("g",1),("s",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(s(0),g(x)) -> f(x,g(x)),g(s(x)) -> g(x)], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.15.trs" :
+TRS {trsSignature = fromList [("0",0),("1",0),("f",4),("g",2),("h",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(0,1,g(x,y),z) -> f(g(x,y),g(x,y),g(x,y),h(x)),g(0,1) -> 0,g(0,1) -> 1,h(g(x,y)) -> h(x)], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.14.trs" :
+TRS {trsSignature = fromList [("0",0),("f",2),("g",1),("s",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(g(x),s(0)) -> f(g(x),g(x)),g(s(x)) -> s(g(x)),g(0) -> 0], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.13.trs" :
+TRS {trsSignature = fromList [("0",0),("1",0),("2",0),("f",3),("g",3)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(0,1,x) -> f(x,x,x),f(x,y,z) -> 2,0 -> 2,1 -> 2,g(x,x,y) -> y,g(x,y,y) -> x], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#4.12a.trs" :
+TRS {trsSignature = fromList [("0",0),("1",0),("f",3),("g",2),("h",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [h(x,y) -> f(x,y,x),f(0,1,x) -> h(x,x),g(x,y) -> x,g(x,y) -> y], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.8b.trs" :
+TRS {trsSignature = fromList [("0",0),("false",0),("if_minus",3),("le",2),("log",1),("minus",2),("quot",2),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [le(0,y) -> true,le(s(x),0) -> false,le(s(x),s(y)) -> le(x,y),minus(0,y) -> 0,minus(s(x),y) -> if_minus(le(s(x),y),s(x),y),if_minus(true,s(x),y) -> 0,if_minus(false,s(x),y) -> s(minus(x,y)),quot(0,s(y)) -> 0,quot(s(x),s(y)) -> s(quot(minus(x,y),s(y))),log(s(0)) -> 0,log(s(s(x))) -> s(log(s(quot(x,s(s(0))))))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.8a.trs" :
+TRS {trsSignature = fromList [("0",0),("log",1),("minus",2),("pred",1),("quot",2),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [pred(s(x)) -> x,minus(x,0) -> x,minus(x,s(y)) -> pred(minus(x,y)),quot(0,s(y)) -> 0,quot(s(x),s(y)) -> s(quot(minus(x,y),s(y))),log(s(0)) -> 0,log(s(s(x))) -> s(log(s(quot(x,s(s(0))))))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.7.trs" :
+TRS {trsSignature = fromList [("0",0),("half",1),("log",1),("s",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [half(0) -> 0,half(s(s(x))) -> s(half(x)),log(s(0)) -> 0,log(s(s(x))) -> s(log(s(half(x))))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.6b.trs" :
+TRS {trsSignature = fromList [("0",0),("false",0),("gcd",2),("if_gcd",3),("if_minus",3),("le",2),("minus",2),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [le(0,y) -> true,le(s(x),0) -> false,le(s(x),s(y)) -> le(x,y),minus(0,y) -> 0,minus(s(x),y) -> if_minus(le(s(x),y),s(x),y),if_minus(true,s(x),y) -> 0,if_minus(false,s(x),y) -> s(minus(x,y)),gcd(0,y) -> y,gcd(s(x),0) -> s(x),gcd(s(x),s(y)) -> if_gcd(le(y,x),s(x),s(y)),if_gcd(true,s(x),s(y)) -> gcd(minus(x,y),s(y)),if_gcd(false,s(x),s(y)) -> gcd(minus(y,x),s(x))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.6a.trs" :
+TRS {trsSignature = fromList [("0",0),("false",0),("gcd",2),("if_gcd",3),("le",2),("minus",2),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [le(0,y) -> true,le(s(x),0) -> false,le(s(x),s(y)) -> le(x,y),minus(x,0) -> x,minus(s(x),s(y)) -> minus(x,y),gcd(0,y) -> y,gcd(s(x),0) -> s(x),gcd(s(x),s(y)) -> if_gcd(le(y,x),s(x),s(y)),if_gcd(true,s(x),s(y)) -> gcd(minus(x,y),s(y)),if_gcd(false,s(x),s(y)) -> gcd(minus(y,x),s(x))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.6.trs" :
+TRS {trsSignature = fromList [("0",0),("false",0),("gcd",2),("if_gcd",3),("le",2),("minus",2),("pred",1),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [le(0,y) -> true,le(s(x),0) -> false,le(s(x),s(y)) -> le(x,y),pred(s(x)) -> x,minus(x,0) -> x,minus(x,s(y)) -> pred(minus(x,y)),gcd(0,y) -> y,gcd(s(x),0) -> s(x),gcd(s(x),s(y)) -> if_gcd(le(y,x),s(x),s(y)),if_gcd(true,s(x),s(y)) -> gcd(minus(x,y),s(y)),if_gcd(false,s(x),s(y)) -> gcd(minus(y,x),s(x))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.5b.trs" :
+TRS {trsSignature = fromList [("0",0),("false",0),("if_minus",3),("if_mod",3),("le",2),("minus",2),("mod",2),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [le(0,y) -> true,le(s(x),0) -> false,le(s(x),s(y)) -> le(x,y),minus(0,y) -> 0,minus(s(x),y) -> if_minus(le(s(x),y),s(x),y),if_minus(true,s(x),y) -> 0,if_minus(false,s(x),y) -> s(minus(x,y)),mod(0,y) -> 0,mod(s(x),0) -> 0,mod(s(x),s(y)) -> if_mod(le(y,x),s(x),s(y)),if_mod(true,s(x),s(y)) -> mod(minus(x,y),s(y)),if_mod(false,s(x),s(y)) -> s(x)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.5a.trs" :
+TRS {trsSignature = fromList [("0",0),("false",0),("if_mod",3),("le",2),("minus",2),("mod",2),("pred",1),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [le(0,y) -> true,le(s(x),0) -> false,le(s(x),s(y)) -> le(x,y),pred(s(x)) -> x,minus(x,0) -> x,minus(x,s(y)) -> pred(minus(x,y)),mod(0,y) -> 0,mod(s(x),0) -> 0,mod(s(x),s(y)) -> if_mod(le(y,x),s(x),s(y)),if_mod(true,s(x),s(y)) -> mod(minus(x,y),s(y)),if_mod(false,s(x),s(y)) -> s(x)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.57.trs" :
+TRS {trsSignature = fromList [("0",0),("app",2),("cons",2),("minus",2),("nil",0),("plus",2),("quot",2),("s",1),("sum",1)], trsVariables = fromList ["k","l","x","y","z"], trsRMap = [], trsRules = [minus(x,0) -> x,minus(s(x),s(y)) -> minus(x,y),quot(0,s(y)) -> 0,quot(s(x),s(y)) -> s(quot(minus(x,y),s(y))),plus(0,y) -> y,plus(s(x),y) -> s(plus(x,y)),minus(minus(x,y),z) -> minus(x,plus(y,z)),app(nil,k) -> k,app(l,nil) -> l,app(cons(x,l),k) -> cons(x,app(l,k)),sum(cons(x,nil)) -> cons(x,nil),sum(cons(x,cons(y,l))) -> sum(cons(plus(x,y),l)),sum(app(l,cons(x,cons(y,k)))) -> sum(app(l,sum(cons(x,cons(y,k))))),plus(0,y) -> y,plus(s(x),y) -> s(plus(x,y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.56.trs" :
+TRS {trsSignature = fromList [("c",2),("d",1),("f",1),("g",1),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [g(c(x,s(y))) -> g(c(s(x),y)),f(c(s(x),y)) -> f(c(x,s(y))),f(f(x)) -> f(d(f(x))),f(x) -> x], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.55.trs" :
+TRS {trsSignature = fromList [("0",0),("add",2),("app",2),("false",0),("high",2),("if_high",3),("if_low",3),("le",2),("low",2),("minus",2),("nil",0),("quicksort",1),("quot",2),("s",1),("true",0)], trsVariables = fromList ["m","n","x","y"], trsRMap = [], trsRules = [minus(x,0) -> x,minus(s(x),s(y)) -> minus(x,y),quot(0,s(y)) -> 0,quot(s(x),s(y)) -> s(quot(minus(x,y),s(y))),le(0,y) -> true,le(s(x),0) -> false,le(s(x),s(y)) -> le(x,y),app(nil,y) -> y,app(add(n,x),y) -> add(n,app(x,y)),low(n,nil) -> nil,low(n,add(m,x)) -> if_low(le(m,n),n,add(m,x)),if_low(true,n,add(m,x)) -> add(m,low(n,x)),if_low(false,n,add(m,x)) -> low(n,x),high(n,nil) -> nil,high(n,add(m,x)) -> if_high(le(m,n),n,add(m,x)),if_high(true,n,add(m,x)) -> high(n,x),if_high(false,n,add(m,x)) -> add(m,high(n,x)),quicksort(nil) -> nil,quicksort(add(n,x)) -> app(quicksort(low(n,x)),add(n,quicksort(high(n,x))))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.54.trs" :
+TRS {trsSignature = fromList [("f",1),("f'",3),("g",1),("h",1),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(g(x)) -> g(f(f(x))),f(h(x)) -> h(g(x)),f'(s(x),y,y) -> f'(y,x,s(x))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.53b.trs" :
+TRS {trsSignature = fromList [("0",0),("1",0),("f",3),("g",2),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [g(x,y) -> x,g(x,y) -> y,f(0,1,x) -> f(s(x),x,x),f(x,y,s(z)) -> s(f(0,1,z))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.53a.trs" :
+TRS {trsSignature = fromList [("f",3),("g",2),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [g(x,y) -> x,g(x,y) -> y,f(s(x),y,y) -> f(y,x,s(x))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.53.trs" :
+TRS {trsSignature = fromList [("0",0),("add",2),("app",2),("concat",2),("cons",2),("false",0),("leaf",0),("less_leaves",2),("minus",2),("nil",0),("quot",2),("reverse",1),("s",1),("shuffle",1),("true",0)], trsVariables = fromList ["n","u","v","w","x","y","z"], trsRMap = [], trsRules = [minus(x,0) -> x,minus(s(x),s(y)) -> minus(x,y),quot(0,s(y)) -> 0,quot(s(x),s(y)) -> s(quot(minus(x,y),s(y))),app(nil,y) -> y,app(add(n,x),y) -> add(n,app(x,y)),reverse(nil) -> nil,reverse(add(n,x)) -> app(reverse(x),add(n,nil)),shuffle(nil) -> nil,shuffle(add(n,x)) -> add(n,shuffle(reverse(x))),concat(leaf,y) -> y,concat(cons(u,v),y) -> cons(u,concat(v,y)),less_leaves(x,leaf) -> false,less_leaves(leaf,cons(w,z)) -> true,less_leaves(cons(u,v),cons(w,z)) -> less_leaves(concat(u,v),concat(w,z))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.52.trs" :
+TRS {trsSignature = fromList [("0",0),("1",0),("f",3),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(0,1,x) -> f(s(x),x,x),f(x,y,s(z)) -> s(f(0,1,z))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.51.trs" :
+TRS {trsSignature = fromList [("0",0),("1",0),("c",1),("d",1),("f",1),("g",1),("h",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(x)) -> f(c(f(x))),f(f(x)) -> f(d(f(x))),g(c(x)) -> x,g(d(x)) -> x,g(c(h(0))) -> g(d(1)),g(c(1)) -> g(d(h(0))),g(h(x)) -> g(x)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.5.trs" :
+TRS {trsSignature = fromList [("0",0),("false",0),("if_mod",3),("le",2),("minus",2),("mod",2),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [le(0,y) -> true,le(s(x),0) -> false,le(s(x),s(y)) -> le(x,y),minus(x,0) -> x,minus(s(x),s(y)) -> minus(x,y),mod(0,y) -> 0,mod(s(x),0) -> 0,mod(s(x),s(y)) -> if_mod(le(y,x),s(x),s(y)),if_mod(true,s(x),s(y)) -> mod(minus(x,y),s(y)),if_mod(false,s(x),s(y)) -> s(x)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.49.trs" :
+TRS {trsSignature = fromList [("c",2),("f",1),("g",1),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(c(s(x),y)) -> f(c(x,s(y))),f(c(s(x),s(y))) -> g(c(x,y)),g(c(x,s(y))) -> g(c(s(x),y)),g(c(s(x),s(y))) -> f(c(x,y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.48.trs" :
+TRS {trsSignature = fromList [("0",0),("1",0),("c",1),("f",1),("false",0),("g",2),("if",3),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(0) -> true,f(1) -> false,f(s(x)) -> f(x),if(true,s(x),s(y)) -> s(x),if(false,s(x),s(y)) -> s(y),g(x,c(y)) -> c(g(x,y)),g(x,c(y)) -> g(x,if(f(x),c(g(s(x),y)),c(y)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.47.trs" :
+TRS {trsSignature = fromList [("c",1),("f",2),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,c(y)) -> f(x,s(f(y,y))),f(s(x),y) -> f(x,s(c(y)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.42.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("conv",1),("half",1),("lastbit",1),("nil",0),("s",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [half(0) -> 0,half(s(0)) -> 0,half(s(s(x))) -> s(half(x)),lastbit(0) -> 0,lastbit(s(0)) -> s(0),lastbit(s(s(x))) -> lastbit(x),conv(0) -> cons(nil,0),conv(s(x)) -> cons(conv(half(s(x))),lastbit(s(x)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.41.trs" :
+TRS {trsSignature = fromList [("0",0),("fac",1),("p",1),("s",1),("times",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [p(s(x)) -> x,fac(0) -> s(0),fac(s(x)) -> times(s(x),fac(p(s(x))))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.40.trs" :
+TRS {trsSignature = fromList [("0",0),("minus",2),("plus",2),("quot",2),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [minus(x,0) -> x,minus(s(x),s(y)) -> minus(x,y),quot(0,s(y)) -> 0,quot(s(x),s(y)) -> s(quot(minus(x,y),s(y))),plus(0,y) -> y,plus(s(x),y) -> s(plus(x,y)),plus(minus(x,s(0)),minus(y,s(s(z)))) -> plus(minus(y,s(s(z))),minus(x,s(0))),plus(plus(x,s(0)),plus(y,s(s(z)))) -> plus(plus(y,s(s(z))),plus(x,s(0)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.4.trs" :
+TRS {trsSignature = fromList [("0",0),("minus",2),("plus",2),("quot",2),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [minus(x,0) -> x,minus(s(x),s(y)) -> minus(x,y),quot(0,s(y)) -> 0,quot(s(x),s(y)) -> s(quot(minus(x,y),s(y))),plus(0,y) -> y,plus(s(x),y) -> s(plus(x,y)),minus(minus(x,y),z) -> minus(x,plus(y,z))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.39.trs" :
+TRS {trsSignature = fromList [("0",0),("minus",2),("plus",2),("quot",2),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [minus(x,0) -> x,minus(s(x),s(y)) -> minus(x,y),quot(0,s(y)) -> 0,quot(s(x),s(y)) -> s(quot(minus(x,y),s(y))),plus(0,y) -> y,plus(s(x),y) -> s(plus(x,y)),plus(minus(x,s(0)),minus(y,s(s(z)))) -> plus(minus(y,s(s(z))),minus(x,s(0)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.38.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("nil",0),("rev",1),("rev1",2),("rev2",2),("s",1)], trsVariables = fromList ["l","x","y"], trsRMap = [], trsRules = [rev(nil) -> nil,rev(cons(x,l)) -> cons(rev1(x,l),rev2(x,l)),rev1(0,nil) -> 0,rev1(s(x),nil) -> s(x),rev1(x,cons(y,l)) -> rev1(y,l),rev2(x,nil) -> nil,rev2(x,cons(y,l)) -> rev(cons(x,rev2(y,l)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.37.trs" :
+TRS {trsSignature = fromList [("0",0),("evenodd",2),("false",0),("not",1),("s",1),("true",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [not(true) -> false,not(false) -> true,evenodd(x,0) -> not(evenodd(x,s(0))),evenodd(0,s(0)) -> false,evenodd(s(x),s(0)) -> evenodd(x,0)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.36.trs" :
+TRS {trsSignature = fromList [("0",0),("f",1),("g",1),("minus",2),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [minus(x,0) -> x,minus(s(x),s(y)) -> minus(x,y),f(0) -> s(0),f(s(x)) -> minus(s(x),g(f(x))),g(0) -> 0,g(s(x)) -> minus(s(x),f(g(x)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.35.trs" :
+TRS {trsSignature = fromList [("0",0),("f",1),("g",1),("s",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [g(s(x)) -> f(x),f(0) -> s(0),f(s(x)) -> s(s(g(x))),g(0) -> 0], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.33.trs" :
+TRS {trsSignature = fromList [("f",1),("g",1),("p",1),("q",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [p(f(f(x))) -> q(f(g(x))),p(g(g(x))) -> q(g(f(x))),q(f(f(x))) -> p(f(g(x))),q(g(g(x))) -> p(g(f(x)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.31.trs" :
+TRS {trsSignature = fromList [("a",2),("f",1),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(g(x)) -> f(a(g(g(f(x))),g(f(x))))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.29.trs" :
+TRS {trsSignature = fromList [("f",3),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(s(x),y,y) -> f(y,x,s(x))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.26.trs" :
+TRS {trsSignature = fromList [("f",1),("s",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x) -> s(x),f(s(s(x))) -> s(f(f(x)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.24.trs" :
+TRS {trsSignature = fromList [("0",0),("f",1),("s",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(0) -> s(0),f(s(0)) -> s(0),f(s(s(x))) -> f(f(s(x)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.23.trs" :
+TRS {trsSignature = fromList [("0",0),("f",2),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(0,y) -> 0,f(s(x),y) -> f(f(x,y),y)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.22.trs" :
+TRS {trsSignature = fromList [("0",0),("plus",2),("s",1),("times",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [times(x,plus(y,s(z))) -> plus(times(x,plus(y,times(s(z),0))),times(x,s(z))),times(x,0) -> 0,times(x,s(y)) -> plus(times(x,y),x),plus(x,0) -> x,plus(x,s(y)) -> s(plus(x,y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.21.trs" :
+TRS {trsSignature = fromList [("0",0),("1",0),("plus",2),("times",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [times(x,plus(y,1)) -> plus(times(x,plus(y,times(1,0))),x),times(x,1) -> x,plus(x,0) -> x,times(x,0) -> 0], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.2.trs" :
+TRS {trsSignature = fromList [("0",0),("minus",2),("pred",1),("quot",2),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [pred(s(x)) -> x,minus(x,0) -> x,minus(x,s(y)) -> pred(minus(x,y)),quot(0,s(y)) -> 0,quot(s(x),s(y)) -> s(quot(minus(x,y),s(y)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.19.trs" :
+TRS {trsSignature = fromList [("0",0),("double",1),("minus",2),("plus",2),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [minus(x,0) -> x,minus(s(x),s(y)) -> minus(x,y),double(0) -> 0,double(s(x)) -> s(s(double(x))),plus(0,y) -> y,plus(s(x),y) -> s(plus(x,y)),plus(s(x),y) -> plus(x,s(y)),plus(s(x),y) -> s(plus(minus(x,y),double(y))),plus(s(plus(x,y)),z) -> s(plus(plus(x,y),z))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.18.trs" :
+TRS {trsSignature = fromList [("0",0),("double",1),("minus",2),("plus",2),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [minus(x,0) -> x,minus(s(x),s(y)) -> minus(x,y),double(0) -> 0,double(s(x)) -> s(s(double(x))),plus(0,y) -> y,plus(s(x),y) -> s(plus(x,y)),plus(s(x),y) -> plus(x,s(y)),plus(s(x),y) -> s(plus(minus(x,y),double(y)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.17a.trs" :
+TRS {trsSignature = fromList [("0",0),("app",2),("cons",2),("nil",0),("plus",2),("pred",1),("s",1),("sum",1)], trsVariables = fromList ["k","l","x","y"], trsRMap = [], trsRules = [app(nil,k) -> k,app(l,nil) -> l,app(cons(x,l),k) -> cons(x,app(l,k)),sum(cons(x,nil)) -> cons(x,nil),sum(cons(x,cons(y,l))) -> sum(cons(plus(x,y),l)),sum(app(l,cons(x,cons(y,k)))) -> sum(app(l,sum(cons(x,cons(y,k))))),plus(0,y) -> y,plus(s(x),y) -> s(plus(x,y)),sum(plus(cons(0,x),cons(y,l))) -> pred(sum(cons(s(x),cons(y,l)))),pred(cons(s(x),nil)) -> cons(x,nil)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.17.trs" :
+TRS {trsSignature = fromList [("0",0),("app",2),("cons",2),("nil",0),("plus",2),("s",1),("sum",1)], trsVariables = fromList ["k","l","x","y"], trsRMap = [], trsRules = [app(nil,k) -> k,app(l,nil) -> l,app(cons(x,l),k) -> cons(x,app(l,k)),sum(cons(x,nil)) -> cons(x,nil),sum(cons(x,cons(y,l))) -> sum(cons(plus(x,y),l)),sum(app(l,cons(x,cons(y,k)))) -> sum(app(l,sum(cons(x,cons(y,k))))),plus(0,y) -> y,plus(s(x),y) -> s(plus(x,y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.16.trs" :
+TRS {trsSignature = fromList [("0",0),("plus",2),("s",1),("times",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [times(x,0) -> 0,times(x,s(y)) -> plus(times(x,y),x),plus(x,0) -> x,plus(0,x) -> x,plus(x,s(y)) -> s(plus(x,y)),plus(s(x),y) -> s(plus(x,y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.15.trs" :
+TRS {trsSignature = fromList [("0",0),("average",2),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [average(s(x),y) -> average(x,s(y)),average(x,s(s(s(y)))) -> s(average(s(x),y)),average(0,0) -> 0,average(0,s(0)) -> 0,average(0,s(s(0))) -> s(0)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.14.trs" :
+TRS {trsSignature = fromList [("concat",2),("cons",2),("false",0),("leaf",0),("less_leaves",2),("true",0)], trsVariables = fromList ["u","v","w","x","y","z"], trsRMap = [], trsRules = [concat(leaf,y) -> y,concat(cons(u,v),y) -> cons(u,concat(v,y)),less_leaves(x,leaf) -> false,less_leaves(leaf,cons(w,z)) -> true,less_leaves(cons(u,v),cons(w,z)) -> less_leaves(concat(u,v),concat(w,z))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.13.trs" :
+TRS {trsSignature = fromList [("0",0),("edge",3),("empty",0),("eq",2),("false",0),("if_reach_1",5),("if_reach_2",5),("or",2),("reach",4),("s",1),("true",0),("union",2)], trsVariables = fromList ["h","i","u","v","x","y"], trsRMap = [], trsRules = [eq(0,0) -> true,eq(0,s(x)) -> false,eq(s(x),0) -> false,eq(s(x),s(y)) -> eq(x,y),or(true,y) -> true,or(false,y) -> y,union(empty,h) -> h,union(edge(x,y,i),h) -> edge(x,y,union(i,h)),reach(x,y,empty,h) -> false,reach(x,y,edge(u,v,i),h) -> if_reach_1(eq(x,u),x,y,edge(u,v,i),h),if_reach_1(true,x,y,edge(u,v,i),h) -> if_reach_2(eq(y,v),x,y,edge(u,v,i),h),if_reach_2(true,x,y,edge(u,v,i),h) -> true,if_reach_2(false,x,y,edge(u,v,i),h) -> or(reach(x,y,i,h),reach(v,y,union(i,h),empty)),if_reach_1(false,x,y,edge(u,v,i),h) -> reach(x,y,i,edge(u,v,h))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.12.trs" :
+TRS {trsSignature = fromList [("add",2),("app",2),("nil",0),("reverse",1),("shuffle",1)], trsVariables = fromList ["n","x","y"], trsRMap = [], trsRules = [app(nil,y) -> y,app(add(n,x),y) -> add(n,app(x,y)),reverse(nil) -> nil,reverse(add(n,x)) -> app(reverse(x),add(n,nil)),shuffle(nil) -> nil,shuffle(add(n,x)) -> add(n,shuffle(reverse(x)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.10.trs" :
+TRS {trsSignature = fromList [("0",0),("add",2),("app",2),("eq",2),("false",0),("if_min",2),("if_minsort",3),("if_rm",3),("le",2),("min",1),("minsort",2),("nil",0),("rm",2),("s",1),("true",0)], trsVariables = fromList ["m","n","x","y"], trsRMap = [], trsRules = [eq(0,0) -> true,eq(0,s(x)) -> false,eq(s(x),0) -> false,eq(s(x),s(y)) -> eq(x,y),le(0,y) -> true,le(s(x),0) -> false,le(s(x),s(y)) -> le(x,y),app(nil,y) -> y,app(add(n,x),y) -> add(n,app(x,y)),min(add(n,nil)) -> n,min(add(n,add(m,x))) -> if_min(le(n,m),add(n,add(m,x))),if_min(true,add(n,add(m,x))) -> min(add(n,x)),if_min(false,add(n,add(m,x))) -> min(add(m,x)),rm(n,nil) -> nil,rm(n,add(m,x)) -> if_rm(eq(n,m),n,add(m,x)),if_rm(true,n,add(m,x)) -> rm(n,x),if_rm(false,n,add(m,x)) -> add(m,rm(n,x)),minsort(nil,nil) -> nil,minsort(add(n,x),y) -> if_minsort(eq(n,min(add(n,x))),add(n,x),y),if_minsort(true,add(n,x),y) -> add(n,minsort(app(rm(n,x),y),nil)),if_minsort(false,add(n,x),y) -> minsort(x,add(n,y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AG01\\#3.1.trs" :
+TRS {trsSignature = fromList [("0",0),("minus",2),("quot",2),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [minus(x,0) -> x,minus(s(x),s(y)) -> minus(x,y),quot(0,s(y)) -> 0,quot(s(x),s(y)) -> s(quot(minus(x,y),s(y)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}

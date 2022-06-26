@@ -1,0 +1,225 @@
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z30.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(a,f(a,f(b,f(a,f(a,f(b,f(a,x))))))) -> f(a,f(b,f(a,f(a,f(b,f(a,f(a,f(a,f(b,x)))))))))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z29.trs" :
+TRS {trsSignature = fromList [("1",0),("a",2),("lambda",1),("t",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [a(lambda(x),y) -> lambda(a(x,1)),a(lambda(x),y) -> lambda(a(x,a(y,t))),a(a(x,y),z) -> a(x,a(y,z)),lambda(x) -> x,a(x,y) -> x,a(x,y) -> y], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z28.trs" :
+TRS {trsSignature = fromList [("0",0),("1",0),("f",2),("g",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(f(0,x),1) -> f(g(f(x,x)),x),f(g(x),y) -> g(f(x,y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z27.trs" :
+TRS {trsSignature = fromList [("0",0),("1",0),("f",3),("g",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(0,1,x) -> f(g(x),g(x),x),f(g(x),y,z) -> g(f(x,y,z)),f(x,g(y),z) -> g(f(x,y,z)),f(x,y,g(z)) -> g(f(x,y,z))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z26.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1),("f",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [a(a(f(x,y))) -> f(a(b(a(b(a(x))))),a(b(a(b(a(y)))))),f(a(x),a(y)) -> a(f(x,y)),f(b(x),b(y)) -> b(f(x,y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z25.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(a,f(b,x)) -> f(b,f(a,x)),f(b,f(c,x)) -> f(c,f(b,x)),f(c,f(a,x)) -> f(a,f(c,x))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z24.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1),("c",1),("f",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,a(b(y))) -> f(a(b(x)),y),f(x,b(c(y))) -> f(b(c(x)),y),f(x,c(a(y))) -> f(c(a(x)),y),f(a(x),y) -> f(x,a(y)),f(b(x),y) -> f(x,b(y)),f(c(x),y) -> f(x,c(y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z23.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1),("c",1),("f",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,a(b(c(y)))) -> f(b(c(a(b(x)))),y),f(a(x),y) -> f(x,a(y)),f(b(x),y) -> f(x,b(y)),f(c(x),y) -> f(x,c(y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z22.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(f(f(a,b),c),x) -> f(b,f(a,f(c,f(b,x)))),f(x,f(y,z)) -> f(f(x,y),z)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z21.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(f(a,b),x) -> f(a,f(a,x)),f(f(b,a),x) -> f(b,f(b,x)),f(x,f(y,z)) -> f(f(x,y),z)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z20.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(f(a,b),x) -> f(b,f(a,f(c,f(b,f(a,x))))),f(x,f(y,z)) -> f(f(x,y),z)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z19.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(f(a,a),x) -> f(a,f(b,f(a,x))),f(x,f(y,z)) -> f(f(x,y),z)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z18.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1),("f",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,a(b(y))) -> a(f(a(b(x)),y)),f(a(x),y) -> f(x,a(y)),f(b(x),y) -> f(x,b(y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z17.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1),("c",1),("d",1),("f",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,a(b(y))) -> f(c(d(x)),y),f(c(x),y) -> f(x,a(y)),f(d(x),y) -> f(x,b(y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z16.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1),("f",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,a(b(y))) -> f(a(b(b(x))),y),f(a(x),y) -> f(x,a(y)),f(b(x),y) -> f(x,b(y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z15.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1),("f",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,a(b(y))) -> f(a(b(x)),y),f(a(x),y) -> f(x,a(y)),f(b(x),y) -> f(x,b(y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z14.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1),("f",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,a(b(y))) -> f(a(a(b(x))),y),f(a(x),y) -> f(x,a(y)),f(b(x),y) -> f(x,b(y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z13.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1),("f",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,a(b(y))) -> f(a(a(x)),y),f(x,b(a(y))) -> f(b(b(x)),y),f(a(x),y) -> f(x,a(y)),f(b(x),y) -> f(x,b(y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z12.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1),("f",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,a(a(b(b(y))))) -> f(a(a(a(b(b(b(x)))))),y),f(a(x),y) -> f(x,a(y)),f(b(x),y) -> f(x,b(y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z11.trs" :
+TRS {trsSignature = fromList [("0",0),("a",2),("d",0),("f",0),("p",0),("s",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a(f,0) -> a(s,0),a(d,0) -> 0,a(d,a(s,x)) -> a(s,a(s,a(d,a(p,a(s,x))))),a(f,a(s,x)) -> a(d,a(f,a(p,a(s,x)))),a(p,a(s,x)) -> x], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z10.trs" :
+TRS {trsSignature = fromList [("1",0),("a",2),("id",0),("lambda",1),("p",2),("t",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [a(lambda(x),y) -> lambda(a(x,p(1,a(y,t)))),a(p(x,y),z) -> p(a(x,z),a(y,z)),a(a(x,y),z) -> a(x,a(y,z)),a(id,x) -> x,a(1,id) -> 1,a(t,id) -> t,a(1,p(x,y)) -> x,a(t,p(x,y)) -> y], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z09.trs" :
+TRS {trsSignature = fromList [("1",0),("a",2),("lambda",1),("p",2),("t",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [a(lambda(x),y) -> lambda(a(x,p(1,a(y,t)))),a(p(x,y),z) -> p(a(x,z),a(y,z)),a(a(x,y),z) -> a(x,a(y,z)),lambda(x) -> x,a(x,y) -> x,a(x,y) -> y,p(x,y) -> x,p(x,y) -> y], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z08.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(a,f(b,f(a,x))) -> f(a,f(b,f(b,f(a,x)))),f(b,f(b,f(b,x))) -> f(b,f(b,x))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z07.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("d",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(a,x) -> f(b,f(c,x)),f(a,f(b,x)) -> f(b,f(a,x)),f(d,f(c,x)) -> f(d,f(a,x)),f(a,f(c,x)) -> f(c,f(a,x))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z06.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(a,f(b,x)) -> f(a,f(a,f(a,x))),f(b,f(a,x)) -> f(b,f(b,f(b,x)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z05.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(a,f(a,x)) -> f(c,f(b,x)),f(b,f(b,x)) -> f(a,f(c,x)),f(c,f(c,x)) -> f(b,f(a,x))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z04.trs" :
+TRS {trsSignature = fromList [("a",2),("f",0),("g",0),("h",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a(f,a(f,x)) -> a(x,x),a(h,x) -> a(f,a(g,a(f,x)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z03.trs" :
+TRS {trsSignature = fromList [("a",2),("f",0),("g",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a(f,a(g,a(f,x))) -> a(f,a(g,a(g,a(f,x)))),a(g,a(f,a(g,x))) -> a(g,a(f,a(f,a(g,x))))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z02.trs" :
+TRS {trsSignature = fromList [("a",2),("f",0),("g",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a(f,a(f,x)) -> a(x,g),a(x,g) -> a(f,a(g,a(f,x)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\z01.trs" :
+TRS {trsSignature = fromList [("a",2),("f",0),("g",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a(f,a(f,a(g,a(g,x)))) -> a(g,a(g,a(g,a(f,a(f,a(f,x))))))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw50.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(a,f(a,a)),x) -> f(x,f(f(a,a),a))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw47.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(a,f(x,a)),a) -> f(a,f(f(x,a),a))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw44.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(a,f(f(a,x),a)) -> f(f(a,f(a,x)),a)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw43.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x,f(f(a,a),a)) -> f(f(a,f(a,a)),x)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw42.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(a,x),a) -> f(f(f(a,f(a,a)),x),a)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw41.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(a,x),a) -> f(f(f(x,f(a,a)),a),a)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw40.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(x,a),a) -> f(f(f(a,f(a,a)),a),x)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw39.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(x,a),a) -> f(f(f(a,f(a,a)),x),a)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw38.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(a,x),a) -> f(f(f(a,a),f(x,a)),a)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw37.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(a,x),a) -> f(f(f(x,a),f(a,a)),a)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw36.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(x,a),a) -> f(f(f(a,a),f(x,a)),a)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw35.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(x,a),a) -> f(f(f(x,a),f(a,a)),a)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw34.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(a,a),x) -> f(f(x,f(a,f(a,a))),a)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw33.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(a,x),a) -> f(f(a,f(a,f(a,a))),x)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw32.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(a,x),a) -> f(f(x,f(a,f(a,a))),a)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw31.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(a,a),x) -> f(f(a,x),f(a,f(a,a)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw30.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(a,a),x) -> f(f(x,a),f(a,f(a,a)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw29.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(a,a),x) -> f(x,f(f(a,f(a,a)),a))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw28.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(a,x),a) -> f(a,f(f(a,f(a,a)),x))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw27.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(a,x),a) -> f(a,f(f(x,f(a,a)),a))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw26.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(a,a),x) -> f(a,f(x,f(a,f(a,a))))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw25.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(a,a),x) -> f(x,f(a,f(a,f(a,a))))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw24.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x,f(a,a)) -> f(f(f(f(a,a),a),a),x)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw23.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x,f(a,a)) -> f(f(f(f(a,a),a),x),a)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw22.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(a,f(x,a)) -> f(f(a,f(f(a,a),x)),a)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw21.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(a,f(x,a)) -> f(f(x,f(f(a,a),a)),a)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw20.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x,f(a,a)) -> f(f(a,f(f(a,a),a)),x)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw19.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x,f(a,a)) -> f(f(f(a,a),a),f(a,x))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw18.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x,f(a,a)) -> f(f(f(a,a),a),f(x,a))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw17.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(a,f(x,a)) -> f(a,f(f(f(a,a),a),x))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw16.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(a,f(x,a)) -> f(x,f(f(f(a,a),a),a))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw15.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x,f(a,a)) -> f(a,f(f(f(a,a),a),x))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw14.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(a,f(a,x)) -> f(a,f(f(a,a),f(a,x)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw13.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(a,f(a,x)) -> f(a,f(f(a,x),f(a,a)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw12.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(a,f(x,a)) -> f(a,f(f(a,a),f(a,x)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw11.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(a,f(x,a)) -> f(a,f(f(a,x),f(a,a)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw09.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(a,f(a,x)) -> f(x,f(a,f(f(a,a),a)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw08.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(a,f(x,a)) -> f(a,f(a,f(f(a,a),x)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw07.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(a,f(x,a)) -> f(a,f(x,f(f(a,a),a)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw06.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(a,x),a) -> f(f(a,f(a,a)),x)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw05.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(a,x),a) -> f(f(x,f(a,a)),a)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw04.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(a,a),x) -> f(x,f(a,f(a,a)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw03.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x,f(a,a)) -> f(f(f(a,a),a),x)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw02.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(a,f(x,a)) -> f(a,f(f(a,a),x))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Zantema\\jw01.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(a,f(x,a)) -> f(x,f(f(a,a),a))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}

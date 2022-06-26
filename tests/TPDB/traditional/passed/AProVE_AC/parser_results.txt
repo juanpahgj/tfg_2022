@@ -1,0 +1,123 @@
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC54.trs" :
+TRS {trsSignature = fromList [("0",0),("app",2),("cons",2),("minus",2),("nil",0),("plus",2),("quot",2),("s",1),("sum",1)], trsVariables = fromList ["k","l","x","y","z"], trsRMap = [], trsRules = [minus(x,0) -> x,minus(s(x),s(y)) -> minus(x,y),minus(minus(x,y),z) -> minus(x,plus(y,z)),quot(0,s(y)) -> 0,quot(s(x),s(y)) -> s(quot(minus(x,y),s(y))),plus(0,y) -> y,plus(s(x),y) -> s(plus(x,y)),app(nil,k) -> k,app(l,nil) -> l,app(cons(x,l),k) -> cons(x,app(l,k)),sum(cons(x,nil)) -> cons(x,nil),sum(cons(x,cons(y,l))) -> sum(cons(plus(x,y),l)),sum(app(l,cons(x,cons(y,k)))) -> sum(app(l,sum(cons(x,cons(y,k)))))], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC53.trs" :
+TRS {trsSignature = fromList [("0",0),("fac",1),("p",1),("s",1),("times",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [p(s(x)) -> x,fac(0) -> s(0),fac(s(x)) -> times(s(x),fac(p(s(x))))], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC52.trs" :
+TRS {trsSignature = fromList [("a",0),("f",1),("g",2),("plus",2),("times",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [times(plus(x,y),z) -> plus(times(x,z),times(y,z)),times(z,plus(x,f(y))) -> times(g(z,y),plus(x,a))], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC51.trs" :
+TRS {trsSignature = fromList [("0",0),("plus",2),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [plus(0,y) -> y,plus(s(x),0) -> s(x),plus(s(x),s(y)) -> s(plus(s(x),plus(y,0)))], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC50.trs" :
+TRS {trsSignature = fromList [("0",0),("app",2),("cons",2),("nil",0),("plus",2),("pred",1),("s",1),("sum",1)], trsVariables = fromList ["k","l","x","y"], trsRMap = [], trsRules = [app(nil,k) -> k,app(l,nil) -> l,app(cons(x,l),k) -> cons(x,app(l,k)),sum(cons(x,nil)) -> cons(x,nil),sum(cons(x,cons(y,l))) -> sum(cons(plus(x,y),l)),sum(app(l,cons(x,cons(y,k)))) -> sum(app(l,sum(cons(x,cons(y,k))))),sum(cons(0,cons(plus(x,y),l))) -> pred(sum(cons(s(x),cons(y,l)))),plus(0,y) -> y,plus(s(x),y) -> s(plus(x,y)),pred(cons(s(x),nil)) -> cons(x,nil)], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC49.trs" :
+TRS {trsSignature = fromList [("0",0),("app",2),("cons",2),("nil",0),("plus",2),("s",1),("sum",1)], trsVariables = fromList ["k","l","x","y"], trsRMap = [], trsRules = [app(nil,k) -> k,app(l,nil) -> l,app(cons(x,l),k) -> cons(x,app(l,k)),sum(cons(x,nil)) -> cons(x,nil),sum(cons(x,cons(y,l))) -> sum(cons(plus(x,y),l)),sum(app(l,cons(x,cons(y,k)))) -> sum(app(l,sum(cons(x,cons(y,k))))),plus(0,y) -> y,plus(s(x),y) -> s(plus(x,y))], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC48.trs" :
+TRS {trsSignature = fromList [("0",0),("plus",2),("s",1),("times",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [times(x,0) -> 0,times(x,s(y)) -> plus(times(x,y),x),plus(x,0) -> x,plus(0,x) -> x,plus(x,s(y)) -> s(plus(x,y)),plus(s(x),y) -> s(plus(x,y))], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC47.trs" :
+TRS {trsSignature = fromList [("0",0),("edge",3),("empty",0),("eq",2),("false",0),("if_reach_1",5),("if_reach_2",5),("or",2),("reach",4),("s",1),("true",0),("union",2)], trsVariables = fromList ["h","i","u","v","x","y"], trsRMap = [], trsRules = [eq(0,0) -> true,eq(0,s(x)) -> false,eq(s(x),0) -> false,eq(s(x),s(y)) -> eq(x,y),or(true,y) -> true,or(false,y) -> y,union(empty,h) -> h,union(edge(x,y,i),h) -> edge(x,y,union(i,h)),reach(x,y,empty,h) -> false,reach(x,y,edge(u,v,i),h) -> if_reach_1(eq(x,u),x,y,edge(u,v,i),h),if_reach_1(true,x,y,edge(u,v,i),h) -> if_reach_2(eq(y,v),x,y,edge(u,v,i),h),if_reach_1(false,x,y,edge(u,v,i),h) -> reach(x,y,i,edge(u,v,h)),if_reach_2(true,x,y,edge(u,v,i),h) -> true,if_reach_2(false,x,y,edge(u,v,i),h) -> or(reach(x,y,i,h),reach(v,y,union(i,h),empty))], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC46.trs" :
+TRS {trsSignature = fromList [("0",0),("add",2),("app",2),("eq",2),("false",0),("if_min",2),("if_minsort",3),("if_rm",3),("le",2),("min",1),("minsort",2),("nil",0),("rm",2),("s",1),("true",0)], trsVariables = fromList ["m","n","x","y"], trsRMap = [], trsRules = [eq(0,0) -> true,eq(0,s(x)) -> false,eq(s(x),0) -> false,eq(s(x),s(y)) -> eq(x,y),le(0,y) -> true,le(s(x),0) -> false,le(s(x),s(y)) -> le(x,y),app(nil,y) -> y,app(add(n,x),y) -> add(n,app(x,y)),min(add(n,nil)) -> n,min(add(n,add(m,x))) -> if_min(le(n,m),add(n,add(m,x))),if_min(true,add(n,add(m,x))) -> min(add(n,x)),if_min(false,add(n,add(m,x))) -> min(add(m,x)),rm(n,nil) -> nil,rm(n,add(m,x)) -> if_rm(eq(n,m),n,add(m,x)),if_rm(true,n,add(m,x)) -> rm(n,x),if_rm(false,n,add(m,x)) -> add(m,rm(n,x)),minsort(nil,nil) -> nil,minsort(add(n,x),y) -> if_minsort(eq(n,min(add(n,x))),add(n,x),y),if_minsort(true,add(n,x),y) -> add(n,minsort(app(rm(n,x),y),nil)),if_minsort(false,add(n,x),y) -> minsort(x,add(n,y))], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC45.trs" :
+TRS {trsSignature = fromList [("0",0),("add",2),("eq",2),("false",0),("if_rm",3),("nil",0),("purge",1),("rm",2),("s",1),("true",0)], trsVariables = fromList ["m","n","x","y"], trsRMap = [], trsRules = [eq(0,0) -> true,eq(0,s(x)) -> false,eq(s(x),0) -> false,eq(s(x),s(y)) -> eq(x,y),rm(n,nil) -> nil,rm(n,add(m,x)) -> if_rm(eq(n,m),n,add(m,x)),if_rm(true,n,add(m,x)) -> rm(n,x),if_rm(false,n,add(m,x)) -> add(m,rm(n,x)),purge(nil) -> nil,purge(add(n,x)) -> add(n,purge(rm(n,x)))], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC44.trs" :
+TRS {trsSignature = fromList [("0",0),("false",0),("gcd",2),("if_gcd",3),("if_minus",3),("le",2),("minus",2),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [le(0,y) -> true,le(s(x),0) -> false,le(s(x),s(y)) -> le(x,y),minus(0,y) -> 0,minus(s(x),y) -> if_minus(le(s(x),y),s(x),y),if_minus(true,s(x),y) -> 0,if_minus(false,s(x),y) -> s(minus(x,y)),gcd(0,y) -> y,gcd(s(x),0) -> s(x),gcd(s(x),s(y)) -> if_gcd(le(y,x),s(x),s(y)),if_gcd(true,s(x),s(y)) -> gcd(minus(x,y),s(y)),if_gcd(false,s(x),s(y)) -> gcd(minus(y,x),s(x))], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC43.trs" :
+TRS {trsSignature = fromList [("0",0),("false",0),("gcd",2),("if_gcd",3),("le",2),("minus",2),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [le(0,y) -> true,le(s(x),0) -> false,le(s(x),s(y)) -> le(x,y),minus(x,0) -> x,minus(s(x),s(y)) -> minus(x,y),gcd(0,y) -> y,gcd(s(x),0) -> s(x),gcd(s(x),s(y)) -> if_gcd(le(y,x),s(x),s(y)),if_gcd(true,s(x),s(y)) -> gcd(minus(x,y),s(y)),if_gcd(false,s(x),s(y)) -> gcd(minus(y,x),s(x))], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC42.trs" :
+TRS {trsSignature = fromList [("0",0),("false",0),("gcd",2),("if_gcd",3),("le",2),("minus",2),("pred",1),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [le(0,y) -> true,le(s(x),0) -> false,le(s(x),s(y)) -> le(x,y),pred(s(x)) -> x,minus(x,0) -> x,minus(x,s(y)) -> pred(minus(x,y)),gcd(0,y) -> y,gcd(s(x),0) -> s(x),gcd(s(x),s(y)) -> if_gcd(le(y,x),s(x),s(y)),if_gcd(true,s(x),s(y)) -> gcd(minus(x,y),s(y)),if_gcd(false,s(x),s(y)) -> gcd(minus(y,x),s(x))], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC41.trs" :
+TRS {trsSignature = fromList [("0",0),("minus",2),("plus",2),("quot",2),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [minus(x,0) -> x,minus(s(x),s(y)) -> minus(x,y),minus(minus(x,y),z) -> minus(x,plus(y,z)),quot(0,s(y)) -> 0,quot(s(x),s(y)) -> s(quot(minus(x,y),s(y))),plus(0,y) -> y,plus(s(x),y) -> s(plus(x,y))], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC29.trs" :
+TRS {trsSignature = fromList [("0",0),("1",0),("2",0),("3",0),("4",0),("5",0),("6",0),("7",0),("8",0),("9",0),("app",2),("empty",0),("max",1),("max'",2),("max2",2),("s",1),("singl",1)], trsVariables = fromList ["X","Y","Z","x","y"], trsRMap = [], trsRules = [1 -> s(0),2 -> s(1),3 -> s(2),4 -> s(3),5 -> s(4),6 -> s(5),7 -> s(6),8 -> s(7),9 -> s(8),max'(0,x) -> x,max'(s(x),s(y)) -> s(max'(x,y)),app(empty,X) -> X,max(singl(x)) -> x,max(app(singl(x),Y)) -> max2(x,Y),max2(x,empty) -> x,max2(x,singl(y)) -> max'(x,y),max2(x,app(singl(y),Z)) -> max2(max'(x,y),Z)], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC28.trs" :
+TRS {trsSignature = fromList [("0",0),("empty",0),("max",1),("s",1),("singl",1),("union",2)], trsVariables = fromList ["X","Y","Z","x","y"], trsRMap = [], trsRules = [union(empty,X) -> X,max(singl(x)) -> x,max(union(singl(x),singl(0))) -> x,max(union(singl(s(x)),singl(s(y)))) -> s(max(union(singl(x),singl(y)))),max(union(singl(x),union(Y,Z))) -> max(union(singl(x),singl(max(union(Y,Z)))))], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC27.trs" :
+TRS {trsSignature = fromList [("0",0),("app",2),("empty",0),("eq",2),("false",0),("if",3),("plus",2),("s",1),("singl",1),("true",0)], trsVariables = fromList ["t","x","y","z"], trsRMap = [], trsRules = [if(true,x,y) -> x,if(false,x,y) -> y,eq(0,0) -> true,eq(0,s(x)) -> false,eq(s(x),s(y)) -> eq(x,y),plus(empty,x) -> x,app(x,empty) -> empty,app(x,app(empty,z)) -> app(empty,z),app(x,plus(y,z)) -> plus(app(x,y),app(x,z)),app(x,app(plus(y,z),t)) -> app(plus(app(x,y),app(x,z)),t),app(singl(x),singl(y)) -> if(eq(x,y),singl(x),empty)], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC26.trs" :
+TRS {trsSignature = fromList [("0",0),("plus",2),("s",1),("times",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [plus(x,0) -> x,plus(x,s(y)) -> s(plus(x,y)),plus(x,plus(s(y),z)) -> plus(s(plus(x,y)),z),times(x,0) -> 0,times(x,times(0,z)) -> times(0,z),times(x,s(y)) -> plus(times(x,y),x),times(x,times(s(y),z)) -> times(plus(times(x,y),x),z)], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC24.trs" :
+TRS {trsSignature = fromList [("0",1),("1",1),("S",0),("plus",2),("times",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [0(S) -> S,plus(S,x) -> x,plus(0(x),0(y)) -> 0(plus(x,y)),plus(0(x),1(y)) -> 1(plus(x,y)),plus(1(x),1(y)) -> 0(plus(x,plus(y,1(S)))),times(S,x) -> S,times(0(x),y) -> 0(times(x,y)),times(1(x),y) -> plus(0(times(x,y)),y)], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC23.trs" :
+TRS {trsSignature = fromList [("S",0),("plus",2),("times",2),("un",1),("zero",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [zero(S) -> S,plus(x,S) -> x,plus(zero(x),zero(y)) -> zero(plus(x,y)),plus(zero(x),un(y)) -> un(plus(x,y)),plus(un(x),un(y)) -> zero(plus(x,plus(y,un(S)))),times(x,S) -> S,times(x,times(S,z)) -> times(S,z),times(x,zero(y)) -> zero(times(x,y)),times(x,times(zero(y),z)) -> times(zero(times(x,y)),z),times(x,un(y)) -> plus(x,zero(times(x,y))),times(x,times(un(y),z)) -> times(plus(x,zero(times(x,y))),z)], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC22.trs" :
+TRS {trsSignature = fromList [("0",0),("j",1),("minus",2),("neg",1),("plus",2),("times",2),("un",1),("zero",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [zero(0) -> 0,plus(x,0) -> x,plus(zero(x),zero(y)) -> zero(plus(x,y)),plus(zero(x),un(y)) -> un(plus(x,y)),plus(zero(x),j(y)) -> j(plus(x,y)),plus(un(x),j(y)) -> zero(plus(x,y)),plus(un(x),un(y)) -> j(plus(x,plus(y,un(0)))),plus(j(x),j(y)) -> un(plus(x,plus(y,j(0)))),minus(x,y) -> plus(x,neg(y)),neg(0) -> 0,neg(zero(x)) -> zero(neg(x)),neg(un(x)) -> j(neg(x)),neg(j(x)) -> un(neg(x)),times(x,0) -> 0,times(x,times(0,z)) -> times(0,z),times(x,zero(y)) -> zero(times(x,y)),times(x,times(zero(y),z)) -> times(zero(times(x,y)),z),times(x,un(y)) -> plus(x,zero(times(x,y))),times(x,times(un(y),z)) -> times(plus(x,zero(times(x,y))),z),times(x,j(y)) -> plus(zero(times(x,y)),neg(x)),times(x,times(j(y),z)) -> times(plus(zero(times(x,y)),neg(x)),z)], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC21.trs" :
+TRS {trsSignature = fromList [("0",1),("1",1),("S",0),("abs",1),("if_abs",3),("if_min",4),("if_sign",2),("j",1),("min",2),("min'",2),("min''",2),("minus",2),("opp",1),("plus",2),("sign",1),("times",2)], trsVariables = fromList ["u","x","y","z"], trsRMap = [], trsRules = [0(S) -> S,plus(S,x) -> x,plus(0(x),0(y)) -> 0(plus(x,y)),plus(0(x),1(y)) -> 1(plus(x,y)),plus(0(x),j(y)) -> j(plus(x,y)),plus(1(x),1(y)) -> j(plus(1(S),plus(x,y))),plus(j(x),j(y)) -> 1(plus(j(S),plus(x,y))),plus(1(x),j(y)) -> 0(plus(x,y)),opp(S) -> S,opp(0(x)) -> 0(opp(x)),opp(1(x)) -> j(opp(x)),opp(j(x)) -> 1(opp(x)),minus(x,y) -> plus(opp(y),x),times(S,x) -> S,times(0(x),y) -> 0(times(x,y)),times(1(x),y) -> plus(0(times(x,y)),y),times(j(x),y) -> minus(0(times(x,y)),y),sign(x) -> if_sign(x,S),if_sign(S,x) -> x,if_sign(0(x),y) -> if_sign(x,y),if_sign(1(x),y) -> if_sign(x,1(S)),if_sign(j(x),y) -> if_sign(x,j(S)),abs(x) -> if_abs(x,x,S),if_abs(0(x),y,z) -> if_abs(x,y,z),if_abs(1(x),y,z) -> if_abs(x,y,1(S)),if_abs(j(x),y,z) -> if_abs(x,y,j(S)),if_abs(S,x,S) -> S,if_abs(S,x,1(S)) -> x,if_abs(S,x,j(S)) -> opp(x),min(x,y) -> if_min(minus(abs(y),abs(x)),x,y,S),min'(x,y) -> if_min(minus(abs(1(y)),abs(1(x))),x,y,S),min''(x,y) -> if_min(minus(abs(j(y)),abs(j(x))),x,y,S),if_min(0(x),y,z,u) -> if_min(x,y,z,u),if_min(1(x),y,z,u) -> if_min(x,y,z,1(S)),if_min(j(x),y,z,u) -> if_min(x,y,z,j(S)),if_min(S,x,y,S) -> x,if_min(S,x,y,1(S)) -> x,if_min(S,x,y,j(S)) -> y], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC20.trs" :
+TRS {trsSignature = fromList [("0",0),("div",2),("minus",2),("plus",2),("s",1),("times",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [plus(x,0) -> x,plus(x,s(y)) -> s(plus(x,y)),times(x,0) -> 0,times(x,s(y)) -> plus(times(x,y),x),minus(x,0) -> x,minus(s(x),s(y)) -> minus(x,y),div(0,s(y)) -> 0,div(s(x),s(y)) -> s(div(minus(x,y),s(y)))], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC19.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",2),("g",1),("h",1),("i",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(g(f(h(a),a)),a) -> f(h(a),f(a,a)),f(h(a),g(a)) -> f(g(h(a)),a),f(g(h(a)),f(f(a,a),a)) -> f(g(f(h(a),a)),a),f(h(a),a) -> f(h(a),b),f(i(x,y),f(a,y)) -> f(g(i(x,y)),y)], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC18.trs" :
+TRS {trsSignature = fromList [("0",1),("1",1),("S",0),("j",1),("minus",2),("opp",1),("plus",2),("times",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [0(S) -> S,plus(S,x) -> x,plus(0(x),0(y)) -> 0(plus(x,y)),plus(0(x),1(y)) -> 1(plus(x,y)),plus(0(x),j(y)) -> j(plus(x,y)),plus(1(x),1(y)) -> j(plus(1(S),plus(x,y))),plus(j(x),j(y)) -> 1(plus(j(S),plus(x,y))),plus(1(x),j(y)) -> 0(plus(x,y)),opp(S) -> S,opp(0(x)) -> 0(opp(x)),opp(1(x)) -> j(opp(x)),opp(j(x)) -> 1(opp(x)),minus(x,y) -> plus(opp(y),x),times(S,x) -> S,times(0(x),y) -> 0(times(x,y)),times(1(x),y) -> plus(0(times(x,y)),y),times(j(x),y) -> minus(0(times(x,y)),y)], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC17.trs" :
+TRS {trsSignature = fromList [("0",1),("1",1),("S",0),("plus",2),("times",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [0(S) -> S,plus(x,S) -> x,plus(0(x),0(y)) -> 0(plus(x,y)),plus(0(x),1(y)) -> 1(plus(x,y)),plus(1(x),1(y)) -> 0(1(plus(plus(x,y),S))),times(x,S) -> S,times(x,0(y)) -> 0(times(x,y)),times(x,1(y)) -> plus(x,0(times(x,y)))], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC16.trs" :
+TRS {trsSignature = fromList [("0",0),("L",1),("T",1),("plus",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [plus(x,0) -> x,plus(x,x) -> x,plus(T(x),x) -> T(x),plus(T(plus(x,y)),x) -> T(plus(x,y)),L(T(x)) -> L(x),L(plus(T(y),x)) -> plus(L(plus(x,y)),L(y)),T(T(x)) -> T(x),T(plus(T(y),x)) -> plus(T(plus(x,y)),T(y))], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC15.trs" :
+TRS {trsSignature = fromList [("f",2),("g",1),("h",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(g(g(x)),x) -> f(g(x),g(x)),f(f(x,x),g(x)) -> f(x,h(x))], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC14.trs" :
+TRS {trsSignature = fromList [("0",0),("plus",2),("s",1),("times",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [plus(x,0) -> x,plus(x,s(y)) -> s(plus(x,y)),times(x,0) -> 0,times(x,s(y)) -> plus(times(x,y),x),times(x,plus(y,z)) -> plus(times(x,y),times(x,z))], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC13.trs" :
+TRS {trsSignature = fromList [("0",0),("i",1),("plus",2),("times",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [plus(x,0) -> x,plus(x,i(x)) -> 0,i(0) -> 0,i(i(x)) -> x,i(plus(x,y)) -> plus(i(x),i(y)),times(x,plus(y,z)) -> plus(times(x,y),times(x,z)),times(x,0) -> 0,times(x,i(y)) -> i(times(x,y))], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC12.trs" :
+TRS {trsSignature = fromList [("f",2),("g",1),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(g(f(h(x),x)),x) -> f(h(x),f(x,x)),f(h(x),g(x)) -> f(g(h(x)),x),f(g(h(x)),f(x,f(x,y))) -> f(g(f(h(x),y)),x),f(g(g(x)),x) -> f(g(x),g(x))], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC10.trs" :
+TRS {trsSignature = fromList [("0",0),("plus",2),("s",1),("times",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [plus(x,0) -> x,plus(s(x),y) -> s(plus(x,y)),times(x,0) -> 0,times(s(x),y) -> plus(times(x,y),y),times(x,plus(y,z)) -> plus(times(x,y),times(x,z))], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC09.trs" :
+TRS {trsSignature = fromList [("0",0),("1",0),("i",1),("plus",2),("times",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [plus(x,0) -> x,plus(x,i(x)) -> 0,i(0) -> 0,i(i(x)) -> x,i(plus(x,y)) -> plus(i(x),i(y)),times(x,1) -> x,times(x,0) -> 0,times(x,i(y)) -> i(times(x,y)),times(x,plus(y,z)) -> plus(times(x,y),times(x,z))], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC08.trs" :
+TRS {trsSignature = fromList [("and",2),("eq",2),("false",0),("neq",2),("not",1),("or",2),("true",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [eq(x,x) -> true,not(eq(x,y)) -> neq(x,y),not(neq(x,y)) -> eq(x,y),not(true) -> false,not(false) -> true,not(not(x)) -> x,not(and(x,y)) -> or(not(x),not(y)),not(or(x,y)) -> and(not(x),not(y)),neq(x,x) -> false,or(and(x,y),z) -> and(or(x,z),or(y,z)),or(x,x) -> x,or(x,true) -> true,or(x,false) -> x,and(x,x) -> x,and(x,true) -> x,and(x,false) -> false,and(x,or(x,y)) -> x], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC07.trs" :
+TRS {trsSignature = fromList [("0",0),("S",1),("cons",2),("int",2),("intlist",1),("nil",0),("plus",2),("s",1),("sum",2)], trsVariables = fromList ["x","xs","y"], trsRMap = [], trsRules = [sum(x,y) -> S(int(x,y)),S(nil) -> 0,S(cons(x,xs)) -> plus(x,S(xs)),plus(x,0) -> x,plus(x,s(y)) -> s(plus(x,y)),int(0,0) -> cons(0,nil),int(0,s(y)) -> cons(0,int(s(0),s(y))),int(s(x),0) -> nil,int(s(x),s(y)) -> intlist(int(x,y)),intlist(nil) -> nil,intlist(cons(x,y)) -> cons(s(x),intlist(y))], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC06.trs" :
+TRS {trsSignature = fromList [("0",0),("i",1),("p",1),("plus",2),("s",1),("times",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [s(p(x)) -> x,p(s(x)) -> x,plus(0,y) -> y,plus(s(x),y) -> s(plus(x,y)),plus(p(x),y) -> p(plus(x,y)),plus(i(x),x) -> 0,plus(x,plus(i(x),y)) -> y,i(0) -> 0,i(s(x)) -> p(i(x)),i(p(x)) -> s(i(x)),i(i(x)) -> x,i(plus(x,y)) -> plus(i(y),i(x)),times(0,y) -> 0,times(s(x),y) -> plus(times(x,y),y),times(p(x),y) -> plus(times(x,y),i(y))], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC05.trs" :
+TRS {trsSignature = fromList [("0",0),("div",2),("minus",2),("p",1),("plus",2),("s",1),("times",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [p(s(x)) -> x,plus(x,0) -> x,plus(x,s(y)) -> s(plus(x,y)),times(x,0) -> 0,times(x,s(y)) -> plus(x,times(x,y)),minus(x,0) -> x,minus(s(x),s(y)) -> minus(p(s(x)),p(s(y))),div(0,s(y)) -> 0,div(s(x),s(y)) -> s(div(minus(x,y),s(y)))], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC04.trs" :
+TRS {trsSignature = fromList [("0",0),("div",2),("minus",2),("plus",2),("s",1),("times",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [plus(x,0) -> x,plus(x,s(y)) -> s(plus(x,y)),times(x,0) -> 0,times(x,s(y)) -> plus(x,times(x,y)),minus(x,0) -> x,minus(s(x),s(y)) -> minus(x,y),div(0,s(y)) -> 0,div(s(x),s(y)) -> s(div(minus(x,y),s(y)))], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC03.trs" :
+TRS {trsSignature = fromList [("0",0),("plus",2),("power",2),("s",1),("times",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [plus(x,0) -> x,plus(x,s(y)) -> s(plus(x,y)),times(x,0) -> 0,times(x,s(y)) -> plus(x,times(x,y)),power(x,0) -> s(0),power(x,s(y)) -> times(x,power(x,y))], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC02.trs" :
+TRS {trsSignature = fromList [("0",0),("double",1),("plus",2),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [plus(x,0) -> x,plus(x,s(y)) -> s(plus(x,y)),double(x) -> plus(x,x)], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\AProVE_AC\\AC01.trs" :
+TRS {trsSignature = fromList [("0",0),("plus",2),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [plus(x,0) -> x,plus(x,s(y)) -> s(plus(x,y))], trsType = TRSEquational, trsStrategy = Nothing, signatureBlock = False}

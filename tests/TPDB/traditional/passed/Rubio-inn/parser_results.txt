@@ -1,0 +1,33 @@
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Rubio-inn\\toyama.trs" :
+TRS {trsSignature = fromList [("0",0),("1",0),("f",3),("g",2)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [f(0,1,X) -> f(X,X,X),g(X,Y) -> X,g(X,Y) -> Y], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Rubio-inn\\test9.trs" :
+TRS {trsSignature = fromList [("0",0),("1",0),("f",3),("g",2),("h",2)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [f(0,1,X) -> h(X,X),h(0,X) -> f(0,X,X),g(X,Y) -> X,g(X,Y) -> Y], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Rubio-inn\\test833.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",2)], trsVariables = fromList ["X"], trsRMap = [], trsRules = [f(X,X) -> f(a,b),b -> c], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Rubio-inn\\test830.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("f",1),("g",1),("h",1),("s",1)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [f(s(X)) -> f(X),g(cons(0,Y)) -> g(Y),g(cons(s(X),Y)) -> s(X),h(cons(X,Y)) -> h(g(cons(X,Y)))], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Rubio-inn\\test77.trs" :
+TRS {trsSignature = fromList [("+",2),("0",0),("double",1),("f",3),("g",2),("s",1)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [+(X,0) -> X,+(X,s(Y)) -> s(+(X,Y)),double(X) -> +(X,X),f(0,s(0),X) -> f(X,double(X),X),g(X,Y) -> X,g(X,Y) -> Y], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Rubio-inn\\test76.trs" :
+TRS {trsSignature = fromList [("+",2),("0",0),("f",3),("g",2),("s",1)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [+(X,0) -> X,+(X,s(Y)) -> s(+(X,Y)),f(0,s(0),X) -> f(X,+(X,X),X),g(X,Y) -> X,g(X,Y) -> Y], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Rubio-inn\\test75.trs" :
+TRS {trsSignature = fromList [("0",0),("1",0),("f",3),("g",2)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [f(0,1,X) -> f(g(X,X),X,X),g(X,Y) -> X,g(X,Y) -> Y], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Rubio-inn\\test10.trs" :
+TRS {trsSignature = fromList [("0",0),("f",3),("g",2),("h",2),("s",1)], trsVariables = fromList ["X","Y","Z"], trsRMap = [], trsRules = [h(X,Z) -> f(X,s(X),Z),f(X,Y,g(X,Y)) -> h(0,g(X,Y)),g(0,Y) -> 0,g(X,s(Y)) -> g(X,Y)], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Rubio-inn\\muladd.trs" :
+TRS {trsSignature = fromList [("*",2),("+",2),("0",0),("1",0)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [*(X,+(Y,1)) -> +(*(X,+(Y,*(1,0))),X),*(X,1) -> X,*(X,0) -> X,*(X,0) -> 0], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Rubio-inn\\gkg.trs" :
+TRS {trsSignature = fromList [("0",0),("1",0),("f",2),("g",1)], trsVariables = fromList ["X"], trsRMap = [], trsRules = [f(X,g(X)) -> f(1,g(X)),g(1) -> g(0)], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Rubio-inn\\bn111.trs" :
+TRS {trsSignature = fromList [("f",2)], trsVariables = fromList ["X","Y","Z"], trsRMap = [], trsRules = [f(f(X,Y),Z) -> f(X,f(Y,Z)),f(X,f(Y,Z)) -> f(Y,Y)], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}

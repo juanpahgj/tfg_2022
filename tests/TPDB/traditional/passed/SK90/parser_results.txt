@@ -1,0 +1,357 @@
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.61.trs" :
+TRS {trsSignature = fromList [(".",2),("0",0),("<=",2),("bsort",1),("bubble",1),("butlast",1),("if",3),("last",1),("nil",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [bsort(nil) -> nil,bsort(.(x,y)) -> last(.(bubble(.(x,y)),bsort(butlast(bubble(.(x,y)))))),bubble(nil) -> nil,bubble(.(x,nil)) -> .(x,nil),bubble(.(x,.(y,z))) -> if(<=(x,y),.(y,bubble(.(x,z))),.(x,bubble(.(y,z)))),last(nil) -> 0,last(.(x,nil)) -> x,last(.(x,.(y,z))) -> last(.(y,z)),butlast(nil) -> nil,butlast(.(x,nil)) -> nil,butlast(.(x,.(y,z))) -> .(x,butlast(.(y,z)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.60.trs" :
+TRS {trsSignature = fromList [(".",2),("<=",2),("=",2),("del",2),("if",3),("min",2),("msort",1),("nil",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [msort(nil) -> nil,msort(.(x,y)) -> .(min(x,y),msort(del(min(x,y),.(x,y)))),min(x,nil) -> x,min(x,.(y,z)) -> if(<=(x,y),min(x,z),min(y,z)),del(x,nil) -> nil,del(x,.(y,z)) -> if(=(x,y),z,.(y,del(x,z)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.59.trs" :
+TRS {trsSignature = fromList [("++",2),(".",2),("<=",2),("greaters",2),("if",3),("lowers",2),("nil",0),("qsort",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [qsort(nil) -> nil,qsort(.(x,y)) -> ++(qsort(lowers(x,y)),.(x,qsort(greaters(x,y)))),lowers(x,nil) -> nil,lowers(x,.(y,z)) -> if(<=(y,x),.(y,lowers(x,z)),lowers(x,z)),greaters(x,nil) -> nil,greaters(x,.(y,z)) -> if(<=(y,x),greaters(x,z),.(y,greaters(x,z)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.57.trs" :
+TRS {trsSignature = fromList [("0",0),("<=",2),("f",3),("false",0),("g",4),("p",1),("s",1),("true",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(x,y,z) -> g(<=(x,y),x,y,z),g(true,x,y,z) -> z,g(false,x,y,z) -> f(f(p(x),y,z),f(p(y),z,x),f(p(z),x,y)),p(0) -> 0,p(s(x)) -> x], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.55.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x,x) -> f(a,b),b -> c], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.54.trs" :
+TRS {trsSignature = fromList [("f",2),("g",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [g(f(x,y)) -> f(f(g(g(x)),g(g(y))),f(g(g(x)),g(g(y))))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.53.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("d",0),("e",0),("f",1),("g",2),("h",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(a) -> b,f(c) -> d,f(g(x,y)) -> g(f(x),f(y)),f(h(x,y)) -> g(h(y,f(x)),h(x,f(y))),g(x,x) -> h(e,x)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.52.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2),("g",2),("s",1)], trsVariables = fromList ["u","v","x","y"], trsRMap = [], trsRules = [s(a) -> a,s(s(x)) -> x,s(f(x,y)) -> f(s(y),s(x)),s(g(x,y)) -> g(s(x),s(y)),f(x,a) -> x,f(a,y) -> y,f(g(x,y),g(u,v)) -> g(f(x,u),f(y,v)),g(a,a) -> a], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.51.trs" :
+TRS {trsSignature = fromList [("a",0),("f",1),("g",1),("h",1),("k",3)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(a) -> g(h(a)),h(g(x)) -> g(h(f(x))),k(x,h(x),a) -> h(x),k(f(x),y,x) -> f(x)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.50.trs" :
+TRS {trsSignature = fromList [("0",0),("1",0),("f",3)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(0,1,x) -> f(x,x,x)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.49.trs" :
+TRS {trsSignature = fromList [("f",3)], trsVariables = fromList ["u","v","x","y","z"], trsRMap = [], trsRules = [f(x,y,f(z,u,v)) -> f(f(x,y,z),u,f(x,y,v))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.48.trs" :
+TRS {trsSignature = fromList [("f",3),("g",1)], trsVariables = fromList ["u","v","x","y","z"], trsRMap = [], trsRules = [f(f(x,y,z),u,f(x,y,v)) -> f(x,y,f(z,u,v)),f(x,y,y) -> y,f(x,y,g(y)) -> x,f(x,x,y) -> x,f(g(x),x,y) -> y], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.47.trs" :
+TRS {trsSignature = fromList [(".",2),("a",0),("b",0),("b'",0),("c",0),("d",0),("d'",0),("e",0),("f",2),("g",2),("h",2),("i",3),("if",3)], trsVariables = fromList [], trsRMap = [], trsRules = [f(g(i(a,b,b'),c),d) -> if(e,f(.(b,c),d'),f(.(b',c),d')),f(g(h(a,b),c),d) -> if(e,f(.(b,g(h(a,b),c)),d),f(c,d'))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.45.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2),("g",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,x) -> a,f(g(x),y) -> f(x,y)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.44.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1),("g",1),("h",1),("i",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(h(x)) -> f(i(x)),g(i(x)) -> g(h(x)),h(a) -> b,i(a) -> b], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.43.trs" :
+TRS {trsSignature = fromList [("+",2),("0",0),("f",1),("g",1),("h",2),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [+(x,0) -> x,+(x,s(y)) -> s(+(x,y)),+(0,y) -> y,+(s(x),y) -> s(+(x,y)),+(x,+(y,z)) -> +(+(x,y),z),f(g(f(x))) -> f(h(s(0),x)),f(g(h(x,y))) -> f(h(s(x),y)),f(h(x,h(y,z))) -> f(h(+(x,y),z))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.42.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2),("g",1),("h",3)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(a,g(y)) -> g(g(y)),f(g(x),a) -> f(x,g(a)),f(g(x),g(y)) -> h(g(y),x,g(y)),h(g(x),y,z) -> f(y,h(x,y,z)),h(a,y,z) -> z], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.41.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",2),("g",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(a,y) -> f(y,g(y)),g(a) -> b,g(b) -> b], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.40.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(f(f(a,x),y),z) -> f(f(x,z),f(y,z)),f(f(b,x),y) -> x,f(c,y) -> y], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.39.trs" :
+TRS {trsSignature = fromList [("*",2),("minus",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [*(x,*(minus(y),y)) -> *(minus(*(y,y)),x)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.38.trs" :
+TRS {trsSignature = fromList [("f",2),("g",2),("h",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [g(f(x,y),z) -> f(x,g(y,z)),g(h(x,y),z) -> g(x,f(y,z)),g(x,h(y,z)) -> h(g(x,y),z)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.37.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [a(b(a(x))) -> b(a(x))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.36.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [a(a(x)) -> a(b(a(x)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.35.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1),("c",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [a(b(x)) -> a(c(b(x)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.34.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [a(b(x)) -> b(b(a(a(x))))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.33.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [a(b(a(x))) -> b(a(b(x)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.32.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1),("c",1),("u",1),("v",1),("w",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [a(b(x)) -> b(a(a(x))),b(c(x)) -> c(b(b(x))),c(a(x)) -> a(c(c(x))),u(a(x)) -> x,v(b(x)) -> x,w(c(x)) -> x,a(u(x)) -> x,b(v(x)) -> x,c(w(x)) -> x], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.31.trs" :
+TRS {trsSignature = fromList [(".",2),("=",2),("if",3),("nil",0),("purge",1),("remove",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [purge(nil) -> nil,purge(.(x,y)) -> .(x,purge(remove(x,y))),remove(x,nil) -> nil,remove(x,.(y,z)) -> if(=(x,y),remove(x,z),.(y,remove(x,z)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.30.trs" :
+TRS {trsSignature = fromList [(".",2),("f",1),("g",1),("nil",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(nil) -> nil,f(.(nil,y)) -> .(nil,f(y)),f(.(.(x,y),z)) -> f(.(x,.(y,z))),g(nil) -> nil,g(.(x,nil)) -> .(g(x),nil),g(.(x,.(y,z))) -> g(.(.(x,y),z))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.29.trs" :
+TRS {trsSignature = fromList [("++",2),("merge",2),("nil",0),("u",0),("v",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [merge(x,nil) -> x,merge(nil,y) -> y,merge(++(x,y),++(u,v)) -> ++(x,merge(y,++(u,v))),merge(++(x,y),++(u,v)) -> ++(u,merge(++(x,y),v))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.28.trs" :
+TRS {trsSignature = fromList [("++",2),("=",2),("f",2),("false",0),("g",2),("max",1),("max'",2),("mem",2),("nil",0),("not",1),("null",1),("or",2),("true",0),("u",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(x,nil) -> g(nil,x),f(x,g(y,z)) -> g(f(x,y),z),++(x,nil) -> x,++(x,g(y,z)) -> g(++(x,y),z),null(nil) -> true,null(g(x,y)) -> false,mem(nil,y) -> false,mem(g(x,y),z) -> or(=(y,z),mem(x,z)),mem(x,max(x)) -> not(null(x)),max(g(g(nil,x),y)) -> max'(x,y),max(g(g(g(x,y),z),u)) -> max'(max(g(g(x,y),z)),u)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.27.trs" :
+TRS {trsSignature = fromList [(".",2),("0",0),("int",2),("int_list",1),("nil",0),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [int(0,0) -> .(0,nil),int(0,s(y)) -> .(0,int(s(0),s(y))),int(s(x),0) -> nil,int(s(x),s(y)) -> int_list(int(x,y)),int_list(nil) -> nil,int_list(.(x,y)) -> .(s(x),int_list(y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.26.trs" :
+TRS {trsSignature = fromList [("++",2),(".",2),("make",1),("nil",0),("rev",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [rev(nil) -> nil,rev(rev(x)) -> x,rev(++(x,y)) -> ++(rev(y),rev(x)),++(nil,y) -> y,++(x,nil) -> x,++(.(x,y),z) -> .(x,++(y,z)),++(x,++(y,z)) -> ++(++(x,y),z),make(x) -> .(x,nil)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.25.trs" :
+TRS {trsSignature = fromList [("++",2),("a",0),("b",0),("rev",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [rev(a) -> a,rev(b) -> b,rev(++(x,y)) -> ++(rev(y),rev(x)),rev(++(x,x)) -> rev(x)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.24.trs" :
+TRS {trsSignature = fromList [("++",2),("nil",0),("rev",1),("rev1",2),("rev2",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [rev(nil) -> nil,rev(++(x,y)) -> ++(rev1(x,y),rev2(x,y)),rev1(x,nil) -> x,rev1(x,++(y,z)) -> rev1(y,z),rev2(x,nil) -> nil,rev2(x,++(y,z)) -> rev(++(x,rev(rev2(y,z))))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.23.trs" :
+TRS {trsSignature = fromList [("false",0),("if",3),("true",0)], trsVariables = fromList ["u","v","x","y","z"], trsRMap = [], trsRules = [if(true,x,y) -> x,if(false,x,y) -> y,if(x,y,y) -> y,if(if(x,y,z),u,v) -> if(x,if(y,u,v),if(z,u,v)),if(x,if(x,y,z),z) -> if(x,y,z),if(x,y,if(x,y,z)) -> if(x,y,z)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.22.trs" :
+TRS {trsSignature = fromList [("and",2),("not",1),("or",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [not(and(x,y)) -> or(not(x),not(y)),not(or(x,y)) -> and(not(x),not(y)),and(x,or(y,z)) -> or(and(x,y),and(x,z))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.21.trs" :
+TRS {trsSignature = fromList [("and",2),("false",0),("or",2),("true",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [and(x,or(y,z)) -> or(and(x,y),and(x,z)),and(x,and(y,y)) -> and(x,y),or(or(x,y),and(y,z)) -> or(x,y),or(x,and(x,y)) -> x,or(true,y) -> true,or(x,false) -> x,or(x,x) -> x,or(x,or(y,y)) -> or(x,y),and(x,true) -> x,and(false,y) -> false,and(x,x) -> x], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.20.trs" :
+TRS {trsSignature = fromList [("and",2),("false",0),("implies",2),("not",1),("or",2),("true",0),("xor",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [not(x) -> xor(x,true),or(x,y) -> xor(and(x,y),xor(x,y)),implies(x,y) -> xor(and(x,y),xor(x,true)),and(x,true) -> x,and(x,false) -> false,and(x,x) -> x,xor(x,false) -> x,xor(x,x) -> false,and(xor(x,y),z) -> xor(and(x,z),and(y,z))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.19.trs" :
+TRS {trsSignature = fromList [("-",2),("neg",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [-(-(neg(x),neg(x)),-(neg(y),neg(y))) -> -(-(x,y),-(x,y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.18.trs" :
+TRS {trsSignature = fromList [("-",2),("0",0),("<",2),("gcd",2),("if",3),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [gcd(x,0) -> x,gcd(0,y) -> y,gcd(s(x),s(y)) -> if(<(x,y),gcd(s(x),-(y,x)),gcd(-(x,y),s(y)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.17.trs" :
+TRS {trsSignature = fromList [("*",2),("0",0),("fac",1),("p",1),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [fac(s(x)) -> *(fac(p(s(x))),s(x)),p(s(0)) -> 0,p(s(s(x))) -> s(p(s(x)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.16.trs" :
+TRS {trsSignature = fromList [("*",2),("+",2),("0",0),("f",1),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(0) -> s(0),f(s(0)) -> s(s(0)),f(s(0)) -> *(s(s(0)),f(0)),f(+(x,s(0))) -> +(s(s(0)),f(x)),f(+(x,y)) -> *(f(x),f(y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.15.trs" :
+TRS {trsSignature = fromList [("+",2),("-",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [+(-(x,y),z) -> -(+(x,z),y),-(+(x,y),y) -> x], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.14.trs" :
+TRS {trsSignature = fromList [("*",2),("+",2),("0",0),("minus",1),("p",1),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [p(s(x)) -> x,s(p(x)) -> x,+(0,y) -> y,+(s(x),y) -> s(+(x,y)),+(p(x),y) -> p(+(x,y)),minus(0) -> 0,minus(s(x)) -> p(minus(x)),minus(p(x)) -> s(minus(x)),*(0,y) -> 0,*(s(x),y) -> +(*(x,y),y),*(p(x),y) -> +(*(x,y),minus(y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.13.trs" :
+TRS {trsSignature = fromList [("-",2),("0",0),("greater",2),("if",3),("p",1),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [-(0,y) -> 0,-(x,0) -> x,-(x,s(y)) -> if(greater(x,s(y)),s(-(x,p(s(y)))),0),p(0) -> 0,p(s(x)) -> x], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.12.trs" :
+TRS {trsSignature = fromList [("+",2),("0",0),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [+(0,y) -> y,+(s(x),0) -> s(x),+(s(x),s(y)) -> s(+(s(x),+(y,0)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.11.trs" :
+TRS {trsSignature = fromList [("+",2),("0",0),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [+(x,0) -> x,+(x,s(y)) -> s(+(x,y)),+(0,s(y)) -> s(y),s(+(0,y)) -> s(y)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.10.trs" :
+TRS {trsSignature = fromList [("*",2),("+",2),("1",0),("oplus",2),("otimes",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [*(x,*(y,z)) -> *(otimes(x,y),z),*(1,y) -> y,*(+(x,y),z) -> oplus(*(x,z),*(y,z)),*(x,oplus(y,z)) -> oplus(*(x,y),*(x,z))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.09.trs" :
+TRS {trsSignature = fromList [("*",2),("+",2),("0",0),("i",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [+(x,0) -> x,+(x,i(x)) -> 0,+(+(x,y),z) -> +(x,+(y,z)),*(x,+(y,z)) -> +(*(x,y),*(x,z)),*(+(x,y),z) -> +(*(x,z),*(y,z))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.08.trs" :
+TRS {trsSignature = fromList [("*",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [*(x,*(y,z)) -> *(*(x,y),z),*(x,x) -> x], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.07.trs" :
+TRS {trsSignature = fromList [("*",2),("0",0),("1",0),("i",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [*(i(x),x) -> 1,*(1,y) -> y,*(x,0) -> 0,*(*(x,y),z) -> *(x,*(y,z))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.06.trs" :
+TRS {trsSignature = fromList [("*",2),("+",2),("f",1),("g",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [*(*(x,y),z) -> *(x,*(y,z)),*(+(x,y),z) -> +(*(x,z),*(y,z)),*(x,+(y,f(z))) -> *(g(x,z),+(y,y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.05.trs" :
+TRS {trsSignature = fromList [("*",2),("+",2),("1",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [*(x,+(y,z)) -> +(*(x,y),*(x,z)),*(+(x,y),z) -> +(*(x,z),*(y,z)),*(x,1) -> x,*(1,y) -> y], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.04.trs" :
+TRS {trsSignature = fromList [("*",2),("+",2),("a",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [+(*(x,y),*(a,y)) -> *(+(x,a),y),*(*(x,y),z) -> *(x,*(y,z))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.03.trs" :
+TRS {trsSignature = fromList [("*",2),("+",2),("0",0),("1",0),("minus",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [+(x,0) -> x,+(minus(x),x) -> 0,minus(0) -> 0,minus(minus(x)) -> x,minus(+(x,y)) -> +(minus(y),minus(x)),*(x,1) -> x,*(x,0) -> 0,*(x,+(y,z)) -> +(*(x,y),*(x,z)),*(x,minus(y)) -> minus(*(x,y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.02.trs" :
+TRS {trsSignature = fromList [("*",2),("1",0),("i",1),("k",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [*(x,1) -> x,*(1,y) -> y,*(i(x),x) -> 1,*(x,i(x)) -> 1,*(x,*(y,z)) -> *(*(x,y),z),i(1) -> 1,*(*(x,y),i(y)) -> x,*(*(x,i(y)),y) -> x,i(i(x)) -> x,i(*(x,y)) -> *(i(y),i(x)),k(x,1) -> 1,k(x,x) -> 1,*(k(x,y),k(y,x)) -> 1,*(*(i(x),k(y,z)),x) -> k(*(*(i(x),y),x),*(*(i(x),z),x)),k(*(x,i(y)),*(y,i(x))) -> 1], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\4.01.trs" :
+TRS {trsSignature = fromList [("+",2),("minus",1),("minux",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [minus(minus(x)) -> x,minux(+(x,y)) -> +(minus(y),minus(x)),+(minus(x),+(x,y)) -> y,+(+(x,y),minus(y)) -> x], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.61.trs" :
+TRS {trsSignature = fromList [("0",0),("f",2),("g",1),("h",1),("h1",2),("h2",3),("i",1),("j",2),("k",1),("s",1)], trsVariables = fromList ["u","x","y","z"], trsRMap = [], trsRules = [f(j(x,y),y) -> g(f(x,k(y))),f(x,h1(y,z)) -> h2(0,x,h1(y,z)),g(h2(x,y,h1(z,u))) -> h2(s(x),y,h1(z,u)),h2(x,j(y,h1(z,u)),h1(z,u)) -> h2(s(x),y,h1(s(z),u)),i(f(x,h(y))) -> y,i(h2(s(x),y,h1(x,z))) -> z,k(h(x)) -> h1(0,x),k(h1(x,y)) -> h1(s(x),y)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.60.trs" :
+TRS {trsSignature = fromList [("a",0),("f",1),("g",2),("h",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(g(f(a),h(a,f(a)))) -> f(h(g(f(a),a),g(f(a),f(a))))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.59.trs" :
+TRS {trsSignature = fromList [("f",3),("g",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(g(x),y,y) -> g(f(x,x,y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.58.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",2),("g",1),("h",3),("i",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(x,y) -> x,g(a) -> h(a,b,a),i(x) -> f(x,x),h(x,x,y) -> g(x)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.57.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2),("g",1),("h",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(g(h(x,y)),f(a,a)) -> f(h(x,x),g(f(y,a)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.56.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",2),("g",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(a,x) -> g(a,x),g(a,x) -> f(b,x),f(a,x) -> f(b,x)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.55.trs" :
+TRS {trsSignature = fromList [("f",2),("g",1),("h",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(x,g(x)) -> x,f(x,h(y)) -> f(h(x),y)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.54.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2),("g",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(x,a) -> x,f(x,g(y)) -> f(g(x),y)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.53.trs" :
+TRS {trsSignature = fromList [("f",2),("g",2),("h",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(x,y) -> g(x,y),g(h(x),y) -> h(f(x,y)),g(h(x),y) -> h(g(x,y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.52.trs" :
+TRS {trsSignature = fromList [("0",0),("f",3),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(x,0,0) -> s(x),f(0,y,0) -> s(y),f(0,0,z) -> s(z),f(s(0),y,z) -> f(0,s(y),s(z)),f(s(x),s(y),0) -> f(x,y,s(0)),f(s(x),0,s(z)) -> f(x,s(0),z),f(0,s(0),s(0)) -> s(s(0)),f(s(x),s(y),s(z)) -> f(x,y,f(s(x),s(y),z)),f(0,s(s(y)),s(0)) -> f(0,y,s(0)),f(0,s(0),s(s(z))) -> f(0,s(0),z),f(0,s(s(y)),s(s(z))) -> f(0,y,f(0,s(s(y)),s(z)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.51.trs" :
+TRS {trsSignature = fromList [("0",0),("ack",2),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [ack(0,y) -> s(y),ack(s(x),0) -> ack(x,s(0)),ack(s(x),s(y)) -> ack(x,ack(s(x),y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.50.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [a(b(x)) -> b(b(a(x)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.49.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1),("c",1),("d",1),("u",1),("v",1),("w",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [a(c(d(x))) -> c(x),u(b(d(d(x)))) -> b(x),v(a(a(x))) -> u(v(x)),v(a(c(x))) -> u(b(d(x))),v(c(x)) -> b(x),w(a(a(x))) -> u(w(x)),w(a(c(x))) -> u(b(d(x))),w(c(x)) -> b(x)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.48.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1),("c",1),("d",1),("e",1),("u",1),("v",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [d(x) -> e(u(x)),d(u(x)) -> c(x),c(u(x)) -> b(x),v(e(x)) -> x,b(u(x)) -> a(e(x))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.47.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1),("c",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [a(b(x)) -> b(a(x)),a(c(x)) -> x], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.46.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [a(a(x)) -> b(b(x)),b(b(a(x))) -> a(b(b(x)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.45.trs" :
+TRS {trsSignature = fromList [(".",2),("=",2),("admit",2),("carry",3),("cond",2),("nil",0),("sum",3),("true",0),("w",0)], trsVariables = fromList ["u","v","x","y","z"], trsRMap = [], trsRules = [admit(x,nil) -> nil,admit(x,.(u,.(v,.(w,z)))) -> cond(=(sum(x,u,v),w),.(u,.(v,.(w,admit(carry(x,u,v),z))))),cond(true,y) -> y], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.44.trs" :
+TRS {trsSignature = fromList [(".",2),("=",2),("and",2),("del",1),("f",4),("false",0),("nil",0),("true",0),("u",0),("v",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [del(.(x,.(y,z))) -> f(=(x,y),x,y,z),f(true,x,y,z) -> del(.(y,z)),f(false,x,y,z) -> .(x,del(.(y,z))),=(nil,nil) -> true,=(.(x,y),nil) -> false,=(nil,.(y,z)) -> false,=(.(x,y),.(u,v)) -> and(=(x,u),=(y,v))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.43.trs" :
+TRS {trsSignature = fromList [("++",2),(".",2),("<",2),("false",0),("if",3),("merge",2),("nil",0),("true",0)], trsVariables = fromList ["u","v","x","y","z"], trsRMap = [], trsRules = [merge(nil,y) -> y,merge(x,nil) -> x,merge(.(x,y),.(u,v)) -> if(<(x,u),.(x,merge(y,.(u,v))),.(u,merge(.(x,y),v))),++(nil,y) -> y,++(.(x,y),z) -> .(x,++(y,z)),if(true,x,y) -> x,if(false,x,y) -> x], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.42.trs" :
+TRS {trsSignature = fromList [("++",2),("flatten",1),("nil",0),("rev",1),("unit",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [flatten(nil) -> nil,flatten(unit(x)) -> flatten(x),flatten(++(x,y)) -> ++(flatten(x),flatten(y)),flatten(++(unit(x),y)) -> ++(flatten(x),flatten(y)),flatten(flatten(x)) -> flatten(x),rev(nil) -> nil,rev(unit(x)) -> unit(x),rev(++(x,y)) -> ++(rev(y),rev(x)),rev(rev(x)) -> x,++(x,nil) -> x,++(nil,y) -> y,++(++(x,y),z) -> ++(x,++(y,z))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.41.trs" :
+TRS {trsSignature = fromList [("0",0),("f",2),("g",2),("nil",0),("norm",1),("rem",2),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [norm(nil) -> 0,norm(g(x,y)) -> s(norm(x)),f(x,nil) -> g(nil,x),f(x,g(y,z)) -> g(f(x,y),z),rem(nil,y) -> nil,rem(g(x,y),0) -> g(x,y),rem(g(x,y),s(z)) -> rem(x,z)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.40.trs" :
+TRS {trsSignature = fromList [("=",2),("false",0),("mem",2),("nil",0),("or",2),("set",1),("true",0),("union",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [or(true,y) -> true,or(x,true) -> true,or(false,false) -> false,mem(x,nil) -> false,mem(x,set(y)) -> =(x,y),mem(x,union(y,z)) -> or(mem(x,y),mem(x,z))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.39.trs" :
+TRS {trsSignature = fromList [("++",2),(".",2),("car",1),("cdr",1),("false",0),("nil",0),("null",1),("rev",1),("true",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [rev(nil) -> nil,rev(.(x,y)) -> ++(rev(y),.(x,nil)),car(.(x,y)) -> x,cdr(.(x,y)) -> y,null(nil) -> true,null(.(x,y)) -> false,++(nil,y) -> y,++(.(x,y),z) -> .(x,++(y,z))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.38.trs" :
+TRS {trsSignature = fromList [("++",2),(".",2),("nil",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [++(nil,y) -> y,++(x,nil) -> x,++(.(x,y),z) -> .(x,++(y,z)),++(++(x,y),z) -> ++(x,++(y,z))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.37.trs" :
+TRS {trsSignature = fromList [("and",3),("band",2),("not",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [and(not(not(x)),y,not(z)) -> and(y,band(x,z),x)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.36.trs" :
+TRS {trsSignature = fromList [("implies",2),("not",1),("or",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [implies(not(x),y) -> or(x,y),implies(not(x),or(y,z)) -> implies(y,or(x,z)),implies(x,or(y,z)) -> or(y,implies(x,z))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.35.trs" :
+TRS {trsSignature = fromList [("and",2),("false",0),("implies",2),("not",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [and(x,false) -> false,and(x,not(false)) -> x,not(not(x)) -> x,implies(false,y) -> not(false),implies(x,false) -> not(x),implies(not(x),not(y)) -> implies(y,and(x,y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.34.trs" :
+TRS {trsSignature = fromList [("false",0),("if",3),("true",0),("u",0),("v",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [if(true,x,y) -> x,if(false,x,y) -> y,if(x,y,y) -> y,if(if(x,y,z),u,v) -> if(x,if(y,u,v),if(z,u,v))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.33.trs" :
+TRS {trsSignature = fromList [("and",2),("not",1),("or",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [or(x,x) -> x,and(x,x) -> x,not(not(x)) -> x,not(and(x,y)) -> or(not(x),not(y)),not(or(x,y)) -> and(not(x),not(y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.32.trs" :
+TRS {trsSignature = fromList [("=",2),("and",2),("false",0),("if",3),("implies",2),("not",1),("or",2),("true",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [not(x) -> if(x,false,true),and(x,y) -> if(x,y,false),or(x,y) -> if(x,true,y),implies(x,y) -> if(x,y,true),=(x,x) -> true,=(x,y) -> if(x,y,not(y)),if(true,x,y) -> x,if(false,x,y) -> y,if(x,x,if(x,false,true)) -> true,=(x,y) -> if(x,y,if(y,false,true))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.31.trs" :
+TRS {trsSignature = fromList [("+",2),("0",0),("false",0),("not",1),("odd",1),("s",1),("true",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [not(true) -> false,not(false) -> true,odd(0) -> false,odd(s(x)) -> not(odd(x)),+(x,0) -> x,+(x,s(y)) -> s(+(x,y)),+(s(x),y) -> s(+(x,y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.30.trs" :
+TRS {trsSignature = fromList [("=",2),("and",2),("implies",2),("not",1),("or",2),("true",0),("xor",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [not(x) -> xor(x,true),implies(x,y) -> xor(and(x,y),xor(x,true)),or(x,y) -> xor(and(x,y),xor(x,y)),=(x,y) -> xor(x,xor(y,true))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.29.trs" :
+TRS {trsSignature = fromList [("0",0),("=",2),("and",2),("divp",2),("false",0),("not",1),("prime",1),("prime1",2),("rem",2),("s",1),("true",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [prime(0) -> false,prime(s(0)) -> false,prime(s(s(x))) -> prime1(s(s(x)),s(x)),prime1(x,0) -> false,prime1(x,s(0)) -> true,prime1(x,s(s(y))) -> and(not(divp(s(s(y)),x)),prime1(x,s(y))),divp(x,y) -> =(rem(x,y),0)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.28.trs" :
+TRS {trsSignature = fromList [("dfib",2),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [dfib(s(s(x)),y) -> dfib(s(x),dfib(x,y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.27.trs" :
+TRS {trsSignature = fromList [("+",2),("0",0),("fib",1),("g",1),("np",1),("pair",2),("s",1),("sp",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [fib(0) -> 0,fib(s(0)) -> s(0),fib(s(s(0))) -> s(0),fib(s(s(x))) -> sp(g(x)),g(0) -> pair(s(0),0),g(s(0)) -> pair(s(0),s(0)),g(s(x)) -> np(g(x)),sp(pair(x,y)) -> +(x,y),np(pair(x,y)) -> pair(+(x,y),x),+(x,0) -> x,+(x,s(y)) -> s(+(x,y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.26.trs" :
+TRS {trsSignature = fromList [("+",2),("0",0),("f",1),("g",1),("h",1),("p",1),("pair",2),("q",1),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(0) -> 0,f(s(0)) -> s(0),f(s(s(x))) -> p(h(g(x))),g(0) -> pair(s(0),s(0)),g(s(x)) -> h(g(x)),h(x) -> pair(+(p(x),q(x)),p(x)),p(pair(x,y)) -> x,q(pair(x,y)) -> y,+(x,0) -> x,+(x,s(y)) -> s(+(x,y)),f(s(s(x))) -> +(p(g(x)),q(g(x))),g(s(x)) -> pair(+(p(g(x)),q(g(x))),p(g(x)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.25.trs" :
+TRS {trsSignature = fromList [("+",2),("0",0),("fib",1),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [fib(0) -> 0,fib(s(0)) -> s(0),fib(s(s(x))) -> +(fib(s(x)),fib(x)),+(x,0) -> x,+(x,s(y)) -> s(+(x,y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.24.trs" :
+TRS {trsSignature = fromList [("+",2),("0",0),("fib",1),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [fib(0) -> 0,fib(s(0)) -> s(0),fib(s(s(x))) -> +(fib(s(x)),fib(x))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.23.trs" :
+TRS {trsSignature = fromList [("*",2),("+",2),("0",0),("1",0),("fac",1),("floop",2),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [fac(0) -> 1,fac(s(x)) -> *(s(x),fac(x)),floop(0,y) -> y,floop(s(x),y) -> floop(x,*(s(x),y)),*(x,0) -> 0,*(x,s(y)) -> +(*(x,y),x),+(x,0) -> x,+(x,s(y)) -> s(+(x,y)),1 -> s(0),fac(0) -> s(0)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.22.trs" :
+TRS {trsSignature = fromList [("*",2),("+",2),("-",2),("0",0),("exp",2),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [exp(x,0) -> s(0),exp(x,s(y)) -> *(x,exp(x,y)),*(0,y) -> 0,*(s(x),y) -> +(y,*(x,y)),-(0,y) -> 0,-(x,0) -> x,-(s(x),s(y)) -> -(x,y)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.21.trs" :
+TRS {trsSignature = fromList [("+",2),("0",0),("bin",2),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [bin(x,0) -> s(0),bin(0,s(y)) -> 0,bin(s(x),s(y)) -> +(bin(x,s(y)),bin(x,y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.20.trs" :
+TRS {trsSignature = fromList [("*",2),("+",2),("0",0),("s",1),("sqr",1),("sum",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [sum(0) -> 0,sum(s(x)) -> +(sqr(s(x)),sum(x)),sqr(x) -> *(x,x),sum(s(x)) -> +(*(s(x),s(x)),sum(x))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.19.trs" :
+TRS {trsSignature = fromList [("+",2),("0",0),("double",1),("s",1),("sqr",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [sqr(0) -> 0,sqr(s(x)) -> +(sqr(x),s(double(x))),double(0) -> 0,double(s(x)) -> s(s(double(x))),+(x,0) -> x,+(x,s(y)) -> s(+(x,y)),sqr(s(x)) -> s(+(sqr(x),double(x)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.18.trs" :
+TRS {trsSignature = fromList [("+",2),("0",0),("s",1),("sum",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [sum(0) -> 0,sum(s(x)) -> +(sum(x),s(x)),+(x,0) -> x,+(x,s(y)) -> s(+(x,y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.17.trs" :
+TRS {trsSignature = fromList [("+",2),("0",0),("s",1),("sum",1),("sum1",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [sum(0) -> 0,sum(s(x)) -> +(sum(x),s(x)),sum1(0) -> 0,sum1(s(x)) -> s(+(sum1(x),+(x,x)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.16.trs" :
+TRS {trsSignature = fromList [("+",2),("0",0),("1",0),("f",1),("g",2),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(0) -> 1,f(s(x)) -> g(x,s(x)),g(0,y) -> y,g(s(x),y) -> g(x,+(y,s(x))),+(x,0) -> x,+(x,s(y)) -> s(+(x,y)),g(s(x),y) -> g(x,s(+(y,x)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.15.trs" :
+TRS {trsSignature = fromList [("+",2),("0",0),("1",0),("f",1),("g",1),("s",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(0) -> 1,f(s(x)) -> g(f(x)),g(x) -> +(x,s(x)),f(s(x)) -> +(f(x),s(f(x)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.14.trs" :
+TRS {trsSignature = fromList [("-",2),("0",0),("double",1),("half",1),("if",3),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [double(0) -> 0,double(s(x)) -> s(s(double(x))),half(0) -> 0,half(s(0)) -> 0,half(s(s(x))) -> s(half(x)),-(x,0) -> x,-(s(x),s(y)) -> -(x,y),if(0,y,z) -> y,if(s(x),y,z) -> z,half(double(x)) -> x], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.13.trs" :
+TRS {trsSignature = fromList [("+",2),("0",0),("double",1),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [double(0) -> 0,double(s(x)) -> s(s(double(x))),+(x,0) -> x,+(x,s(y)) -> s(+(x,y)),+(s(x),y) -> s(+(x,y)),double(x) -> +(x,x)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.12.trs" :
+TRS {trsSignature = fromList [("*",2),("+",2),("0",0),("minus",1),("p",1),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [+(0,y) -> y,+(s(x),y) -> s(+(x,y)),+(p(x),y) -> p(+(x,y)),minus(0) -> 0,minus(s(x)) -> p(minus(x)),minus(p(x)) -> s(minus(x)),*(0,y) -> 0,*(s(x),y) -> +(*(x,y),y),*(p(x),y) -> +(*(x,y),minus(y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.11.trs" :
+TRS {trsSignature = fromList [("+",2),("-",2),("0",0),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [+(0,y) -> y,+(s(x),y) -> s(+(x,y)),-(0,y) -> 0,-(x,0) -> x,-(s(x),s(y)) -> -(x,y)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.10.trs" :
+TRS {trsSignature = fromList [("+",2),("0",0),("1",0),("minus",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [minus(0) -> 0,+(x,0) -> x,+(0,y) -> y,+(minus(1),1) -> 0,minus(minus(x)) -> x,+(x,minus(y)) -> minus(+(minus(x),y)),+(x,+(y,z)) -> +(+(x,y),z),+(minus(+(x,1)),1) -> minus(x)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.09.trs" :
+TRS {trsSignature = fromList [("+",2),("0",0),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [+(0,y) -> y,+(s(x),y) -> s(+(x,y)),+(s(x),y) -> +(x,s(y))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.08.trs" :
+TRS {trsSignature = fromList [("+",2),("a",0),("b",0),("f",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [+(a,b) -> +(b,a),+(a,+(b,z)) -> +(b,+(a,z)),+(+(x,y),z) -> +(x,+(y,z)),f(a,y) -> a,f(b,y) -> b,f(+(x,y),z) -> +(f(x,z),f(y,z))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.07.trs" :
+TRS {trsSignature = fromList [("0",0),("1",0),("2",0),("f",2),("g",2),("i",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(0,y) -> y,f(x,0) -> x,f(i(x),y) -> i(x),f(f(x,y),z) -> f(x,f(y,z)),f(g(x,y),z) -> g(f(x,z),f(y,z)),f(1,g(x,y)) -> x,f(2,g(x,y)) -> y], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.06.trs" :
+TRS {trsSignature = fromList [("*",2),("+",2)], trsVariables = fromList ["u","x","y","z"], trsRMap = [], trsRules = [+(x,+(y,z)) -> +(+(x,y),z),+(*(x,y),+(x,z)) -> *(x,+(y,z)),+(*(x,y),+(*(x,z),u)) -> +(*(x,+(y,z)),u)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.05.trs" :
+TRS {trsSignature = fromList [("*",2),("+",2)], trsVariables = fromList ["u","x","y","z"], trsRMap = [], trsRules = [+(x,+(y,z)) -> +(+(x,y),z),*(x,+(y,z)) -> +(*(x,y),*(x,z)),+(+(x,*(y,z)),*(y,u)) -> +(x,*(y,+(z,u)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.04.trs" :
+TRS {trsSignature = fromList [("+",2),("0",0),("f",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(+(x,0)) -> f(x),+(x,+(y,z)) -> +(+(x,y),z)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.03.trs" :
+TRS {trsSignature = fromList [("f",2),("h",1),("minus",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [minus(minus(x)) -> x,minus(h(x)) -> h(minus(x)),minus(f(x,y)) -> f(minus(y),minus(x))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.02.trs" :
+TRS {trsSignature = fromList [("+",2),("f",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [+(+(x,y),z) -> +(x,+(y,z)),+(f(x),f(y)) -> f(+(x,y)),+(f(x),+(f(y),z)) -> +(f(+(x,y)),z)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\SK90\\2.01.trs" :
+TRS {trsSignature = fromList [("+",2),("0",0),("i",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [i(0) -> 0,+(0,y) -> y,+(x,0) -> x,i(i(x)) -> x,+(i(x),x) -> 0,+(x,i(x)) -> 0,i(+(x,y)) -> +(i(x),i(y)),+(x,+(y,z)) -> +(+(x,y),z),+(+(x,i(y)),y) -> x,+(+(x,y),i(y)) -> x], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}

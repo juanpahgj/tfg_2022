@@ -1,0 +1,21 @@
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\cariboo\\tricky1.trs" :
+TRS {trsSignature = fromList [("0",0),("f",2),("g",1),("p",1),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(g(x),g(y)) -> f(p(f(g(x),s(y))),g(s(p(x)))),p(0) -> g(0),g(s(p(x))) -> p(x)], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\cariboo\\ex6.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2),("g",1),("i",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,x) -> f(i(x),g(g(x))),f(x,y) -> x,g(x) -> i(x),f(x,i(x)) -> f(x,x),f(i(x),i(g(x))) -> a], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\cariboo\\ex5.trs" :
+TRS {trsSignature = fromList [("a",0),("f",1),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x) -> g(f(x)),g(f(x)) -> x,g(x) -> a], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\cariboo\\ex4.trs" :
+TRS {trsSignature = fromList [("a",0),("f",1),("h",1),("i",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(h(x)) -> f(i(x)),f(i(x)) -> a,i(x) -> h(x)], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\cariboo\\ex3.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1),("g",1),("s",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(g(a)) -> f(s(g(b))),f(f(x)) -> b,g(x) -> f(g(x))], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\cariboo\\ex2.trs" :
+TRS {trsSignature = fromList [("big",0),("cons",2),("inf",1),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [cons(x,cons(y,z)) -> big,inf(x) -> cons(x,inf(s(x)))], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\cariboo\\ex1.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(g(a)) -> a,f(f(x)) -> b,g(x) -> f(g(x))], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = False}

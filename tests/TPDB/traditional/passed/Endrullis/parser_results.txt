@@ -1,0 +1,39 @@
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Endrullis\\quadruple2.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1),("p",2)], trsVariables = fromList ["x0","x1","x2","x3"], trsRMap = [], trsRules = [p(p(b(a(x0)),x1),p(x2,x3)) -> p(p(b(x2),a(a(b(x1)))),p(x3,x0))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Endrullis\\quadruple1.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1),("p",2)], trsVariables = fromList ["x0","x1","x2","x3"], trsRMap = [], trsRules = [p(p(b(a(x0)),x1),p(x2,x3)) -> p(p(x3,a(x2)),p(b(a(x1)),b(x0)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Endrullis\\pair3swap.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1),("p",2)], trsVariables = fromList ["x0","x1","x2","x3"], trsRMap = [], trsRules = [p(a(a(x0)),p(x1,p(a(x2),x3))) -> p(x2,p(a(a(b(x1))),p(a(a(x0)),x3)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Endrullis\\pair3rotate.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1),("p",2)], trsVariables = fromList ["x0","x1","x2","x3"], trsRMap = [], trsRules = [p(a(x0),p(b(x1),p(a(x2),x3))) -> p(x2,p(a(a(x0)),p(b(x1),x3)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Endrullis\\pair3hard.trs" :
+TRS {trsSignature = fromList [("a",1),("p",2)], trsVariables = fromList ["x0","x1","x2","x3"], trsRMap = [], trsRules = [p(a(x0),p(x1,p(x2,x3))) -> p(x1,p(x0,p(a(x3),x3)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Endrullis\\pair2simple2.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1),("p",2)], trsVariables = fromList ["x0","x1","x2"], trsRMap = [], trsRules = [p(a(x0),p(a(a(a(x1))),x2)) -> p(a(x2),p(a(a(b(x0))),x2))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Endrullis\\pair2simple1.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1),("p",2)], trsVariables = fromList ["x0","x1","x2"], trsRMap = [], trsRules = [p(a(x0),p(a(b(x1)),x2)) -> p(a(b(a(x2))),p(a(a(x1)),x2))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Endrullis\\pair2hard.trs" :
+TRS {trsSignature = fromList [("a",1),("b",1),("p",2)], trsVariables = fromList ["x0","x1","x2"], trsRMap = [], trsRules = [p(a(x0),p(b(a(x1)),x2)) -> p(x1,p(a(b(a(x1))),x2)),a(b(a(x0))) -> b(a(b(x0)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Endrullis\\linear2.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(a,f(a,f(a,f(x,b)))) -> f(f(a,f(a,f(a,x))),b),f(f(f(a,x),b),b) -> f(f(a,f(f(x,b),b)),b)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Endrullis\\linear1.trs" :
+TRS {trsSignature = fromList [("a",1),("b",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a(a(f(b,a(x)))) -> f(a(a(a(x))),b),a(a(x)) -> f(b,a(f(a(x),b))),f(a(x),b) -> f(b,a(x))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Endrullis\\labeling.trs" :
+TRS {trsSignature = fromList [("a",0),("f",3)], trsVariables = fromList ["w","x","y","z"], trsRMap = [], trsRules = [f(f(x,y,a),z,w) -> f(z,w,f(y,x,z))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Endrullis\\ijcar2006.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",3),("g",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(a,g(y),z) -> f(a,y,g(y)),f(b,g(y),z) -> f(a,y,z),f(x,y,z) ->= f(x,y,g(z)),a -> b], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Endrullis\\direct.trs" :
+TRS {trsSignature = fromList [("0",0),("c",2),("h",2),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [h(x,c(y,z)) -> h(c(s(y),x),z),h(c(s(x),c(s(0),y)),z) -> h(y,c(s(0),c(x,z)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}

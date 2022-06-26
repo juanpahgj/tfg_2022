@@ -1,0 +1,15 @@
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Ste92\\perfect2.trs" :
+TRS {trsSignature = fromList [("0",0),("f",4),("false",0),("if",3),("le",2),("minus",2),("perfectp",1),("s",1),("true",0)], trsVariables = fromList ["u","x","y","z"], trsRMap = [], trsRules = [minus(0,y) -> 0,minus(s(x),0) -> s(x),minus(s(x),s(y)) -> minus(x,y),le(0,y) -> true,le(s(x),0) -> false,le(s(x),s(y)) -> le(x,y),if(true,x,y) -> x,if(false,x,y) -> y,perfectp(0) -> false,perfectp(s(x)) -> f(x,s(0),s(x),s(x)),f(0,y,0,u) -> true,f(0,y,s(z),u) -> false,f(s(x),0,z,u) -> f(x,u,minus(z,s(x)),u),f(s(x),s(y),z,u) -> if(le(x,y),f(s(x),minus(y,x),z,u),f(x,u,z,u))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Ste92\\perfect.trs" :
+TRS {trsSignature = fromList [("0",0),("f",4),("false",0),("if",3),("le",2),("minus",2),("perfectp",1),("s",1),("true",0)], trsVariables = fromList ["u","x","y","z"], trsRMap = [], trsRules = [perfectp(0) -> false,perfectp(s(x)) -> f(x,s(0),s(x),s(x)),f(0,y,0,u) -> true,f(0,y,s(z),u) -> false,f(s(x),0,z,u) -> f(x,u,minus(z,s(x)),u),f(s(x),s(y),z,u) -> if(le(x,y),f(s(x),minus(y,x),z,u),f(x,u,z,u))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Ste92\\motivation.trs" :
+TRS {trsSignature = fromList [("f",2),("g",1),("h",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [g(h(g(x))) -> g(x),g(g(x)) -> g(h(g(x))),h(h(x)) -> h(f(h(x),x))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Ste92\\minsort.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("del",2),("eq",2),("false",0),("if",3),("le",2),("min",2),("minsort",1),("nil",0),("s",1),("true",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [le(0,y) -> true,le(s(x),0) -> false,le(s(x),s(y)) -> le(x,y),eq(0,0) -> true,eq(0,s(y)) -> false,eq(s(x),0) -> false,eq(s(x),s(y)) -> eq(x,y),if(true,x,y) -> x,if(false,x,y) -> y,minsort(nil) -> nil,minsort(cons(x,y)) -> cons(min(x,y),minsort(del(min(x,y),cons(x,y)))),min(x,nil) -> x,min(x,cons(y,z)) -> if(le(x,y),min(x,z),min(y,z)),del(x,nil) -> nil,del(x,cons(y,z)) -> if(eq(x,y),z,cons(y,del(x,z)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\Ste92\\hydra.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("copy",3),("f",1),("n",0),("nil",0),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(cons(nil,y)) -> y,f(cons(f(cons(nil,y)),z)) -> copy(n,y,z),copy(0,y,z) -> f(z),copy(s(x),y,z) -> copy(x,y,cons(f(y),z))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}

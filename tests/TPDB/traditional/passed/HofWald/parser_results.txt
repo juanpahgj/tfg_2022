@@ -1,0 +1,21 @@
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\HofWald\\7.trs" :
+TRS {trsSignature = fromList [("f",2),("j",0)], trsVariables = fromList ["a","b","c","d"], trsRMap = [], trsRules = [f(f(f(f(j,a),b),c),d) -> f(f(a,b),f(f(a,d),c))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\HofWald\\6.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(f(a,x),y) -> f(f(x,f(a,y)),a)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\HofWald\\5.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x,f(a,a)) -> f(f(x,a),x)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\HofWald\\4.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,f(a,y)) -> f(f(y,f(f(a,a),a)),x)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\HofWald\\3.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x,f(f(f(a,a),a),a)) -> f(f(x,a),x)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\HofWald\\2.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(a,f(f(a,a),x)) -> f(f(a,a),f(a,f(a,x)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\HofWald\\1.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(a,f(a,x)) -> f(a,f(x,f(f(a,a),a)))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}

@@ -1,0 +1,15 @@
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\LJB01\\jones6.trs" :
+TRS {trsSignature = fromList [("cons",2),("empty",0),("f",2),("g",2)], trsVariables = fromList ["a","d","k","x"], trsRMap = [], trsRules = [f(a,empty) -> g(a,empty),f(a,cons(x,k)) -> f(cons(x,a),k),g(empty,d) -> d,g(cons(x,k),d) -> g(k,cons(x,d))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\LJB01\\jones5.trs" :
+TRS {trsSignature = fromList [("cons",2),("empty",0),("f",2)], trsVariables = fromList ["a","k","x","y"], trsRMap = [], trsRules = [f(x,empty) -> x,f(empty,cons(a,k)) -> f(cons(a,k),k),f(cons(a,k),y) -> f(y,k)], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\LJB01\\jones4.trs" :
+TRS {trsSignature = fromList [("0",0),("p",3),("s",1)], trsVariables = fromList ["m","n","r"], trsRMap = [], trsRules = [p(m,n,s(r)) -> p(m,r,n),p(m,s(n),0) -> p(0,n,m),p(m,0,0) -> m], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\LJB01\\jones2.trs" :
+TRS {trsSignature = fromList [("cons",2),("empty",0),("f",2),("g",3)], trsVariables = fromList ["a","b","c","k","l","x"], trsRMap = [], trsRules = [f(empty,l) -> l,f(cons(x,k),l) -> g(k,l,cons(x,k)),g(a,b,c) -> f(a,cons(b,c))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\TPDB\\traditional\\passed\\LJB01\\jones1.trs" :
+TRS {trsSignature = fromList [("cons",2),("empty",0),("r1",2),("rev",1)], trsVariables = fromList ["a","k","ls","x"], trsRMap = [], trsRules = [rev(ls) -> r1(ls,empty),r1(empty,a) -> a,r1(cons(x,k),a) -> r1(k,cons(x,a))], trsType = TRSStandard, trsStrategy = Nothing, signatureBlock = False}
