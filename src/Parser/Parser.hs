@@ -327,17 +327,17 @@ checkSignatures (s:ss) = do { result <- checkSignature s
                                 Right _ -> checkSignatures ss
                             }
 
-checkSignature (S id arity) = do { myTRS <- get
-                                 ; let vars = trsVariables myTRS
-                                 ; let funcs = trsSignature myTRS
-                                 ; case (S.member id vars, M.lookup id funcs) of 
-                                      (False, Nothing) -> do { put $ myTRS { trsSignature = M.insert id arity $ funcs }
-                                                             ; return . Right $ ()
-                                                             }
-                                      _ -> return . Left $ newErrorMessage (UnExpect $ "symbol " ++ id ++ " with arity " ++ (show arity) ++ " already declared ") (newPos "" 0 0)
-                                      -- (False, Just len) -> return . Left $ newErrorMessage (UnExpect $ "symbol " ++ id ++ " with arity " ++ (show arity) ++ " already declared ") (newPos "" 0 0)
-                                      -- _ -> return . Left $ newErrorMessage (UnExpect $ "symbols declaration in variables " ++ id) (newPos "" 0 0)
-                                 }
+checkSignature (S id arity) = 
+     do { myTRS <- get
+        ; let vars = trsVariables myTRS
+        ; let funcs = trsSignature myTRS
+        ; case (S.member id vars, M.lookup id funcs) of 
+            (False, Nothing) -> do { put $ myTRS { trsSignature = M.insert id arity $ funcs }
+                                    ; return . Right $ ()
+                                    }
+            (False, Just len) -> return . Left $ newErrorMessage (UnExpect $ "symbol " ++ id ++ " with arity " ++ (show arity) ++ " already in signature ") (newPos "" 0 0)
+            _ -> return . Left $ newErrorMessage (UnExpect $ "symbol declaration in variables " ++ id) (newPos "" 0 0)
+        }
 {-
   checkSignature (S id arity) = do { myTRS <- get
                                           ; let funcs = trsSignature myTRS
@@ -350,24 +350,26 @@ checkSignature (S id arity) = do { myTRS <- get
                                               _ -> return . Left $ newErrorMessage (UnExpect $ "signature of function not in rules " ++ id) (newPos "" 0 0)
                                           }
 -}   
-checkSignature (Sth id arity _) = do  { myTRS <- get
-                                      ; let vars = trsVariables myTRS
-                                      ; let funcs = trsSignature myTRS
-                                      ; case (S.member id vars, M.lookup id funcs) of 
-                                          (False, Nothing) -> do { case trsType myTRS of
-                                                                        TRSStandard -> do { put $ myTRS {trsSignature = M.insert id arity $ funcs
-                                                                                                        , trsType = TRSEquational
-                                                                                                        }
-                                                                                          ; return . Right $ ()
-                                                                                          }
-                                                                        TRSEquational -> do { put $ myTRS {trsSignature = M.insert id arity $ funcs}
-                                                                                            ; return . Right $ ()
-                                                                                            }
-                                                                        _ -> return . Left $ newErrorMessage (UnExpect $ "found theory in non equational type") (newPos "" 0 0)
-                                                                 }
-                                          (False, Just len) -> return . Left $ newErrorMessage (UnExpect $ "symbol " ++ id ++ " with arity " ++ (show arity) ++ " already in signature ") (newPos "" 0 0)
-                                          _ -> return . Left $ newErrorMessage (UnExpect $ "symbols declaration in variables " ++ id) (newPos "" 0 0)
-                                      }
+checkSignature (Sth id arity _) = 
+     do { myTRS <- get
+        ; let vars = trsVariables myTRS
+        ; let funcs = trsSignature myTRS
+        ; case (S.member id vars, M.lookup id funcs) of 
+            (False, Nothing) -> 
+                  do { case trsType myTRS of
+                          TRSStandard -> do { put $ myTRS {trsSignature = M.insert id arity $ funcs
+                                                          , trsType = TRSEquational
+                                                          }
+                                            ; return . Right $ ()
+                                            }
+                          TRSEquational -> do { put $ myTRS {trsSignature = M.insert id arity $ funcs}
+                                              ; return . Right $ ()
+                                              }
+                          _ -> return . Left $ newErrorMessage (UnExpect $ "found theory in non equational type") (newPos "" 0 0)
+                                    }
+            (False, Just len) -> return . Left $ newErrorMessage (UnExpect $ "symbol " ++ id ++ " with arity " ++ (show arity) ++ " already in signature ") (newPos "" 0 0)
+            _ -> return . Left $ newErrorMessage (UnExpect $ "symbols declaration in variables " ++ id) (newPos "" 0 0)
+        }
 {-                                                                                                                
   checkSignature (Sth id arity _) = do { myTRS <- get
                                           ; let funcs = trsSignature myTRS
@@ -389,27 +391,28 @@ checkSignature (Sth id arity _) = do  { myTRS <- get
                                               _ -> return . Left $ newErrorMessage (UnExpect $ "signature of function not in rules " ++ id) (newPos "" 0 0)
                                           }
 -}
-checkSignature (Srp id arity intlist) = do { myTRS <- get
-                                           ; let vars = trsVariables myTRS
-                                           ; let funcs = trsSignature myTRS
-                                           ; let rmap = ((id, intlist):(trsRMap myTRS))
-                                           ; case trsType myTRS of
-                                                TRSEquational -> return . Left $ newErrorMessage (UnExpect $ "found theory in non equational type") (newPos "" 0 0)
-                                                _ -> do{put $ myTRS { trsRMap = rmap
-                                                                     , trsType = case trsType myTRS of
-                                                                                    TRSStandard -> TRSContextSensitive
-                                                                                    TRSConditional typ -> TRSContextSensitiveConditional typ
-                                                                                    TRSContextSensitive -> TRSContextSensitive
-                                                                                    TRSContextSensitiveConditional typ -> TRSContextSensitiveConditional typ
-                                                                    }
-                                                        ; case (S.member id vars, M.lookup id funcs) of 
-                                                              (False, Nothing) -> do { put $ myTRS { trsSignature = M.insert id arity $ funcs }
-                                                                                     ; return . Right $ ()
-                                                                                     }
-                                                              (False, Just len) -> return . Left $ newErrorMessage (UnExpect $ "symbol " ++ id ++ " with arity " ++ (show arity) ++ " already in signature ") (newPos "" 0 0)
-                                                              _ -> return . Left $ newErrorMessage (UnExpect $ "symbols declaration in variables " ++ id) (newPos "" 0 0)
-                                                                 }
-                                           }
+checkSignature (Srp id arity intlist) = 
+     do { myTRS <- get
+        ; let vars = trsVariables myTRS
+        ; let funcs = trsSignature myTRS
+        ; let rmap = ((id, intlist):(trsRMap myTRS))
+        ; case trsType myTRS of
+            TRSEquational -> return . Left $ newErrorMessage (UnExpect $ "found theory in non equational type") (newPos "" 0 0)
+            _ -> do{put $ myTRS { trsRMap = rmap
+                                  , trsType = case trsType myTRS of
+                                                TRSStandard -> TRSContextSensitive
+                                                TRSConditional typ -> TRSContextSensitiveConditional typ
+                                                TRSContextSensitive -> TRSContextSensitive
+                                                TRSContextSensitiveConditional typ -> TRSContextSensitiveConditional typ
+                                }
+                    ; case (S.member id vars, M.lookup id funcs) of 
+                        (False, Nothing) -> do { put $ myTRS { trsSignature = M.insert id arity $ funcs }
+                                                ; return . Right $ ()
+                                                }
+                        (False, Just len) -> return . Left $ newErrorMessage (UnExpect $ "symbol " ++ id ++ " with arity " ++ (show arity) ++ " already in signature ") (newPos "" 0 0)
+                        _ -> return . Left $ newErrorMessage (UnExpect $ "symbols declaration in variables " ++ id) (newPos "" 0 0)
+                    }
+        }
 {-
   checkSignature (Srp id arity intlist) = do { myTRS <- get
                                             ; let funcs = trsSignature myTRS

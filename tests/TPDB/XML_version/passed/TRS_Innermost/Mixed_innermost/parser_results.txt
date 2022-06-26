@@ -1,0 +1,90 @@
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\wiehe14.xml" :
+TRS {trsSignature = fromList [("0",0),("even",1),("false",0),("gt",2),("half",1),("id",1),("if",3),("if_times",3),("not",1),("plus",2),("s",1),("times",2),("true",0),("zero",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [even(0) -> true,even(s(0)) -> false,even(s(s(x))) -> even(x),half(0) -> 0,half(s(s(x))) -> s(half(x)),plus(s(x),s(y)) -> s(s(plus(if(gt(x,y),x,y),if(not(gt(x,y)),id(x),id(y))))),plus(s(x),x) -> plus(if(gt(x,x),id(x),id(x)),s(x)),plus(zero,y) -> y,plus(id(x),s(y)) -> s(plus(x,if(gt(s(y),y),y,s(y)))),id(x) -> x,if(true,x,y) -> x,if(false,x,y) -> y,not(x) -> if(x,false,true),gt(s(x),zero) -> true,gt(zero,y) -> false,gt(s(x),s(y)) -> gt(x,y),times(0,y) -> 0,times(s(x),y) -> if_times(even(s(x)),s(x),y),if_times(true,s(x),y) -> plus(times(half(s(x)),y),times(half(s(x)),y)),if_times(false,s(x),y) -> plus(y,times(x,y))], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\wiehe13.xml" :
+TRS {trsSignature = fromList [("0",0),("false",0),("gt",2),("id",1),("if",3),("not",1),("plus",2),("quot",3),("s",1),("true",0),("zero",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [quot(0,s(y),s(z)) -> 0,quot(s(x),s(y),z) -> quot(x,y,z),plus(s(x),s(y)) -> s(s(plus(if(gt(x,y),x,y),if(not(gt(x,y)),id(x),id(y))))),plus(s(x),x) -> plus(if(gt(x,x),id(x),id(x)),s(x)),plus(zero,y) -> y,plus(id(x),s(y)) -> s(plus(x,if(gt(s(y),y),y,s(y)))),id(x) -> x,if(true,x,y) -> x,if(false,x,y) -> y,not(x) -> if(x,false,true),gt(s(x),zero) -> true,gt(zero,y) -> false,gt(s(x),s(y)) -> gt(x,y),quot(x,0,s(z)) -> s(quot(x,plus(z,s(0)),s(z)))], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\tricky1.xml" :
+TRS {trsSignature = fromList [("0",0),("f",2),("g",1),("p",1),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(g(x),g(y)) -> f(p(f(g(x),s(y))),g(s(p(x)))),p(0) -> g(0),g(s(p(x))) -> p(x)], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\toyama.xml" :
+TRS {trsSignature = fromList [("0",0),("1",0),("f",3),("g",2)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [f(0,1,X) -> f(X,X,X),g(X,Y) -> X,g(X,Y) -> Y], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\thiemann28i.xml" :
+TRS {trsSignature = fromList [("0",0),("div",2),("div_by_zero",0),("false",0),("ge",2),("id_inc",1),("if",4),("minus",2),("s",1),("true",0)], trsVariables = fromList ["b","x","y"], trsRMap = [], trsRules = [ge(x,0) -> true,ge(0,s(y)) -> false,ge(s(x),s(y)) -> ge(x,y),minus(x,0) -> x,minus(0,y) -> 0,minus(s(x),s(y)) -> minus(x,y),id_inc(x) -> x,id_inc(x) -> s(x),div(x,y) -> if(ge(y,s(0)),ge(x,y),x,y),if(false,b,x,y) -> div_by_zero,if(true,false,x,y) -> 0,if(true,true,x,y) -> id_inc(div(minus(x,y),y))], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\thiemann26i.xml" :
+TRS {trsSignature = fromList [("0",0),("div",3),("div_by_zero",0),("false",0),("ge",2),("id_inc",1),("if",5),("minus",2),("quot",2),("s",1),("true",0)], trsVariables = fromList ["b","x","y","z"], trsRMap = [], trsRules = [ge(x,0) -> true,ge(0,s(y)) -> false,ge(s(x),s(y)) -> ge(x,y),minus(x,0) -> x,minus(0,y) -> 0,minus(s(x),s(y)) -> minus(x,y),id_inc(x) -> x,id_inc(x) -> s(x),quot(x,y) -> div(x,y,0),div(x,y,z) -> if(ge(y,s(0)),ge(x,y),x,y,z),if(false,b,x,y,z) -> div_by_zero,if(true,false,x,y,z) -> z,if(true,true,x,y,z) -> div(minus(x,y),y,id_inc(z))], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\test9.xml" :
+TRS {trsSignature = fromList [("0",0),("1",0),("f",3),("g",2),("h",2)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [f(0,1,X) -> h(X,X),h(0,X) -> f(0,X,X),g(X,Y) -> X,g(X,Y) -> Y], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\test833.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",2)], trsVariables = fromList ["X"], trsRMap = [], trsRules = [f(X,X) -> f(a,b),b -> c], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\test830.xml" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("f",1),("g",1),("h",1),("s",1)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [f(s(X)) -> f(X),g(cons(0,Y)) -> g(Y),g(cons(s(X),Y)) -> s(X),h(cons(X,Y)) -> h(g(cons(X,Y)))], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\test77.xml" :
+TRS {trsSignature = fromList [("+",2),("0",0),("double",1),("f",3),("g",2),("s",1)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [+(X,0) -> X,+(X,s(Y)) -> s(+(X,Y)),double(X) -> +(X,X),f(0,s(0),X) -> f(X,double(X),X),g(X,Y) -> X,g(X,Y) -> Y], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\test76.xml" :
+TRS {trsSignature = fromList [("+",2),("0",0),("f",3),("g",2),("s",1)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [+(X,0) -> X,+(X,s(Y)) -> s(+(X,Y)),f(0,s(0),X) -> f(X,+(X,X),X),g(X,Y) -> X,g(X,Y) -> Y], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\test75.xml" :
+TRS {trsSignature = fromList [("0",0),("1",0),("f",3),("g",2)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [f(0,1,X) -> f(g(X,X),X,X),g(X,Y) -> X,g(X,Y) -> Y], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\test10.xml" :
+TRS {trsSignature = fromList [("0",0),("f",3),("g",2),("h",2),("s",1)], trsVariables = fromList ["X","Y","Z"], trsRMap = [], trsRules = [h(X,Z) -> f(X,s(X),Z),f(X,Y,g(X,Y)) -> h(0,g(X,Y)),g(0,Y) -> 0,g(X,s(Y)) -> g(X,Y)], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\run_again2.xml" :
+TRS {trsSignature = fromList [("0",0),("2",0),("div_rat",2),("eq_nat",2),("eq_rat",2),("false",0),("if_approx",3),("init",0),("minus_nat",2),("non_zero_nat",1),("non_zero_rat",1),("pair",2),("plus",2),("plus_rat",2),("run_again",1),("s",1),("sqrt2",1),("times",2),("times_rat",2),("true",0)], trsVariables = fromList ["a","b","c","d","r","x","y"], trsRMap = [], trsRules = [plus(0,y) -> y,plus(s(x),y) -> s(plus(x,y)),times(0,y) -> 0,times(s(x),y) -> plus(y,times(x,y)),eq_nat(0,s(y)) -> false,eq_nat(0,0) -> true,eq_nat(s(x),s(y)) -> eq_nat(x,y),eq_nat(s(x),0) -> false,eq_rat(pair(a,b),pair(c,d)) -> eq_nat(times(a,d),times(b,c)),div_rat(pair(a,b),pair(c,d)) -> pair(times(a,d),times(b,c)),times_rat(pair(a,b),pair(c,d)) -> pair(times(a,c),times(b,d)),plus_rat(pair(a,b),pair(c,d)) -> pair(plus(times(a,d),times(c,b)),times(b,d)),non_zero_rat(pair(a,b)) -> non_zero_nat(times(a,b)),non_zero_nat(s(0)) -> true,non_zero_nat(0) -> false,non_zero_nat(s(s(x))) -> non_zero_nat(s(x)),2 -> pair(s(s(0)),s(0)),minus_nat(s(x),s(y)) -> minus_nat(x,y),sqrt2(r) -> if_approx(non_zero_rat(r),eq_rat(2,times_rat(r,r)),r),if_approx(true,true,r) -> r,if_approx(true,false,r) -> sqrt2(div_rat(plus_rat(r,div_rat(2,r)),2)),init -> sqrt2(2),run_again(x) -> run_again(init)], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\run_again1.xml" :
+TRS {trsSignature = fromList [("0",0),("ack",2),("init",0),("run_again",1),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [ack(0,y) -> s(y),ack(s(x),0) -> ack(x,s(0)),ack(s(x),s(y)) -> ack(x,ack(s(x),y)),init -> ack(s(s(s(s(s(s(s(0))))))),0),run_again(x) -> run_again(init)], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\narrow2.xml" :
+TRS {trsSignature = fromList [("0",0),("2",0),("aa",0),("cc",2),("div_rat",2),("eq_nat",2),("eq_rat",2),("f",1),("false",0),("if_approx",3),("init",0),("minus_nat",2),("non_zero_nat",1),("non_zero_rat",1),("pair",2),("plus",2),("plus_rat",2),("s",1),("sqrt2",1),("times",2),("times_rat",2),("true",0)], trsVariables = fromList ["a","b","c","d","r","x","y"], trsRMap = [], trsRules = [plus(0,y) -> y,plus(s(x),y) -> s(plus(x,y)),times(0,y) -> 0,times(s(x),y) -> plus(y,times(x,y)),eq_nat(0,s(y)) -> false,eq_nat(0,0) -> true,eq_nat(s(x),s(y)) -> eq_nat(x,y),eq_nat(s(x),0) -> false,eq_rat(pair(a,b),pair(c,d)) -> eq_nat(times(a,d),times(b,c)),div_rat(pair(a,b),pair(c,d)) -> pair(times(a,d),times(b,c)),times_rat(pair(a,b),pair(c,d)) -> pair(times(a,c),times(b,d)),plus_rat(pair(a,b),pair(c,d)) -> pair(plus(times(a,d),times(c,b)),times(b,d)),non_zero_rat(pair(a,b)) -> non_zero_nat(times(a,b)),non_zero_nat(s(0)) -> true,non_zero_nat(0) -> false,non_zero_nat(s(s(x))) -> non_zero_nat(s(x)),2 -> pair(s(s(0)),s(0)),minus_nat(s(x),s(y)) -> minus_nat(x,y),sqrt2(r) -> if_approx(non_zero_rat(r),eq_rat(2,times_rat(r,r)),r),if_approx(true,true,r) -> r,if_approx(true,false,r) -> sqrt2(div_rat(plus_rat(r,div_rat(2,r)),2)),init -> sqrt2(2),cc(x,y) -> x,cc(x,y) -> y,f(aa) -> f(cc(aa,init))], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\narrow1.xml" :
+TRS {trsSignature = fromList [("0",0),("aa",0),("ack",2),("cc",2),("f",1),("init",0),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [ack(0,y) -> s(y),ack(s(x),0) -> ack(x,s(0)),ack(s(x),s(y)) -> ack(x,ack(s(x),y)),init -> ack(s(s(s(s(s(s(s(0))))))),0),cc(x,y) -> x,cc(x,y) -> y,f(aa) -> f(cc(aa,init))], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\n001.xml" :
+TRS {trsSignature = fromList [("f",1),("g",1),("h",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [h(f(f(x))) -> h(f(g(f(x)))),f(g(f(x))) -> f(f(x))], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\muladd.xml" :
+TRS {trsSignature = fromList [("*",2),("+",2),("0",0),("1",0)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [*(X,+(Y,1)) -> +(*(X,+(Y,*(1,0))),X),*(X,1) -> X,*(X,0) -> X,*(X,0) -> 0], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\innermost5.xml" :
+TRS {trsSignature = fromList [("0",0),("a",0),("b",0),("f",3),("g",1),("h",1),("i",1),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(s(x),y,b) -> f(g(h(x)),y,i(y)),g(h(x)) -> g(x),g(s(x)) -> s(x),g(0) -> s(0),h(0) -> a,i(0) -> b,i(s(y)) -> i(y)], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\innermost4.xml" :
+TRS {trsSignature = fromList [("a",1),("b",0),("c",0),("f",4),("g",4),("h",4),("s",1)], trsVariables = fromList ["u","x","y","z"], trsRMap = [], trsRules = [f(a(x),y,s(z),u) -> f(a(b),y,z,g(x,y,s(z),u)),g(x,y,z,u) -> h(x,y,z,u),h(b,y,z,u) -> f(y,y,z,u),a(b) -> c], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\innermost3.xml" :
+TRS {trsSignature = fromList [("a",1),("b",0),("c",0),("f",2),("g",2),("h",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(a(x),y) -> g(x,y),g(x,y) -> h(x,y),h(b,y) -> f(y,y),a(b) -> c], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\innermost2.xml" :
+TRS {trsSignature = fromList [("a",1),("b",0),("c",0),("d",0),("f",1),("g",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [g(c,g(a(x),y)) -> g(f(a(b)),g(a(y),x)),f(a(x)) -> c,a(b) -> d], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\innermost1.xml" :
+TRS {trsSignature = fromList [("a",1),("b",0),("c",0),("f",2),("g",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(a(x),y) -> g(x,y),g(b,y) -> f(y,y),a(b) -> c], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\gkg.xml" :
+TRS {trsSignature = fromList [("0",0),("1",0),("f",2),("g",1)], trsVariables = fromList ["X"], trsRMap = [], trsRules = [f(X,g(X)) -> f(1,g(X)),g(1) -> g(0)], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\cade13.xml" :
+TRS {trsSignature = fromList [("0",0),("cond",4),("d",3),("div",2),("false",0),("ge",2),("plus",2),("s",1),("true",0)], trsVariables = fromList ["m","n","u","v","x","y","z"], trsRMap = [], trsRules = [div(x,s(y)) -> d(x,s(y),0),d(x,s(y),z) -> cond(ge(x,z),x,y,z),cond(true,x,y,z) -> s(d(x,s(y),plus(s(y),z))),cond(false,x,y,z) -> 0,ge(u,0) -> true,ge(0,s(v)) -> false,ge(s(u),s(v)) -> ge(u,v),plus(n,0) -> n,plus(n,s(m)) -> s(plus(n,m)),plus(plus(n,m),u) -> plus(n,plus(m,u))], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\cade12.xml" :
+TRS {trsSignature = fromList [("0",0),("and",2),("double",1),("f",3),("false",0),("gt",2),("plus",2),("s",1),("true",0)], trsVariables = fromList ["m","n","u","v","x","y"], trsRMap = [], trsRules = [f(true,x,y) -> f(and(gt(x,y),gt(y,s(s(0)))),plus(s(0),x),double(y)),gt(0,v) -> false,gt(s(u),0) -> true,gt(s(u),s(v)) -> gt(u,v),and(x,true) -> x,and(x,false) -> false,plus(n,0) -> n,plus(n,s(m)) -> s(plus(n,m)),plus(plus(n,m),u) -> plus(n,plus(m,u)),double(0) -> 0,double(s(x)) -> s(s(double(x)))], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\cade05.xml" :
+TRS {trsSignature = fromList [("0",0),("cond",3),("equal",2),("false",0),("min",2),("minus",2),("s",1),("true",0)], trsVariables = fromList ["u","v","x","y"], trsRMap = [], trsRules = [minus(x,x) -> 0,minus(x,y) -> cond(equal(min(x,y),y),x,y),cond(true,x,y) -> s(minus(x,s(y))),min(0,v) -> 0,min(u,0) -> 0,min(s(u),s(v)) -> s(min(u,v)),equal(0,0) -> true,equal(s(x),0) -> false,equal(0,s(y)) -> false,equal(s(x),s(y)) -> equal(x,y)], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\cade04.xml" :
+TRS {trsSignature = fromList [("0",0),("cond",3),("min",2),("minus",2),("s",1)], trsVariables = fromList ["u","v","x","y"], trsRMap = [], trsRules = [minus(x,x) -> 0,minus(x,y) -> cond(min(x,y),x,y),cond(y,x,y) -> s(minus(x,s(y))),min(0,v) -> 0,min(u,0) -> 0,min(s(u),s(v)) -> s(min(u,v))], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Innermost\\Mixed_innermost\\bn111.xml" :
+TRS {trsSignature = fromList [("f",2)], trsVariables = fromList ["X","Y","Z"], trsRMap = [], trsRules = [f(f(X,Y),Z) -> f(X,f(Y,Z)),f(X,f(Y,Z)) -> f(Y,Y)], trsType = TRSStandard, trsStrategy = Just INNERMOST, signatureBlock = True}
