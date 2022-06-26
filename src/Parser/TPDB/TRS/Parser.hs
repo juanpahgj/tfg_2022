@@ -21,7 +21,7 @@ import Control.Monad (liftM)
 
 -- |parse TRS specification
 trsParser :: Parser Spec
-trsParser = liftM Spec (many (whiteSpace >> parens decl))
+trsParser = liftM Spec (many1 (whiteSpace >> parens decl))
 --trsParser = liftM Spec (many1 (whiteSpace >> parens decl))
 
 -- | A declaration is form by a set of variables, a theory, a set of

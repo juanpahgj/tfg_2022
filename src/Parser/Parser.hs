@@ -134,8 +134,8 @@ checkXMLDeclaration _ (Comment _) = Left $ newErrorMessage (UnExpect "COMMENT bl
 -- | Checks declaration order for COPS
 checkCOPSDeclaration :: Either ParseError Spec -> Decl -> Either ParseError Spec
 checkCOPSDeclaration (Left parseError) _ = Left parseError
---checkCOPSDeclaration (Right (Spec [])) (CType ctype) = Right . Spec $ [CType ctype]
 checkCOPSDeclaration (Right (Spec [])) (Var vs) = Right . Spec $ [Var vs]
+checkCOPSDeclaration (Right (Spec [])) (CType ctype) = Right . Spec $ [CType ctype]
 checkCOPSDeclaration (Right (Spec [])) (Context rmap) = Right . Spec $ [Context rmap]
 checkCOPSDeclaration (Right (Spec [])) (Rules rs) = Right . Spec $ [Rules rs]
 checkCOPSDeclaration (Right (Spec [CType ctype])) (Var vs) = Right . Spec $ [Var vs, CType ctype]
@@ -143,12 +143,16 @@ checkCOPSDeclaration (Right (Spec [CType ctype])) (Context rmap) = Right . Spec 
 checkCOPSDeclaration (Right (Spec [CType ctype])) (Rules rs) = Right . Spec $ [Rules rs, CType ctype]
 checkCOPSDeclaration (Right (Spec (Var vs:rest))) (Context rmap) = Right . Spec $ (Context rmap:Var vs:rest)
 checkCOPSDeclaration (Right (Spec (Var vs:rest))) (Rules rs) = Right . Spec $ (Rules rs:Var vs:rest)
+checkCOPSDeclaration (Right (Spec (Var vs:rest))) (CType ctype) = Right . Spec $ (CType ctype:Var vs:rest)
 checkCOPSDeclaration (Right (Spec (Context rmap:rest))) (Rules rs) = Right . Spec $ (Rules rs:Context rmap:rest)
+checkCOPSDeclaration (Right (Spec (Rules rs:rest))) (Signature sg) = Right . Spec $ (Signature sg:Rules rs:rest)
 checkCOPSDeclaration (Right (Spec (Rules rs:rest))) (Comment c) = Right . Spec $ (Comment c:Rules rs:rest)
+checkCOPSDeclaration (Right (Spec (Signature sg:rest))) (Comment c) = Right . Spec $ (Comment c:Signature sg:rest)
 checkCOPSDeclaration _ (CType _) = Left $ newErrorMessage (UnExpect "CONDITIONTYPE block") (newPos "" 0 0)
 checkCOPSDeclaration _ (Var _) = Left $ newErrorMessage (UnExpect "VAR block") (newPos "" 0 0)
 checkCOPSDeclaration _ (Context _) = Left $ newErrorMessage (UnExpect "REPLACEMENT-MAP block") (newPos "" 0 0)
 checkCOPSDeclaration _ (Rules _) = Left $ newErrorMessage (UnExpect "RULES block") (newPos "" 0 0)
+checkCOPSDeclaration _ (Signature _) = Left $ newErrorMessage (UnExpect "SIGNATURE block") (newPos "" 0 0)
 checkCOPSDeclaration _ (Comment _) = Left $ newErrorMessage (UnExpect "COMMENT block") (newPos "" 0 0)
 
 
@@ -426,18 +430,22 @@ checkTerm (XTerm (Tvar id)) = do { myTRS <- get
 -- | Checks if the replacement map satisfies arity restriction and increasing order
 checkRMap :: [(Id, [Int])] -> State TRS (Either ParseError ())
 checkRMap [] = return . Right $ ()
+checkRMap ((f,[]):rmaps) =checkRMap rmaps
+{-
 checkRMap ((f,[]):rmaps) = do { myTRS <- get 
                               ; case M.lookup f (trsSignature myTRS) of 
-                                  Nothing -> return . Left $ newErrorMessage (UnExpect $ "function symbol " ++ f ++ " in replacement map (the symbol does not appear in rules)") (newPos "" 0 0)
                                   Just arity -> checkRMap rmaps 
+                                  Nothing -> return . Left $ newErrorMessage (UnExpect $ "function symbol " ++ f ++ " in replacement map (the symbol does not appear in rules)") (newPos "" 0 0)
                               }
+-}
 checkRMap ((f,rmap):rmaps) = do { myTRS <- get 
-                                ; case M.lookup f (trsSignature myTRS) of 
-                                    Nothing -> return . Left $ newErrorMessage (UnExpect $ "function symbol " ++ f ++ " in replacement map (the symbol does not appear in rules)") (newPos "" 0 0)
+                                ; case M.lookup f (trsSignature myTRS) of
                                     (Just arity) -> let srmap = sort rmap in
                                                   if (rmap == srmap) && (head rmap >= 1) && (last rmap <= arity) then
                                                     checkRMap rmaps 
                                                   else
                                                     return . Left $ newErrorMessage (UnExpect $ "replacement map for symbol " ++ f ++ " (must be empty" ++ (if arity > 0 then " or an ordered list of numbers in [1.." ++ (show arity) ++ "] " else "") ++ ")") (newPos "" 0 0) 
                                                   --return . Left $ newErrorMessage (UnExpect $ "replacement map for symbol " ++ f ++ " (must be empty" ++ (if arity > 0 then " or an ordered list of numbers in [1.." ++ (show arity) ++ "] separated by commas" else "") ++ ")") (newPos "" 0 0) 
+                                    --Nothing -> return . Left $ newErrorMessage (UnExpect $ "function symbol " ++ f ++ " in replacement map (the symbol does not appear in rules)") (newPos "" 0 0)
+                                    Nothing -> checkRMap rmaps              
                                 }

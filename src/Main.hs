@@ -22,7 +22,7 @@ main
 
 ) where
 
-import Interface.CLI (Opt (..), Format (..), parseOptions, autoparse)
+import Interface.CLI (Opt (..), Format (..), parseOptions, autoparse, anyParse)
 import Parser.Parser (parseTPDB, parseTRS, parseTPDB_XML, parseTRS_XML, parseCOPS, parseTRS_COPS)
 
 import System.IO (hPutStr, stdout)
@@ -57,7 +57,7 @@ main =
       else do
       
          filedata <- input
-         
+         {-
          -- >>>> Bloque para pruebas
          let !decls = case parseTRS filedata of --let !decls = case parseTRS filedata of
                                  Left parseerror
@@ -72,6 +72,7 @@ main =
                   -- ++ "\nTiene var y rule: \n" ++ (show $ hasVar (specToDecl decls))
                         )
          -- <<<<
+         -}
          --
          let !trs = case format of 
                   Just TPDB -> 
@@ -79,22 +80,22 @@ main =
                            Left parseerror
                               -> error$ "Parse Error (Main): " ++ show parseerror
                            Right sys
-                              -> "Success: " ++ show sys
+                              -> sys -- "Success: " ++ show sys
                   Just XMLTPDB -> 
                         case parseTPDB_XML filedata of
                            Left parseerror
                               -> error$ "Parse Error (Main): " ++ show parseerror
                            Right sys
-                              -> "Success: " ++ show sys
+                              -> sys --"Success: " ++ show sys
                   Just COPS -> 
                         case parseCOPS filedata of
                            Left parseerror
                               -> error$ "Parse Error (Main): " ++ show parseerror
                            Right sys
-                              -> "Success: " ++ show sys
-                  Nothing -> autoparse filename filedata
+                              -> sys --"Success: " ++ show sys
+                  Nothing -> anyParse filedata --autoparse filename filedata
 
-         hPutStr stdout ("\n TRS:\n" ++ show trs ++ "\n\n") --printOp spec
+         hPutStr stdout ("\n Success:\n" ++ show trs ++ "\n\n") --printOp spec
          --
 
 {-
@@ -127,12 +128,12 @@ parseFiles _ [] = hPutStr stdout (" ------------- END OF DIR -------------- ")
 parseFiles dirPath (filep:rest) = do 
       let absPath= dirPath </> filep
       input <- readFile absPath -- readFile :: FilePath -> IO String
+      hPutStr stdout ("\n++ File:" ++ show absPath ++ " :\n")
       let !trs = autoparse filep input  -- autoparse :: String -> String -> TRS
+      hPutStr stdout ("Success: " ++ show trs ++ "\n")--hPutStr stdout trsOut
+      --Write results
       let trsOut = ("\n++ File:" ++ show absPath ++ " :\n" ++ show trs ++ "\n")
       let writePath = dirPath </> "parser_results.txt"
-      --hPutStr stdout ("\n++ File:" ++ show absPath ++ " :\n")
-      --hPutStr stdout (show trs ++ "\n")
-      hPutStr stdout trsOut
       appendFile writePath trsOut
       parseFiles dirPath rest
 

@@ -26,7 +26,7 @@ Opt(..), Format (..)
 
 -- * Exported functions
 
-, parseOptions, autoparse
+, parseOptions, autoparse, anyParse
 
 ) where
 
@@ -137,16 +137,16 @@ parseOptions = do (optsActions, rest, errors) <- getArgs
 ----------------
 
 -- | File extensions
-fileExtensions :: [(String, String -> Either ParseError TRS)]
-fileExtensions = [(".trs", parseTPDB), (".xml", parseTPDB_XML), (".trs", parseCOPS)]
+aivailableFormats :: [(String, String -> Either ParseError TRS)]
+aivailableFormats = [{-(".trs", parseTPDB), -}(".xml", parseTPDB_XML), (".trs", parseCOPS)]
 
 -- | Parse file into a TRS
-autoparse :: String -> String -> String -- TRS
+autoparse :: String -> String -> TRS  --String
 autoparse fname = maybe (error "Error (CLI): File Extension not supported")
                         parseWithFailure
                         matchParser
    where matchParser
-             = msum $ map (\(ext,p)-> if fname `endsWith` ext then Just p else Nothing) fileExtensions
+             = msum $ map (\(ext,p)-> if fname `endsWith` ext then Just p else Nothing) aivailableFormats
          endsWith
              = flip isSuffixOf
          parseWithFailure parser contents
@@ -154,5 +154,12 @@ autoparse fname = maybe (error "Error (CLI): File Extension not supported")
                  Left parseerror
                      -> error$ "Parse Error (CLI): " ++ show parseerror
                  Right sys
-                     -> "Success: " ++ show sys
+                     -> sys --"Success: " ++ show sys
 
+-- | Parse file into a TRS
+anyParse :: String -> TRS  --String
+anyParse fdata = checkParser $ map (\(_, p) -> p fdata) aivailableFormats
+
+checkParser [] = (error "Error (CLI): Format not supported") 
+checkParser ((Right x):_) = x --"Success: " ++ show x
+checkParser ((Left _):xs) = checkParser xs
