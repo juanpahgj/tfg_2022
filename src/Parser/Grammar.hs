@@ -36,8 +36,8 @@ data Decl = Var [Id] -- ^ Set of variables
     | Strategy Strategydecl -- ^ Extra information
     | Context [(Id, [Int])] -- ^ Context-Sensitive strategy (COPS format)
     | Theory [Thdecl] -- ^ Set of rules
-    | Rules [Rule] -- ^ Set of rules
     | Signature [Signdecl] -- ^ Type of signature (XML format)
+    | Rules [Rule] -- ^ Set of rules
     | AnyList Id [AnyContent] --AnyList Id [String]
     | Comment String -- ^ Extra information
       deriving (Eq, Ord, Show, Data, Typeable)
@@ -144,6 +144,7 @@ data TRS
         , trsRules :: [Rule]
         , trsType :: TRSType
         , trsStrategy :: Maybe Strategydecl
+        , signatureBlock :: Bool
         } deriving (Show)
 
 -----------------------------------------------------------------------------

@@ -1,0 +1,540 @@
+
+++ File:".\\tests\\COPS\\CTRS\\807.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> b,f(x) -> c | x == a], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\806.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("d",0),("e",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> a | b == x, c == x,b -> d | d == x, e == x,c -> d | d == x, e == x], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\805.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",1),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> b,c -> f(a),f(a) -> c,c -> g(b),f(x) -> g(x) | f(x) == g(b)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\799.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",1),("f",1),("g",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [g(a) -> c(b),b -> f(a),f(x) -> x | g(x) == c(y)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\798.trs" :
+TRS {trsSignature = fromList [("0",0),("1",0),("and",2),("f",1),("implies",2),("not",1),("or",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [or(0,x) -> x,or(x,0) -> x,or(1,x) -> 1,or(x,1) -> 1,or(x,not(x)) -> 1,or(not(x),x) -> 1,and(0,x) -> 0,and(x,0) -> 0,and(1,x) -> x,and(x,1) -> x,and(x,not(x)) -> 0,and(not(x),x) -> 0,not(1) -> 0,not(0) -> 1,implies(x,y) -> 1 | not(x) == 1,implies(x,y) -> 1 | y == 1,implies(x,y) -> 0 | x == 1, y == 0,f(x) -> f(0) | implies(x,0) == y, implies(x,y) == z, implies(z,0) == 1], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\796.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> b,f(a) -> b,g(x) -> g(a) | f(x) == x], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\794.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",1)], trsVariables = fromList [], trsRMap = [], trsRules = [a -> c | f(a) == f(b),f(b) -> b], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\793.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> a | f(a) == a,f(x) -> a | x == b], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\792.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x) -> x | x == a, b == x,a -> b,b -> c,c -> b], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\791.trs" :
+TRS {trsSignature = fromList [("+",2),("0",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [+(0,x) -> x,+(x,0) -> 0 | 0 == x,+(x,y) -> +(y,x)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\790.trs" :
+TRS {trsSignature = fromList [("+",2),("0",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [+(0,x) -> x,+(x,0) -> 0 | x == 0,+(x,y) -> +(y,x)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\553.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",1),("g",1),("h",1),("k",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [c -> k(f(a)),c -> k(g(b)),h(x) -> k(x),h(f(a)) -> c,a -> b,f(x) -> g(x) | h(f(x)) == k(g(b))], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\552.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("false",0),("le",2),("min",1),("nil",0),("s",1),("true",0)], trsVariables = fromList ["x","xs","y"], trsRMap = [], trsRules = [le(x,0) -> false,le(0,s(y)) -> true,le(s(x),s(y)) -> le(x,y),min(cons(x,nil)) -> x,min(cons(x,xs)) -> x | le(x,min(xs)) == true,min(cons(x,xs)) -> min(xs) | le(x,min(xs)) == false], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\551.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("false",0),("le",2),("min",1),("nil",0),("s",1),("true",0)], trsVariables = fromList ["x","xs","y"], trsRMap = [], trsRules = [le(x,0) -> false,le(0,s(y)) -> true,le(s(x),s(y)) -> le(x,y),min(cons(x,nil)) -> x,min(cons(x,xs)) -> x | min(xs) == y, le(x,y) == true,min(cons(x,xs)) -> y | min(xs) == y, le(x,y) == false], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\550.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",1)], trsVariables = fromList [], trsRMap = [], trsRules = [f(b) -> f(a),b -> c,a -> c | b == c], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\549.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [g(x) -> x | x == a, b == x], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\548.trs" :
+TRS {trsSignature = fromList [("a",0),("g",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [g(x) -> y | x == y, z == a], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\547.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x) -> a | x == a,f(x) -> b | x == b], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\546.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",2),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [g(x) -> g(x) | g(x) == f(a,b),g(x) -> f(x,x)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\529.trs" :
+TRS {trsSignature = fromList [("0",0),("add",2),("div",2),("false",0),("lte",2),("minus",2),("mod",2),("mult",2),("power",2),("s",1),("true",0)], trsVariables = fromList ["n","n'","q","x","y","z"], trsRMap = [], trsRules = [add(0,x) -> x,add(s(x),y) -> s(add(x,y)),mult(0,y) -> 0,mult(s(x),y) -> add(mult(x,y),y),lte(0,y) -> true,lte(s(x),0) -> false,lte(s(x),s(y)) -> lte(x,y),minus(0,s(y)) -> 0,minus(x,0) -> x,minus(s(x),s(y)) -> minus(x,y),mod(0,y) -> 0,mod(x,0) -> x,mod(x,s(y)) -> mod(minus(x,s(y)),s(y)) | lte(s(y),x) == true,mod(x,s(y)) -> x | lte(s(y),x) == false,div(0,s(x)) -> 0,div(s(x),s(y)) -> 0 | lte(s(x),y) == true,div(s(x),s(y)) -> s(q) | lte(s(x),y) == false, div(minus(x,y),s(y)) == q,power(x,0) -> s(0),power(x,n) -> mult(mult(y,y),s(0)) | n == s(n'), mod(n,s(s(0))) == 0, power(x,div(n,s(s(0)))) == y,power(x,n) -> mult(mult(y,y),x) | n == s(n'), mod(n,s(s(0))) == s(z), power(x,div(n,s(s(0)))) == y], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\528.trs" :
+TRS {trsSignature = fromList [("0",0),("fib",1),("pair",2),("plus",2),("s",1)], trsVariables = fromList ["x","y","z1","z2","z3"], trsRMap = [], trsRules = [plus(0,y) -> y,plus(s(x),y) -> s(plus(x,y)),fib(0) -> pair(s(0),0),fib(s(x)) -> pair(z3,z1) | fib(x) == pair(z1,z2), plus(z1,z2) == z3], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\527.trs" :
+TRS {trsSignature = fromList [("cons",2),("f",1),("nil",0),("pair",2)], trsVariables = fromList ["l","l1","x","y","z"], trsRMap = [], trsRules = [f(cons(x,nil)) -> pair(x,nil),f(cons(x,cons(y,l))) -> pair(z,cons(x,l1)) | f(cons(y,l)) == pair(z,l1)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\524.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",1),("k",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> x | f(x) == k,f(b) -> k,f(c) -> k], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\523.trs" :
+TRS {trsSignature = fromList [("0",0),("F",0),("T",0),("add",2),("leq",2),("mul",2),("n",3),("s",1)], trsVariables = fromList ["x","xd","xm","xy","y"], trsRMap = [], trsRules = [add(0,y) -> y,add(s(x),y) -> s(add(x,y)),mul(0,y) -> 0,mul(x,0) -> 0,mul(s(x),s(y)) -> s(add(mul(x,s(y)),y)),leq(0,0) -> T,leq(s(x),0) -> F,leq(0,s(y)) -> T,leq(s(x),s(y)) -> leq(x,y),n(xd,xm,xy) -> add(xd,add(mul(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(0)))))))))))))))))))))))))))))),xm),mul(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(0)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))),xy))) | leq(0,xd) == T, leq(xd,s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(0)))))))))))))))))))))))))))))) == T, leq(0,xm) == T, leq(xm,s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(0)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))) == T], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\522.trs" :
+TRS {trsSignature = fromList [("0",0),("e",1),("false",0),("o",1),("s",1),("true",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [e(0) -> true,e(s(x)) -> true | o(x) == true,e(s(x)) -> false | e(x) == true,o(0) -> false,o(s(x)) -> true | e(x) == true,o(s(x)) -> false | o(x) == true], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\499.trs" :
+TRS {trsSignature = fromList [("0",0),("add",2),("div",2),("false",0),("lte",2),("minus",2),("mod",2),("mult",2),("power",2),("s",1),("true",0)], trsVariables = fromList ["n","q","x","y","z"], trsRMap = [], trsRules = [add(0,x) -> x,add(s(x),y) -> s(add(x,y)),mult(0,y) -> 0,mult(s(x),y) -> add(mult(x,y),y),lte(0,y) -> true,lte(s(x),0) -> false,lte(s(x),s(y)) -> lte(x,y),minus(0,s(y)) -> 0,minus(x,0) -> x,minus(s(x),s(y)) -> minus(x,y),mod(0,y) -> 0,mod(x,0) -> x,mod(x,s(y)) -> mod(minus(x,s(y)),s(y)) | lte(s(y),x) == true,mod(x,s(y)) -> x | lte(s(y),x) == false,div(0,s(x)) -> 0,div(s(x),s(y)) -> 0 | lte(s(x),y) == true,div(s(x),s(y)) -> s(q) | lte(s(x),y) == false, div(minus(x,y),s(y)) == q,power(x,0) -> s(0),power(x,n) -> mult(mult(y,y),s(0)) | mod(n,s(s(0))) == 0, power(x,div(n,s(s(0)))) == y,power(x,n) -> mult(mult(y,y),x) | mod(n,s(s(0))) == s(z), power(x,div(n,s(s(0)))) == y], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\495.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("g",1),("h",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [h(x) -> a,g(x) -> x,g(x) -> a | h(x) == b,c -> c], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\494.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("d",0),("f",2),("g",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(a,x) -> a,f(b,x) -> b,g(a,x) -> c | f(x,a) == a,g(x,a) -> d | f(x,b) == b,c -> c], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\493.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("eq",2),("false",0),("filter",3),("lte",2),("m",2),("mod",2),("nil",0),("s",1),("true",0)], trsVariables = fromList ["n","r","r'","x","xs","y"], trsRMap = [], trsRules = [eq(0,0) -> true,eq(s(x),0) -> false,eq(0,s(y)) -> false,eq(s(x),s(y)) -> eq(x,y),lte(0,y) -> true,lte(s(x),0) -> false,lte(s(x),s(y)) -> lte(x,y),m(0,s(y)) -> 0,m(x,0) -> x,m(s(x),s(y)) -> m(x,y),mod(0,y) -> 0,mod(s(x),0) -> 0,mod(s(x),s(y)) -> mod(m(x,y),s(y)) | lte(y,x) == true,mod(s(x),s(y)) -> s(x) | lte(y,x) == false,filter(n,r,nil) -> nil,filter(n,r,cons(x,xs)) -> cons(x,filter(n,r,xs)) | mod(x,n) == r', eq(r,r') == true,filter(n,r,cons(x,xs)) -> filter(n,r,xs) | mod(x,n) == r', eq(r,r') == false], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\492.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x) -> a | a == x,f(x) -> b | b == x], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\491.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",1),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(g(x)) -> b | x == a,g(x) -> c | x == c], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\490.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x) -> x,g(x) -> a | x == b], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\489.trs" :
+TRS {trsSignature = fromList [("0",0),("even",1),("false",0),("odd",1),("s",1),("true",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [even(0) -> true,even(s(x)) -> true | odd(x) == true,even(s(x)) -> false | even(x) == true,odd(0) -> false,odd(s(x)) -> true | even(x) == true,odd(s(x)) -> false | odd(x) == true], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\488.trs" :
+TRS {trsSignature = fromList [("0",0),("fib",1),("pair",2),("plus",2),("s",1)], trsVariables = fromList ["w","x","y","z"], trsRMap = [], trsRules = [plus(0,y) -> y,plus(s(x),y) -> s(plus(x,y)),fib(0) -> pair(0,s(0)),fib(s(x)) -> pair(z,w) | fib(x) == pair(y,z), plus(y,z) == w], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\441.trs" :
+TRS {trsSignature = fromList [("a",1),("b",0),("c",1),("f",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(c(x),c(c(y))) -> a(a(x)) | c(f(x,y)) == c(a(b)),f(c(c(c(x))),y) -> a(y) | c(f(c(x),c(c(y)))) == c(a(a(b))),a(x) -> b,a(x) -> f(x,x)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\440.trs" :
+TRS {trsSignature = fromList [("a",1),("b",0),("c",1),("f",2),("h",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(c(x),c(c(y))) -> a(a(x)) | c(f(x,y)) == c(a(b)),f(c(c(c(x))),y) -> a(y) | c(f(c(x),c(c(y)))) == c(a(a(b))),h(b) -> b,h(a(a(x))) -> a(b) | h(x) == b], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\439.trs" :
+TRS {trsSignature = fromList [("cons",2),("last",1),("nil",0)], trsVariables = fromList ["u","v","x","y","z"], trsRMap = [], trsRules = [last(cons(x,y)) -> x | y == nil,last(cons(x,y)) -> z | y == cons(u,v), last(y) == z], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\411.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("d",0),("e",0),("f",2),("g",1),("h",1),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,y) -> g(x) | a == d,f(x,y) -> h(x) | b == d,g(s(x)) -> x,h(s(x)) -> x,a -> d,b -> d,e -> e], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\410.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("d",0),("f",2),("g",1),("h",1),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,y) -> g(x) | a == d,f(x,y) -> h(x) | b == d,g(s(x)) -> x,h(s(x)) -> x,a -> d,b -> d], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\409.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",1),("f",2),("g",1),("h",1),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,y) -> g(s(x)) | c(g(x)) == c(a),f(x,y) -> h(s(x)) | c(h(x)) == c(a),g(s(x)) -> x,h(s(x)) -> x,b -> b], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\408.trs" :
+TRS {trsSignature = fromList [("a",0),("c",1),("f",2),("g",1),("h",1),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,y) -> g(s(x)) | c(g(x)) == c(a),f(x,y) -> h(s(x)) | c(h(x)) == c(a),g(s(x)) -> x,h(s(x)) -> x], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\407.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",1),("f",2),("g",1),("h",1),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,y) -> g(x) | c(g(x)) == c(a),f(x,y) -> h(x) | c(h(x)) == c(a),g(s(x)) -> x,h(s(x)) -> x,b -> b], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\406.trs" :
+TRS {trsSignature = fromList [("a",0),("c",1),("f",2),("g",1),("h",1),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,y) -> g(x) | c(g(x)) == c(a),f(x,y) -> h(x) | c(h(x)) == c(a),g(s(x)) -> x,h(s(x)) -> x], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\405.trs" :
+TRS {trsSignature = fromList [("0",0),("dot",2),("false",0),("les",2),("s",1),("true",0)], trsVariables = fromList ["l","x","y"], trsRMap = [], trsRules = [dot(x,dot(y,l)) -> dot(y,dot(x,l)) | les(x,y) == true,les(0,0) -> false,les(0,s(0)) -> true,les(0,s(s(x))) -> les(0,s(x)),les(s(0),0) -> false,les(s(s(x)),0) -> les(s(x),0),les(s(x),s(y)) -> les(x,y)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\404.trs" :
+TRS {trsSignature = fromList [("0",0),("e",1),("false",0),("o",1),("s",1),("true",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [e(0) -> true,e(s(x)) -> true | o(x) == true,e(s(x)) -> false | e(x) == true,o(0) -> true,o(s(x)) -> true | e(x) == true,o(s(x)) -> false | o(x) == true], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\403.trs" :
+TRS {trsSignature = fromList [("0",0),("e",1),("false",0),("s",1),("true",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [e(0) -> true,e(s(x)) -> true | e(x) == false,e(s(x)) -> false | e(x) == true], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\402.trs" :
+TRS {trsSignature = fromList [("App",2),("D",2),("E",0),("I",0),("K",0),("S",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [App(App(App(S,x),y),z) -> App(App(x,z),App(y,z)),App(App(K,x),y) -> x,App(I,x) -> x,D(x,y) -> E | x == y], trsType = TRSConditional JOIN, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\391.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("pin",1),("pout",1),("tc",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [pin(a) -> pout(b),pin(b) -> pout(c),tc(x) -> x,tc(x) -> y | pin(x) == pout(z), tc(z) == y], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\390.trs" :
+TRS {trsSignature = fromList [("f",1),("g",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x) -> g(y) | x == y], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\389.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1)], trsVariables = fromList ["x","z"], trsRMap = [], trsRules = [f(x) -> b | f(x) == z, x == z,a -> f(a)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\388.trs" :
+TRS {trsSignature = fromList [("0",0),("add",2),("quad",1),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [add(x,0) -> x,add(x,s(y)) -> s(add(x,y)),quad(x) -> z | add(x,x) == y, add(y,y) == z], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\387.trs" :
+TRS {trsSignature = fromList [("0",0),("f",1),("g",1),("s",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(g(x)) -> x | x == s(0),g(s(x)) -> g(x)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\386.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> b | f(a) == b], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\385.trs" :
+TRS {trsSignature = fromList [("a",0),("c",0),("d",0),("f",1),("k",0),("s",1),("t",1)], trsVariables = fromList ["x","z"], trsRMap = [], trsRules = [a -> c,a -> d,s(c) -> t(k),f(x) -> z | s(x) == t(z)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\384.trs" :
+TRS {trsSignature = fromList [("A",0),("B",0),("a",0),("b",0),("c",0),("f",1),("g",2),("h",2),("s",1),("t",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x) -> A | s(x) == t,f(x) -> B | s(x) == t,s(a) -> t,s(b) -> t,a -> c,b -> c,g(x,x) -> h(x,x)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\383.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("d",0),("f",1),("g",2),("h",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> c,a -> d,b -> c,b -> d,f(x) -> x | x == c,g(x,x) -> h(x,x),h(x,f(x)) -> x], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\382.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",1),("g",2),("h",2),("k",0),("l",0),("s",1),("t",1)], trsVariables = fromList ["x","z"], trsRMap = [], trsRules = [s(a) -> c,s(b) -> c,c -> t(k),c -> t(l),f(x) -> z | s(x) == z,g(x,x) -> h(x,x)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\381.trs" :
+TRS {trsSignature = fromList [("A",0),("B",0),("C",0),("a",0),("b",0),("c",0),("d",0),("e",0),("f",1),("g",2),("h",1),("i",2),("k",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> c,a -> d,b -> c,b -> d,c -> e,c -> k,d -> k,f(x) -> x | x == e,g(x,x) -> C | A == B,h(x) -> i(x,x)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\380.trs" :
+TRS {trsSignature = fromList [("a",0),("f",1),("g",1),("h",2),("i",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x) -> x | x == a,g(x) -> h(x,x),h(x,y) -> i(x)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\379.trs" :
+TRS {trsSignature = fromList [("between",3),("down",1),("s",1),("true",0),("up",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [up(x) -> x,down(x) -> x,up(x) -> up(s(x)),down(s(x)) -> down(x),between(x,y,z) -> true | up(x) == y, down(z) == y], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\378.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("orient",2),("pair",2),("s",1)], trsVariables = fromList ["rest","x","y","z1","z2"], trsRMap = [], trsRules = [cons(x,cons(y,rest)) -> cons(z1,cons(z2,rest)) | orient(x,y) == pair(z1,z2),cons(x,cons(x,rest)) -> cons(x,rest),orient(s(x),s(y)) -> pair(s(z1),s(z2)) | orient(x,y) == pair(z1,z2),orient(s(x),0) -> pair(0,s(x))], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\377.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("d",0),("f",1),("g",2),("h",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> c,a -> d,b -> c,b -> d,g(x,x) -> h(x,x),f(x) -> x | x == c], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\376.trs" :
+TRS {trsSignature = fromList [("A",0),("B",0),("C",0),("a",0),("f",1),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x) -> x | x == a,g(x) -> C | A == B,A -> B], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\375.trs" :
+TRS {trsSignature = fromList [("A",0),("a",0),("b",0),("f",1),("g",2),("h",1),("i",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> b,f(x) -> A | x == b,g(x,x) -> h(x),h(x) -> i(x)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\374.trs" :
+TRS {trsSignature = fromList [("a",0),("c",0),("d",0),("f",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [a -> c,a -> d,f(x,y) -> z | c == x, y == z], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\373.trs" :
+TRS {trsSignature = fromList [("a",0),("c",0),("d",0),("f",2),("g",2),("h",2),("t",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [a -> t(c),a -> t(d),f(x,y) -> z | x == t(z),g(x,x) -> h(x,x)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\372.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("d",0),("f",2),("g",2),("h",2),("k",0),("l",0),("s",1),("t",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [a -> c,a -> d,b -> c,b -> d,s(k) -> t(a),s(l) -> t(a),g(x,x) -> h(x,x),f(x,y) -> y | s(x) == t(y)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\371.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> c,b -> c,f(x) -> x | a == x], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\370.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("d",0),("e",0),("f",1),("g",2),("h",2),("k",0),("l",0),("pair",2),("s",1),("t",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [a -> c,a -> d,b -> c,b -> d,c -> e,d -> e,k -> e,l -> e,s(c) -> t(k),s(c) -> t(l),s(e) -> t(e),g(x,x) -> h(x,x),f(x) -> pair(x,y) | s(x) == t(y)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\369.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("d",0),("f",1),("g",2),("h",2),("k",0),("l",0),("pair",2),("s",1),("t",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [a -> c,a -> d,b -> c,b -> d,s(c) -> t(k),s(c) -> t(l),g(x,x) -> h(x,x),f(x) -> pair(x,y) | s(x) == t(y)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\368.trs" :
+TRS {trsSignature = fromList [("a",0),("c",0),("d",0),("f",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> c,a -> d,f(x) -> x | x == c], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\367.trs" :
+TRS {trsSignature = fromList [("a",0),("c",0),("d",0),("f",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> c,a -> d,f(x) -> x | x == c, d == x], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\366.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1),("s",1),("t",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x) -> x | s(x) == t(x),s(a) -> t(b),a -> b], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\365.trs" :
+TRS {trsSignature = fromList [("0",0),("false",0),("p",1),("pos",1),("s",1),("true",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [s(p(x)) -> x,p(s(x)) -> x,pos(0) -> false,pos(s(0)) -> true,pos(s(x)) -> true | pos(x) == true,pos(p(x)) -> false | pos(x) == false], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\364.trs" :
+TRS {trsSignature = fromList [("0",0),("even",1),("odd",1),("s",1),("true",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [even(0) -> true,even(s(x)) -> true | odd(x) == true,odd(s(x)) -> true | even(x) == true], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\363.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",1),("g",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x) -> y | a == h(y),g(x,b) -> g(f(c),x) | f(b) == x, x == c,a -> h(b),a -> h(c)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\362.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",1),("g",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x) -> c | a == b,g(x,x) -> g(f(a),f(b))], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\361.trs" :
+TRS {trsSignature = fromList [("0",0),("div",2),("greater",2),("leq",2),("m",2),("pair",2),("s",1),("true",0)], trsVariables = fromList ["q","r","x","y"], trsRMap = [], trsRules = [div(x,y) -> pair(0,y) | greater(y,x) == true,div(x,y) -> pair(s(q),r) | leq(y,x) == true, div(m(x,y),y) == pair(q,r),m(x,0) -> x,m(0,y) -> 0,m(s(x),s(y)) -> m(x,y),greater(s(x),s(y)) -> greater(x,y),greater(s(x),0) -> true,leq(s(x),s(y)) -> leq(x,y),leq(0,x) -> true], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\360.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",1),("d",0),("f",3),("g",1),("h",1),("k",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [g(x) -> k(y) | h(x) == d, h(x) == c(y),h(d) -> c(a),h(d) -> c(b),f(k(a),k(b),x) -> f(x,x,x)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\359.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1),("g",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x) -> b | g(x,x) == a], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\358.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x) -> a | x == b,a -> b,a -> c], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\357.trs" :
+TRS {trsSignature = fromList [("A",0),("a",0),("b",0),("c",0),("d",0),("e",0),("f",1),("g",3),("h",2),("k",0),("l",0),("m",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> c,a -> d,b -> c,b -> d,c -> e,c -> l,d -> m,k -> l,k -> m,h(x,x) -> g(x,x,f(k)),g(d,x,x) -> A,A -> h(f(a),f(b)),f(x) -> x | x == e], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\356.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x) -> a | x == b], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\355.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> b | a == b], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\354.trs" :
+TRS {trsSignature = fromList [("0",0),("false",0),("p",1),("pos",1),("s",1),("true",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [pos(s(0)) -> true,pos(0) -> false,pos(s(x)) -> true | pos(x) == true,pos(p(x)) -> false | pos(x) == false], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\353.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("get",1),("nil",0),("s",1),("ssp'",2),("sub",2),("tp2",2)], trsVariables = fromList ["v","w","ws","x'","xs","xs'","y","y'","ys","ys'","z","zs"], trsRMap = [], trsRules = [ssp'(xs,0) -> nil,ssp'(cons(y',ws),v) -> cons(y',ys') | sub(v,y') == w, ssp'(ws,w) == ys',ssp'(cons(x',xs'),v) -> cons(y',ys') | get(xs') == tp2(y',zs), sub(v,y') == w, ssp'(cons(x',zs),w) == ys',sub(z,0) -> z,sub(s(v),s(w)) -> z | sub(v,w) == z,get(cons(y,ys)) -> tp2(y,ys),get(cons(x',xs')) -> tp2(y,cons(x',zs)) | get(xs') == tp2(y,zs)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\352.trs" :
+TRS {trsSignature = fromList [("0",0),("add",2),("cons",2),("del",2),("nil",0),("none",0),("s",1),("some",1),("ssp'",2),("subseteq_m",2),("sum",1),("tt",0)], trsVariables = fromList ["v","ws","x","xs","y","ys","z","zs"], trsRMap = [], trsRules = [ssp'(xs,v) -> ys | subseteq_m(ys,xs) == tt, sum(ys) == v,subseteq_m(nil,ys) -> tt,subseteq_m(cons(x,xs),ys) -> z | del(x,ys) == some(ws), subseteq_m(xs,ws) == z,del(x,nil) -> none,del(x,cons(x,ys)) -> some(ys),del(x,cons(y,ys)) -> some(cons(y,zs)) | del(x,ys) == some(zs),sum(nil) -> 0,add(x,0) -> x,add(x,s(y)) -> s(z) | add(x,y) == z], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\351.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("nil",0),("s",1),("ssp",2),("sub",2)], trsVariables = fromList ["v","w","xs","xs'","y","ys'","z"], trsRMap = [], trsRules = [ssp(nil,0) -> nil,ssp(cons(y,ys'),v) -> xs | ssp(ys',v) == xs,ssp(cons(y,ys'),v) -> cons(y,xs') | sub(v,y) == w, ssp(ys',w) == xs',sub(z,0) -> z,sub(s(v),s(w)) -> z | sub(v,w) == z], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\350.trs" :
+TRS {trsSignature = fromList [("0",0),("add",2),("cons",2),("nil",0),("s",1),("ssp",2),("subL",2),("sum",1),("tt",0)], trsVariables = fromList ["v","w","x","xs","y","ys","z"], trsRMap = [], trsRules = [ssp(xs,v) -> ys | subL(ys,xs) == tt, sum(ys) == v,subL(nil,nil) -> tt,subL(xs,cons(y,ys)) -> z | subL(xs,ys) == z,sum(nil) -> 0,sum(cons(x,xs)) -> z | sum(xs) == w, add(w,x) == z,add(x,0) -> x,add(x,s(y)) -> s(z) | add(x,y) == z], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\349.trs" :
+TRS {trsSignature = fromList [("0",0),("double",1),("even",1),("ff",0),("odd",1),("s",1),("tt",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [even(x) -> tt | double(y) == x,odd(x) -> ff | double(y) == x,double(0) -> 0,double(s(y)) -> s(s(z)) | double(y) == z], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\348.trs" :
+TRS {trsSignature = fromList [("0",0),("add",2),("div",2),("ff",0),("gt",2),("mul",2),("s",1),("tt",0)], trsVariables = fromList ["w","x","y","z"], trsRMap = [], trsRules = [div(z,y) -> x | mul(x,y) == z, gt(y,0) == tt,mul(x,0) -> 0,mul(0,y) -> 0,mul(s(x),s(y)) -> s(z) | mul(x,s(y)) == w, add(w,y) == z,gt(0,y) -> ff,gt(s(x),0) -> tt,gt(s(x),s(y)) -> z | gt(x,y) == z], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\347.trs" :
+TRS {trsSignature = fromList [("0",0),("add",2),("s",1),("sub",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [add(x,0) -> x,add(x,s(y)) -> z | add(s(x),y) == z,sub(z,y) -> x | add(x,y) == z], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\346.trs" :
+TRS {trsSignature = fromList [("0",0),("add",2),("isTwoThird",2),("oneThird",1),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [add(x,0) -> x,add(x,s(y)) -> s(z) | add(x,y) == z,oneThird(z) -> x | add(x,x) == y, add(x,y) == z,isTwoThird(y,z) -> x | add(x,x) == y, add(x,y) == z], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\345.trs" :
+TRS {trsSignature = fromList [("0",0),("add",2),("s",1),("sub",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [add(x,0) -> x,add(x,s(y)) -> s(z) | add(x,y) == z,sub(z,y) -> x | add(x,y) == z], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\344.trs" :
+TRS {trsSignature = fromList [("0",0),("s",1),("sub",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [sub(z,0) -> z,sub(s(z),s(y)) -> x | sub(z,y) == x], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\343.trs" :
+TRS {trsSignature = fromList [("0",0),("add",2),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [add(x,0) -> x,add(x,s(y)) -> s(z) | add(x,y) == z], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\342.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",2),("g",1),("h",2)], trsVariables = fromList ["x","x'","x''","y","y'","y''"], trsRMap = [], trsRules = [f(x',x'') -> h(x,f(x,b)) | x' == x, x'' == x,f(g(y'),y'') -> h(y,f(g(y),a)) | y' == y, y'' == y,a -> b], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\341.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",1),("g",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x) -> g(y) | x == y,a -> c,b -> c], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\340.trs" :
+TRS {trsSignature = fromList [("f",2),("g",1),("h",1)], trsVariables = fromList ["x","x'","x''","y","y'","y''"], trsRMap = [], trsRules = [f(x',x'') -> g(x) | x' == x, x'' == x,f(y',h(y'')) -> g(y) | y' == y, y'' == y], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\339.trs" :
+TRS {trsSignature = fromList [("c",0),("f",2),("g",2),("h",3)], trsVariables = fromList ["x","x'","x''","y"], trsRMap = [], trsRules = [f(x,x') -> g(y,y) | x == y, x' == y,h(x,x',x'') -> c | x == y, x' == y, x'' == y], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\338.trs" :
+TRS {trsSignature = fromList [("App",2),("D",0),("E",0),("I",0),("K",0),("S",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [App(App(App(S,x),y),z) -> App(App(x,z),App(y,z)),App(App(K,x),y) -> x,App(I,x) -> x,App(App(D,x),y) -> E | x == y], trsType = TRSConditional SEMIEQUATIONAL, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\337.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("false",0),("lt",2),("s",1),("true",0)], trsVariables = fromList ["x","y","ys"], trsRMap = [], trsRules = [lt(x,0) -> false,lt(0,s(y)) -> true,lt(s(x),s(y)) -> lt(x,y),cons(x,cons(y,ys)) -> cons(y,cons(x,ys)) | lt(x,y) == true], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\336.trs" :
+TRS {trsSignature = fromList [("cons",2),("div",2),("eq",2),("false",0),("filter",3),("mo",0),("nil",0),("pair",2),("true",0),("ys",0)], trsVariables = fromList ["n","q","r","x","xs","y"], trsRMap = [], trsRules = [filter(n,r,nil) -> pair(mo,nil),filter(n,r,cons(x,xs)) -> pair(x,xs) | eq(div(x,n),pair(q,r)) == true,filter(n,r,cons(x,xs)) -> pair(y,cons(x,ys)) | filter(n,r,xs) == pair(y,ys), eq(div(x,n),pair(q,r)) == false], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\335.trs" :
+TRS {trsSignature = fromList [("0",0),("div",2),("false",0),("lt",2),("m",2),("pair",2),("s",1),("true",0)], trsVariables = fromList ["q","r","x","y"], trsRMap = [], trsRules = [lt(x,0) -> false,lt(0,s(x)) -> true,lt(s(x),s(y)) -> lt(x,y),m(0,s(y)) -> 0,m(x,0) -> x,m(s(x),s(y)) -> m(x,y),div(0,s(x)) -> pair(0,0),div(s(x),s(y)) -> pair(0,s(x)) | lt(x,y) == true,div(s(x),s(y)) -> pair(s(q),r) | lt(x,y) == false, div(m(x,y),s(y)) == pair(q,r)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\334.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x) -> y | x == y,a -> b,b -> c], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\333.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("d",0),("f",1),("g",3),("h",2),("i",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(x) -> g(x,y,z) | h(a,x) == i(y), h(a,y) == i(z),h(a,a) -> i(b),h(a,b) -> i(c),h(b,b) -> i(d)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\332.trs" :
+TRS {trsSignature = fromList [("0",0),("even",1),("false",0),("odd",1),("s",1),("true",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [even(0) -> true,even(s(x)) -> false | odd(x) == false,even(s(x)) -> true | odd(x) == true,odd(0) -> false,odd(s(x)) -> false | even(x) == false,odd(s(x)) -> true | even(x) == true], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\331.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("d",0),("f",1),("g",1),("h",1),("j",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [h(f(a)) -> c,h(x) -> j(x),c -> j(f(a)),a -> b,c -> d,j(g(b)) -> d,f(x) -> g(x) | d == h(f(x))], trsType = TRSConditional JOIN, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\330.trs" :
+TRS {trsSignature = fromList [("f",1),("g",1),("pin",1),("pout",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [pin(x) -> pout(g(x)),pin(x) -> pout(f(y)) | pin(x) == pout(g(y))], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\329.trs" :
+TRS {trsSignature = fromList [("0",0),("app",2),("cons",2),("false",0),("le",2),("nil",0),("pair",2),("qsort",1),("s",1),("split",2),("true",0)], trsVariables = fromList ["x","xs","y","ys","zs"], trsRMap = [], trsRules = [le(0,x) -> true,le(s(x),0) -> false,le(s(x),s(y)) -> le(x,y),app(nil,x) -> x,app(cons(x,xs),ys) -> cons(x,app(xs,ys)),split(x,nil) -> pair(nil,nil),qsort(nil) -> nil,split(x,cons(y,ys)) -> pair(xs,cons(y,zs)) | split(x,ys) == pair(xs,zs), le(x,y) == true,split(x,cons(y,ys)) -> pair(cons(y,xs),zs) | split(x,ys) == pair(xs,zs), le(x,y) == false,qsort(cons(x,xs)) -> app(qsort(ys),cons(x,qsort(zs))) | split(x,xs) == pair(ys,zs)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\328.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("eq",2),("false",0),("filter",3),("lte",2),("m",2),("mod",2),("nil",0),("s",1),("true",0)], trsVariables = fromList ["n","n'","r","r'","x","xs","y"], trsRMap = [], trsRules = [eq(0,0) -> true,eq(s(x),0) -> false,eq(0,s(y)) -> false,eq(s(x),s(y)) -> eq(x,y),lte(0,y) -> true,lte(s(x),0) -> false,lte(s(x),s(y)) -> lte(x,y),m(0,s(y)) -> 0,m(x,0) -> x,m(s(x),s(y)) -> m(x,y),mod(0,y) -> 0,mod(s(x),0) -> 0,mod(s(x),s(y)) -> mod(m(x,y),s(y)) | lte(y,x) == true,mod(s(x),s(y)) -> s(x) | lte(y,x) == false,filter(n,r,nil) -> nil,filter(n,r,cons(x,xs)) -> cons(x,filter(n,r,xs)) | mod(x,n) == r', eq(r,r') == true,filter(n,r,cons(x,xs)) -> filter(n,r,xs) | mod(x,n) == n', eq(r,r') == false], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\327.trs" :
+TRS {trsSignature = fromList [("0",0),("false",0),("gcd",2),("lt",2),("m",2),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [lt(x,0) -> false,lt(0,s(x)) -> true,lt(s(x),s(y)) -> lt(x,y),m(0,s(y)) -> 0,m(x,0) -> x,m(s(x),s(y)) -> m(x,y),gcd(x,x) -> x,gcd(s(x),0) -> s(x),gcd(0,s(y)) -> s(y),gcd(s(x),s(y)) -> gcd(m(x,y),s(y)) | lt(y,x) == true,gcd(s(x),s(y)) -> gcd(s(x),m(y,x)) | lt(x,y) == true], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\326.trs" :
+TRS {trsSignature = fromList [("cons",2),("isnoc",1),("nil",0),("tp2",2)], trsVariables = fromList ["x","xs","y","ys"], trsRMap = [], trsRules = [isnoc(cons(y,nil)) -> tp2(nil,y),isnoc(cons(x,ys)) -> tp2(cons(x,xs),y) | isnoc(ys) == tp2(xs,y)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\325.trs" :
+TRS {trsSignature = fromList [("A",0),("a",0),("b",0),("c",0),("d",0),("e",0),("e'",0),("f",1),("g",3),("h",2),("k",0),("l",0),("m",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x) -> x | x == e, x == e',g(d,x,x) -> A,h(x,x) -> g(x,x,f(k)),c -> e',a -> c,a -> d,b -> c,b -> d,c -> e,c -> l,k -> l,k -> m,d -> m], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\324.trs" :
+TRS {trsSignature = fromList [("0",0),("T",0),("eq",2),("even",1),("false",0),("odd",1),("s",1),("true",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [odd(0) -> false,odd(s(x)) -> true | eq(even(x),true) == eq(T,T),odd(s(x)) -> false | eq(even(x),false) == eq(T,T),even(0) -> true,even(s(x)) -> true | eq(odd(x),true) == eq(T,T),even(s(x)) -> false | eq(odd(x),false) == eq(T,T),eq(x,x) -> eq(T,T)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\323.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",2),("f",1),("g",1),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x) -> c(x,y) | g(x) == y, y == h(x),a -> b,g(a) -> h(b)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\322.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("false",0),("le",2),("nil",0),("s",1),("split",2),("tp2",2),("true",0)], trsVariables = fromList ["x","y","ys","zs1","zs2"], trsRMap = [], trsRules = [split(x,nil) -> tp2(nil,nil),split(x,cons(y,ys)) -> tp2(zs1,cons(y,zs2)) | split(x,ys) == tp2(zs1,zs2), le(x,y) == true,split(x,cons(y,ys)) -> tp2(cons(y,zs1),zs2) | split(x,ys) == tp2(zs1,zs2), le(x,y) == false,le(0,y) -> true,le(s(x),0) -> false,le(s(x),s(y)) -> le(x,y)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\321.trs" :
+TRS {trsSignature = fromList [("A",0),("a",0),("b",0),("c",0),("d",0),("e",0),("f",1),("g",3),("h",2),("k",0),("l",0),("m",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x) -> x | x == e,g(d,x,y) -> A | y == x,h(x,y) -> g(x,y,f(k)) | y == x,a -> c,a -> d,b -> c,b -> d,c -> e,c -> l,k -> l,k -> m,d -> m], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\319.trs" :
+TRS {trsSignature = fromList [("A",0),("d",0),("e",0),("f",1),("h",2),("l",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x) -> e | d == l,h(x,x) -> A], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\317.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x) -> x | x == a, b == x,a -> b], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\316.trs" :
+TRS {trsSignature = fromList [("c",0),("d",0),("f",2),("g",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(x,y) -> x | g(x) == z, g(y) == z,g(x) -> c | d == c], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\315.trs" :
+TRS {trsSignature = fromList [("A",0),("a",0),("b",0),("c",0),("d",0),("e",0),("f",1),("g",3),("h",2),("k",0),("l",0),("m",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x) -> x | x == e,g(d,x,x) -> A,h(x,x) -> g(x,x,f(k)),a -> c,a -> d,b -> c,b -> d,c -> e,c -> l,k -> l,k -> m,d -> m], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\313.trs" :
+TRS {trsSignature = fromList [("0",0),("F",0),("T",0),("add",2),("leq",2),("mul",2),("n",3),("s",1),("xs",0)], trsVariables = fromList ["x","xd","xm","xy","y"], trsRMap = [], trsRules = [add(0,y) -> y,add(s(x),y) -> s(add(x,y)),mul(0,y) -> 0,mul(x,0) -> 0,mul(s(x),s(y)) -> s(add(mul(x,s(y)),y)),leq(0,0) -> T,leq(s(x),0) -> F,leq(0,s(y)) -> T,leq(s(x),s(y)) -> leq(x,y),n(xs,xm,xy) -> add(xd,add(mul(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(0)))))))))))))))))))))))))))))),xm),mul(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(0)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))),xy))) | leq(0,xd) == T, leq(xd,s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(0)))))))))))))))))))))))))))))) == T, leq(0,xm) == T, leq(xm,s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(0)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))) == T], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\312.trs" :
+TRS {trsSignature = fromList [("0",0),("add",2),("gcd",2),("iadd",1),("s",1),("tp2",2),("u1",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [gcd(z,y) -> gcd(x,y) | iadd(z) == tp2(x,y),gcd(y,z) -> gcd(x,y) | iadd(z) == tp2(x,y),gcd(x,0) -> x,gcd(0,x) -> x,iadd(y) -> tp2(0,y),iadd(s(z)) -> u1(iadd(z)),u1(tp2(x,y)) -> tp2(s(x),y),iadd(add(x,y)) -> tp2(x,y)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\311.trs" :
+TRS {trsSignature = fromList [("0",0),("add",2),("gcd",2),("iadd",1),("s",1),("tp2",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [gcd(z,y) -> gcd(x,y) | iadd(z) == tp2(x,y),gcd(y,z) -> gcd(x,y) | iadd(z) == tp2(x,y),gcd(x,0) -> x,gcd(0,x) -> x,iadd(y) -> tp2(0,y),iadd(s(z)) -> tp2(s(x),y) | iadd(z) == tp2(x,y),iadd(add(x,y)) -> tp2(x,y)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\310.trs" :
+TRS {trsSignature = fromList [("0",0),("add",2),("false",0),("gcd",2),("leq",2),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [gcd(add(x,y),y) -> gcd(x,y),gcd(y,add(x,y)) -> gcd(x,y),gcd(x,0) -> x,gcd(0,x) -> x,gcd(x,y) -> gcd(y,x) | leq(y,x) == false,add(0,y) -> y,add(s(x),y) -> s(add(x,y))], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\308.trs" :
+TRS {trsSignature = fromList [("false",0),("not",1),("true",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [not(x) -> false | x == true,not(x) -> true | x == false], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\307.trs" :
+TRS {trsSignature = fromList [("0",0),("fib",1),("pair",2),("plus",2),("s",1)], trsVariables = fromList ["W","X","Y","Z"], trsRMap = [], trsRules = [plus(0,X) -> X,plus(s(X),Y) -> plus(X,s(Y)),fib(0) -> pair(s(0),0),fib(s(X)) -> pair(W,Y) | fib(X) == pair(Y,Z), plus(Y,Z) == W], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\306.trs" :
+TRS {trsSignature = fromList [("A",0),("B",0),("C",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [A -> B,A -> C,B -> B,C -> C | B == C], trsType = TRSConditional JOIN, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\305.trs" :
+TRS {trsSignature = fromList [("C",0),("F",2),("a",0),("b",0),("c",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [F(x,x) -> C,F(x,y) -> F(x,y) | x == y,a -> b,a -> c], trsType = TRSConditional SEMIEQUATIONAL, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\304.trs" :
+TRS {trsSignature = fromList [("C",0),("F",2),("a",0),("b",0),("c",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [F(x,x) -> C,F(x,y) -> F(x,y) | x == z, z == y,a -> b,a -> c], trsType = TRSConditional JOIN, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\303.trs" :
+TRS {trsSignature = fromList [("C",0),("D",0),("F",1),("a",0),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [F(x) -> F(x) | x == C,F(C) -> D,g(x) -> a,g(x) -> x], trsType = TRSConditional SEMIEQUATIONAL, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\302.trs" :
+TRS {trsSignature = fromList [("A",0),("B",0),("F",1),("or",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [F(x) -> F(A) | x == B,or(x,y) -> x,or(x,y) -> y], trsType = TRSConditional SEMIEQUATIONAL, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\301.trs" :
+TRS {trsSignature = fromList [("A",0),("B",0),("F",3),("G",1),("e",1),("f",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [F(x,y,z) -> G(z) | x == y,G(A) -> F(A,B,A),e(x) -> f(x,x),f(x,y) -> x], trsType = TRSConditional JOIN, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\300.trs" :
+TRS {trsSignature = fromList [("A",0),("B",0),("F",1),("e",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [F(x) -> F(A) | x == B,e(x) -> x], trsType = TRSConditional JOIN, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\299.trs" :
+TRS {trsSignature = fromList [("F",2),("a",0),("b",0),("c",0),("d",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [F(x,y) -> x | x == y,F(x,y) -> y | x == y,b -> a,b -> c,c -> b,c -> d], trsType = TRSConditional SEMIEQUATIONAL, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\298.trs" :
+TRS {trsSignature = fromList [("F",2),("a",0),("b",0),("c",0),("d",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [F(x,y) -> x | x == z, z == y,F(x,y) -> y | x == z, z == y,b -> a,b -> c,c -> b,c -> d], trsType = TRSConditional JOIN, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\297.trs" :
+TRS {trsSignature = fromList [("F",2),("G",1),("a",0),("b",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [F(x,y) -> G(x) | x == y,a -> b], trsType = TRSConditional JOIN, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\296.trs" :
+TRS {trsSignature = fromList [("C",0),("F",2),("G",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [F(x,y) -> y | x == G(y),G(x) -> C], trsType = TRSConditional JOIN, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\295.trs" :
+TRS {trsSignature = fromList [("f",2),("g",1),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,y) -> x | g(x) == y, g(g(x)) == s(y),f(x,y) -> y | g(y) == s(x), g(g(y)) == x], trsType = TRSConditional JOIN, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\294.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x) -> x | x == b,a -> b], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\293.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> b,a -> c,b -> c | b == c], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\292.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("false",0),("le",2),("min",1),("nil",0),("s",1),("true",0)], trsVariables = fromList ["l","x","y"], trsRMap = [], trsRules = [le(0,s(x)) -> true,le(x,0) -> false,le(s(x),s(y)) -> le(x,y),min(cons(x,nil)) -> x,min(cons(x,l)) -> x | le(x,min(l)) == true,min(cons(x,l)) -> min(l) | le(x,min(l)) == false,min(cons(x,l)) -> min(l) | min(l) == x], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\291.trs" :
+TRS {trsSignature = fromList [("0",0),("F",0),("T",0),("lte",2),("p",1),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [s(p(x)) -> x,p(s(x)) -> x,lte(s(x),y) -> lte(x,p(y)),lte(p(x),y) -> lte(x,s(y)),lte(0,0) -> T,lte(0,p(0)) -> F,lte(0,s(x)) -> T | lte(0,x) == T,lte(0,p(x)) -> F | lte(0,x) == F], trsType = TRSConditional SEMIEQUATIONAL, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\290.trs" :
+TRS {trsSignature = fromList [("D",0),("G",0),("a",0),("b",0),("u",0),("v",0),("w",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [u -> a,w -> a,v -> b,w -> b,G -> D | u == v], trsType = TRSConditional SEMIEQUATIONAL, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\289.trs" :
+TRS {trsSignature = fromList [("App",2),("C",0),("F",0),("I",0),("K",0),("S",0),("T",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [App(App(App(S,x),y),z) -> App(App(x,z),App(y,z)),App(App(K,x),y) -> x,App(I,x) -> x,App(App(App(C,T),x),y) -> x,App(App(App(C,F),x),y) -> y,App(App(App(C,z),x),y) -> x | x == y,App(App(App(C,z),x),y) -> y | x == y], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\288.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("pin",1),("pout",1),("tc",1),("z",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [pin(a) -> pout(b),pin(b) -> pout(c),tc(x) -> x,tc(x) -> y | pin(x) == pout(z), tc(z) == y], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\287.trs" :
+TRS {trsSignature = fromList [("b",0),("f",2),("g",1),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [h(x) -> g(x) | f(x,y) == b], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\286.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",2),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x,x) -> a,g(x) -> a | g(x) == b,a -> b,b -> a], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\285.trs" :
+TRS {trsSignature = fromList [("false",0),("lte",2),("max",2),("true",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [lte(x,z) -> true | lte(x,y) == true, lte(y,z) == true,lte(x,x) -> true,max(x,y) -> y | lte(x,y) == true,max(x,y) -> x | lte(x,y) == false,lte(x,max(x,y)) -> true,lte(y,max(x,y)) -> true], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\284.trs" :
+TRS {trsSignature = fromList [("0",0),("false",0),("lte",2),("s",1),("true",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [lte(0,x) -> true,lte(s(x),0) -> false,lte(s(x),s(y)) -> lte(x,y),lte(x,x) -> true,lte(x,s(x)) -> true,lte(x,s(y)) -> true | lte(x,y) == true,lte(y,x) -> true | lte(x,y) == false,lte(x,z) -> true | lte(x,y) == true, lte(y,z) == true], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\283.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1),("g",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [g(x) -> f(x) | g(x) == f(x),f(a) -> g(a),a -> b], trsType = TRSConditional JOIN, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\282.trs" :
+TRS {trsSignature = fromList [("G",2),("a",0),("b",0),("c",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [a -> a | b == c,G(x,y) -> x,G(x,y) -> y], trsType = TRSConditional SEMIEQUATIONAL, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\281.trs" :
+TRS {trsSignature = fromList [("G",2),("a",0),("b",0),("f",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x) -> f(x) | x == a, x == b,G(x,y) -> x,G(x,y) -> y], trsType = TRSConditional JOIN, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\280.trs" :
+TRS {trsSignature = fromList [("G",2),("a",0),("b",0),("c",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [a -> a | x == b, x == c,G(x,y) -> x,G(x,y) -> y], trsType = TRSConditional JOIN, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\279.trs" :
+TRS {trsSignature = fromList [("0",0),("app",2),("cons",2),("empty",1),("f",2),("false",0),("fstsplit",2),("head",1),("length",1),("leq",2),("map_f",2),("nil",0),("ring",6),("s",1),("sndsplit",2),("tail",1),("three",0),("true",0),("two",0)], trsVariables = fromList ["h","in_2","in_3","m","n","pid","st_1","st_2","st_3","t","x"], trsRMap = [], trsRules = [fstsplit(0,x) -> nil,fstsplit(s(n),nil) -> nil,fstsplit(s(n),cons(h,t)) -> cons(h,fstsplit(n,t)),sndsplit(0,x) -> x,sndsplit(s(n),nil) -> nil,sndsplit(s(n),cons(h,t)) -> sndsplit(n,t),empty(nil) -> true,empty(cons(h,t)) -> false,leq(0,m) -> true,leq(s(n),0) -> false,leq(s(n),s(m)) -> leq(n,m),length(nil) -> 0,length(cons(h,t)) -> s(length(t)),app(nil,x) -> x,app(cons(h,t),x) -> cons(h,app(t,x)),map_f(pid,nil) -> nil,map_f(pid,cons(h,t)) -> app(f(pid,h),map_f(pid,t)),head(cons(h,t)) -> h,tail(cons(h,t)) -> t,ring(st_1,in_2,st_2,in_3,st_3,m) -> ring(sndsplit(m,st_1),cons(fstsplit(m,st_1),in_2),st_2,in_3,st_3,m) | empty(fstsplit(m,st_1)) == false,ring(st_1,in_2,st_2,in_3,st_3,m) -> ring(st_1,in_2,sndsplit(m,st_2),cons(fstsplit(m,st_2),in_3),st_3,m) | leq(m,length(st_2)) == true, empty(fstsplit(m,st_2)) == false,ring(st_1,in_2,st_2,in_3,st_3,m) -> ring(st_1,tail(in_2),sndsplit(m,app(map_f(two,head(in_2)),st_2)),cons(fstsplit(m,app(map_f(two,head(in_2)),st_2)),in_3),st_3,m) | leq(m,length(st_2)) == false, empty(fstsplit(m,app(map_f(two,head(in_2)),st_2))) == false,ring(st_1,in_2,st_2,in_3,st_3,m) -> ring(st_1,tail(in_2),st_2,in_3,st_3,m) | empty(map_f(two,head(in_2))) == true,ring(st_1,in_2,st_2,in_3,st_3,m) -> ring(st_1,in_2,st_2,in_3,sndsplit(m,st_3),m) | leq(m,length(st_3)) == true, empty(fstsplit(m,st_3)) == false,ring(st_1,in_2,st_2,in_3,st_3,m) -> ring(st_1,in_2,st_2,tail(in_3),sndsplit(m,app(map_f(three,head(in_3)),st_3)),m) | leq(m,length(st_3)) == false, empty(fstsplit(m,app(map_f(three,head(in_3)),st_3))) == false,ring(st_1,in_2,st_2,in_3,st_3,m) -> ring(st_1,in_2,st_2,tail(in_3),st_3,m) | empty(map_f(three,head(in_3))) == true], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\278.trs" :
+TRS {trsSignature = fromList [("0",0),("app",2),("cons",2),("empty",1),("f",2),("false",0),("fstsplit",2),("length",1),("leq",2),("map_f",2),("nil",0),("process",2),("s",1),("self",0),("sndsplit",2),("true",0)], trsVariables = fromList ["h","m","n","pid","store","t","x"], trsRMap = [], trsRules = [fstsplit(0,x) -> nil,fstsplit(s(n),nil) -> nil,fstsplit(s(n),cons(h,t)) -> cons(h,fstsplit(n,t)),sndsplit(0,x) -> x,sndsplit(s(n),nil) -> nil,sndsplit(s(n),cons(h,t)) -> sndsplit(n,t),empty(nil) -> true,empty(cons(h,t)) -> false,leq(0,m) -> true,leq(s(n),0) -> false,leq(s(n),s(m)) -> leq(n,m),length(nil) -> 0,length(cons(h,t)) -> s(length(t)),app(nil,x) -> x,app(cons(h,t),x) -> cons(h,app(t,x)),map_f(pid,nil) -> nil,map_f(pid,cons(h,t)) -> app(f(pid,h),map_f(pid,t)),process(store,m) -> process(app(map_f(self,nil),sndsplit(m,store)),m) | leq(m,length(store)) == true, empty(fstsplit(m,store)) == false,process(store,m) -> process(sndsplit(m,app(map_f(self,nil),store)),m) | leq(m,length(store)) == false, empty(fstsplit(m,app(map_f(self,nil),store))) == false], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\277.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",1),("p",1),("tt",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> f(x) | p(x) == tt,p(b) -> tt,p(c) -> tt], trsType = TRSConditional JOIN, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\276.trs" :
+TRS {trsSignature = fromList [("0",0),("ff",0),("lte",2),("s",1),("tt",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [lte(0,0) -> tt,lte(s(x),0) -> ff,lte(s(x),s(y)) -> lte(x,y),lte(x,s(y)) -> tt | lte(x,y) == tt], trsType = TRSConditional JOIN, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\275.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("eq",2),("f",1),("g",1),("h",1),("k",1),("p",1),("q",1),("true",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [eq(x,x) -> true,a -> b | b == b,h(x) -> k(x) | b == b,h(f(a)) -> p(a) | b == b,p(b) -> k(f(a)),q(b) -> k(g(a)),p(x) -> q(x) | eq(x,a) == true,f(x) -> g(x) | h(f(x)) == k(g(b))], trsType = TRSConditional JOIN, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\274.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1),("g",1),("h",1),("k",1),("p",1),("q",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> b | b == b,h(x) -> k(x) | b == b,h(f(a)) -> p(a) | b == b,p(b) -> k(f(a)),q(b) -> k(g(a)),p(x) -> q(x) | x == a,f(x) -> g(x) | h(f(x)) == k(g(b))], trsType = TRSConditional JOIN, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\273.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",1),("g",1),("h",1),("k",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [c -> k(f(a)),c -> k(g(a)),a -> b,h(x) -> k(x),h(f(a)) -> c,f(x) -> g(x) | h(f(x)) == k(g(b))], trsType = TRSConditional JOIN, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\272.trs" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("false",0),("insert",2),("lte",2),("nil",0),("ordered",1),("s",1),("true",0)], trsVariables = fromList ["l","m","n"], trsRMap = [], trsRules = [lte(0,n) -> true,lte(s(m),0) -> false,lte(s(m),s(n)) -> lte(m,n),insert(nil,m) -> cons(m,nil),insert(cons(n,l),m) -> cons(m,cons(n,l)) | lte(m,n) == true,insert(cons(n,l),m) -> cons(n,insert(l,m)) | lte(m,n) == false,ordered(nil) -> true,ordered(cons(m,nil)) -> true,ordered(cons(m,cons(n,l))) -> ordered(cons(n,l)) | lte(m,n) == true,ordered(cons(m,cons(n,l))) -> false | lte(m,n) == false], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\271.trs" :
+TRS {trsSignature = fromList [("0",0),("1",0),("h",1),("p",1),("q",1),("r",1),("s",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [p(q(x)) -> p(r(x)),q(h(x)) -> r(x),r(x) -> r(h(x)) | s(x) == 0,s(x) -> 1], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\270.trs" :
+TRS {trsSignature = fromList [("0",0),("a",0),("b",0),("c",0),("d",0),("e",0),("f",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> b | c == 0,c -> d,d -> e | f == 0,f -> a], trsType = TRSConditional JOIN, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\269.trs" :
+TRS {trsSignature = fromList [("b",0),("c",1),("e",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [c(x) -> e | x == c(x),b -> c(b)], trsType = TRSConditional JOIN, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\268.trs" :
+TRS {trsSignature = fromList [("0",0),("a",1),("b",0),("c",0),("p",1),("q",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [p(q(x)) -> 0,c -> c,a(x) -> b | p(x) == 0], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\267.trs" :
+TRS {trsSignature = fromList [("0",0),("eentry",0),("empty",0),("false",0),("le",2),("m",0),("pop",1),("push",2),("s",1),("size",1),("top",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [size(empty) -> 0,size(push(x,y)) -> s(size(x)),m -> s(s(s(s(0)))),pop(empty) -> empty,pop(push(x,y)) -> x | le(size(x),m) == true,top(empty) -> eentry,top(push(x,y)) -> y | le(size(x),m) == true,le(x,0) -> false,le(0,s(x)) -> true,le(s(x),s(y)) -> le(x,y)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\266.trs" :
+TRS {trsSignature = fromList [("App",2),("I",0),("K",0),("S",0)], trsVariables = fromList ["a","b","c"], trsRMap = [], trsRules = [App(App(App(S,a),b),c) -> App(App(a,c),App(b,c)) | a == I, b == I, c == I,App(App(K,a),b) -> a | a == I, b == I,App(I,a) -> a | a == I], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\264.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",2),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x,x) -> a | g(x) == b], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\263.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",1),("g",1),("h",1)], trsVariables = fromList ["x","z"], trsRMap = [], trsRules = [a -> c,g(a) -> h(b),h(b) -> g(c),f(x) -> z | g(x) == h(z)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\262.trs" :
+TRS {trsSignature = fromList [("0",0),("f",2),("plus",2),("s",1)], trsVariables = fromList ["x","y","z","z'"], trsRMap = [], trsRules = [plus(0,y) -> y,plus(s(x),y) -> plus(x,s(y)),f(x,y) -> z | plus(x,y) == plus(z,z')], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\1159.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,x) -> b | f(x,x) == a, x == a,f(y,y) -> a], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\1158.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x) -> g(a) | g(x) == x,f(x) -> g(b)], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\1140.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",2),("g",2),("h",1),("k",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(y,a) -> g(x,x) | h(z) == x, y == k(z),k(x) -> h(x),k(x) -> b,k(x) -> a,a -> b], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\1139.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",2),("g",2),("h",1),("k",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(k(z),a) -> g(x,x) | h(z) == x, x == b,f(k(a),h(a)) -> k(x) | a == x,k(x) -> h(x),k(x) -> b,k(x) -> a,a -> b,g(x,x) -> a], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\1138.trs" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",2),("g",2),("h",1),("k",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(y,a) -> g(x,x) | h(z) == x, y == k(z), x == b,f(y,z) -> k(x) | z == h(a), y == k(a), a == x,k(x) -> h(x),k(x) -> b,k(x) -> a,a -> b,g(x,x) -> a], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\1135.trs" :
+TRS {trsSignature = fromList [("a",0),("f",2),("unit",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(x,x) -> unit | x == a,f(x,unit) -> x,f(f(x,y),z) -> f(x,f(y,z))], trsType = TRSConditional SEMIEQUATIONAL, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\1134.trs" :
+TRS {trsSignature = fromList [("f",2)], trsVariables = fromList ["w","x","y","z"], trsRMap = [], trsRules = [f(f(x,y),f(z,w)) -> f(f(x,z),f(y,w)),f(f(x,y),x) -> x], trsType = TRSConditional SEMIEQUATIONAL, trsStrategy = Nothing, signatureBlock = False}
+
+++ File:".\\tests\\COPS\\CTRS\\1123.trs" :
+TRS {trsSignature = fromList [("0",0),("even",1),("false",0),("odd",1),("s",1),("true",0),("zero",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [zero(0) -> true,zero(s(x)) -> false,even(x) -> true | zero(x) == true,even(s(x)) -> true | odd(x) == true,even(s(x)) -> false | even(x) == true,odd(x) -> false | zero(x) == true,odd(s(x)) -> true | even(x) == true,odd(s(x)) -> false | odd(x) == true], trsType = TRSConditional ORIENTED, trsStrategy = Nothing, signatureBlock = False}
