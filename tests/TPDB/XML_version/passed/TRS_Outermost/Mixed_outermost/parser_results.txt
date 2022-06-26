@@ -1,0 +1,45 @@
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Mixed_outermost\\patterns2.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> f(a),a -> g(a),f(f(f(f(f(f(x)))))) -> b,g(g(g(g(g(g(x)))))) -> b,g(f(x)) -> b], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Mixed_outermost\\patterns1.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> f(a),a -> g(a),f(f(f(x))) -> b,g(g(g(x))) -> b,g(f(f(g(x)))) -> b,f(g(g(f(x)))) -> b,g(f(g(f(x)))) -> b], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Mixed_outermost\\odd.xml" :
+TRS {trsSignature = fromList [("b",0),("c",0),("f",1),("g",1)], trsVariables = fromList [], trsRMap = [], trsRules = [g(b) -> g(f(f(f(f(f(b)))))),f(f(b)) -> b,f(b) -> b,g(f(b)) -> c], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Mixed_outermost\\non-lin3.xml" :
+TRS {trsSignature = fromList [("f",2),("g",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [g(x,x) -> f(f(x,x),x),f(x,x) -> g(g(x,x),x),f(x,y) -> y], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Mixed_outermost\\non-lin2.xml" :
+TRS {trsSignature = fromList [("f",2),("g",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [g(x,x) -> f(f(x,x),x),f(x,x) -> g(x,x),f(x,y) -> y], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Mixed_outermost\\non-lin1.xml" :
+TRS {trsSignature = fromList [("g",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [g(x,x) -> g(g(x,x),x),g(x,y) -> y], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Mixed_outermost\\gfb.xml" :
+TRS {trsSignature = fromList [("b",0),("c",0),("f",1),("g",1)], trsVariables = fromList [], trsRMap = [], trsRules = [g(b) -> g(f(f(f(f(f(b)))))),f(b) -> b,g(f(b)) -> c], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Mixed_outermost\\ex6.xml" :
+TRS {trsSignature = fromList [("a",0),("f",2),("g",1),("i",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,x) -> f(i(x),g(g(x))),f(x,y) -> x,g(x) -> i(x),f(x,i(x)) -> f(x,x),f(i(x),i(g(x))) -> a], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Mixed_outermost\\ex5.xml" :
+TRS {trsSignature = fromList [("a",0),("f",1),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x) -> g(f(x)),g(f(x)) -> x,g(x) -> a], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Mixed_outermost\\ex4.xml" :
+TRS {trsSignature = fromList [("a",0),("f",1),("h",1),("i",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(h(x)) -> f(i(x)),f(i(x)) -> a,i(x) -> h(x)], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Mixed_outermost\\ex3.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1),("g",1),("s",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(g(a)) -> f(s(g(b))),f(f(x)) -> b,g(x) -> f(g(x))], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Mixed_outermost\\ex2.xml" :
+TRS {trsSignature = fromList [("big",0),("cons",2),("inf",1),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [cons(x,cons(y,z)) -> big,inf(x) -> cons(x,inf(s(x)))], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Mixed_outermost\\ex1.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(g(a)) -> a,f(f(x)) -> b,g(x) -> f(g(x))], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Mixed_outermost\\even.xml" :
+TRS {trsSignature = fromList [("b",0),("c",0),("f",1),("g",1)], trsVariables = fromList [], trsRMap = [], trsRules = [g(b) -> g(f(f(f(f(b))))),f(f(b)) -> b,f(b) -> b,g(f(b)) -> c], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Mixed_outermost\\afbg.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",1),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> f(a),b -> g(b),a -> b,f(f(f(f(f(f(f(f(f(f(x)))))))))) -> c,g(g(g(g(g(g(g(g(g(g(x)))))))))) -> c], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}

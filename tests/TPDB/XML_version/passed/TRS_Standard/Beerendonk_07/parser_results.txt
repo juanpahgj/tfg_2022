@@ -1,0 +1,72 @@
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Beerendonk_07\\9.xml" :
+TRS {trsSignature = fromList [("0",0),("and",2),("cond",4),("false",0),("gr",2),("p",1),("s",1),("true",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [cond(true,x,y,z) -> cond(and(gr(x,z),gr(y,z)),p(x),p(y),z),and(true,true) -> true,and(x,false) -> false,and(false,x) -> false,gr(0,0) -> false,gr(0,x) -> false,gr(s(x),0) -> true,gr(s(x),s(y)) -> gr(x,y),p(0) -> 0,p(s(x)) -> x], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Beerendonk_07\\8.xml" :
+TRS {trsSignature = fromList [("0",0),("and",2),("cond",3),("false",0),("gr",2),("p",1),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [cond(true,x,y) -> cond(and(gr(x,0),gr(y,0)),p(x),p(y)),and(true,true) -> true,and(x,false) -> false,and(false,x) -> false,gr(0,0) -> false,gr(0,x) -> false,gr(s(x),0) -> true,gr(s(x),s(y)) -> gr(x,y),p(0) -> 0,p(s(x)) -> x], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Beerendonk_07\\7.xml" :
+TRS {trsSignature = fromList [("0",0),("cond",2),("false",0),("odd",1),("p",1),("s",1),("true",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [cond(true,x) -> cond(odd(x),p(p(p(x)))),odd(0) -> false,odd(s(0)) -> true,odd(s(s(x))) -> odd(x),p(0) -> 0,p(s(x)) -> x], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Beerendonk_07\\6.xml" :
+TRS {trsSignature = fromList [("0",0),("cond",2),("false",0),("odd",1),("p",1),("s",1),("true",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [cond(true,x) -> cond(odd(x),p(x)),odd(0) -> false,odd(s(0)) -> true,odd(s(s(x))) -> odd(x),p(0) -> 0,p(s(x)) -> x], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Beerendonk_07\\5.xml" :
+TRS {trsSignature = fromList [("0",0),("and",2),("cond",2),("even",1),("false",0),("gr",2),("p",1),("s",1),("true",0),("y",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [cond(true,x) -> cond(and(even(x),gr(x,0)),p(x)),and(x,false) -> false,and(false,x) -> false,and(true,true) -> true,even(0) -> true,even(s(0)) -> false,even(s(s(x))) -> even(x),gr(0,x) -> false,gr(s(x),0) -> true,gr(s(x),s(y)) -> gr(x,y),p(0) -> 0,p(s(x)) -> x], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Beerendonk_07\\4.xml" :
+TRS {trsSignature = fromList [("0",0),("cond",3),("false",0),("gr",2),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [cond(true,x,y) -> cond(gr(x,y),y,x),gr(0,x) -> false,gr(s(x),0) -> true,gr(s(x),s(y)) -> gr(x,y)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Beerendonk_07\\3.xml" :
+TRS {trsSignature = fromList [("0",0),("add",2),("cond",3),("false",0),("gr",2),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [cond(true,x,y) -> cond(gr(x,y),x,add(x,y)),gr(0,x) -> false,gr(s(x),0) -> true,gr(s(x),s(y)) -> gr(x,y),add(0,x) -> x,add(s(x),y) -> s(add(x,y))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Beerendonk_07\\24.xml" :
+TRS {trsSignature = fromList [("0",0),("and",2),("cond1",3),("cond2",3),("cond3",3),("cond4",3),("false",0),("gr",2),("p",1),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [cond1(true,x,y) -> cond2(gr(x,y),x,y),cond2(true,x,y) -> cond3(gr(x,0),x,y),cond2(false,x,y) -> cond4(gr(y,0),x,y),cond3(true,x,y) -> cond3(gr(x,0),p(x),y),cond3(false,x,y) -> cond1(and(gr(x,0),gr(y,0)),x,y),cond4(true,x,y) -> cond4(gr(y,0),x,p(y)),cond4(false,x,y) -> cond1(and(gr(x,0),gr(y,0)),x,y),gr(0,x) -> false,gr(s(x),0) -> true,gr(s(x),s(y)) -> gr(x,y),and(true,true) -> true,and(false,x) -> false,and(x,false) -> false,p(0) -> 0,p(s(x)) -> x], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Beerendonk_07\\23.xml" :
+TRS {trsSignature = fromList [("0",0),("cond1",4),("cond2",4),("false",0),("gr",2),("p",1),("s",1),("true",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [cond1(true,x,y,z) -> cond2(gr(y,z),x,y,z),cond2(true,x,y,z) -> cond2(gr(y,z),x,p(y),z),cond2(false,x,y,z) -> cond1(gr(x,z),p(x),y,z),gr(0,x) -> false,gr(s(x),0) -> true,gr(s(x),s(y)) -> gr(x,y),p(0) -> 0,p(s(x)) -> x], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Beerendonk_07\\22.xml" :
+TRS {trsSignature = fromList [("0",0),("cond1",3),("cond2",3),("false",0),("gr",2),("p",1),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [cond1(true,x,y) -> cond2(gr(y,0),x,y),cond2(true,x,y) -> cond2(gr(y,0),x,p(y)),cond2(false,x,y) -> cond1(gr(x,0),p(x),y),gr(0,x) -> false,gr(s(x),0) -> true,gr(s(x),s(y)) -> gr(x,y),p(0) -> 0,p(s(x)) -> x], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Beerendonk_07\\21.xml" :
+TRS {trsSignature = fromList [("0",0),("and",2),("cond1",4),("cond2",4),("eq",2),("false",0),("gr",2),("p",1),("s",1),("true",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [cond1(true,x,y,z) -> cond2(gr(y,z),x,y,z),cond2(true,x,y,z) -> cond2(gr(y,z),p(x),p(y),z),cond2(false,x,y,z) -> cond1(and(eq(x,y),gr(x,z)),x,y,z),gr(0,x) -> false,gr(s(x),0) -> true,gr(s(x),s(y)) -> gr(x,y),p(0) -> 0,p(s(x)) -> x,eq(0,0) -> true,eq(s(x),0) -> false,eq(0,s(x)) -> false,eq(s(x),s(y)) -> eq(x,y),and(true,true) -> true,and(false,x) -> false,and(x,false) -> false], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Beerendonk_07\\20.xml" :
+TRS {trsSignature = fromList [("0",0),("and",2),("cond1",3),("cond2",3),("eq",2),("false",0),("gr",2),("p",1),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [cond1(true,x,y) -> cond2(gr(y,0),x,y),cond2(true,x,y) -> cond2(gr(y,0),p(x),p(y)),cond2(false,x,y) -> cond1(and(eq(x,y),gr(x,0)),x,y),gr(0,x) -> false,gr(s(x),0) -> true,gr(s(x),s(y)) -> gr(x,y),p(0) -> 0,p(s(x)) -> x,eq(0,0) -> true,eq(s(x),0) -> false,eq(0,s(x)) -> false,eq(s(x),s(y)) -> eq(x,y),and(true,true) -> true,and(false,x) -> false,and(x,false) -> false], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Beerendonk_07\\2.xml" :
+TRS {trsSignature = fromList [("0",0),("cond",3),("false",0),("gr",2),("p",1),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [cond(true,x,y) -> cond(gr(x,y),p(x),s(y)),gr(0,x) -> false,gr(s(x),0) -> true,gr(s(x),s(y)) -> gr(x,y),p(0) -> 0,p(s(x)) -> x], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Beerendonk_07\\19.xml" :
+TRS {trsSignature = fromList [("0",0),("cond1",4),("cond2",4),("cond3",4),("false",0),("gr",2),("or",2),("p",1),("s",1),("true",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [cond1(true,x,y,z) -> cond2(gr(x,0),x,y,z),cond2(true,x,y,z) -> cond1(or(gr(x,z),gr(y,z)),p(x),y,z),cond2(false,x,y,z) -> cond3(gr(y,0),x,y,z),cond3(true,x,y,z) -> cond1(or(gr(x,z),gr(y,z)),x,p(y),z),cond3(false,x,y,z) -> cond1(or(gr(x,z),gr(y,z)),x,y,z),gr(0,x) -> false,gr(s(x),0) -> true,gr(s(x),s(y)) -> gr(x,y),or(false,false) -> false,or(true,x) -> true,or(x,true) -> true,p(0) -> 0,p(s(x)) -> x], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Beerendonk_07\\18.xml" :
+TRS {trsSignature = fromList [("0",0),("cond1",3),("cond2",3),("cond3",3),("false",0),("gr",2),("or",2),("p",1),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [cond1(true,x,y) -> cond2(gr(x,0),x,y),cond2(true,x,y) -> cond1(or(gr(x,0),gr(y,0)),p(x),y),cond2(false,x,y) -> cond3(gr(y,0),x,y),cond3(true,x,y) -> cond1(or(gr(x,0),gr(y,0)),x,p(y)),cond3(false,x,y) -> cond1(or(gr(x,0),gr(y,0)),x,y),gr(0,x) -> false,gr(s(x),0) -> true,gr(s(x),s(y)) -> gr(x,y),or(false,false) -> false,or(true,x) -> true,or(x,true) -> true,p(0) -> 0,p(s(x)) -> x], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Beerendonk_07\\17.xml" :
+TRS {trsSignature = fromList [("0",0),("add",2),("cond1",3),("cond2",3),("cond3",3),("eq",2),("false",0),("gr",2),("p",1),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [cond1(true,x,y) -> cond2(gr(x,y),x,y),cond2(true,x,y) -> cond1(gr(add(x,y),0),p(x),y),cond2(false,x,y) -> cond3(eq(x,y),x,y),cond3(true,x,y) -> cond1(gr(add(x,y),0),p(x),y),cond3(false,x,y) -> cond1(gr(add(x,y),0),x,p(y)),gr(0,x) -> false,gr(s(x),0) -> true,gr(s(x),s(y)) -> gr(x,y),add(0,x) -> x,add(s(x),y) -> s(add(x,y)),eq(0,0) -> true,eq(0,s(x)) -> false,eq(s(x),0) -> false,eq(s(x),s(y)) -> eq(x,y),p(0) -> 0,p(s(x)) -> x], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Beerendonk_07\\16.xml" :
+TRS {trsSignature = fromList [("0",0),("add",2),("cond1",4),("cond2",4),("cond3",4),("false",0),("gr",2),("p",1),("s",1),("true",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [cond1(true,x,y,z) -> cond2(gr(x,0),x,y,z),cond2(true,x,y,z) -> cond1(gr(add(x,y),z),p(x),y,z),cond2(false,x,y,z) -> cond3(gr(y,0),x,y,z),cond3(true,x,y,z) -> cond1(gr(add(x,y),z),x,p(y),z),cond3(false,x,y,z) -> cond1(gr(add(x,y),z),x,y,z),gr(0,x) -> false,gr(s(x),0) -> true,gr(s(x),s(y)) -> gr(x,y),add(0,x) -> x,add(s(x),y) -> s(add(x,y)),p(0) -> 0,p(s(x)) -> x], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Beerendonk_07\\15.xml" :
+TRS {trsSignature = fromList [("0",0),("add",2),("cond1",3),("cond2",3),("cond3",3),("false",0),("gr",2),("p",1),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [cond1(true,x,y) -> cond2(gr(x,0),x,y),cond2(true,x,y) -> cond1(gr(add(x,y),0),p(x),y),cond2(false,x,y) -> cond3(gr(y,0),x,y),cond3(true,x,y) -> cond1(gr(add(x,y),0),x,p(y)),cond3(false,x,y) -> cond1(gr(add(x,y),0),x,y),gr(0,x) -> false,gr(s(x),0) -> true,gr(s(x),s(y)) -> gr(x,y),add(0,x) -> x,add(s(x),y) -> s(add(x,y)),p(0) -> 0,p(s(x)) -> x], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Beerendonk_07\\14.xml" :
+TRS {trsSignature = fromList [("0",0),("cond1",2),("cond2",3),("false",0),("gr",2),("neq",2),("p",1),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [cond1(s(x),y) -> cond2(gr(s(x),y),s(x),y),cond2(true,x,y) -> cond1(y,y),cond2(false,x,y) -> cond1(p(x),y),gr(0,x) -> false,gr(s(x),0) -> true,gr(s(x),s(y)) -> gr(x,y),neq(0,0) -> false,neq(0,s(x)) -> true,neq(s(x),0) -> true,neq(s(x),s(y)) -> neq(x,y),p(0) -> 0,p(s(x)) -> x], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Beerendonk_07\\13.xml" :
+TRS {trsSignature = fromList [("0",0),("cond1",3),("cond2",3),("false",0),("gr",2),("p",1),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [cond1(true,x,y) -> cond2(gr(x,y),x,y),cond2(true,x,y) -> cond1(gr(x,0),y,y),cond2(false,x,y) -> cond1(gr(x,0),p(x),y),gr(0,x) -> false,gr(s(x),0) -> true,gr(s(x),s(y)) -> gr(x,y),p(0) -> 0,p(s(x)) -> x], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Beerendonk_07\\12.xml" :
+TRS {trsSignature = fromList [("0",0),("cond1",3),("cond2",3),("false",0),("gr",2),("gr0",1),("p",1),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [cond1(true,x,y) -> cond2(gr(x,y),x,y),cond2(true,x,y) -> cond1(gr0(x),y,y),cond2(false,x,y) -> cond1(gr0(x),p(x),y),gr(0,x) -> false,gr(s(x),0) -> true,gr(s(x),s(y)) -> gr(x,y),gr0(0) -> false,gr0(s(x)) -> true,p(0) -> 0,p(s(x)) -> x], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Beerendonk_07\\11.xml" :
+TRS {trsSignature = fromList [("0",0),("cond1",3),("cond2",3),("false",0),("gr",2),("neq",2),("p",1),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [cond1(true,x,y) -> cond2(gr(x,y),x,y),cond2(true,x,y) -> cond1(neq(x,0),y,y),cond2(false,x,y) -> cond1(neq(x,0),p(x),y),gr(0,x) -> false,gr(s(x),0) -> true,gr(s(x),s(y)) -> gr(x,y),neq(0,0) -> false,neq(0,s(x)) -> true,neq(s(x),0) -> true,neq(s(x),s(y)) -> neq(x,y),p(0) -> 0,p(s(x)) -> x], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Beerendonk_07\\10.xml" :
+TRS {trsSignature = fromList [("0",0),("cond1",2),("cond2",2),("div2",1),("even",1),("false",0),("neq",2),("p",1),("s",1),("true",0),("y",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [cond1(true,x) -> cond2(even(x),x),cond2(true,x) -> cond1(neq(x,0),div2(x)),cond2(false,x) -> cond1(neq(x,0),p(x)),neq(0,0) -> false,neq(0,s(x)) -> true,neq(s(x),0) -> true,neq(s(x),s(y)) -> neq(x,y),even(0) -> true,even(s(0)) -> false,even(s(s(x))) -> even(x),div2(0) -> 0,div2(s(0)) -> 0,div2(s(s(x))) -> s(div2(x)),p(0) -> 0,p(s(x)) -> x], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Beerendonk_07\\1.xml" :
+TRS {trsSignature = fromList [("0",0),("cond",3),("false",0),("gr",2),("p",1),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [cond(true,x,y) -> cond(gr(x,y),p(x),y),gr(0,x) -> false,gr(s(x),0) -> true,gr(s(x),s(y)) -> gr(x,y),p(0) -> 0,p(s(x)) -> x], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}

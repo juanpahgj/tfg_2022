@@ -1,0 +1,150 @@
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\yoyo_3b.xml" :
+TRS {trsSignature = fromList [("b",1),("f",1),("g",1),("u",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [b(f(f(f(x)))) -> x,b(u(x)) -> b(f(x)),f(g(x)) -> f(f(x)),f(b(x)) -> u(g(b(x))),f(u(x)) -> u(g(x))], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\yoyo_3a.xml" :
+TRS {trsSignature = fromList [("b",1),("c",0),("f",1),("g",1),("u",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(f(x))) -> c,b(u(x)) -> b(f(x)),f(g(x)) -> f(f(x)),f(b(x)) -> u(g(b(x))),f(u(x)) -> u(g(x))], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\yoyo_3.xml" :
+TRS {trsSignature = fromList [("a",1),("b",1),("c",0),("d",1),("u",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a(a(a(x))) -> c,b(u(x)) -> b(d(x)),d(a(x)) -> a(d(x)),d(b(x)) -> u(a(b(x))),a(u(x)) -> u(a(x))], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\yoyo_2.xml" :
+TRS {trsSignature = fromList [("a",1),("b",1),("c",0),("d",1),("u",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a(a(x)) -> c,b(u(x)) -> b(d(x)),d(a(x)) -> a(d(x)),d(b(x)) -> u(a(b(x))),a(u(x)) -> u(a(x))], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\toyama_stop2.xml" :
+TRS {trsSignature = fromList [("0",0),("1",0),("f",3),("g",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(0,1,x) -> f(x,x,x),g(x,y) -> x,g(x,y) -> y,f(g(0,x),y,z) -> 1,f(g(x,0),y,z) -> 1], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\toyama_stop.xml" :
+TRS {trsSignature = fromList [("0",0),("1",0),("c",0),("f",3),("g",2)], trsVariables = fromList ["u","v","x","y","z"], trsRMap = [], trsRules = [f(g(u,v),y,z) -> c,f(0,1,x) -> f(x,x,x),g(x,y) -> x,g(x,y) -> y,f(f(x,y,z),u,v) -> c,f(0,u,v) -> c], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\toyama_out.xml" :
+TRS {trsSignature = fromList [("0",0),("1",0),("f",3),("g",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(0,1,x) -> f(x,x,x),g(x,y) -> x,g(x,y) -> y], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\outermost_gr.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(x,a) -> f(x,b),b -> a,f(a,x) -> a,f(b,x) -> a,f(f(x,y),z) -> a], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\morse.xml" :
+TRS {trsSignature = fromList [("0",0),("1",0),("M",0),("cons",2),("garbage",0),("h",1),("tail",1)], trsVariables = fromList ["s","x"], trsRMap = [], trsRules = [M -> h(cons(0,tail(M))),tail(cons(x,s)) -> s,h(cons(0,s)) -> cons(0,cons(1,h(s))),h(cons(1,s)) -> cons(1,cons(0,h(s))),cons(x,s) -> garbage], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\inn_out.xml" :
+TRS {trsSignature = fromList [("a",0),("f",1),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(g(x)) -> f(g(g(x))),g(g(g(x))) -> a], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\g_2_f_var.xml" :
+TRS {trsSignature = fromList [("f",1),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x) -> g(f(x)),g(g(f(x))) -> x], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\g_2_const.xml" :
+TRS {trsSignature = fromList [("c",0),("f",1),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x) -> g(f(x)),g(g(x)) -> c], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\f_5_2.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> f(a),g(f(x)) -> f(g(g(x))),f(f(f(f(f(x))))) -> b], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\f_5_1.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> f(a),g(f(x)) -> f(g(x)),f(f(f(f(f(x))))) -> b], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\f_5.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> f(a),f(f(f(f(f(x))))) -> b], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\f_2_2.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> f(a),g(f(x)) -> f(g(g(x))),f(f(x)) -> b], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\f_2_1.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> f(a),g(f(x)) -> f(g(x)),f(f(x)) -> b], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\from_three.xml" :
+TRS {trsSignature = fromList [("cons",2),("from",1),("nil",0),("s",1)], trsVariables = fromList ["x","xs"], trsRMap = [], trsRules = [from(x) -> cons(x,from(s(x))),cons(s(s(s(x))),xs) -> nil], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\from_one_a.xml" :
+TRS {trsSignature = fromList [("cons",2),("from",1),("nil",0),("s",1)], trsVariables = fromList ["x","xs"], trsRMap = [], trsRules = [from(x) -> cons(x,cons(nil,from(s(x)))),cons(s(x),xs) -> nil], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\from_one.xml" :
+TRS {trsSignature = fromList [("cons",2),("from",1),("nil",0),("s",1)], trsVariables = fromList ["x","xs"], trsRMap = [], trsRules = [from(x) -> cons(x,from(s(x))),cons(s(x),xs) -> nil], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\fg.xml" :
+TRS {trsSignature = fromList [("b",0),("f",1),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(g(x)) -> x,g(b) -> f(g(b))], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\ffg.xml" :
+TRS {trsSignature = fromList [("b",0),("f",1),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(g(x))) -> x,g(b) -> f(g(b))], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\ffb_SL.xml" :
+TRS {trsSignature = fromList [("b",0),("f",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [b -> f(f(b)),f(b) -> b,f(f(f(x))) -> b], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\ex9.xml" :
+TRS {trsSignature = fromList [("f",2),("g",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,y) -> g(f(y,x)),g(g(g(f(x,y)))) -> x], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\ex8.xml" :
+TRS {trsSignature = fromList [("f",1),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(g(x)) -> g(g(x)),g(x) -> f(f(x)),f(f(x)) -> x], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\ex7.xml" :
+TRS {trsSignature = fromList [("a",0),("c",0),("f",1),("g",1),("h",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> f(a),f(f(x)) -> g(x),g(g(x)) -> h(x),h(h(x)) -> c], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\ex6.xml" :
+TRS {trsSignature = fromList [("a",0),("c",0),("f",1),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> f(a),f(f(x)) -> g(x),g(g(x)) -> c], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\ex5.xml" :
+TRS {trsSignature = fromList [("c",0),("f",2),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(x,f(y,z)) -> f(f(x,y),z),f(x,y) -> s(f(y,x)),s(s(x)) -> c], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\ex4.xml" :
+TRS {trsSignature = fromList [("c",0),("f",1),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(g(x)) -> g(g(f(f(x)))),g(g(g(x))) -> c], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\ex3.xml" :
+TRS {trsSignature = fromList [("0",0),("1",0),("2",0),("f",2)], trsVariables = fromList [], trsRMap = [], trsRules = [f(0,1) -> f(2,2),2 -> 0,2 -> 1,f(2,1) -> 2,f(0,2) -> 2], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\ex2.xml" :
+TRS {trsSignature = fromList [("0",0),("1",0),("2",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x,x) -> f(0,1),0 -> 2,1 -> 2,f(x,2) -> 2,f(2,x) -> 2], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\ex1.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1),("g",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [a -> f(a),f(f(f(x))) -> b,g(f(f(x)),f(f(y))) -> f(g(x,y))], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\ex0.xml" :
+TRS {trsSignature = fromList [("c",0),("f",2),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x,c) -> g(f(x,x)),g(g(x)) -> c], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\dupl_rhs.xml" :
+TRS {trsSignature = fromList [("c",0),("f",2),("h",1),("i",1),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(h(x),c) -> f(i(x),s(x)),h(x) -> f(h(x),c),i(x) -> h(x),f(i(x),y) -> x], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\countter.xml" :
+TRS {trsSignature = fromList [("0",1),("1",1),("2",1),("a",0),("b",0),("f",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> f(a),f(f(x)) -> b,0(f(x)) -> 1(x),1(f(x)) -> 2(x),2(f(x)) -> f(0(x))], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\countbin.xml" :
+TRS {trsSignature = fromList [("0",1),("1",1),("a",0),("b",0),("f",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> f(a),f(f(x)) -> b,0(f(x)) -> 1(x),1(f(x)) -> f(0(x))], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\cariboo_nl_6.xml" :
+TRS {trsSignature = fromList [("a",0),("f",2),("g",1),("h",2),("i",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,x) -> f(i(x),g(g(x))),f(x,y) -> x,g(x) -> i(x),f(x,i(x)) -> f(x,x),f(i(x),i(g(x))) -> a,h(x,x) -> a], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\cariboo_nl_5.xml" :
+TRS {trsSignature = fromList [("a",0),("f",2),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x,x) -> g(f(x,x)),g(x) -> a], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\cariboo_nl_4.xml" :
+TRS {trsSignature = fromList [("a",0),("f",1),("h",2),("i",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(h(x,x)) -> f(i(x)),f(i(x)) -> a,i(x) -> h(x,x)], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\cariboo_nl_3.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1),("g",2),("s",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(g(a,a)) -> f(s(g(b,b))),f(f(x)) -> b,g(x,x) -> f(g(x,x))], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\cariboo_nl_2.xml" :
+TRS {trsSignature = fromList [("b",0),("big",0),("cons",2),("g",2),("inf",1),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [cons(x,cons(y,z)) -> big,inf(x) -> cons(x,inf(s(x))),g(x,x) -> b], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\cariboo_nl_1.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1),("g",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(g(a,a)) -> a,f(f(x)) -> b,g(x,x) -> f(g(x,x))], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\cariboo_len3.xml" :
+TRS {trsSignature = fromList [("big",0),("cons",2),("inf",1),("s",1)], trsVariables = fromList ["x","xs","y","z"], trsRMap = [], trsRules = [cons(x,cons(y,cons(z,xs))) -> big,inf(x) -> cons(x,inf(s(x)))], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\cariboo_add3.xml" :
+TRS {trsSignature = fromList [("a",0),("f",2),("g",1),("h",1),("i",1),("j",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(g(x),h(x)) -> f(i(x),h(x)),f(x,h(y)) -> f(x,j(y)),f(i(x),h(x)) -> a,f(x,j(y)) -> a,i(x) -> g(x),j(x) -> h(x)], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\cariboo_add2a.xml" :
+TRS {trsSignature = fromList [("f",1),("h",1),("i",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(h(x)) -> f(i(x)),h(x) -> f(h(x)),i(x) -> h(x),f(i(x)) -> x], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\cariboo_add2.xml" :
+TRS {trsSignature = fromList [("a",0),("f",1),("h",1),("i",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(h(x)) -> f(i(x)),h(x) -> f(h(x)),i(x) -> h(x),f(i(x)) -> a], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\cariboo_add1.xml" :
+TRS {trsSignature = fromList [("c",0),("p",3),("q",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [p(x,y,x) -> q(p(y,x,y)),q(q(x)) -> c], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\bintree.xml" :
+TRS {trsSignature = fromList [("0",0),("b",2),("c",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [0 -> b(0,0),b(b(x,y),z) -> c,b(x,b(y,z)) -> c], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\assoc_f_rhs.xml" :
+TRS {trsSignature = fromList [("a",0),("c",0),("f",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(f(x,y),z) -> f(c,x),f(x,f(y,z)) -> f(f(x,y),z),a -> f(a,a)], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Outermost\\Zantema_08\\assoc_c_rhs.xml" :
+TRS {trsSignature = fromList [("a",0),("c",0),("f",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(f(x,y),z) -> c,f(x,f(y,z)) -> f(f(x,y),z),a -> f(a,a)], trsType = TRSStandard, trsStrategy = Just OUTERMOST, signatureBlock = True}

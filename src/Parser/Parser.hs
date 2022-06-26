@@ -119,10 +119,10 @@ checkXMLDeclaration :: Either ParseError Spec -> Decl -> Either ParseError Spec
 checkXMLDeclaration (Left parseError) _ = Left parseError
 checkXMLDeclaration (Right (Spec [])) (CType ctype) = Right . Spec $ [CType ctype]
 checkXMLDeclaration (Right (Spec [])) (Strategy stgy) = Right . Spec $ [Strategy stgy]
-checkXMLDeclaration (Right (Spec [])) (Signature sg) = Right . Spec $ [Signature sg]
+--checkXMLDeclaration (Right (Spec [])) (Signature sg) = Right . Spec $ [Signature sg]
 checkXMLDeclaration (Right (Spec [CType ctype])) (Strategy stgy) = Right . Spec $ [Strategy stgy, CType ctype]
 checkXMLDeclaration (Right (Spec [CType ctype])) (Rules rs) = Right . Spec $ [Rules rs, CType ctype]
-checkXMLDeclaration (Right (Spec (Strategy stgy:rest))) (Rules rs) = Right . Spec $ (Rules rs:Strategy stgy:rest)
+checkXMLDeclaration (Right (Spec (Strategy stgy:rest))) (Signature sg) = Right . Spec $ (Signature sg:Strategy stgy:rest)
 checkXMLDeclaration (Right (Spec (Signature sg:rest))) (Rules rs) = Right . Spec $ (Rules rs:Signature sg:rest)
 checkXMLDeclaration (Right (Spec (Rules rs:rest))) (Comment c) = Right . Spec $ (Comment c:Rules rs:rest)
 checkXMLDeclaration _ (CType _) = Left $ newErrorMessage (UnExpect "CONDITIONTYPE block") (newPos "" 0 0)
@@ -240,21 +240,25 @@ checkWellFormed (Strategy (CONTEXTSENSITIVE rmap):rest) = do { myTRS <- get
                                                                         ;checkWellFormed rest
                                                                         }
                                                              }
-
 checkWellFormed (Strategy FULL:rest) = do { myTRS <- get 
-                                          ; case trsType myTRS of
-                                            TRSEquational -> return . Left $ newErrorMessage (UnExpect $ "found theory in non equational type") (newPos "" 0 0)
-                                            _ -> do{put $ myTRS { trsStrategy = Just FULL
-                                                                  , trsType = case trsType myTRS of
-                                                                                TRSStandard -> TRSContextSensitive
-                                                                                TRSConditional typ -> TRSContextSensitiveConditional typ
-                                                                                TRSContextSensitive -> TRSContextSensitive
-                                                                                TRSContextSensitiveConditional typ -> TRSContextSensitiveConditional typ
-                                                                }
-                                                    ;checkWellFormed rest
-                                                   } 
+                                          ; put $ myTRS { trsStrategy = Just FULL }
+                                          ;checkWellFormed rest
                                           }
-
+{-
+  checkWellFormed (Strategy FULL:rest) = do { myTRS <- get 
+                                            ; case trsType myTRS of
+                                              TRSEquational -> return . Left $ newErrorMessage (UnExpect $ "found theory in non equational type") (newPos "" 0 0)
+                                              _ -> do{put $ myTRS { trsStrategy = Just FULL
+                                                                    , trsType = case trsType myTRS of
+                                                                                  TRSStandard -> TRSContextSensitive
+                                                                                  TRSConditional typ -> TRSContextSensitiveConditional typ
+                                                                                  TRSContextSensitive -> TRSContextSensitive
+                                                                                  TRSContextSensitiveConditional typ -> TRSContextSensitiveConditional typ
+                                                                  }
+                                                      ;checkWellFormed rest
+                                                    } 
+                                            }
+-}
 checkWellFormed (Signature sg:rest) = do { myTRS <- get 
                                          ; put $ myTRS { signatureBlock = True}
                                          ; result <- checkSignatures sg
@@ -313,8 +317,9 @@ checkSignature (S id arity) = do { myTRS <- get
                                       (False, Nothing) -> do { put $ myTRS { trsSignature = M.insert id arity $ funcs }
                                                              ; return . Right $ ()
                                                              }
-                                      (False, Just len) -> return . Left $ newErrorMessage (UnExpect $ "symbol " ++ id ++ " with arity " ++ (show arity) ++ " already in signature ") (newPos "" 0 0)
-                                      _ -> return . Left $ newErrorMessage (UnExpect $ "symbols declaration in variables " ++ id) (newPos "" 0 0)
+                                      _ -> return . Left $ newErrorMessage (UnExpect $ "symbol " ++ id ++ " with arity " ++ (show arity) ++ " already declared ") (newPos "" 0 0)
+                                      -- (False, Just len) -> return . Left $ newErrorMessage (UnExpect $ "symbol " ++ id ++ " with arity " ++ (show arity) ++ " already declared ") (newPos "" 0 0)
+                                      -- _ -> return . Left $ newErrorMessage (UnExpect $ "symbols declaration in variables " ++ id) (newPos "" 0 0)
                                  }
 {-
   checkSignature (S id arity) = do { myTRS <- get
@@ -332,13 +337,15 @@ checkSignature (Sth id arity _) = do  { myTRS <- get
                                       ; let vars = trsVariables myTRS
                                       ; let funcs = trsSignature myTRS
                                       ; case (S.member id vars, M.lookup id funcs) of 
-                                          (False, Nothing) -> do { put $ myTRS { trsSignature = M.insert id arity $ funcs }
-                                                                  --; return . Right $ ()
-                                                                  ; case trsType myTRS of
-                                                                        TRSStandard -> do { put $ myTRS {trsType = TRSEquational}
+                                          (False, Nothing) -> do { case trsType myTRS of
+                                                                        TRSStandard -> do { put $ myTRS {trsSignature = M.insert id arity $ funcs
+                                                                                                        , trsType = TRSEquational
+                                                                                                        }
                                                                                           ; return . Right $ ()
                                                                                           }
-                                                                        TRSEquational -> return . Right $ ()
+                                                                        TRSEquational -> do { put $ myTRS {trsSignature = M.insert id arity $ funcs}
+                                                                                            ; return . Right $ ()
+                                                                                            }
                                                                         _ -> return . Left $ newErrorMessage (UnExpect $ "found theory in non equational type") (newPos "" 0 0)
                                                                  }
                                           (False, Just len) -> return . Left $ newErrorMessage (UnExpect $ "symbol " ++ id ++ " with arity " ++ (show arity) ++ " already in signature ") (newPos "" 0 0)
@@ -453,7 +460,7 @@ checkTerm (T id terms) = do { myTRS <- get
                             ; let arglen = length terms
                             ; case (S.member id vars, M.lookup id funcs) of 
                                 (False, Nothing) -> do {if (signature) then
-                                                          return . Left $ newErrorMessage (UnExpect $ "symbol: " ++ id ++ " . Not declared in signature ") (newPos "" 0 0)
+                                                          return . Left $ newErrorMessage (UnExpect $ "symbol: '" ++ id ++ "' not declared in signature ") (newPos "" 0 0)
                                                         else
                                                           do{ put $ myTRS { trsSignature = M.insert id (length terms) $ funcs }
                                                             ; checkTerms terms
@@ -476,7 +483,7 @@ checkTerm (XTerm (Tfun id terms)) = do { myTRS <- get
                                        ; let arglen = length terms
                                        ; case (M.lookup id funcs) of
                                             Nothing -> do {if (signature) then
-                                                            return . Left $ newErrorMessage (UnExpect $ "symbol: " ++ id ++ " . Not declared in signature ") (newPos "" 0 0)
+                                                            return . Left $ newErrorMessage (UnExpect $ "symbol: '" ++ id ++ "' not declared in signature ") (newPos "" 0 0)
                                                            else
                                                             do { put $ myTRS { trsSignature = M.insert id (length terms) $ funcs }
                                                                ; checkTerms terms
@@ -499,7 +506,7 @@ checkTerm (XTerm (Tvar id)) = do { myTRS <- get
 -- | Checks if the replacement map satisfies arity restriction and increasing order
 checkRMap :: [(Id, [Int])] -> State TRS (Either ParseError ())
 checkRMap [] = return . Right $ ()
-checkRMap ((f,[]):rmaps) =checkRMap rmaps
+checkRMap ((f,[]):rmaps) = checkRMap rmaps
 {-
 checkRMap ((f,[]):rmaps) = do { myTRS <- get 
                               ; case M.lookup f (trsSignature myTRS) of 

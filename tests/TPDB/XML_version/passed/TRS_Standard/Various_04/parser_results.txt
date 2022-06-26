@@ -1,0 +1,69 @@
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Various_04\\27.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("g",3)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [g(x,a,b) -> g(b,b,a)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Various_04\\26.xml" :
+TRS {trsSignature = fromList [("0",0),("f",1),("g",2),("h",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(f(x)) -> f(g(f(x),x)),f(f(x)) -> f(h(f(x),f(x))),g(x,y) -> y,h(x,x) -> g(x,0)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Various_04\\25.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("d",0),("f",2),("g",1)], trsVariables = fromList [], trsRMap = [], trsRules = [g(a) -> g(b),b -> f(a,a),f(a,a) -> g(d)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Various_04\\24.xml" :
+TRS {trsSignature = fromList [("0",0),("L",1),("N",2),("max",1),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [max(L(x)) -> x,max(N(L(0),L(y))) -> y,max(N(L(s(x)),L(s(y)))) -> s(max(N(L(x),L(y)))),max(N(L(x),N(y,z))) -> max(N(L(x),L(max(N(y,z)))))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Various_04\\23.xml" :
+TRS {trsSignature = fromList [("0",0),("f",2),("g",2),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [g(0,f(x,x)) -> x,g(x,s(y)) -> g(f(x,y),0),g(s(x),y) -> g(f(x,y),0),g(f(x,y),0) -> f(g(x,0),g(y,0))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Various_04\\22.xml" :
+TRS {trsSignature = fromList [("0",0),("f",2),("g",2),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,0) -> s(0),f(s(x),s(y)) -> s(f(x,y)),g(0,x) -> g(f(x,x),x)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Various_04\\21.xml" :
+TRS {trsSignature = fromList [("+",2),("p1",0),("p10",0),("p2",0),("p5",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [+(p1,p1) -> p2,+(p1,+(p2,p2)) -> p5,+(p5,p5) -> p10,+(+(x,y),z) -> +(x,+(y,z)),+(p1,+(p1,x)) -> +(p2,x),+(p1,+(p2,+(p2,x))) -> +(p5,x),+(p2,p1) -> +(p1,p2),+(p2,+(p1,x)) -> +(p1,+(p2,x)),+(p2,+(p2,p2)) -> +(p1,p5),+(p2,+(p2,+(p2,x))) -> +(p1,+(p5,x)),+(p5,p1) -> +(p1,p5),+(p5,+(p1,x)) -> +(p1,+(p5,x)),+(p5,p2) -> +(p2,p5),+(p5,+(p2,x)) -> +(p2,+(p5,x)),+(p5,+(p5,x)) -> +(p10,x),+(p10,p1) -> +(p1,p10),+(p10,+(p1,x)) -> +(p1,+(p10,x)),+(p10,p2) -> +(p2,p10),+(p10,+(p2,x)) -> +(p2,+(p10,x)),+(p10,p5) -> +(p5,p10),+(p10,+(p5,x)) -> +(p5,+(p10,x))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Various_04\\19.xml" :
+TRS {trsSignature = fromList [(":",2),("e",0),("i",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [:(x,x) -> e,:(x,e) -> x,i(:(x,y)) -> :(y,x),:(:(x,y),z) -> :(x,:(z,i(y))),:(e,x) -> i(x),i(i(x)) -> x,i(e) -> e,:(x,:(y,i(x))) -> i(y),:(x,:(y,:(i(x),z))) -> :(i(z),y),:(i(x),:(y,x)) -> i(y),:(i(x),:(y,:(x,z))) -> :(i(z),y)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Various_04\\18.xml" :
+TRS {trsSignature = fromList [("*",2),("+",2),("u",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [+(*(x,y),*(x,z)) -> *(x,+(y,z)),+(+(x,y),z) -> +(x,+(y,z)),+(*(x,y),+(*(x,z),u)) -> +(*(x,+(y,z)),u)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Various_04\\15.xml" :
+TRS {trsSignature = fromList [("0",0),("f",1),("p",1),("s",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(s(x)) -> s(s(f(p(s(x))))),f(0) -> 0,p(s(x)) -> x], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Various_04\\14.xml" :
+TRS {trsSignature = fromList [("+",2),("-",2),("0",0),("1",0),("BS",1),("I",1),("L",1),("Log",1),("Log'",1),("Max",1),("Min",1),("N",3),("O",1),("Size",1),("Val",1),("WB",1),("and",2),("false",0),("ge",2),("if",3),("l",0),("not",1),("r",0),("true",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [O(0) -> 0,+(0,x) -> x,+(x,0) -> x,+(O(x),O(y)) -> O(+(x,y)),+(O(x),I(y)) -> I(+(x,y)),+(I(x),O(y)) -> I(+(x,y)),+(I(x),I(y)) -> O(+(+(x,y),I(0))),+(x,+(y,z)) -> +(+(x,y),z),-(x,0) -> x,-(0,x) -> 0,-(O(x),O(y)) -> O(-(x,y)),-(O(x),I(y)) -> I(-(-(x,y),I(1))),-(I(x),O(y)) -> I(-(x,y)),-(I(x),I(y)) -> O(-(x,y)),not(true) -> false,not(false) -> true,and(x,true) -> x,and(x,false) -> false,if(true,x,y) -> x,if(false,x,y) -> y,ge(O(x),O(y)) -> ge(x,y),ge(O(x),I(y)) -> not(ge(y,x)),ge(I(x),O(y)) -> ge(x,y),ge(I(x),I(y)) -> ge(x,y),ge(x,0) -> true,ge(0,O(x)) -> ge(0,x),ge(0,I(x)) -> false,Log'(0) -> 0,Log'(I(x)) -> +(Log'(x),I(0)),Log'(O(x)) -> if(ge(x,I(0)),+(Log'(x),I(0)),0),Log(x) -> -(Log'(x),I(0)),Val(L(x)) -> x,Val(N(x,l,r)) -> x,Min(L(x)) -> x,Min(N(x,l,r)) -> Min(l),Max(L(x)) -> x,Max(N(x,l,r)) -> Max(r),BS(L(x)) -> true,BS(N(x,l,r)) -> and(and(ge(x,Max(l)),ge(Min(r),x)),and(BS(l),BS(r))),Size(L(x)) -> I(0),Size(N(x,l,r)) -> +(+(Size(l),Size(r)),I(1)),WB(L(x)) -> true,WB(N(x,l,r)) -> and(if(ge(Size(l),Size(r)),ge(I(0),-(Size(l),Size(r))),ge(I(0),-(Size(r),Size(l)))),and(WB(l),WB(r)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Various_04\\13.xml" :
+TRS {trsSignature = fromList [("*",2),("+",2),("-",2),("0",0),("1",0),("I",1),("O",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [O(0) -> 0,+(0,x) -> x,+(x,0) -> x,+(O(x),O(y)) -> O(+(x,y)),+(O(x),I(y)) -> I(+(x,y)),+(I(x),O(y)) -> I(+(x,y)),+(I(x),I(y)) -> O(+(+(x,y),I(0))),*(0,x) -> 0,*(x,0) -> 0,*(O(x),y) -> O(*(x,y)),*(I(x),y) -> +(O(*(x,y)),y),-(x,0) -> x,-(0,x) -> 0,-(O(x),O(y)) -> O(-(x,y)),-(O(x),I(y)) -> I(-(-(x,y),I(1))),-(I(x),O(y)) -> I(-(x,y)),-(I(x),I(y)) -> O(-(x,y))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Various_04\\12.xml" :
+TRS {trsSignature = fromList [("*",2),("+",2),("0",0),("I",1),("O",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [O(0) -> 0,+(0,x) -> x,+(x,0) -> x,+(O(x),O(y)) -> O(+(x,y)),+(O(x),I(y)) -> I(+(x,y)),+(I(x),O(y)) -> I(+(x,y)),+(I(x),I(y)) -> O(+(+(x,y),I(0))),*(0,x) -> 0,*(x,0) -> 0,*(O(x),y) -> O(*(x,y)),*(I(x),y) -> +(O(*(x,y)),y)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Various_04\\11.xml" :
+TRS {trsSignature = fromList [("0",0),("1",0),("f",3),("g",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(0,1,x) -> f(h(x),h(x),x),h(0) -> 0,h(g(x,y)) -> y], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Various_04\\10.xml" :
+TRS {trsSignature = fromList [("+",2),("++",2),("-",2),("0",0),(":",2),("avg",1),("hd",1),("length",1),("nil",0),("quot",2),("s",1),("sum",1)], trsVariables = fromList ["x","xs","y","ys"], trsRMap = [], trsRules = [+(0,y) -> y,+(s(x),y) -> s(+(x,y)),++(nil,ys) -> ys,++(:(x,xs),ys) -> :(x,++(xs,ys)),sum(:(x,nil)) -> :(x,nil),sum(:(x,:(y,xs))) -> sum(:(+(x,y),xs)),sum(++(xs,:(x,:(y,ys)))) -> sum(++(xs,sum(:(x,:(y,ys))))),-(x,0) -> x,-(0,s(y)) -> 0,-(s(x),s(y)) -> -(x,y),quot(0,s(y)) -> 0,quot(s(x),s(y)) -> s(quot(-(x,y),s(y))),length(nil) -> 0,length(:(x,xs)) -> s(length(xs)),hd(:(x,xs)) -> x,avg(xs) -> quot(hd(sum(xs)),length(xs))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Various_04\\09.xml" :
+TRS {trsSignature = fromList [("a",0),("f",5),("g1",4),("g2",4),("h",2)], trsVariables = fromList ["w","x","y"], trsRMap = [], trsRules = [f(x,y,w,w,a) -> g1(x,x,y,w),f(x,y,w,a,a) -> g1(y,x,x,w),f(x,y,a,a,w) -> g2(x,y,y,w),f(x,y,a,w,w) -> g2(y,y,x,w),g1(x,x,y,a) -> h(x,y),g1(y,x,x,a) -> h(x,y),g2(x,y,y,a) -> h(x,y),g2(y,y,x,a) -> h(x,y),h(x,x) -> x], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Various_04\\08.xml" :
+TRS {trsSignature = fromList [("a",0),("e1",6),("e2",6),("e3",12),("e4",12),("e5",4),("e6",3),("f1",2),("f2",2),("g1",2),("g2",2),("h1",1),("h2",1),("i",0)], trsVariables = fromList ["w","x","x1","x2","x3","x4","y","z"], trsRMap = [], trsRules = [f1(a,x) -> g1(x,x),f1(x,a) -> g2(x,x),f2(a,x) -> g1(x,x),f2(x,a) -> g2(x,x),g1(a,x) -> h1(x),g1(x,a) -> h2(x),g2(a,x) -> h1(x),g2(x,a) -> h2(x),h1(a) -> i,h2(a) -> i,e1(h1(w),h2(w),x,y,z,w) -> e2(x,x,y,z,z,w),e1(x1,x1,x,y,z,a) -> e5(x1,x,y,z),e2(f1(w,w),x,y,z,f2(w,w),w) -> e3(x,y,x,y,y,z,y,z,x,y,z,w),e2(x,x,y,z,z,a) -> e6(x,y,z),e2(i,x,y,z,i,a) -> e6(x,y,z),e3(x1,x1,x2,x2,x3,x3,x4,x4,x,y,z,w) -> e4(x1,x1,x2,x2,x3,x3,x4,x4,x,y,z,w),e3(x,y,x,y,y,z,y,z,x,y,z,a) -> e6(x,y,z),e4(g1(w,w),x1,g2(w,w),x1,g1(w,w),x1,g2(w,w),x1,x,y,z,w) -> e1(x1,x1,x,y,z,w),e4(i,x1,i,x1,i,x1,i,x1,x,y,z,a) -> e5(x1,x,y,z),e4(x,x,x,x,x,x,x,x,x,x,x,a) -> e6(x,x,x),e5(i,x,y,z) -> e6(x,y,z)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Various_04\\07.xml" :
+TRS {trsSignature = fromList [("f",2),("h",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,y) -> h(x,y),f(x,y) -> h(y,x),h(x,x) -> x], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Various_04\\06.xml" :
+TRS {trsSignature = fromList [("f",2),("g1",3),("g2",3),("h",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,y) -> g1(x,x,y),f(x,y) -> g1(y,x,x),f(x,y) -> g2(x,y,y),f(x,y) -> g2(y,y,x),g1(x,x,y) -> h(x,y),g1(y,x,x) -> h(x,y),g2(x,y,y) -> h(x,y),g2(y,y,x) -> h(x,y),h(x,x) -> x], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Various_04\\05.xml" :
+TRS {trsSignature = fromList [("e1",5),("e2",5),("e3",11),("e4",11),("f1",0),("f2",0),("g1",0),("g2",0),("h1",0),("h2",0)], trsVariables = fromList ["x","x1","x2","x3","x4","y","z"], trsRMap = [], trsRules = [f1 -> g1,f1 -> g2,f2 -> g1,f2 -> g2,g1 -> h1,g1 -> h2,g2 -> h1,g2 -> h2,e1(h1,h2,x,y,z) -> e2(x,x,y,z,z),e2(f1,x,y,z,f2) -> e3(x,y,x,y,y,z,y,z,x,y,z),e3(x1,x1,x2,x2,x3,x3,x4,x4,x,y,z) -> e4(x1,x1,x2,x2,x3,x3,x4,x4,x,y,z),e4(g1,x1,g2,x1,g1,x1,g2,x1,x,y,z) -> e1(x1,x1,x,y,z)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Various_04\\04.xml" :
+TRS {trsSignature = fromList [("e1",5),("e2",5),("e3",11),("e4",11),("e5",4),("e6",3),("f1",0),("f2",0),("g1",0),("g2",0),("h1",0),("h2",0),("i",0)], trsVariables = fromList ["x","x1","x2","x3","x4","y","z"], trsRMap = [], trsRules = [f1 -> g1,f1 -> g2,f2 -> g1,f2 -> g2,g1 -> h1,g1 -> h2,g2 -> h1,g2 -> h2,h1 -> i,h2 -> i,e1(h1,h2,x,y,z) -> e2(x,x,y,z,z),e1(x1,x1,x,y,z) -> e5(x1,x,y,z),e2(f1,x,y,z,f2) -> e3(x,y,x,y,y,z,y,z,x,y,z),e2(x,x,y,z,z) -> e6(x,y,z),e2(i,x,y,z,i) -> e6(x,y,z),e3(x1,x1,x2,x2,x3,x3,x4,x4,x,y,z) -> e4(x1,x1,x2,x2,x3,x3,x4,x4,x,y,z),e3(x,y,x,y,y,z,y,z,x,y,z) -> e6(x,y,z),e4(g1,x1,g2,x1,g1,x1,g2,x1,x,y,z) -> e1(x1,x1,x,y,z),e4(i,x1,i,x1,i,x1,i,x1,x,y,z) -> e5(x1,x,y,z),e4(x,x,x,x,x,x,x,x,x,x,x) -> e6(x,x,x),e5(i,x,y,z) -> e6(x,y,z)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Various_04\\03.xml" :
+TRS {trsSignature = fromList [("0",0),("2",0),("f",4),("g",1),("h",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(g(x),h(x),y,x) -> f(y,y,y,x),f(x,y,z,0) -> 2,g(0) -> 2,h(0) -> 2], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Various_04\\02.xml" :
+TRS {trsSignature = fromList [("0",0),("1",0),("2",0),("f",3)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(0,1,x) -> f(x,x,x),f(x,y,z) -> 2,0 -> 2,1 -> 2], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}

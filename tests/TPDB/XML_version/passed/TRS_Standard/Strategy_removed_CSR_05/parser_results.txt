@@ -1,0 +1,111 @@
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\ExIntrod_Zan97.xml" :
+TRS {trsSignature = fromList [("0",0),("add",2),("fact",1),("false",0),("if",3),("p",1),("prod",2),("s",1),("true",0),("zero",1)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [fact(X) -> if(zero(X),s(0),prod(X,fact(p(X)))),add(0,X) -> X,add(s(X),Y) -> s(add(X,Y)),prod(0,X) -> 0,prod(s(X),Y) -> add(Y,prod(X,Y)),if(true,X,Y) -> X,if(false,X,Y) -> Y,zero(0) -> true,zero(s(X)) -> false,p(s(X)) -> X], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\ExIntrod_GM99.xml" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("divides",2),("false",0),("filter",2),("from",1),("head",1),("if",3),("primes",0),("s",1),("sieve",1),("tail",1),("true",0)], trsVariables = fromList ["X","Y","Z"], trsRMap = [], trsRules = [primes -> sieve(from(s(s(0)))),from(X) -> cons(X,from(s(X))),head(cons(X,Y)) -> X,tail(cons(X,Y)) -> Y,if(true,X,Y) -> X,if(false,X,Y) -> Y,filter(s(s(X)),cons(Y,Z)) -> if(divides(s(s(X)),Y),filter(s(s(X)),Z),cons(Y,filter(X,sieve(Y)))),sieve(cons(X,Y)) -> cons(X,filter(X,sieve(Y)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\ExIntrod_GM04.xml" :
+TRS {trsSignature = fromList [("0",0),("adx",1),("cons",2),("hd",1),("incr",1),("nats",0),("s",1),("tl",1),("zeros",0)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [nats -> adx(zeros),zeros -> cons(0,zeros),incr(cons(X,Y)) -> cons(s(X),incr(Y)),adx(cons(X,Y)) -> incr(cons(X,adx(Y))),hd(cons(X,Y)) -> X,tl(cons(X,Y)) -> Y], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\ExIntrod_GM01.xml" :
+TRS {trsSignature = fromList [("0",0),("adx",1),("cons",2),("head",1),("incr",1),("nats",0),("nil",0),("s",1),("tail",1),("zeros",0)], trsVariables = fromList ["L","X"], trsRMap = [], trsRules = [incr(nil) -> nil,incr(cons(X,L)) -> cons(s(X),incr(L)),adx(nil) -> nil,adx(cons(X,L)) -> incr(cons(X,adx(L))),nats -> adx(zeros),zeros -> cons(0,zeros),head(cons(X,L)) -> X,tail(cons(X,L)) -> L], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\ExConc_Zan97.xml" :
+TRS {trsSignature = fromList [("f",1),("g",1),("h",1)], trsVariables = fromList ["X"], trsRMap = [], trsRules = [f(X) -> g(h(f(X)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\ExAppendixB_AEL03.xml" :
+TRS {trsSignature = fromList [("0",0),("2ndsneg",2),("2ndspos",2),("cons",2),("cons2",2),("from",1),("negrecip",1),("pi",1),("plus",2),("posrecip",1),("rcons",2),("rnil",0),("s",1),("square",1),("times",2)], trsVariables = fromList ["N","X","Y","Z"], trsRMap = [], trsRules = [from(X) -> cons(X,from(s(X))),2ndspos(0,Z) -> rnil,2ndspos(s(N),cons(X,Z)) -> 2ndspos(s(N),cons2(X,Z)),2ndspos(s(N),cons2(X,cons(Y,Z))) -> rcons(posrecip(Y),2ndsneg(N,Z)),2ndsneg(0,Z) -> rnil,2ndsneg(s(N),cons(X,Z)) -> 2ndsneg(s(N),cons2(X,Z)),2ndsneg(s(N),cons2(X,cons(Y,Z))) -> rcons(negrecip(Y),2ndspos(N,Z)),pi(X) -> 2ndspos(X,from(0)),plus(0,Y) -> Y,plus(s(X),Y) -> s(plus(X,Y)),times(0,Y) -> 0,times(s(X),Y) -> plus(Y,times(X,Y)),square(X) -> times(X,X)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex9_BLR02.xml" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("filter",3),("nats",1),("s",1),("sieve",1),("zprimes",0)], trsVariables = fromList ["M","N","X","Y"], trsRMap = [], trsRules = [filter(cons(X,Y),0,M) -> cons(0,filter(Y,M,M)),filter(cons(X,Y),s(N),M) -> cons(X,filter(Y,N,M)),sieve(cons(0,Y)) -> cons(0,sieve(Y)),sieve(cons(s(N),Y)) -> cons(s(N),sieve(filter(Y,N,N))),nats(N) -> cons(N,nats(s(N))),zprimes -> sieve(nats(s(s(0))))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex8_BLR02.xml" :
+TRS {trsSignature = fromList [("0",0),("add",2),("cons",2),("fib",1),("fib1",2),("s",1),("sel",2)], trsVariables = fromList ["N","X","XS","Y"], trsRMap = [], trsRules = [fib(N) -> sel(N,fib1(s(0),s(0))),fib1(X,Y) -> cons(X,fib1(Y,add(X,Y))),add(0,X) -> X,add(s(X),Y) -> s(add(X,Y)),sel(0,cons(X,XS)) -> X,sel(s(N),cons(X,XS)) -> sel(N,XS)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex7_BLR02.xml" :
+TRS {trsSignature = fromList [("0",0),("2nd",1),("cons",2),("from",1),("head",1),("nil",0),("s",1),("sel",2),("take",2)], trsVariables = fromList ["N","X","XS"], trsRMap = [], trsRules = [from(X) -> cons(X,from(s(X))),head(cons(X,XS)) -> X,2nd(cons(X,XS)) -> head(XS),take(0,XS) -> nil,take(s(N),cons(X,XS)) -> cons(X,take(N,XS)),sel(0,cons(X,XS)) -> X,sel(s(N),cons(X,XS)) -> sel(N,XS)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex6_Luc98.xml" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("first",2),("from",1),("nil",0),("s",1)], trsVariables = fromList ["X","Y","Z"], trsRMap = [], trsRules = [first(0,X) -> nil,first(s(X),cons(Y,Z)) -> cons(Y,first(X,Z)),from(X) -> cons(X,from(s(X)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex6_GM04.xml" :
+TRS {trsSignature = fromList [("c",0),("f",1),("g",1)], trsVariables = fromList ["X"], trsRMap = [], trsRules = [c -> f(g(c)),f(g(X)) -> g(X)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex6_9_Luc02c.xml" :
+TRS {trsSignature = fromList [("2nd",1),("cons",2),("cons1",2),("from",1),("s",1)], trsVariables = fromList ["X","X1","Y","Z"], trsRMap = [], trsRules = [2nd(cons1(X,cons(Y,Z))) -> Y,2nd(cons(X,X1)) -> 2nd(cons1(X,X1)),from(X) -> cons(X,from(s(X)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex6_15_AEL02.xml" :
+TRS {trsSignature = fromList [("0",0),("01",0),("cons",2),("cons1",2),("fcons",2),("first",2),("first1",2),("from",1),("nil",0),("nil1",0),("quote",1),("quote1",1),("s",1),("s1",1),("sel",2),("sel1",2),("unquote",1),("unquote1",1)], trsVariables = fromList ["X","Y","Z"], trsRMap = [], trsRules = [sel(s(X),cons(Y,Z)) -> sel(X,Z),sel(0,cons(X,Z)) -> X,first(0,Z) -> nil,first(s(X),cons(Y,Z)) -> cons(Y,first(X,Z)),from(X) -> cons(X,from(s(X))),sel1(s(X),cons(Y,Z)) -> sel1(X,Z),sel1(0,cons(X,Z)) -> quote(X),first1(0,Z) -> nil1,first1(s(X),cons(Y,Z)) -> cons1(quote(Y),first1(X,Z)),quote(0) -> 01,quote1(cons(X,Z)) -> cons1(quote(X),quote1(Z)),quote1(nil) -> nil1,quote(s(X)) -> s1(quote(X)),quote(sel(X,Z)) -> sel1(X,Z),quote1(first(X,Z)) -> first1(X,Z),unquote(01) -> 0,unquote(s1(X)) -> s(unquote(X)),unquote1(nil1) -> nil,unquote1(cons1(X,Z)) -> fcons(unquote(X),unquote1(Z)),fcons(X,Z) -> cons(X,Z)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex5_Zan97.xml" :
+TRS {trsSignature = fromList [("c",0),("f",1),("false",0),("if",3),("true",0)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [f(X) -> if(X,c,f(true)),if(true,X,Y) -> X,if(false,X,Y) -> Y], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex5_7_Luc97.xml" :
+TRS {trsSignature = fromList [("0",0),("01",0),("cons",2),("dbl",1),("dbl1",1),("dbls",1),("from",1),("indx",2),("nil",0),("quote",1),("s",1),("s1",1),("sel",2),("sel1",2)], trsVariables = fromList ["X","Y","Z"], trsRMap = [], trsRules = [dbl(0) -> 0,dbl(s(X)) -> s(s(dbl(X))),dbls(nil) -> nil,dbls(cons(X,Y)) -> cons(dbl(X),dbls(Y)),sel(0,cons(X,Y)) -> X,sel(s(X),cons(Y,Z)) -> sel(X,Z),indx(nil,X) -> nil,indx(cons(X,Y),Z) -> cons(sel(X,Z),indx(Y,Z)),from(X) -> cons(X,from(s(X))),dbl1(0) -> 01,dbl1(s(X)) -> s1(s1(dbl1(X))),sel1(0,cons(X,Y)) -> X,sel1(s(X),cons(Y,Z)) -> sel1(X,Z),quote(0) -> 01,quote(s(X)) -> s1(quote(X)),quote(dbl(X)) -> dbl1(X),quote(sel(X,Y)) -> sel1(X,Y)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex4_Zan97.xml" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("f",1),("g",1),("s",1),("sel",2)], trsVariables = fromList ["X","Y","Z"], trsRMap = [], trsRules = [f(X) -> cons(X,f(g(X))),g(0) -> s(0),g(s(X)) -> s(s(g(X))),sel(0,cons(X,Y)) -> X,sel(s(X),cons(Y,Z)) -> sel(X,Z)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex4_7_77_Bor03.xml" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("tail",1),("zeros",0)], trsVariables = fromList ["X","XS"], trsRMap = [], trsRules = [zeros -> cons(0,zeros),tail(cons(X,XS)) -> XS], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex4_7_56_Bor03.xml" :
+TRS {trsSignature = fromList [("0",0),("after",2),("cons",2),("from",1),("s",1)], trsVariables = fromList ["N","X","XS"], trsRMap = [], trsRules = [from(X) -> cons(X,from(s(X))),after(0,XS) -> XS,after(s(N),cons(X,XS)) -> after(N,XS)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex4_7_37_Bor03.xml" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("from",1),("minus",2),("nil",0),("quot",2),("s",1),("sel",2),("zWquot",2)], trsVariables = fromList ["N","X","XS","Y","YS"], trsRMap = [], trsRules = [from(X) -> cons(X,from(s(X))),sel(0,cons(X,XS)) -> X,sel(s(N),cons(X,XS)) -> sel(N,XS),minus(X,0) -> 0,minus(s(X),s(Y)) -> minus(X,Y),quot(0,s(Y)) -> 0,quot(s(X),s(Y)) -> s(quot(minus(X,Y),s(Y))),zWquot(XS,nil) -> nil,zWquot(nil,XS) -> nil,zWquot(cons(X,XS),cons(Y,YS)) -> cons(quot(X,Y),zWquot(XS,YS))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex4_7_15_Bor03.xml" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("f",1),("p",1),("s",1)], trsVariables = fromList [], trsRMap = [], trsRules = [f(0) -> cons(0,f(s(0))),f(s(0)) -> f(p(s(0))),p(s(0)) -> 0], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex4_4_Luc96b.xml" :
+TRS {trsSignature = fromList [("f",2),("g",1)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [f(g(X),Y) -> f(X,f(g(X),Y))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex49_GM04.xml" :
+TRS {trsSignature = fromList [("0",0),("div",2),("false",0),("geq",2),("if",3),("minus",2),("s",1),("true",0)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [minus(0,Y) -> 0,minus(s(X),s(Y)) -> minus(X,Y),geq(X,0) -> true,geq(0,s(Y)) -> false,geq(s(X),s(Y)) -> geq(X,Y),div(0,s(Y)) -> 0,div(s(X),s(Y)) -> if(geq(X,Y),s(div(minus(X,Y),s(Y))),0),if(true,X,Y) -> X,if(false,X,Y) -> Y], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex3_3_25_Bor03.xml" :
+TRS {trsSignature = fromList [("app",2),("cons",2),("from",1),("nil",0),("prefix",1),("s",1),("zWadr",2)], trsVariables = fromList ["L","X","XS","Y","YS"], trsRMap = [], trsRules = [app(nil,YS) -> YS,app(cons(X,XS),YS) -> cons(X,app(XS,YS)),from(X) -> cons(X,from(s(X))),zWadr(nil,YS) -> nil,zWadr(XS,nil) -> nil,zWadr(cons(X,XS),cons(Y,YS)) -> cons(app(Y,cons(X,nil)),zWadr(XS,YS)),prefix(L) -> cons(nil,zWadr(L,prefix(L)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex3_2_Luc97.xml" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("dbl",1),("dbls",1),("from",1),("indx",2),("nil",0),("s",1),("sel",2)], trsVariables = fromList ["X","Y","Z"], trsRMap = [], trsRules = [dbl(0) -> 0,dbl(s(X)) -> s(s(dbl(X))),dbls(nil) -> nil,dbls(cons(X,Y)) -> cons(dbl(X),dbls(Y)),sel(0,cons(X,Y)) -> X,sel(s(X),cons(Y,Z)) -> sel(X,Z),indx(nil,X) -> nil,indx(cons(X,Y),Z) -> cons(sel(X,Z),indx(Y,Z)),from(X) -> cons(X,from(s(X)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex3_12_Luc96a.xml" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("from",1),("s",1),("sel",2)], trsVariables = fromList ["X","Y","Z"], trsRMap = [], trsRules = [from(X) -> cons(X,from(s(X))),sel(0,cons(X,Y)) -> X,sel(s(X),cons(Y,Z)) -> sel(X,Z)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex2_Luc03b.xml" :
+TRS {trsSignature = fromList [("0",0),("add",2),("cons",2),("from",1),("fst",2),("len",1),("nil",0),("s",1)], trsVariables = fromList ["X","Y","Z"], trsRMap = [], trsRules = [fst(0,Z) -> nil,fst(s(X),cons(Y,Z)) -> cons(Y,fst(X,Z)),from(X) -> cons(X,from(s(X))),add(0,X) -> X,add(s(X),Y) -> s(add(X,Y)),len(nil) -> 0,len(cons(X,Z)) -> s(len(Z))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex26_Luc03b.xml" :
+TRS {trsSignature = fromList [("0",0),("add",2),("cons",2),("dbl",1),("first",2),("nil",0),("recip",1),("s",1),("sqr",1),("terms",1)], trsVariables = fromList ["N","X","Y","Z"], trsRMap = [], trsRules = [terms(N) -> cons(recip(sqr(N)),terms(s(N))),sqr(0) -> 0,sqr(s(X)) -> s(add(sqr(X),dbl(X))),dbl(0) -> 0,dbl(s(X)) -> s(s(dbl(X))),add(0,X) -> X,add(s(X),Y) -> s(add(X,Y)),first(0,X) -> nil,first(s(X),cons(Y,Z)) -> cons(Y,first(X,Z))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex24_GM04.xml" :
+TRS {trsSignature = fromList [("b",0),("c",0),("f",3),("g",1)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [f(X,g(X),Y) -> f(Y,Y,Y),g(b) -> c,b -> c], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex1_Zan97.xml" :
+TRS {trsSignature = fromList [("c",0),("d",0),("g",1),("h",1)], trsVariables = fromList ["X"], trsRMap = [], trsRules = [g(X) -> h(X),c -> d,h(d) -> g(c)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex1_Luc02b.xml" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("first",2),("from",1),("nil",0),("s",1),("sel",2)], trsVariables = fromList ["X","Y","Z"], trsRMap = [], trsRules = [from(X) -> cons(X,from(s(X))),first(0,Z) -> nil,first(s(X),cons(Y,Z)) -> cons(Y,first(X,Z)),sel(0,cons(X,Z)) -> X,sel(s(X),cons(Y,Z)) -> sel(X,Z)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex1_GM99.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",3)], trsVariables = fromList ["X"], trsRMap = [], trsRules = [f(a,b,X) -> f(X,X,X),c -> a,c -> b], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex1_GM03.xml" :
+TRS {trsSignature = fromList [("0",0),("diff",2),("false",0),("if",3),("leq",2),("p",1),("s",1),("true",0)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [p(0) -> 0,p(s(X)) -> X,leq(0,Y) -> true,leq(s(X),0) -> false,leq(s(X),s(Y)) -> leq(X,Y),if(true,X,Y) -> X,if(false,X,Y) -> Y,diff(X,Y) -> if(leq(X,Y),0,s(diff(p(X),Y)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex1_GL02a.xml" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("eq",2),("false",0),("inf",1),("length",1),("nil",0),("s",1),("take",2),("true",0)], trsVariables = fromList ["L","X","Y"], trsRMap = [], trsRules = [eq(0,0) -> true,eq(s(X),s(Y)) -> eq(X,Y),eq(X,Y) -> false,inf(X) -> cons(X,inf(s(X))),take(0,X) -> nil,take(s(X),cons(Y,L)) -> cons(Y,take(X,L)),length(nil) -> 0,length(cons(X,L)) -> s(length(L))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex1_2_Luc02c.xml" :
+TRS {trsSignature = fromList [("2nd",1),("cons",2),("from",1),("s",1)], trsVariables = fromList ["X","Y","Z"], trsRMap = [], trsRules = [2nd(cons(X,cons(Y,Z))) -> Y,from(X) -> cons(X,from(s(X)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex1_2_AEL03.xml" :
+TRS {trsSignature = fromList [("0",0),("2ndsneg",2),("2ndspos",2),("cons",2),("from",1),("negrecip",1),("pi",1),("plus",2),("posrecip",1),("rcons",2),("rnil",0),("s",1),("square",1),("times",2)], trsVariables = fromList ["N","X","Y","Z"], trsRMap = [], trsRules = [from(X) -> cons(X,from(s(X))),2ndspos(0,Z) -> rnil,2ndspos(s(N),cons(X,cons(Y,Z))) -> rcons(posrecip(Y),2ndsneg(N,Z)),2ndsneg(0,Z) -> rnil,2ndsneg(s(N),cons(X,cons(Y,Z))) -> rcons(negrecip(Y),2ndspos(N,Z)),pi(X) -> 2ndspos(X,from(0)),plus(0,Y) -> Y,plus(s(X),Y) -> s(plus(X,Y)),times(0,Y) -> 0,times(s(X),Y) -> plus(Y,times(X,Y)),square(X) -> times(X,X)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex15_Luc98.xml" :
+TRS {trsSignature = fromList [("0",0),("add",2),("and",2),("cons",2),("false",0),("first",2),("from",1),("if",3),("nil",0),("s",1),("true",0)], trsVariables = fromList ["X","Y","Z"], trsRMap = [], trsRules = [and(true,X) -> X,and(false,Y) -> false,if(true,X,Y) -> X,if(false,X,Y) -> Y,add(0,X) -> X,add(s(X),Y) -> s(add(X,Y)),first(0,X) -> nil,first(s(X),cons(Y,Z)) -> cons(Y,first(X,Z)),from(X) -> cons(X,from(s(X)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Strategy_removed_CSR_05\\Ex14_AEGL02.xml" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("from",1),("length",1),("length1",1),("nil",0),("s",1)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [from(X) -> cons(X,from(s(X))),length(nil) -> 0,length(cons(X,Y)) -> s(length1(Y)),length1(X) -> length(X)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}

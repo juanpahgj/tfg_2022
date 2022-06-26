@@ -1,0 +1,48 @@
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\GTSSK07\\cade17.xml" :
+TRS {trsSignature = fromList [("0",0),("cond",3),("double",1),("false",0),("le",2),("log",2),("plus",2),("s",1),("square",1),("true",0)], trsVariables = fromList ["m","n","u","v","x","y"], trsRMap = [], trsRules = [log(x,s(s(y))) -> cond(le(x,s(s(y))),x,y),cond(true,x,y) -> s(0),cond(false,x,y) -> double(log(x,square(s(s(y))))),le(0,v) -> true,le(s(u),0) -> false,le(s(u),s(v)) -> le(u,v),double(0) -> 0,double(s(x)) -> s(s(double(x))),square(0) -> 0,square(s(x)) -> s(plus(square(x),double(x))),plus(n,0) -> n,plus(n,s(m)) -> s(plus(n,m))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\GTSSK07\\cade16.xml" :
+TRS {trsSignature = fromList [("0",0),("cond",3),("cons",2),("false",0),("ge",2),("length",1),("nil",0),("nthtail",2),("s",1),("tail",1),("true",0)], trsVariables = fromList ["l","n","u","v","x"], trsRMap = [], trsRules = [nthtail(n,l) -> cond(ge(n,length(l)),n,l),cond(true,n,l) -> l,cond(false,n,l) -> tail(nthtail(s(n),l)),tail(nil) -> nil,tail(cons(x,l)) -> l,length(nil) -> 0,length(cons(x,l)) -> s(length(l)),ge(u,0) -> true,ge(0,s(v)) -> false,ge(s(u),s(v)) -> ge(u,v)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\GTSSK07\\cade15.xml" :
+TRS {trsSignature = fromList [("0",0),("cond1",3),("cond2",3),("cons",2),("equal",2),("false",0),("gt",2),("if",3),("max",1),("member",2),("nil",0),("or",2),("s",1),("sort",1),("st",2),("true",0)], trsVariables = fromList ["l","m","n","u","v","x","y"], trsRMap = [], trsRules = [sort(l) -> st(0,l),st(n,l) -> cond1(member(n,l),n,l),cond1(true,n,l) -> cons(n,st(s(n),l)),cond1(false,n,l) -> cond2(gt(n,max(l)),n,l),cond2(true,n,l) -> nil,cond2(false,n,l) -> st(s(n),l),member(n,nil) -> false,member(n,cons(m,l)) -> or(equal(n,m),member(n,l)),or(x,true) -> true,or(x,false) -> x,equal(0,0) -> true,equal(s(x),0) -> false,equal(0,s(y)) -> false,equal(s(x),s(y)) -> equal(x,y),gt(0,v) -> false,gt(s(u),0) -> true,gt(s(u),s(v)) -> gt(u,v),max(nil) -> 0,max(cons(u,l)) -> if(gt(u,max(l)),u,max(l)),if(true,u,v) -> u,if(false,u,v) -> v], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\GTSSK07\\cade14.xml" :
+TRS {trsSignature = fromList [("0",0),("cond1",3),("cond2",3),("diff",2),("equal",2),("false",0),("gt",2),("s",1),("true",0)], trsVariables = fromList ["u","v","x","y"], trsRMap = [], trsRules = [diff(x,y) -> cond1(equal(x,y),x,y),cond1(true,x,y) -> 0,cond1(false,x,y) -> cond2(gt(x,y),x,y),cond2(true,x,y) -> s(diff(x,s(y))),cond2(false,x,y) -> s(diff(s(x),y)),gt(0,v) -> false,gt(s(u),0) -> true,gt(s(u),s(v)) -> gt(u,v),equal(0,0) -> true,equal(s(x),0) -> false,equal(0,s(y)) -> false,equal(s(x),s(y)) -> equal(x,y)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\GTSSK07\\cade13t.xml" :
+TRS {trsSignature = fromList [("0",0),("cond",4),("d",3),("div",2),("false",0),("ge",2),("plus",2),("s",1),("true",0)], trsVariables = fromList ["m","n","u","v","x","y","z"], trsRMap = [], trsRules = [div(x,s(y)) -> d(x,s(y),0),d(x,s(y),z) -> cond(ge(x,z),x,y,z),cond(true,x,y,z) -> s(d(x,s(y),plus(s(y),z))),cond(false,x,y,z) -> 0,ge(u,0) -> true,ge(0,s(v)) -> false,ge(s(u),s(v)) -> ge(u,v),plus(n,0) -> n,plus(n,s(m)) -> s(plus(n,m))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\GTSSK07\\cade12t.xml" :
+TRS {trsSignature = fromList [("0",0),("and",2),("double",1),("f",3),("false",0),("gt",2),("plus",2),("s",1),("true",0)], trsVariables = fromList ["m","n","u","v","x","y"], trsRMap = [], trsRules = [f(true,x,y) -> f(and(gt(x,y),gt(y,s(s(0)))),plus(s(0),x),double(y)),gt(0,v) -> false,gt(s(u),0) -> true,gt(s(u),s(v)) -> gt(u,v),and(x,true) -> x,and(x,false) -> false,plus(n,0) -> n,plus(n,s(m)) -> s(plus(n,m)),double(0) -> 0,double(s(x)) -> s(s(double(x)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\GTSSK07\\cade11.xml" :
+TRS {trsSignature = fromList [("0",0),("f",3),("false",0),("gt",2),("s",1),("true",0)], trsVariables = fromList ["u","v","x","y"], trsRMap = [], trsRules = [f(true,x,y) -> f(gt(x,y),s(x),s(s(y))),gt(0,v) -> false,gt(s(u),0) -> true,gt(s(u),s(v)) -> gt(u,v)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\GTSSK07\\cade10.xml" :
+TRS {trsSignature = fromList [("0",0),("f",3),("false",0),("gt",2),("s",1),("true",0),("trunc",1)], trsVariables = fromList ["u","v","x","y"], trsRMap = [], trsRules = [f(true,x,y) -> f(gt(x,y),trunc(x),s(y)),trunc(0) -> 0,trunc(s(0)) -> 0,trunc(s(s(x))) -> s(s(trunc(x))),gt(0,v) -> false,gt(s(u),0) -> true,gt(s(u),s(v)) -> gt(u,v)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\GTSSK07\\cade09.xml" :
+TRS {trsSignature = fromList [("0",0),("f",3),("false",0),("gt",2),("round",1),("s",1),("true",0)], trsVariables = fromList ["u","v","x","y"], trsRMap = [], trsRules = [f(true,x,y) -> f(gt(x,y),x,round(s(y))),round(0) -> 0,round(s(0)) -> s(s(0)),round(s(s(x))) -> s(s(round(x))),gt(0,v) -> false,gt(s(u),0) -> true,gt(s(u),s(v)) -> gt(u,v)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\GTSSK07\\cade08.xml" :
+TRS {trsSignature = fromList [("0",0),("and",2),("f",4),("false",0),("gt",2),("s",1),("true",0)], trsVariables = fromList ["u","v","x","y","z"], trsRMap = [], trsRules = [f(true,x,y,z) -> f(and(gt(x,y),gt(x,z)),x,s(y),z),f(true,x,y,z) -> f(and(gt(x,y),gt(x,z)),x,y,s(z)),gt(0,v) -> false,gt(s(u),0) -> true,gt(s(u),s(v)) -> gt(u,v),and(x,true) -> x,and(x,false) -> false], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\GTSSK07\\cade07.xml" :
+TRS {trsSignature = fromList [("0",0),("f",4),("false",0),("g",4),("gt",2),("s",1),("true",0)], trsVariables = fromList ["u","v","x","y","z"], trsRMap = [], trsRules = [f(true,x,y,z) -> g(gt(x,y),x,y,z),g(true,x,y,z) -> f(gt(x,z),x,s(y),z),g(true,x,y,z) -> f(gt(x,z),x,y,s(z)),gt(0,v) -> false,gt(s(u),0) -> true,gt(s(u),s(v)) -> gt(u,v)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\GTSSK07\\cade06.xml" :
+TRS {trsSignature = fromList [("0",0),("f",4),("false",0),("gt",2),("plus",2),("s",1),("true",0)], trsVariables = fromList ["m","n","u","v","x","y","z"], trsRMap = [], trsRules = [f(true,x,y,z) -> f(gt(x,plus(y,z)),x,s(y),z),f(true,x,y,z) -> f(gt(x,plus(y,z)),x,y,s(z)),plus(n,0) -> n,plus(n,s(m)) -> s(plus(n,m)),gt(0,v) -> false,gt(s(u),0) -> true,gt(s(u),s(v)) -> gt(u,v)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\GTSSK07\\cade05t.xml" :
+TRS {trsSignature = fromList [("0",0),("cond",3),("equal",2),("false",0),("min",2),("minus",2),("s",1),("true",0)], trsVariables = fromList ["u","v","x","y"], trsRMap = [], trsRules = [minus(x,y) -> cond(equal(min(x,y),y),x,y),cond(true,x,y) -> s(minus(x,s(y))),min(0,v) -> 0,min(u,0) -> 0,min(s(u),s(v)) -> s(min(u,v)),equal(0,0) -> true,equal(s(x),0) -> false,equal(0,s(y)) -> false,equal(s(x),s(y)) -> equal(x,y)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\GTSSK07\\cade04t.xml" :
+TRS {trsSignature = fromList [("0",0),("cond",3),("min",2),("minus",2),("s",1)], trsVariables = fromList ["u","v","x","y"], trsRMap = [], trsRules = [minus(x,y) -> cond(min(x,y),x,y),cond(y,x,y) -> s(minus(x,s(y))),min(0,v) -> 0,min(u,0) -> 0,min(s(u),s(v)) -> s(min(u,v))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\GTSSK07\\cade03.xml" :
+TRS {trsSignature = fromList [("0",0),("cond",3),("false",0),("ge",2),("minus",2),("s",1),("true",0)], trsVariables = fromList ["u","v","x","y"], trsRMap = [], trsRules = [minus(x,y) -> cond(ge(x,s(y)),x,y),cond(false,x,y) -> 0,cond(true,x,y) -> s(minus(x,s(y))),ge(u,0) -> true,ge(0,s(v)) -> false,ge(s(u),s(v)) -> ge(u,v)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\GTSSK07\\cade01.xml" :
+TRS {trsSignature = fromList [("0",0),("cond",3),("false",0),("gt",2),("minus",2),("s",1),("true",0)], trsVariables = fromList ["u","v","x","y"], trsRMap = [], trsRules = [minus(x,y) -> cond(gt(x,y),x,y),cond(false,x,y) -> 0,cond(true,x,y) -> s(minus(x,s(y))),gt(0,v) -> false,gt(s(u),0) -> true,gt(s(u),s(v)) -> gt(u,v)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}

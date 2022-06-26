@@ -1,0 +1,147 @@
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\velroyen-nonloop-ConvLower_c.xml" :
+TRS {trsSignature = fromList [("0",0),("f",1),("false",0),("gt",2),("if",2),("neq",2),("plus",2),("s",1),("true",0),("while",2)], trsVariables = fromList ["i","x","y"], trsRMap = [], trsRules = [while(true,s(s(s(i)))) -> while(gt(s(s(s(i))),s(0)),f(s(s(s(i))))),f(i) -> if(neq(i,s(s(0))),i),gt(s(x),s(y)) -> gt(x,y),gt(s(x),0) -> true,gt(0,0) -> false,gt(0,s(y)) -> false,if(true,i) -> plus(i,s(0)),if(false,i) -> i,neq(s(x),s(y)) -> neq(x,y),neq(0,0) -> false,neq(0,s(y)) -> true,neq(s(x),0) -> true,plus(s(x),y) -> plus(x,s(y)),plus(0,y) -> y], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\velroyen-nonloop-AlternatingIncr_c.xml" :
+TRS {trsSignature = fromList [("0",0),("eq",2),("f",1),("false",0),("gt",2),("if",2),("mod2",1),("plus",2),("s",1),("true",0),("while",2)], trsVariables = fromList ["i","x","y"], trsRMap = [], trsRules = [while(true,s(s(s(s(s(i)))))) -> while(gt(s(s(s(s(s(i))))),0),f(s(s(s(s(s(i))))))),f(i) -> if(eq(mod2(i),0),i),gt(s(x),s(y)) -> gt(x,y),gt(s(x),0) -> true,gt(0,y) -> false,if(true,i) -> plus(i,s(0)),if(false,i) -> plus(i,s(s(s(0)))),mod2(s(s(x))) -> mod2(x),mod2(s(0)) -> s(0),mod2(0) -> 0,eq(s(x),s(y)) -> eq(x,y),eq(0,0) -> true,eq(0,s(y)) -> false,eq(s(x),0) -> false,plus(s(x),y) -> plus(x,s(y)),plus(0,y) -> y], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\rybalchenko-nonloop-popl08.xml" :
+TRS {trsSignature = fromList [("0",0),("and",2),("false",0),("greaterZero",1),("minus",2),("minusT",2),("neg",1),("negate",1),("notZero",1),("plusNat",2),("pos",1),("s",1),("true",0),("while",3)], trsVariables = fromList ["i","x","y"], trsRMap = [], trsRules = [notZero(pos(s(x))) -> true,notZero(neg(s(x))) -> true,notZero(neg(0)) -> false,notZero(pos(0)) -> false,greaterZero(pos(s(x))) -> true,greaterZero(pos(0)) -> false,greaterZero(neg(x)) -> false,and(false,false) -> false,and(false,true) -> false,and(true,false) -> false,and(true,true) -> true,minusT(0,y) -> neg(y),minusT(x,0) -> pos(x),minusT(s(x),s(y)) -> minusT(x,y),plusNat(0,y) -> y,plusNat(s(x),y) -> plusNat(x,s(y)),negate(pos(x)) -> neg(x),negate(neg(x)) -> pos(x),minus(pos(x),pos(y)) -> minusT(x,y),minus(neg(x),neg(y)) -> negate(minusT(x,y)),minus(pos(x),neg(y)) -> pos(plusNat(x,y)),minus(neg(x),pos(y)) -> neg(plusNat(x,y)),while(true,i,y) -> while(and(notZero(y),greaterZero(i)),minus(i,y),y)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\enger-nonloop-while-lt.xml" :
+TRS {trsSignature = fromList [("0",0),("lt",2),("s",1),("true",0),("while",3)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [while(true,x,y) -> while(lt(x,y),s(x),s(y)),lt(s(x),s(y)) -> lt(x,y),lt(0,y) -> true], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\enger-nonloop-unbounded.xml" :
+TRS {trsSignature = fromList [("0",0),("false",0),("gt",2),("h",3),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [h(true,x,y) -> h(gt(x,y),s(x),s(y)),gt(0,x) -> false,gt(s(x),0) -> true,gt(s(x),s(y)) -> gt(x,y)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\enger-nonloop-toOne.xml" :
+TRS {trsSignature = fromList [("0",0),("eq",2),("f",2),("s",1),("toOne",1),("tt",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(tt,x) -> f(eq(toOne(x),s(0)),s(x)),eq(s(x),s(y)) -> eq(x,y),eq(0,0) -> tt,toOne(s(s(x))) -> toOne(s(x)),toOne(s(0)) -> s(0)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\enger-nonloop-swap_decr.xml" :
+TRS {trsSignature = fromList [("0",0),("decr",1),("f",2),("s",1),("swap",2),("tt",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(tt,x) -> f(swap(x,0),s(x)),swap(s(x),y) -> swap(x,s(y)),swap(0,s(y)) -> decr(s(y)),decr(s(y)) -> decr(y),decr(0) -> tt], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\enger-nonloop-swapXY2.xml" :
+TRS {trsSignature = fromList [("0",0),("g",3),("s",1),("swap",2),("tt",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [g(tt,x,y) -> g(swap(x,y),s(x),y),swap(0,y) -> tt,swap(s(x),y) -> swap(x,s(y))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\enger-nonloop-swapXY.xml" :
+TRS {trsSignature = fromList [("0",0),("g",3),("s",1),("swap",2),("tt",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [g(tt,x,y) -> g(swap(x,y),s(x),s(y)),swap(0,y) -> tt,swap(s(x),y) -> swap(x,s(y))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\enger-nonloop-swapX.xml" :
+TRS {trsSignature = fromList [("0",0),("f",2),("g",2),("s",1),("tt",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [g(tt,x) -> g(f(x,x),s(x)),f(0,y) -> tt,f(s(x),y) -> f(x,s(y))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\enger-nonloop-isTrueList.xml" :
+TRS {trsSignature = fromList [("Cons",2),("f",2),("isList",1),("nil",0),("tt",0)], trsVariables = fromList ["x","xs"], trsRMap = [], trsRules = [f(tt,x) -> f(isList(x),Cons(tt,x)),isList(Cons(tt,xs)) -> isList(xs),isList(nil) -> tt], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\enger-nonloop-isList.xml" :
+TRS {trsSignature = fromList [("Cons",2),("f",2),("isList",1),("nil",0),("tt",0)], trsVariables = fromList ["x","xs"], trsRMap = [], trsRules = [f(tt,x) -> f(isList(x),Cons(tt,x)),isList(Cons(x,xs)) -> isList(xs),isList(nil) -> tt], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\enger-nonloop-isList-List.xml" :
+TRS {trsSignature = fromList [("Cons",2),("f",2),("isList",1),("nil",0),("tt",0)], trsVariables = fromList ["x","xs"], trsRMap = [], trsRules = [f(tt,x) -> f(isList(x),Cons(x,x)),isList(Cons(x,xs)) -> isList(xs),isList(nil) -> tt], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\enger-nonloop-isDNat.xml" :
+TRS {trsSignature = fromList [("0",0),("f",2),("isNat",1),("s",1),("tt",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(tt,x) -> f(isNat(x),s(s(x))),isNat(s(x)) -> isNat(x),isNat(0) -> tt], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\enger-nonloop-ex_payet.xml" :
+TRS {trsSignature = fromList [("0",0),("cond",3),("false",0),("gt",2),("s",1),("true",0),("while",3)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [while(true,x,y) -> cond(gt(x,0),x,y),cond(true,s(x),y) -> while(gt(y,0),x,y),cond(false,x,y) -> while(gt(s(y),0),s(y),s(y)),gt(s(x),0) -> true,gt(0,x) -> false,gt(s(x),s(y)) -> gt(x,y)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\enger-nonloop-addTrue.xml" :
+TRS {trsSignature = fromList [("0",0),("Cons",2),("add",3),("and",2),("false",0),("isList",1),("isNat",1),("nil",0),("s",1),("true",0),("tt",0)], trsVariables = fromList ["x","xs"], trsRMap = [], trsRules = [add(true,x,xs) -> add(and(isNat(x),isList(xs)),x,Cons(tt,xs)),isList(Cons(x,xs)) -> isList(xs),isList(nil) -> true,isNat(s(x)) -> isNat(x),isNat(0) -> true,and(true,true) -> true,and(false,x) -> false,and(x,false) -> false], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\enger-nonloop-add.xml" :
+TRS {trsSignature = fromList [("0",0),("Cons",2),("add",3),("and",2),("false",0),("isList",1),("isNat",1),("nil",0),("s",1),("true",0)], trsVariables = fromList ["x","xs"], trsRMap = [], trsRules = [add(true,x,xs) -> add(and(isNat(x),isList(xs)),x,Cons(x,xs)),isList(Cons(x,xs)) -> isList(xs),isList(nil) -> true,isNat(s(x)) -> isNat(x),isNat(0) -> true,and(true,true) -> true,and(false,x) -> false,and(x,false) -> false], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex7_9.xml" :
+TRS {trsSignature = fromList [("0",0),("a",0),("append",2),("appendAkk",2),("b",0),("cons",2),("eq",2),("f",2),("false",0),("length",1),("nil",0),("reverse",1),("s",1),("true",0)], trsVariables = fromList ["x","xs","y","ys"], trsRMap = [], trsRules = [f(true,xs) -> f(eq(s(length(xs)),length(cons(a,xs))),append(cons(b,nil),xs)),length(nil) -> 0,length(cons(x,xs)) -> s(length(xs)),eq(0,0) -> true,eq(s(x),0) -> false,eq(0,s(y)) -> false,eq(s(x),s(y)) -> eq(x,y),append(xs,ys) -> appendAkk(reverse(xs),ys),appendAkk(nil,ys) -> ys,appendAkk(cons(x,xs),ys) -> appendAkk(xs,cons(x,ys)),reverse(nil) -> nil,reverse(cons(x,xs)) -> append(reverse(xs),cons(x,nil))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex7_8.xml" :
+TRS {trsSignature = fromList [("0",0),("a",0),("append",2),("b",0),("cons",2),("eq",2),("f",2),("false",0),("length",1),("nil",0),("s",1),("true",0)], trsVariables = fromList ["x","xs","y","ys"], trsRMap = [], trsRules = [f(true,xs) -> f(eq(s(length(xs)),length(cons(a,xs))),append(xs,cons(b,nil))),length(nil) -> 0,length(cons(x,xs)) -> s(length(xs)),eq(0,0) -> true,eq(s(x),0) -> false,eq(0,s(y)) -> false,eq(s(x),s(y)) -> eq(x,y),append(nil,ys) -> ys,append(cons(x,xs),ys) -> cons(x,append(xs,ys))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex7_7.xml" :
+TRS {trsSignature = fromList [("0",0),("a",0),("append",2),("b",0),("cons",2),("eq",2),("f",2),("false",0),("length",1),("nil",0),("s",1),("true",0)], trsVariables = fromList ["x","xs","y","ys"], trsRMap = [], trsRules = [f(true,xs) -> f(eq(s(length(xs)),length(cons(a,xs))),append(cons(b,nil),xs)),length(nil) -> 0,length(cons(x,xs)) -> s(length(xs)),eq(0,0) -> true,eq(s(x),0) -> false,eq(0,s(y)) -> false,eq(s(x),s(y)) -> eq(x,y),append(nil,ys) -> ys,append(cons(x,xs),ys) -> cons(x,append(xs,ys))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex7_6.xml" :
+TRS {trsSignature = fromList [("0",0),("a",0),("append",2),("appendAkk",2),("b",0),("cons",2),("eq",2),("f",2),("false",0),("length",1),("nil",0),("reverse",1),("s",1),("true",0)], trsVariables = fromList ["x","xs","y","ys"], trsRMap = [], trsRules = [f(true,xs) -> f(eq(s(length(xs)),length(cons(a,xs))),append(xs,cons(b,nil))),length(nil) -> 0,length(cons(x,xs)) -> s(length(xs)),eq(0,0) -> true,eq(s(x),0) -> false,eq(0,s(y)) -> false,eq(s(x),s(y)) -> eq(x,y),append(xs,ys) -> appendAkk(reverse(xs),ys),appendAkk(nil,ys) -> ys,appendAkk(cons(x,xs),ys) -> appendAkk(xs,cons(x,ys)),reverse(nil) -> nil,reverse(cons(x,xs)) -> append(reverse(xs),cons(x,nil))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex7_5.xml" :
+TRS {trsSignature = fromList [("0",0),("a",0),("append",2),("appendAkk",2),("cons",2),("eq",2),("f",2),("false",0),("length",1),("nil",0),("reverse",1),("s",1),("true",0)], trsVariables = fromList ["x","xs","y","ys"], trsRMap = [], trsRules = [f(true,xs) -> f(eq(s(length(xs)),length(cons(a,xs))),append(xs,cons(a,nil))),length(nil) -> 0,length(cons(x,xs)) -> s(length(xs)),eq(0,0) -> true,eq(s(x),0) -> false,eq(0,s(y)) -> false,eq(s(x),s(y)) -> eq(x,y),append(xs,ys) -> appendAkk(reverse(xs),ys),appendAkk(nil,ys) -> ys,appendAkk(cons(x,xs),ys) -> appendAkk(xs,cons(x,ys)),reverse(nil) -> nil,reverse(cons(x,xs)) -> append(reverse(xs),cons(x,nil))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex7_4.xml" :
+TRS {trsSignature = fromList [("0",0),("a",0),("append",2),("appendAkk",2),("cons",2),("eq",2),("f",2),("false",0),("length",1),("nil",0),("reverse",1),("s",1),("true",0)], trsVariables = fromList ["x","xs","y","ys"], trsRMap = [], trsRules = [f(true,xs) -> f(eq(s(length(xs)),length(cons(a,xs))),append(cons(a,nil),xs)),length(nil) -> 0,length(cons(x,xs)) -> s(length(xs)),eq(0,0) -> true,eq(s(x),0) -> false,eq(0,s(y)) -> false,eq(s(x),s(y)) -> eq(x,y),append(xs,ys) -> appendAkk(reverse(xs),ys),appendAkk(nil,ys) -> ys,appendAkk(cons(x,xs),ys) -> appendAkk(xs,cons(x,ys)),reverse(nil) -> nil,reverse(cons(x,xs)) -> append(reverse(xs),cons(x,nil))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex7_3.xml" :
+TRS {trsSignature = fromList [("0",0),("a",0),("append",2),("cons",2),("eq",2),("f",2),("false",0),("length",1),("nil",0),("s",1),("true",0)], trsVariables = fromList ["x","xs","y","ys"], trsRMap = [], trsRules = [f(true,xs) -> f(eq(s(length(xs)),length(cons(a,xs))),append(xs,cons(a,nil))),length(nil) -> 0,length(cons(x,xs)) -> s(length(xs)),eq(0,0) -> true,eq(s(x),0) -> false,eq(0,s(y)) -> false,eq(s(x),s(y)) -> eq(x,y),append(nil,ys) -> ys,append(cons(x,xs),ys) -> cons(x,append(xs,ys))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex7_2.xml" :
+TRS {trsSignature = fromList [("0",0),("a",0),("append",2),("cons",2),("eq",2),("f",2),("false",0),("length",1),("nil",0),("s",1),("true",0)], trsVariables = fromList ["x","xs","y","ys"], trsRMap = [], trsRules = [f(true,xs) -> f(eq(s(length(xs)),length(cons(a,xs))),append(cons(a,nil),xs)),length(nil) -> 0,length(cons(x,xs)) -> s(length(xs)),eq(0,0) -> true,eq(s(x),0) -> false,eq(0,s(y)) -> false,eq(s(x),s(y)) -> eq(x,y),append(nil,ys) -> ys,append(cons(x,xs),ys) -> cons(x,append(xs,ys))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex7_1.xml" :
+TRS {trsSignature = fromList [("0",0),("a",0),("cons",2),("eq",2),("f",2),("false",0),("length",1),("nil",0),("s",1),("true",0)], trsVariables = fromList ["x","xs","y"], trsRMap = [], trsRules = [f(true,xs) -> f(eq(s(length(xs)),length(cons(a,xs))),cons(a,xs)),length(nil) -> 0,length(cons(x,xs)) -> s(length(xs)),eq(0,0) -> true,eq(s(x),0) -> false,eq(0,s(y)) -> false,eq(s(x),s(y)) -> eq(x,y)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex6_2.xml" :
+TRS {trsSignature = fromList [("a",0),("append",2),("appendAkk",2),("cons",2),("f",2),("isList",1),("nil",0),("reverse",1),("true",0)], trsVariables = fromList ["x","xs","ys"], trsRMap = [], trsRules = [f(true,xs) -> f(isList(xs),append(cons(a,nil),xs)),isList(nil) -> true,isList(cons(x,xs)) -> isList(xs),append(xs,ys) -> appendAkk(reverse(xs),ys),appendAkk(nil,ys) -> ys,appendAkk(cons(x,xs),ys) -> appendAkk(xs,cons(x,ys)),reverse(nil) -> nil,reverse(cons(x,xs)) -> append(reverse(xs),cons(x,nil))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex6_1.xml" :
+TRS {trsSignature = fromList [("a",0),("append",2),("cons",2),("f",2),("isList",1),("nil",0),("true",0)], trsVariables = fromList ["x","xs","ys"], trsRMap = [], trsRules = [f(true,xs) -> f(isList(xs),append(cons(a,nil),xs)),isList(nil) -> true,isList(cons(x,xs)) -> isList(xs),append(nil,ys) -> ys,append(cons(x,xs),ys) -> cons(x,append(xs,ys))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex5_3.xml" :
+TRS {trsSignature = fromList [("0",0),("double",1),("eq",2),("f",2),("false",0),("minus",2),("plus",2),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(true,s(x)) -> f(eq(0,minus(x,x)),double(s(x))),double(x) -> plus(x,x),plus(0,y) -> y,plus(s(x),y) -> plus(x,s(y)),minus(x,0) -> x,minus(0,y) -> 0,minus(s(x),s(y)) -> minus(x,y),eq(0,0) -> true,eq(s(x),0) -> false,eq(0,s(y)) -> false,eq(s(x),s(y)) -> eq(x,y)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex5_2.xml" :
+TRS {trsSignature = fromList [("0",0),("double",1),("eq",2),("f",2),("false",0),("minus",2),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(true,s(x)) -> f(eq(0,minus(x,x)),double(s(x))),double(0) -> 0,double(s(x)) -> s(s(double(x))),minus(x,0) -> x,minus(0,y) -> 0,minus(s(x),s(y)) -> minus(x,y),eq(0,0) -> true,eq(s(x),0) -> false,eq(0,s(y)) -> false,eq(s(x),s(y)) -> eq(x,y)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex5_1.xml" :
+TRS {trsSignature = fromList [("0",0),("double",1),("doubleAkk",2),("eq",2),("f",2),("false",0),("minus",2),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(true,s(x)) -> f(eq(0,minus(x,x)),double(s(x))),double(x) -> doubleAkk(x,0),doubleAkk(0,y) -> y,doubleAkk(s(x),y) -> doubleAkk(x,s(s(y))),minus(x,0) -> x,minus(0,y) -> 0,minus(s(x),s(y)) -> minus(x,y),eq(0,0) -> true,eq(s(x),0) -> false,eq(0,s(y)) -> false,eq(s(x),s(y)) -> eq(x,y)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex4_4.xml" :
+TRS {trsSignature = fromList [("0",0),("eq",2),("f",2),("false",0),("minus",2),("plus",2),("plus1",1),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(true,x) -> f(eq(0,minus(x,x)),plus1(x)),plus1(x) -> plus(s(0),x),plus(0,y) -> y,plus(s(x),y) -> s(plus(x,y)),minus(x,0) -> x,minus(0,y) -> 0,minus(s(x),s(y)) -> minus(x,y),eq(0,0) -> true,eq(s(x),0) -> false,eq(0,s(y)) -> false,eq(s(x),s(y)) -> eq(x,y)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex4_3.xml" :
+TRS {trsSignature = fromList [("0",0),("eq",2),("f",2),("false",0),("minus",2),("plus",2),("plus1",1),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(true,x) -> f(eq(0,minus(x,x)),plus1(x)),plus1(x) -> plus(x,s(0)),plus(0,y) -> y,plus(s(x),y) -> s(plus(x,y)),minus(x,0) -> x,minus(0,y) -> 0,minus(s(x),s(y)) -> minus(x,y),eq(0,0) -> true,eq(s(x),0) -> false,eq(0,s(y)) -> false,eq(s(x),s(y)) -> eq(x,y)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex4_2.xml" :
+TRS {trsSignature = fromList [("0",0),("eq",2),("f",2),("false",0),("minus",2),("plus",2),("plus1",1),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(true,x) -> f(eq(0,minus(x,x)),plus1(x)),plus1(x) -> plus(x,s(0)),plus(0,y) -> y,plus(s(x),y) -> plus(x,s(y)),minus(x,0) -> x,minus(0,y) -> 0,minus(s(x),s(y)) -> minus(x,y),eq(0,0) -> true,eq(s(x),0) -> false,eq(0,s(y)) -> false,eq(s(x),s(y)) -> eq(x,y)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex4_1.xml" :
+TRS {trsSignature = fromList [("0",0),("eq",2),("f",2),("false",0),("minus",2),("plus1",1),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(true,x) -> f(eq(0,minus(x,x)),plus1(x)),plus1(x) -> s(x),minus(x,0) -> x,minus(0,y) -> 0,minus(s(x),s(y)) -> minus(x,y),eq(0,0) -> true,eq(s(x),0) -> false,eq(0,s(y)) -> false,eq(s(x),s(y)) -> eq(x,y)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex3_4.xml" :
+TRS {trsSignature = fromList [("0",0),("double",1),("f",2),("false",0),("gt",2),("plus",2),("s",1),("times",2),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(true,x) -> f(gt(x,0),double(x)),gt(s(x),0) -> true,gt(0,y) -> false,gt(s(x),s(y)) -> gt(x,y),double(x) -> times(s(s(0)),x),times(0,y) -> 0,times(s(x),y) -> plus(y,times(x,y)),plus(0,y) -> y,plus(s(x),y) -> plus(x,s(y))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex3_3.xml" :
+TRS {trsSignature = fromList [("0",0),("double",1),("f",2),("false",0),("gt",2),("plus",2),("s",1),("times",2),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(true,x) -> f(gt(x,0),double(x)),gt(s(x),0) -> true,gt(0,y) -> false,gt(s(x),s(y)) -> gt(x,y),double(x) -> times(s(s(0)),x),times(0,y) -> 0,times(s(x),y) -> plus(times(x,y),y),plus(0,y) -> y,plus(s(x),y) -> plus(x,s(y))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex3_2.xml" :
+TRS {trsSignature = fromList [("0",0),("double",1),("f",2),("false",0),("gt",2),("plus",2),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(true,x) -> f(gt(x,0),double(x)),gt(s(x),0) -> true,gt(0,y) -> false,gt(s(x),s(y)) -> gt(x,y),double(x) -> plus(x,x),plus(0,y) -> y,plus(s(x),y) -> plus(x,s(y))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex3_1.xml" :
+TRS {trsSignature = fromList [("0",0),("double",1),("doubleAkk",2),("f",2),("false",0),("gt",2),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(true,x) -> f(gt(x,0),double(x)),gt(s(x),0) -> true,gt(0,y) -> false,gt(s(x),s(y)) -> gt(x,y),double(x) -> doubleAkk(x,0),doubleAkk(0,y) -> y,doubleAkk(s(x),y) -> doubleAkk(x,s(s(y)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex2_5.xml" :
+TRS {trsSignature = fromList [("0",0),("double",1),("f",3),("false",0),("gt",2),("plus",2),("s",1),("times",2),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(true,x,y) -> f(gt(x,y),double(x),s(y)),gt(s(x),0) -> true,gt(0,y) -> false,gt(s(x),s(y)) -> gt(x,y),double(x) -> times(x,s(s(0))),times(0,y) -> 0,times(s(x),y) -> plus(y,times(x,y)),plus(0,y) -> y,plus(s(x),y) -> s(plus(x,y))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex2_4.xml" :
+TRS {trsSignature = fromList [("0",0),("double",1),("f",3),("false",0),("gt",2),("plus",2),("s",1),("times",2),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(true,x,y) -> f(gt(x,y),double(x),s(y)),gt(s(x),0) -> true,gt(0,y) -> false,gt(s(x),s(y)) -> gt(x,y),double(x) -> times(x,s(s(0))),times(0,y) -> 0,times(s(x),y) -> plus(y,times(x,y)),plus(0,y) -> y,plus(s(x),y) -> plus(x,s(y))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex2_3.xml" :
+TRS {trsSignature = fromList [("0",0),("double",1),("f",3),("false",0),("gt",2),("plus",2),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(true,x,y) -> f(gt(x,y),double(x),s(y)),gt(s(x),0) -> true,gt(0,y) -> false,gt(s(x),s(y)) -> gt(x,y),double(x) -> plus(x,x),plus(0,y) -> y,plus(s(x),y) -> plus(x,s(y))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex2_2.xml" :
+TRS {trsSignature = fromList [("0",0),("double",1),("f",3),("false",0),("gt",2),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(true,x,y) -> f(gt(x,y),double(x),s(y)),gt(s(x),0) -> true,gt(0,y) -> false,gt(s(x),s(y)) -> gt(x,y),double(0) -> 0,double(s(x)) -> s(s(double(x)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex2_1.xml" :
+TRS {trsSignature = fromList [("0",0),("double",1),("doubleAkk",2),("f",3),("false",0),("gt",2),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(true,x,y) -> f(gt(x,y),double(x),s(y)),gt(s(x),0) -> true,gt(0,y) -> false,gt(s(x),s(y)) -> gt(x,y),double(x) -> doubleAkk(x,0),doubleAkk(0,y) -> y,doubleAkk(s(x),y) -> doubleAkk(x,s(s(y)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex1_5.xml" :
+TRS {trsSignature = fromList [("0",0),("f",3),("false",0),("gt",2),("plus",2),("plus1",1),("plus2",1),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(true,x,y) -> f(gt(x,y),plus2(x),plus1(y)),gt(s(x),0) -> true,gt(0,y) -> false,gt(s(x),s(y)) -> gt(x,y),plus1(x) -> plus(s(0),x),plus2(x) -> plus(s(s(0)),x),plus(0,y) -> y,plus(s(x),y) -> s(plus(x,y))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex1_4.xml" :
+TRS {trsSignature = fromList [("0",0),("f",3),("false",0),("gt",2),("plus",2),("plus1",1),("plus2",1),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(true,x,y) -> f(gt(x,y),plus2(x),plus1(y)),gt(s(x),0) -> true,gt(0,y) -> false,gt(s(x),s(y)) -> gt(x,y),plus1(x) -> plus(s(0),x),plus2(x) -> plus(s(s(0)),x),plus(0,y) -> y,plus(s(x),y) -> plus(x,s(y))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex1_3.xml" :
+TRS {trsSignature = fromList [("0",0),("f",3),("false",0),("gt",2),("plus",2),("plus1",1),("plus2",1),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(true,x,y) -> f(gt(x,y),plus2(x),plus1(y)),gt(s(x),0) -> true,gt(0,y) -> false,gt(s(x),s(y)) -> gt(x,y),plus1(x) -> plus(x,s(0)),plus2(x) -> plus(x,s(s(0))),plus(0,y) -> y,plus(s(x),y) -> s(plus(x,y))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex1_2.xml" :
+TRS {trsSignature = fromList [("0",0),("f",3),("false",0),("gt",2),("plus",2),("plus1",1),("plus2",1),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(true,x,y) -> f(gt(x,y),plus2(x),plus1(y)),gt(s(x),0) -> true,gt(0,y) -> false,gt(s(x),s(y)) -> gt(x,y),plus1(x) -> plus(x,s(0)),plus2(x) -> plus(x,s(s(0))),plus(0,y) -> y,plus(s(x),y) -> plus(x,s(y))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\EEG_IJCAR_12\\emmes-nonloop-ex1_1.xml" :
+TRS {trsSignature = fromList [("0",0),("f",3),("false",0),("gt",2),("plus1",1),("plus2",1),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(true,x,y) -> f(gt(x,y),plus2(x),plus1(y)),gt(s(x),0) -> true,gt(0,y) -> false,gt(s(x),s(y)) -> gt(x,y),plus1(x) -> s(x),plus2(x) -> s(s(x))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}

@@ -1,0 +1,48 @@
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Zantema_15\\s.xml" :
+TRS {trsSignature = fromList [("S",0),("a",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [a(a(a(S,x),y),z) -> a(a(x,z),a(y,z))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Zantema_15\\ex14.xml" :
+TRS {trsSignature = fromList [("0",0),("f",2),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,s(y)) -> f(s(x),y),f(x,0) -> f(x,s(x))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Zantema_15\\ex13.xml" :
+TRS {trsSignature = fromList [("0",0),("d",1),("f",2),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,s(y)) -> f(d(x),y),f(x,0) -> f(s(0),x),d(0) -> 0,d(s(x)) -> s(s(d(x)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Zantema_15\\ex12.xml" :
+TRS {trsSignature = fromList [("0",0),("f",2),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,s(y)) -> f(s(s(x)),y),f(x,0) -> f(s(0),x)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Zantema_15\\ex11.xml" :
+TRS {trsSignature = fromList [("0",0),("f",2),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,s(y)) -> f(s(x),y),f(x,0) -> f(s(0),x)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Zantema_15\\ex10.xml" :
+TRS {trsSignature = fromList [("L",2),("R",2),("a",1),("b",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [R(x,a(y)) -> R(a(x),y),R(x,b) -> L(x,a(b)),L(a(x),y) -> L(x,a(y)),L(b,x) -> R(a(b),x)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Zantema_15\\ex09.xml" :
+TRS {trsSignature = fromList [("L",1),("R",1),("a",1),("b",1),("f",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [a(L(x)) -> L(a(x)),R(a(x)) -> a(R(x)),f(L(x),L(y)) -> f(a(R(y)),R(x)),R(b(x)) -> L(b(x))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Zantema_15\\ex08.xml" :
+TRS {trsSignature = fromList [("L",1),("R",1),("a",1),("b",1),("f",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [a(L(x)) -> L(a(x)),R(a(x)) -> a(R(x)),f(L(x),L(y)) -> f(a(R(x)),R(y)),R(b(x)) -> L(b(x))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Zantema_15\\ex07.xml" :
+TRS {trsSignature = fromList [("L",1),("R",1),("a",1),("b",1),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a(L(x)) -> L(a(x)),R(a(x)) -> a(R(x)),f(L(x),L(x)) -> f(R(x),R(x)),R(b(x)) -> L(a(b(x)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Zantema_15\\ex06.xml" :
+TRS {trsSignature = fromList [("B",1),("D",1),("P",1),("Q",1),("a",1),("b",1),("c",1),("d",1),("e",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [b(B(x)) -> B(b(x)),b(c(d(x))) -> B(c(D(x))),D(d(x)) -> d(D(x)),a(P(x)) -> a(b(b(x))),B(P(x)) -> P(b(x)),b(c(d(x))) -> P(c(Q(x))),Q(D(x)) -> d(Q(x)),Q(e(x)) -> d(d(e(x)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Zantema_15\\ex05.xml" :
+TRS {trsSignature = fromList [("0",0),("double",1),("f",4),("isNat",1),("s",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(true,true,x,s(y)) -> f(isNat(x),isNat(y),s(x),double(s(y))),isNat(0) -> true,isNat(s(x)) -> isNat(x),double(0) -> 0,double(s(x)) -> s(s(double(x)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Zantema_15\\ex04.xml" :
+TRS {trsSignature = fromList [("L",1),("R",1),("a",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a(L(x)) -> L(a(x)),R(a(x)) -> a(R(x)),a(L(L(x))) -> a(L(R(x))),R(R(a(x))) -> L(a(R(a(x))))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Zantema_15\\ex03.xml" :
+TRS {trsSignature = fromList [("L",1),("R",1),("a",1),("b",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a(a(L(x))) -> L(a(a(x))),R(a(x)) -> a(R(x)),b(L(x)) -> b(R(x)),R(b(x)) -> L(a(b(x))),R(b(x)) -> a(L(b(x)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Zantema_15\\ex02.xml" :
+TRS {trsSignature = fromList [("L",1),("R",1),("a",1),("b",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a(L(x)) -> L(a(x)),R(a(a(x))) -> a(a(a(R(x)))),b(L(x)) -> b(R(a(x))),R(b(x)) -> L(b(x)),R(a(b(x))) -> L(a(b(x)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Zantema_15\\ex01.xml" :
+TRS {trsSignature = fromList [("L",1),("R",1),("a",1),("b",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a(L(x)) -> L(a(x)),R(a(x)) -> a(R(x)),b(L(x)) -> b(R(x)),R(b(x)) -> L(a(b(x)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Zantema_15\\delta.xml" :
+TRS {trsSignature = fromList [("a",2),("delta",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [a(a(delta,x),y) -> a(y,a(x,y))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}

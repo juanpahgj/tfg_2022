@@ -1,0 +1,84 @@
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AotoYamada_05\\Ex5TermProof.xml" :
+TRS {trsSignature = fromList [("0",0),("add",0),("app",2),("fact",0),("mult",0),("rec",0),("s",0)], trsVariables = fromList ["f","x","y"], trsRMap = [], trsRules = [app(app(add,0),y) -> y,app(app(add,app(s,x)),y) -> app(s,app(app(add,x),y)),app(app(mult,0),y) -> 0,app(app(mult,app(s,x)),y) -> app(app(add,app(app(mult,x),y)),y),app(app(app(rec,f),x),0) -> x,app(app(app(rec,f),x),app(s,y)) -> app(app(f,app(s,y)),app(app(app(rec,f),x),y)),fact -> app(app(rec,mult),app(s,0))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AotoYamada_05\\Ex1SimplyTyped.xml" :
+TRS {trsSignature = fromList [("0",0),("add",0),("app",2),("cons",0),("id",0),("map",0),("nil",0),("s",0)], trsVariables = fromList ["f","x","xs","y"], trsRMap = [], trsRules = [app(id,x) -> x,app(add,0) -> id,app(app(add,app(s,x)),y) -> app(s,app(app(add,x),y)),app(app(map,f),nil) -> nil,app(app(map,f),app(app(cons,x),xs)) -> app(app(cons,app(f,x)),app(app(map,f),xs))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AotoYamada_05\\028.xml" :
+TRS {trsSignature = fromList [("app",2),("cons",0),("consif",0),("false",0),("filter",0),("nil",0),("true",0)], trsVariables = fromList ["f","x","xs","ys"], trsRMap = [], trsRules = [app(app(app(consif,true),x),ys) -> app(app(cons,x),ys),app(app(app(consif,false),x),ys) -> ys,app(app(filter,f),nil) -> nil,app(app(filter,f),app(app(cons,x),xs)) -> app(app(app(consif,app(f,x)),x),app(app(filter,f),xs))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AotoYamada_05\\027.xml" :
+TRS {trsSignature = fromList [("0",0),("app",2),("cons",0),("inc",0),("map",0),("nil",0),("plus",0),("s",0)], trsVariables = fromList ["f","x","xs","y"], trsRMap = [], trsRules = [app(app(plus,0),y) -> y,app(app(plus,app(s,x)),y) -> app(s,app(app(plus,x),y)),app(inc,xs) -> app(app(map,app(plus,app(s,0))),xs),app(app(map,f),nil) -> nil,app(app(map,f),app(app(cons,x),xs)) -> app(app(cons,app(f,x)),app(app(map,f),xs))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AotoYamada_05\\026.xml" :
+TRS {trsSignature = fromList [("app",2),("comp",0),("cons",0),("map",0),("nil",0),("twice",0)], trsVariables = fromList ["f","g","x","xs"], trsRMap = [], trsRules = [app(app(map,f),nil) -> nil,app(app(map,f),app(app(cons,x),xs)) -> app(app(cons,app(f,x)),app(app(map,f),xs)),app(app(app(comp,f),g),x) -> app(f,app(g,x)),app(twice,f) -> app(app(comp,f),f)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AotoYamada_05\\025.xml" :
+TRS {trsSignature = fromList [("app",2),("apply",0)], trsVariables = fromList ["f","x"], trsRMap = [], trsRules = [app(app(apply,f),x) -> app(f,x)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AotoYamada_05\\024.xml" :
+TRS {trsSignature = fromList [("app",2),("cons",0),("map",0),("nil",0)], trsVariables = fromList ["f","x","xs"], trsRMap = [], trsRules = [app(app(map,f),nil) -> nil,app(app(map,f),app(app(cons,x),xs)) -> app(app(cons,app(f,x)),app(app(map,f),xs))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AotoYamada_05\\023.xml" :
+TRS {trsSignature = fromList [("0",0),("app",2),("id",0),("plus",0),("s",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [app(id,x) -> x,app(plus,0) -> id,app(app(plus,app(s,x)),y) -> app(s,app(app(plus,x),y))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AotoYamada_05\\022.xml" :
+TRS {trsSignature = fromList [("app",2),("cons",0),("leaf",0),("mapt",0),("maptlist",0),("nil",0),("node",0)], trsVariables = fromList ["f","x","xs"], trsRMap = [], trsRules = [app(app(mapt,f),app(leaf,x)) -> app(leaf,app(f,x)),app(app(mapt,f),app(node,xs)) -> app(node,app(app(maptlist,f),xs)),app(app(maptlist,f),nil) -> nil,app(app(maptlist,f),app(app(cons,x),xs)) -> app(app(cons,app(app(mapt,f),x)),app(app(maptlist,f),xs))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AotoYamada_05\\021.xml" :
+TRS {trsSignature = fromList [("0",0),("app",2),("cons",0),("double",0),("inc",0),("map",0),("nil",0),("plus",0),("s",0),("times",0)], trsVariables = fromList ["f","x","xs","y"], trsRMap = [], trsRules = [app(app(plus,0),y) -> y,app(app(plus,app(s,x)),y) -> app(s,app(app(plus,x),y)),app(app(times,0),y) -> 0,app(app(times,app(s,x)),y) -> app(app(plus,app(app(times,x),y)),y),app(inc,xs) -> app(app(map,app(plus,app(s,0))),xs),app(double,xs) -> app(app(map,app(times,app(s,app(s,0)))),xs),app(app(map,f),nil) -> nil,app(app(map,f),app(app(cons,x),xs)) -> app(app(cons,app(f,x)),app(app(map,f),xs))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AotoYamada_05\\020.xml" :
+TRS {trsSignature = fromList [("0",0),("app",2),("comp",0),("plus",0),("s",0),("times",0),("twice",0)], trsVariables = fromList ["f","g","x","y"], trsRMap = [], trsRules = [app(app(plus,0),y) -> y,app(app(plus,app(s,x)),y) -> app(s,app(app(plus,x),y)),app(app(times,0),y) -> 0,app(app(times,app(s,x)),y) -> app(app(plus,app(app(times,x),y)),y),app(app(app(comp,f),g),x) -> app(f,app(g,x)),app(twice,f) -> app(app(comp,f),f)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AotoYamada_05\\019.xml" :
+TRS {trsSignature = fromList [("app",2),("comp",0),("twice",0)], trsVariables = fromList ["f","g","x"], trsRMap = [], trsRules = [app(app(app(comp,f),g),x) -> app(f,app(g,x)),app(twice,f) -> app(app(comp,f),f)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AotoYamada_05\\017.xml" :
+TRS {trsSignature = fromList [("app",2),("uncurry",0)], trsVariables = fromList ["f","x","y"], trsRMap = [], trsRules = [app(app(app(uncurry,f),x),y) -> app(app(f,x),y)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AotoYamada_05\\016.xml" :
+TRS {trsSignature = fromList [("0",0),("app",2),("cons",0),("false",0),("filter",0),("filtersub",0),("neq",0),("nil",0),("nonzero",0),("s",0),("true",0)], trsVariables = fromList ["f","x","y","ys"], trsRMap = [], trsRules = [app(app(neq,0),0) -> false,app(app(neq,0),app(s,y)) -> true,app(app(neq,app(s,x)),0) -> true,app(app(neq,app(s,x)),app(s,y)) -> app(app(neq,x),y),app(app(filter,f),nil) -> nil,app(app(filter,f),app(app(cons,y),ys)) -> app(app(app(filtersub,app(f,y)),f),app(app(cons,y),ys)),app(app(app(filtersub,true),f),app(app(cons,y),ys)) -> app(app(cons,y),app(app(filter,f),ys)),app(app(app(filtersub,false),f),app(app(cons,y),ys)) -> app(app(filter,f),ys),nonzero -> app(filter,app(neq,0))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AotoYamada_05\\015.xml" :
+TRS {trsSignature = fromList [("app",2),("cons",0),("false",0),("filter",0),("if",0),("nil",0),("true",0)], trsVariables = fromList ["f","x","xs","y"], trsRMap = [], trsRules = [app(app(app(if,true),x),y) -> x,app(app(app(if,false),x),y) -> y,app(app(filter,f),nil) -> nil,app(app(filter,f),app(app(cons,x),xs)) -> app(app(app(if,app(f,x)),app(app(cons,x),app(app(filter,f),xs))),app(app(filter,f),xs))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AotoYamada_05\\014.xml" :
+TRS {trsSignature = fromList [("0",0),("app",2),("cons",0),("double",0),("inc",0),("map",0),("nil",0),("plus",0),("s",0),("times",0)], trsVariables = fromList ["f","x","xs","y"], trsRMap = [], trsRules = [app(app(plus,0),y) -> y,app(app(plus,app(s,x)),y) -> app(s,app(app(plus,x),y)),app(app(times,0),y) -> 0,app(app(times,app(s,x)),y) -> app(app(plus,app(app(times,x),y)),y),app(app(map,f),nil) -> nil,app(app(map,f),app(app(cons,x),xs)) -> app(app(cons,app(f,x)),app(app(map,f),xs)),inc -> app(map,app(plus,app(s,0))),double -> app(map,app(times,app(s,app(s,0))))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AotoYamada_05\\013.xml" :
+TRS {trsSignature = fromList [("app",2),("append",0),("cons",0),("flatwith",0),("flatwithsub",0),("leaf",0),("nil",0),("node",0)], trsVariables = fromList ["f","x","xs","ys"], trsRMap = [], trsRules = [app(app(append,nil),ys) -> ys,app(app(append,app(app(cons,x),xs)),ys) -> app(app(cons,x),app(app(append,xs),ys)),app(app(flatwith,f),app(leaf,x)) -> app(app(cons,app(f,x)),nil),app(app(flatwith,f),app(node,xs)) -> app(app(flatwithsub,f),xs),app(app(flatwithsub,f),nil) -> nil,app(app(flatwithsub,f),app(app(cons,x),xs)) -> app(app(append,app(app(flatwith,f),x)),app(app(flatwithsub,f),xs))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AotoYamada_05\\012.xml" :
+TRS {trsSignature = fromList [("and",0),("app",2),("cons",0),("false",0),("forall",0),("forsome",0),("nil",0),("or",0),("true",0)], trsVariables = fromList ["p","x","xs","y"], trsRMap = [], trsRules = [app(app(and,true),true) -> true,app(app(and,x),false) -> false,app(app(and,false),y) -> false,app(app(or,true),y) -> true,app(app(or,x),true) -> true,app(app(or,false),false) -> false,app(app(forall,p),nil) -> true,app(app(forall,p),app(app(cons,x),xs)) -> app(app(and,app(p,x)),app(app(forall,p),xs)),app(app(forsome,p),nil) -> false,app(app(forsome,p),app(app(cons,x),xs)) -> app(app(or,app(p,x)),app(app(forsome,p),xs))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AotoYamada_05\\011.xml" :
+TRS {trsSignature = fromList [("0",0),("app",2),("cons",0),("curry",0),("inc",0),("map",0),("nil",0),("plus",0),("s",0)], trsVariables = fromList ["f","g","x","xs","y"], trsRMap = [], trsRules = [app(app(plus,0),y) -> y,app(app(plus,app(s,x)),y) -> app(s,app(app(plus,x),y)),app(app(map,f),nil) -> nil,app(app(map,f),app(app(cons,x),xs)) -> app(app(cons,app(f,x)),app(app(map,f),xs)),app(app(app(curry,g),x),y) -> app(app(g,x),y),inc -> app(map,app(app(curry,plus),app(s,0)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AotoYamada_05\\010.xml" :
+TRS {trsSignature = fromList [("0",0),("app",2),("cons",0),("curry",0),("double",0),("inc",0),("map",0),("nil",0),("plus",0),("s",0),("times",0)], trsVariables = fromList ["f","g","x","xs","y"], trsRMap = [], trsRules = [app(app(plus,0),y) -> y,app(app(plus,app(s,x)),y) -> app(s,app(app(plus,x),y)),app(app(times,0),y) -> 0,app(app(times,app(s,x)),y) -> app(app(plus,app(app(times,x),y)),y),app(app(app(curry,g),x),y) -> app(app(g,x),y),app(app(map,f),nil) -> nil,app(app(map,f),app(app(cons,x),xs)) -> app(app(cons,app(f,x)),app(app(map,f),xs)),inc -> app(map,app(app(curry,plus),app(s,0))),double -> app(map,app(app(curry,times),app(s,app(s,0))))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AotoYamada_05\\009.xml" :
+TRS {trsSignature = fromList [("and",0),("app",2),("cons",0),("false",0),("forall",0),("forsome",0),("nil",0),("or",0),("true",0)], trsVariables = fromList ["p","x","xs"], trsRMap = [], trsRules = [app(app(and,true),true) -> true,app(app(and,true),false) -> false,app(app(and,false),true) -> false,app(app(and,false),false) -> false,app(app(or,true),true) -> true,app(app(or,true),false) -> true,app(app(or,false),true) -> true,app(app(or,false),false) -> false,app(app(forall,p),nil) -> true,app(app(forall,p),app(app(cons,x),xs)) -> app(app(and,app(p,x)),app(app(forall,p),xs)),app(app(forsome,p),nil) -> false,app(app(forsome,p),app(app(cons,x),xs)) -> app(app(or,app(p,x)),app(app(forsome,p),xs))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AotoYamada_05\\007.xml" :
+TRS {trsSignature = fromList [("0",0),("app",2),("cons",0),("inc",0),("map",0),("nil",0),("plus",0),("s",0)], trsVariables = fromList ["f","x","xs","y"], trsRMap = [], trsRules = [app(app(plus,0),y) -> y,app(app(plus,app(s,x)),y) -> app(s,app(app(plus,x),y)),app(app(map,f),nil) -> nil,app(app(map,f),app(app(cons,x),xs)) -> app(app(cons,app(f,x)),app(app(map,f),xs)),inc -> app(map,app(plus,app(s,0)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AotoYamada_05\\006.xml" :
+TRS {trsSignature = fromList [("app",2),("branch",0),("leaf",0),("mapbt",0)], trsVariables = fromList ["f","l","r","x"], trsRMap = [], trsRules = [app(app(mapbt,f),app(leaf,x)) -> app(leaf,app(f,x)),app(app(mapbt,f),app(app(app(branch,x),l),r)) -> app(app(app(branch,app(f,x)),app(app(mapbt,f),l)),app(app(mapbt,f),r))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AotoYamada_05\\005.xml" :
+TRS {trsSignature = fromList [("0",0),("add",0),("app",2),("curry",0),("plus",0),("s",0)], trsVariables = fromList ["f","x","y"], trsRMap = [], trsRules = [app(app(plus,0),y) -> y,app(app(plus,app(s,x)),y) -> app(s,app(app(plus,x),y)),app(app(app(curry,f),x),y) -> app(app(f,x),y),add -> app(curry,plus)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AotoYamada_05\\004.xml" :
+TRS {trsSignature = fromList [("0",0),("app",2),("cons",0),("nil",0),("plus",0),("s",0),("sumwith",0)], trsVariables = fromList ["f","x","xs","y"], trsRMap = [], trsRules = [app(app(plus,0),y) -> y,app(app(plus,app(s,x)),y) -> app(s,app(app(plus,x),y)),app(app(sumwith,f),nil) -> nil,app(app(sumwith,f),app(app(cons,x),xs)) -> app(app(plus,app(f,x)),app(app(sumwith,f),xs))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AotoYamada_05\\003.xml" :
+TRS {trsSignature = fromList [("app",2),("false",0),("if",0),("true",0),("until",0)], trsVariables = fromList ["f","p","x","y"], trsRMap = [], trsRules = [app(app(app(if,true),x),y) -> x,app(app(app(if,false),x),y) -> y,app(app(app(until,p),f),x) -> app(app(app(if,app(p,x)),x),app(app(app(until,p),f),app(f,x)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AotoYamada_05\\002.xml" :
+TRS {trsSignature = fromList [("app",2),("cons",0),("false",0),("filter",0),("filtersub",0),("nil",0),("true",0)], trsVariables = fromList ["f","y","ys"], trsRMap = [], trsRules = [app(app(filter,f),nil) -> nil,app(app(filter,f),app(app(cons,y),ys)) -> app(app(app(filtersub,app(f,y)),f),app(app(cons,y),ys)),app(app(app(filtersub,true),f),app(app(cons,y),ys)) -> app(app(cons,y),app(app(filter,f),ys)),app(app(app(filtersub,false),f),app(app(cons,y),ys)) -> app(app(filter,f),ys)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AotoYamada_05\\001.xml" :
+TRS {trsSignature = fromList [("app",2),("cons",0),("iterate",0)], trsVariables = fromList ["f","x"], trsRMap = [], trsRules = [app(app(iterate,f),x) -> app(app(cons,x),app(app(iterate,f),app(f,x)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}

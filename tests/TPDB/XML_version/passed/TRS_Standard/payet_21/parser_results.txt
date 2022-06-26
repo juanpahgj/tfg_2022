@@ -1,0 +1,9 @@
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\payet_21\\payet-nonloop-3.xml" :
+TRS {trsSignature = fromList [("0",0),("f",3),("s",1)], trsVariables = fromList ["X","Y","Z"], trsRMap = [], trsRules = [f(0,Y,s(Z)) -> f(Y,s(0),s(0)),f(s(X),Y,Z) -> f(X,s(Y),Z)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\payet_21\\payet-nonloop-2.xml" :
+TRS {trsSignature = fromList [("0",0),("1",0),("2",0),("f",4),("g",1),("s",1)], trsVariables = fromList ["U","X","Y","Z"], trsRMap = [], trsRules = [f(0,Y,g(Z),U) -> f(s(Y),s(Y),g(1),U),f(s(X),Y,Z,s(U)) -> f(X,Y,Z,s(2))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\payet_21\\payet-nonloop-1.xml" :
+TRS {trsSignature = fromList [("0",0),("f",2),("s",1)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [f(0,Y) -> f(s(Y),s(Y)),f(s(X),Y) -> f(X,Y)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}

@@ -1,0 +1,60 @@
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Waldmann_06\\jwttt.xml" :
+TRS {trsSignature = fromList [("a",0),("f",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,f(a,y)) -> f(a,f(f(a,h(f(a,x))),y))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Waldmann_06\\jwtpa2.xml" :
+TRS {trsSignature = fromList [("a",0),("f",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,f(a,y)) -> f(a,f(f(f(a,x),h(a)),y))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Waldmann_06\\jwtpa1.xml" :
+TRS {trsSignature = fromList [("a",0),("f",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(f(a,x),y) -> f(y,f(x,f(a,f(h(a),a))))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Waldmann_06\\jwteparla2.xml" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(f(f(a,f(a,a)),a),x) -> f(x,f(x,a))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Waldmann_06\\jwteparla1.xml" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x,f(a,f(f(a,a),a))) -> f(f(a,x),x)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Waldmann_06\\jwno9.xml" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,f(a,y)) -> f(a,f(f(f(a,a),y),x))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Waldmann_06\\jwno8.xml" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,f(y,a)) -> f(a,f(f(f(x,a),a),y))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Waldmann_06\\jwno7.xml" :
+TRS {trsSignature = fromList [("a",0),("f",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,f(y,a)) -> h(f(a,f(f(x,a),y)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Waldmann_06\\jwno6.xml" :
+TRS {trsSignature = fromList [("a",0),("f",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,h(y)) -> h(f(f(h(a),y),x))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Waldmann_06\\jwno5.xml" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,f(y,a)) -> f(a,f(f(x,a),y))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Waldmann_06\\jwno4.xml" :
+TRS {trsSignature = fromList [("a",0),("f",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(h(x),y) -> h(f(y,f(x,h(a))))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Waldmann_06\\jwno3.xml" :
+TRS {trsSignature = fromList [("a",0),("f",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(f(a,x),y) -> h(h(f(f(x,f(a,y)),a)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Waldmann_06\\jwno2.xml" :
+TRS {trsSignature = fromList [("a",0),("f",2)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,f(y,a)) -> f(f(a,a),f(f(x,a),y))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Waldmann_06\\jwno1.xml" :
+TRS {trsSignature = fromList [("a",0),("f",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(h(x),y) -> h(f(y,f(x,h(f(a,a)))))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Waldmann_06\\jwmatchb2.xml" :
+TRS {trsSignature = fromList [("a",0),("f",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [h(f(x,y)) -> f(f(a,h(h(y))),x)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Waldmann_06\\jwmatchb1.xml" :
+TRS {trsSignature = fromList [("a",0),("f",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [h(f(x,y)) -> f(y,f(h(h(x)),a))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Waldmann_06\\jwcime2.xml" :
+TRS {trsSignature = fromList [("a",0),("f",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,f(y,a)) -> f(f(f(f(a,a),y),h(a)),x)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Waldmann_06\\jwcime1.xml" :
+TRS {trsSignature = fromList [("a",0),("f",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,f(y,a)) -> f(f(f(f(a,x),y),a),h(a))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Waldmann_06\\jwaprove2.xml" :
+TRS {trsSignature = fromList [("a",0),("f",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(f(a,x),y) -> f(a,f(f(x,h(y)),a))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Waldmann_06\\jwaprove1.xml" :
+TRS {trsSignature = fromList [("a",0),("f",2),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,f(y,a)) -> f(f(a,f(h(x),y)),a)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}

@@ -140,25 +140,30 @@ declSignature = reservedLb "signature" $ liftM Signature (many (reservedLb "func
 
 -- | Function symbol
 fun :: Parser Signdecl -- (Id,Int)
-fun = try (do{ n <- reservedLb "name" identifier
-             ; m <- reservedLb "arity" natural -- (many1 digit)
-             ; th <- reservedLb "theory" thsig
-             ; return (Sth n (fromInteger m) th) -- return (Sth n (read m) th)
+fun = (sigTh) <|> (sigRpNull) <|> (sigRp)  <|> (sig)
+
+sigRpNull = try (do{ n <- reservedLb "name" identifier
+                   ; m <- reservedLb "arity" natural -- m <- reservedLb "arity" (many1 digit)
+                   ; try $ emptyReservedLb "replacementmap"
+                   ; return (Srp n (fromInteger m) [])
+                   })
+
+sigRp = try (do { n <- reservedLb "name" identifier
+                ; m <- reservedLb "arity" natural -- m <- reservedLb "arity" (many1 digit)
+                ; rp <- reservedLb "replacementmap" (many1 $ reservedLb "entry" natural)
+                ; return (Srp n (fromInteger m) (map fromInteger rp)) -- return (Srp n (read m) (rp))
+                })
+
+sig = try (do{ n <- reservedLb "name" identifier
+             ; m <- reservedLb "arity" natural -- m <- reservedLb "arity" (many1 digit)
+             ; return (S n (fromInteger m)) -- return (S n (read m))
              })
-    <|> try (do{ n <- reservedLb "name" identifier
-               ; m <- reservedLb "arity" natural -- m <- reservedLb "arity" (many1 digit)
-               ; rp <- reservedLb "replacementmap" (many1 $ reservedLb "entry" natural)
-               ; return (Srp n (fromInteger m) (map fromInteger rp)) -- return (Srp n (read m) (rp))
-               })
-    <|> try (do{ n <- reservedLb "name" identifier
-               ; m <- reservedLb "arity" natural -- m <- reservedLb "arity" (many1 digit)
-               ; (try $ emptyReservedLb "replacementmap")
-               ; return (Srp n (fromInteger m) [])
-               })
-    <|> do{ n <- reservedLb "name" identifier
-          ; m <- reservedLb "arity" natural -- m <- reservedLb "arity" (many1 digit)
-          ; return (S n (fromInteger m)) -- return (S n (read m))
-          }
+
+sigTh = try (do { n <- reservedLb "name" identifier
+                ; m <- reservedLb "arity" natural -- (many1 digit)
+                ; th <- reservedLb "theory" thsig
+                ; return (Sth n (fromInteger m) th) -- return (Sth n (read m) th)
+                })
 
 thsig = (thSigA <|> thSigC <|> thSigAC)
 
@@ -236,10 +241,10 @@ aux2 q=do{ (symbol "<")
          }
 
 emptyReservedLb q = do { (symbol "<")
-                       ; (reserved q)
-                       ; (symbol "/")
-                       ; (symbol ">")
-                       }
+                        ; (reserved q)
+                        ; (symbol "/")
+                        ; (symbol ">")
+                        }
 
 metainf = try (do{ whiteSpace
                  ; string "<?"

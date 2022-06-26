@@ -1,0 +1,81 @@
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Rubio_04\\wst99.xml" :
+TRS {trsSignature = fromList [("der",1),("din",1),("dout",1),("plus",2),("times",2),("u21",3),("u22",4),("u31",3),("u32",4),("u41",2),("u42",3)], trsVariables = fromList ["DDX","DX","DY","X","Y"], trsRMap = [], trsRules = [din(der(plus(X,Y))) -> u21(din(der(X)),X,Y),u21(dout(DX),X,Y) -> u22(din(der(Y)),X,Y,DX),u22(dout(DY),X,Y,DX) -> dout(plus(DX,DY)),din(der(times(X,Y))) -> u31(din(der(X)),X,Y),u31(dout(DX),X,Y) -> u32(din(der(Y)),X,Y,DX),u32(dout(DY),X,Y,DX) -> dout(plus(times(X,DY),times(Y,DX))),din(der(der(X))) -> u41(din(der(X)),X),u41(dout(DX),X) -> u42(din(der(DX)),X,DX),u42(dout(DDX),X,DX) -> dout(DDX)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Rubio_04\\test829.xml" :
+TRS {trsSignature = fromList [("c",2),("f",1),("g",1),("s",1)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [f(c(X,s(Y))) -> f(c(s(X),Y)),g(c(s(X),Y)) -> f(c(X,s(Y)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Rubio_04\\test4.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",2),("s",1)], trsVariables = fromList ["X"], trsRMap = [], trsRules = [f(a,a) -> f(a,b),f(a,b) -> f(s(a),c),f(s(X),c) -> f(X,c),f(c,c) -> f(a,a)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Rubio_04\\selsort.xml" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("eq",2),("false",0),("ifmin",2),("ifrepl",4),("ifselsort",2),("le",2),("min",1),("nil",0),("replace",3),("s",1),("selsort",1),("true",0)], trsVariables = fromList ["K","L","M","N","X","Y"], trsRMap = [], trsRules = [eq(0,0) -> true,eq(0,s(Y)) -> false,eq(s(X),0) -> false,eq(s(X),s(Y)) -> eq(X,Y),le(0,Y) -> true,le(s(X),0) -> false,le(s(X),s(Y)) -> le(X,Y),min(cons(0,nil)) -> 0,min(cons(s(N),nil)) -> s(N),min(cons(N,cons(M,L))) -> ifmin(le(N,M),cons(N,cons(M,L))),ifmin(true,cons(N,cons(M,L))) -> min(cons(N,L)),ifmin(false,cons(N,cons(M,L))) -> min(cons(M,L)),replace(N,M,nil) -> nil,replace(N,M,cons(K,L)) -> ifrepl(eq(N,K),N,M,cons(K,L)),ifrepl(true,N,M,cons(K,L)) -> cons(M,L),ifrepl(false,N,M,cons(K,L)) -> cons(K,replace(N,M,L)),selsort(nil) -> nil,selsort(cons(N,L)) -> ifselsort(eq(N,min(cons(N,L))),cons(N,L)),ifselsort(true,cons(N,L)) -> cons(N,selsort(L)),ifselsort(false,cons(N,L)) -> cons(min(cons(N,L)),selsort(replace(min(cons(N,L)),N,L)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Rubio_04\\revlist.xml" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("nil",0),("rev",1),("rev1",2),("rev2",2),("s",1)], trsVariables = fromList ["L","X","Y"], trsRMap = [], trsRules = [rev1(0,nil) -> 0,rev1(s(X),nil) -> s(X),rev1(X,cons(Y,L)) -> rev1(Y,L),rev(nil) -> nil,rev(cons(X,L)) -> cons(rev1(X,L),rev2(X,L)),rev2(X,nil) -> nil,rev2(X,cons(Y,L)) -> rev(cons(X,rev(rev2(Y,L))))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Rubio_04\\quotminus.xml" :
+TRS {trsSignature = fromList [("0",0),("Z",0),("min",2),("plus",2),("quot",2),("s",1)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [plus(0,Y) -> Y,plus(s(X),Y) -> s(plus(X,Y)),min(X,0) -> X,min(s(X),s(Y)) -> min(X,Y),min(min(X,Y),Z) -> min(X,plus(Y,Z)),quot(0,s(Y)) -> 0,quot(s(X),s(Y)) -> s(quot(min(X,Y),s(Y)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Rubio_04\\quick.xml" :
+TRS {trsSignature = fromList [("0",0),("app",2),("cons",2),("false",0),("high",2),("ifhigh",3),("iflow",3),("le",2),("low",2),("nil",0),("quicksort",1),("s",1),("true",0)], trsVariables = fromList ["L","M","N","X","Y"], trsRMap = [], trsRules = [le(0,Y) -> true,le(s(X),0) -> false,le(s(X),s(Y)) -> le(X,Y),app(nil,Y) -> Y,app(cons(N,L),Y) -> cons(N,app(L,Y)),low(N,nil) -> nil,low(N,cons(M,L)) -> iflow(le(M,N),N,cons(M,L)),iflow(true,N,cons(M,L)) -> cons(M,low(N,L)),iflow(false,N,cons(M,L)) -> low(N,L),high(N,nil) -> nil,high(N,cons(M,L)) -> ifhigh(le(M,N),N,cons(M,L)),ifhigh(true,N,cons(M,L)) -> high(N,L),ifhigh(false,N,cons(M,L)) -> cons(M,high(N,L)),quicksort(nil) -> nil,quicksort(cons(N,L)) -> app(quicksort(low(N,L)),cons(N,quicksort(high(N,L))))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Rubio_04\\prov.xml" :
+TRS {trsSignature = fromList [("ackin",2),("ackout",1),("s",1),("u21",2),("u22",1)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [ackin(s(X),s(Y)) -> u21(ackin(s(X),Y),X),u21(ackout(X),Y) -> u22(ackin(Y,X))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Rubio_04\\polo2.xml" :
+TRS {trsSignature = fromList [("a",0),("div",2),("dx",1),("exp",2),("ln",1),("minus",2),("neg",1),("one",0),("plus",2),("times",2),("two",0),("zero",0)], trsVariables = fromList ["ALPHA","BETA","X"], trsRMap = [], trsRules = [dx(X) -> one,dx(a) -> zero,dx(plus(ALPHA,BETA)) -> plus(dx(ALPHA),dx(BETA)),dx(times(ALPHA,BETA)) -> plus(times(BETA,dx(ALPHA)),times(ALPHA,dx(BETA))),dx(minus(ALPHA,BETA)) -> minus(dx(ALPHA),dx(BETA)),dx(neg(ALPHA)) -> neg(dx(ALPHA)),dx(div(ALPHA,BETA)) -> minus(div(dx(ALPHA),BETA),times(ALPHA,div(dx(BETA),exp(BETA,two)))),dx(ln(ALPHA)) -> div(dx(ALPHA),ALPHA),dx(exp(ALPHA,BETA)) -> plus(times(BETA,times(exp(ALPHA,minus(BETA,one)),dx(ALPHA))),times(exp(ALPHA,BETA),times(ln(ALPHA),dx(BETA))))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Rubio_04\\p266.xml" :
+TRS {trsSignature = fromList [("a",1),("b",1),("f",1),("g",1)], trsVariables = fromList ["X"], trsRMap = [], trsRules = [f(f(X)) -> f(a(b(f(X)))),f(a(g(X))) -> b(X),b(X) -> a(X)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Rubio_04\\nestrec.xml" :
+TRS {trsSignature = fromList [("f",1),("g",1),("h",1)], trsVariables = fromList ["X"], trsRMap = [], trsRules = [f(g(X)) -> g(f(f(X))),f(h(X)) -> h(g(X))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Rubio_04\\mfp95.xml" :
+TRS {trsSignature = fromList [("f",2),("h",1),("s",1)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [f(s(X),Y) -> h(s(f(h(Y),X)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Rubio_04\\mfp90b.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",2),("g",1)], trsVariables = fromList ["X"], trsRMap = [], trsRules = [a -> g(c),g(a) -> b,f(g(X),b) -> f(a,X)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Rubio_04\\logarquot.xml" :
+TRS {trsSignature = fromList [("0",0),("log",1),("min",2),("quot",2),("s",1)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [min(X,0) -> X,min(s(X),s(Y)) -> min(X,Y),quot(0,s(Y)) -> 0,quot(s(X),s(Y)) -> s(quot(min(X,Y),s(Y))),log(s(0)) -> 0,log(s(s(X))) -> s(log(s(quot(X,s(s(0))))))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Rubio_04\\lindau.xml" :
+TRS {trsSignature = fromList [("a",1),("b",1),("c",1),("e",0)], trsVariables = fromList ["X"], trsRMap = [], trsRules = [c(b(a(X))) -> a(a(b(b(c(c(X)))))),a(X) -> e,b(X) -> e,c(X) -> e], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Rubio_04\\lescanne.xml" :
+TRS {trsSignature = fromList [("div",2),("e",0),("i",1)], trsVariables = fromList ["X","Y","Z"], trsRMap = [], trsRules = [div(X,e) -> i(X),i(div(X,Y)) -> div(Y,X),div(div(X,Y),Z) -> div(Y,div(i(X),Z))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Rubio_04\\koen.xml" :
+TRS {trsSignature = fromList [("a",1),("c",1),("f",2),("s",1)], trsVariables = fromList ["X"], trsRMap = [], trsRules = [f(s(X),X) -> f(X,a(X)),f(X,c(X)) -> f(s(X),X),f(X,X) -> c(X)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Rubio_04\\gmnp.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",1),("d",1),("e",1),("f",1),("g",1)], trsVariables = fromList ["X"], trsRMap = [], trsRules = [f(a) -> f(c(a)),f(c(X)) -> X,f(c(a)) -> f(d(b)),f(a) -> f(d(a)),f(d(X)) -> X,f(c(b)) -> f(d(a)),e(g(X)) -> e(X)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Rubio_04\\gm.xml" :
+TRS {trsSignature = fromList [("0",0),("div",2),("minus",2),("p",1),("s",1)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [minus(X,0) -> X,minus(s(X),s(Y)) -> p(minus(X,Y)),p(s(X)) -> X,div(0,s(Y)) -> 0,div(s(X),s(Y)) -> s(div(minus(X,Y),s(Y)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Rubio_04\\gcd.xml" :
+TRS {trsSignature = fromList [("0",0),("false",0),("gcd",2),("if",3),("le",2),("minus",2),("pred",1),("s",1),("true",0)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [minus(X,s(Y)) -> pred(minus(X,Y)),minus(X,0) -> X,pred(s(X)) -> X,le(s(X),s(Y)) -> le(X,Y),le(s(X),0) -> false,le(0,Y) -> true,gcd(0,Y) -> 0,gcd(s(X),0) -> s(X),gcd(s(X),s(Y)) -> if(le(Y,X),s(X),s(Y)),if(true,s(X),s(Y)) -> gcd(minus(X,Y),s(Y)),if(false,s(X),s(Y)) -> gcd(minus(Y,X),s(X))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Rubio_04\\enno.xml" :
+TRS {trsSignature = fromList [("0",0),("add",2),("append",2),("f_1",4),("f_2",6),("f_3",3),("false",0),("lt",2),("nil",0),("pair",2),("qsort",1),("s",1),("split",2),("true",0)], trsVariables = fromList ["M","N","X","Y","Z"], trsRMap = [], trsRules = [lt(0,s(X)) -> true,lt(s(X),0) -> false,lt(s(X),s(Y)) -> lt(X,Y),append(nil,Y) -> Y,append(add(N,X),Y) -> add(N,append(X,Y)),split(N,nil) -> pair(nil,nil),split(N,add(M,Y)) -> f_1(split(N,Y),N,M,Y),f_1(pair(X,Z),N,M,Y) -> f_2(lt(N,M),N,M,Y,X,Z),f_2(true,N,M,Y,X,Z) -> pair(X,add(M,Z)),f_2(false,N,M,Y,X,Z) -> pair(add(M,X),Z),qsort(nil) -> nil,qsort(add(N,X)) -> f_3(split(N,X),N,X),f_3(pair(Y,Z),N,X) -> append(qsort(Y),add(X,qsort(Z)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Rubio_04\\elimdupl.xml" :
+TRS {trsSignature = fromList [("0",0),("add",2),("eq",2),("false",0),("ifrm",3),("nil",0),("purge",1),("rm",2),("s",1),("true",0)], trsVariables = fromList ["M","N","X","Y"], trsRMap = [], trsRules = [eq(0,0) -> true,eq(0,s(X)) -> false,eq(s(X),0) -> false,eq(s(X),s(Y)) -> eq(X,Y),rm(N,nil) -> nil,rm(N,add(M,X)) -> ifrm(eq(N,M),N,add(M,X)),ifrm(true,N,add(M,X)) -> rm(N,X),ifrm(false,N,add(M,X)) -> add(M,rm(N,X)),purge(nil) -> nil,purge(add(N,X)) -> add(N,purge(rm(N,X)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Rubio_04\\division.xml" :
+TRS {trsSignature = fromList [("0",0),("false",0),("ifMinus",3),("le",2),("minus",2),("quot",2),("s",1),("true",0)], trsVariables = fromList ["X","Y"], trsRMap = [], trsRules = [le(0,Y) -> true,le(s(X),0) -> false,le(s(X),s(Y)) -> le(X,Y),minus(0,Y) -> 0,minus(s(X),Y) -> ifMinus(le(s(X),Y),s(X),Y),ifMinus(true,s(X),Y) -> 0,ifMinus(false,s(X),Y) -> s(minus(X,Y)),quot(0,s(Y)) -> 0,quot(s(X),s(Y)) -> s(quot(minus(X,Y),s(Y)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Rubio_04\\bn129.xml" :
+TRS {trsSignature = fromList [("plus",2),("s",1)], trsVariables = fromList ["X","X1","X2","X3","X4","Y","Z"], trsRMap = [], trsRules = [plus(s(X),plus(Y,Z)) -> plus(X,plus(s(s(Y)),Z)),plus(s(X1),plus(X2,plus(X3,X4))) -> plus(X1,plus(X3,plus(X2,X4)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Rubio_04\\bn122.xml" :
+TRS {trsSignature = fromList [("plus",2),("s",1),("times",2)], trsVariables = fromList ["X","Y","Z"], trsRMap = [], trsRules = [plus(plus(X,Y),Z) -> plus(X,plus(Y,Z)),times(X,s(Y)) -> plus(X,times(Y,X))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Rubio_04\\bintrees.xml" :
+TRS {trsSignature = fromList [("concat",2),("cons",2),("false",0),("leaf",0),("lessleaves",2),("true",0)], trsVariables = fromList ["U","V","W","X","Y","Z"], trsRMap = [], trsRules = [concat(leaf,Y) -> Y,concat(cons(U,V),Y) -> cons(U,concat(V,Y)),lessleaves(X,leaf) -> false,lessleaves(leaf,cons(W,Z)) -> true,lessleaves(cons(U,V),cons(W,Z)) -> lessleaves(concat(U,V),concat(W,Z))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Rubio_04\\aoto.xml" :
+TRS {trsSignature = fromList [("f",1),("g",1)], trsVariables = fromList ["X"], trsRMap = [], trsRules = [f(f(X)) -> f(g(f(g(f(X))))),f(g(f(X))) -> f(g(X))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}

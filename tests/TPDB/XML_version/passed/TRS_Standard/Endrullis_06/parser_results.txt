@@ -1,0 +1,36 @@
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Endrullis_06\\quadruple2.xml" :
+TRS {trsSignature = fromList [("a",1),("b",1),("p",2)], trsVariables = fromList ["x0","x1","x2","x3"], trsRMap = [], trsRules = [p(p(b(a(x0)),x1),p(x2,x3)) -> p(p(b(x2),a(a(b(x1)))),p(x3,x0))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Endrullis_06\\quadruple1.xml" :
+TRS {trsSignature = fromList [("a",1),("b",1),("p",2)], trsVariables = fromList ["x0","x1","x2","x3"], trsRMap = [], trsRules = [p(p(b(a(x0)),x1),p(x2,x3)) -> p(p(x3,a(x2)),p(b(a(x1)),b(x0)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Endrullis_06\\pair3swap.xml" :
+TRS {trsSignature = fromList [("a",1),("b",1),("p",2)], trsVariables = fromList ["x0","x1","x2","x3"], trsRMap = [], trsRules = [p(a(a(x0)),p(x1,p(a(x2),x3))) -> p(x2,p(a(a(b(x1))),p(a(a(x0)),x3)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Endrullis_06\\pair3rotate.xml" :
+TRS {trsSignature = fromList [("a",1),("b",1),("p",2)], trsVariables = fromList ["x0","x1","x2","x3"], trsRMap = [], trsRules = [p(a(x0),p(b(x1),p(a(x2),x3))) -> p(x2,p(a(a(x0)),p(b(x1),x3)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Endrullis_06\\pair3hard.xml" :
+TRS {trsSignature = fromList [("a",1),("p",2)], trsVariables = fromList ["x0","x1","x2","x3"], trsRMap = [], trsRules = [p(a(x0),p(x1,p(x2,x3))) -> p(x1,p(x0,p(a(x3),x3)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Endrullis_06\\pair2simple2.xml" :
+TRS {trsSignature = fromList [("a",1),("b",1),("p",2)], trsVariables = fromList ["x0","x1","x2"], trsRMap = [], trsRules = [p(a(x0),p(a(a(a(x1))),x2)) -> p(a(x2),p(a(a(b(x0))),x2))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Endrullis_06\\pair2simple1.xml" :
+TRS {trsSignature = fromList [("a",1),("b",1),("p",2)], trsVariables = fromList ["x0","x1","x2"], trsRMap = [], trsRules = [p(a(x0),p(a(b(x1)),x2)) -> p(a(b(a(x2))),p(a(a(x1)),x2))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Endrullis_06\\pair2hard.xml" :
+TRS {trsSignature = fromList [("a",1),("b",1),("p",2)], trsVariables = fromList ["x0","x1","x2"], trsRMap = [], trsRules = [p(a(x0),p(b(a(x1)),x2)) -> p(x1,p(a(b(a(x1))),x2)),a(b(a(x0))) -> b(a(b(x0)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Endrullis_06\\linear2.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(a,f(a,f(a,f(x,b)))) -> f(f(a,f(a,f(a,x))),b),f(f(f(a,x),b),b) -> f(f(a,f(f(x,b),b)),b)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Endrullis_06\\linear1.xml" :
+TRS {trsSignature = fromList [("a",1),("b",0),("f",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a(a(f(b,a(x)))) -> f(a(a(a(x))),b),a(a(x)) -> f(b,a(f(a(x),b))),f(a(x),b) -> f(b,a(x))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Endrullis_06\\labeling.xml" :
+TRS {trsSignature = fromList [("a",0),("f",3)], trsVariables = fromList ["w","x","y","z"], trsRMap = [], trsRules = [f(f(x,y,a),z,w) -> f(z,w,f(y,x,z))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\Endrullis_06\\direct.xml" :
+TRS {trsSignature = fromList [("0",0),("c",2),("h",2),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [h(x,c(y,z)) -> h(c(s(y),x),z),h(c(s(x),c(s(0),y)),z) -> h(y,c(s(0),c(x,z)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}

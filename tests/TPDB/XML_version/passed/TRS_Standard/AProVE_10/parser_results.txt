@@ -1,0 +1,42 @@
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AProVE_10\\Zantema06-03-modified.xml" :
+TRS {trsSignature = fromList [("A'",1),("a",1),("b",1),("c",1),("collapse",2),("dup",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [a(a(b(b(x)))) -> b(b(b(a(a(a(x)))))),a(c(x)) -> c(a(x)),c(b(x)) -> b(c(x)),dup(A'(a(b(b(x))))) -> collapse(A'(a(x)),A'(a(x))),collapse(x,y) -> dup(x),collapse(x,y) -> dup(y)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AProVE_10\\scnp.xml" :
+TRS {trsSignature = fromList [("c",1),("f",2),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(s(x),y) -> f(x,s(x)),f(x,s(y)) -> f(y,x),f(c(x),y) -> f(x,s(x))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AProVE_10\\isNat.xml" :
+TRS {trsSignature = fromList [("0",0),("f",2),("isNat",1),("s",1),("tt",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(tt,x) -> f(isNat(x),s(x)),isNat(s(x)) -> isNat(x),isNat(0) -> tt], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AProVE_10\\isList.xml" :
+TRS {trsSignature = fromList [("Cons",2),("f",2),("isList",1),("nil",0),("tt",0),("xs",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(tt,x) -> f(isList(x),x),isList(Cons(x,xs)) -> isList(xs),isList(nil) -> tt], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AProVE_10\\halfdouble.xml" :
+TRS {trsSignature = fromList [("0",0),("double",1),("eq",2),("f",2),("half",1),("s",1),("tt",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(tt,x) -> f(eq(x,half(double(x))),s(x)),eq(s(x),s(y)) -> eq(x,y),eq(0,0) -> tt,double(s(x)) -> s(s(double(x))),double(0) -> 0,half(s(s(x))) -> s(half(x)),half(0) -> 0], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AProVE_10\\ex5.xml" :
+TRS {trsSignature = fromList [("0",0),("f",1),("g",1),("s",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [g(0) -> 0,g(s(x)) -> f(g(x)),f(0) -> 0], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AProVE_10\\ex4.xml" :
+TRS {trsSignature = fromList [("0",0),("Cons",2),("add",3),("and",2),("false",0),("if",3),("isList",1),("isNat",1),("nil",0),("s",1),("true",0)], trsVariables = fromList ["x","xs","y"], trsRMap = [], trsRules = [add(true,x,xs) -> add(and(isNat(x),isList(xs)),x,Cons(x,xs)),isList(Cons(x,xs)) -> isList(xs),isList(nil) -> true,isNat(s(x)) -> isNat(x),isNat(0) -> true,if(true,x,y) -> x,if(false,x,y) -> y,and(true,true) -> true,and(false,x) -> false,and(x,false) -> false], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AProVE_10\\ex3.xml" :
+TRS {trsSignature = fromList [("0",0),("f",2),("g",3),("s",1),("tt",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [g(tt,x,y) -> g(f(x,y),s(x),s(y)),f(s(x),y) -> f(x,y),f(x,s(y)) -> f(x,y),f(0,0) -> tt], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AProVE_10\\ex2.xml" :
+TRS {trsSignature = fromList [("0",0),("f",2),("g",2),("h",1),("s",1),("tt",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [g(tt,x) -> g(h(f(x,x)),s(x)),h(f(0,y)) -> tt,f(s(x),y) -> f(x,s(y))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AProVE_10\\ex1.xml" :
+TRS {trsSignature = fromList [("0",0),("cond",3),("f",2),("lt",2),("s",1),("tt",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,y) -> cond(lt(x,y),x,y),cond(tt,x,y) -> f(s(x),s(y)),lt(0,y) -> tt,lt(s(x),s(y)) -> lt(x,y)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AProVE_10\\downfrom.xml" :
+TRS {trsSignature = fromList [("0",0),("Cons",2),("cond",2),("downfrom",1),("f",1),("isList",1),("nil",0),("s",1),("tt",0)], trsVariables = fromList ["x","xs"], trsRMap = [], trsRules = [isList(nil) -> tt,isList(Cons(x,xs)) -> isList(xs),downfrom(0) -> nil,downfrom(s(x)) -> Cons(s(x),downfrom(x)),f(x) -> cond(isList(downfrom(x)),s(x)),cond(tt,x) -> f(x)], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AProVE_10\\double.xml" :
+TRS {trsSignature = fromList [("0",0),("f",2),("isDouble",1),("s",1),("tt",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(tt,x) -> f(isDouble(x),s(s(x))),isDouble(s(s(x))) -> isDouble(x),isDouble(0) -> tt], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AProVE_10\\challenge_fab.xml" :
+TRS {trsSignature = fromList [("0",0),("and",2),("cons",2),("from",1),("fromCond",2),("is_nat",1),("is_natlist",1),("nil",0),("s",1),("tt",0)], trsVariables = fromList ["x","xs"], trsRMap = [], trsRules = [and(tt,tt) -> tt,is_nat(0) -> tt,is_nat(s(x)) -> is_nat(x),is_natlist(nil) -> tt,is_natlist(cons(x,xs)) -> and(is_nat(x),is_natlist(xs)),from(x) -> fromCond(is_natlist(x),x),fromCond(tt,cons(x,xs)) -> from(cons(s(x),cons(x,xs)))], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Standard\\AProVE_10\\andIsNat.xml" :
+TRS {trsSignature = fromList [("0",0),("and",2),("cond",3),("f",2),("ff",0),("isNat",1),("s",1),("tt",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x,y) -> cond(and(isNat(x),isNat(y)),x,y),cond(tt,x,y) -> f(s(x),s(y)),isNat(s(x)) -> isNat(x),isNat(0) -> tt,and(tt,tt) -> tt,and(ff,x) -> ff,and(x,ff) -> ff], trsType = TRSContextSensitive, trsStrategy = Just FULL, signatureBlock = True}
