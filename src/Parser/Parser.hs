@@ -449,7 +449,6 @@ checkRules [] = do { myTRS <- get
                    ;case trsType myTRS of
                         TRSContextSensitive -> checkRMap . trsRMap $ myTRS
                         TRSContextSensitiveConditional _ -> checkRMap . trsRMap $ myTRS
-                        --TRSStandard ->  return . Left $ newErrorMessage (UnExpect $ "uuuuu") (newPos "" 0 0)
                         _ -> return . Right $ ()
                    }
 checkRules (r:rs) = do { myTRS <- get
@@ -478,47 +477,49 @@ checkTerms (t:ts) = do { result <- checkTerm t
 
 -- | Checks if the term is well-formed wrt the extracted signature
 checkTerm :: Term -> State TRS (Either ParseError ())
-checkTerm (T id terms) = do { myTRS <- get
-                            ; let vars = trsVariables myTRS
-                            ; let funcs = trsSignature myTRS
-                            ; let signature = signatureBlock myTRS
-                            ; let arglen = length terms
-                            ; case (S.member id vars, M.lookup id funcs) of 
-                                (False, Nothing) -> do {if (signature) then
-                                                          return . Left $ newErrorMessage (UnExpect $ "symbol: '" ++ id ++ "' not declared in signature ") (newPos "" 0 0)
-                                                        else
-                                                          do{ put $ myTRS { trsSignature = M.insert id (length terms) $ funcs }
-                                                            ; checkTerms terms
-                                                            }
-                                                       }
-                                (False, Just len) -> if (arglen == len) then 
-                                                      checkTerms terms 
-                                                    else
-                                                      return . Left $ newErrorMessage (UnExpect $ "symbol " ++ id ++ " with arity " ++ (show arglen) ++ " in term " ++ (show $ T id terms)) (newPos "" 0 0)
-                                (True, Nothing) -> if (arglen == 0) then 
-                                                    return . Right $ ()
-                                                   else
-                                                    return . Left $ newErrorMessage (UnExpect $ "arguments in variable " ++ id) (newPos "" 0 0)
-                                -- next case is not possible
-                                _ -> return . Left $ newErrorMessage (UnExpect $ "variable and function symbols declaration " ++ id) (newPos "" 0 0)
-                            }
-checkTerm (XTerm (Tfun id terms)) = do { myTRS <- get
-                                       ; let funcs = trsSignature myTRS
-                                       ; let signature = signatureBlock myTRS
-                                       ; let arglen = length terms
-                                       ; case (M.lookup id funcs) of
-                                            Nothing -> do {if (signature) then
-                                                            return . Left $ newErrorMessage (UnExpect $ "symbol: '" ++ id ++ "' not declared in signature ") (newPos "" 0 0)
-                                                           else
-                                                            do { put $ myTRS { trsSignature = M.insert id (length terms) $ funcs }
-                                                               ; checkTerms terms
-                                                               }
-                                                          }
-                                            (Just len) -> if (arglen == len) then 
-                                                            checkTerms terms 
-                                                          else
-                                                            return . Left $ newErrorMessage (UnExpect $ "symbol " ++ id ++ " with arity " ++ (show arglen) ++ " in term " ++ (show $ T id terms)) (newPos "" 0 0)
-                                       }
+checkTerm (T id terms) = 
+     do { myTRS <- get
+        ; let vars = trsVariables myTRS
+        ; let funcs = trsSignature myTRS
+        ; let signature = signatureBlock myTRS
+        ; let arglen = length terms
+        ; case (S.member id vars, M.lookup id funcs) of 
+            (False, Nothing) -> do {if (signature) then
+                                      return . Left $ newErrorMessage (UnExpect $ "symbol: '" ++ id ++ "' not declared in signature ") (newPos "" 0 0)
+                                    else
+                                      do{ put $ myTRS { trsSignature = M.insert id (length terms) $ funcs }
+                                        ; checkTerms terms
+                                        }
+                                    }
+            (False, Just len) -> if (arglen == len) then 
+                                  checkTerms terms 
+                                else
+                                  return . Left $ newErrorMessage (UnExpect $ "symbol " ++ id ++ " with arity " ++ (show arglen) ++ " in term " ++ (show $ T id terms)) (newPos "" 0 0)
+            (True, Nothing) -> if (arglen == 0) then 
+                                return . Right $ ()
+                                else
+                                return . Left $ newErrorMessage (UnExpect $ "arguments in variable " ++ id) (newPos "" 0 0)
+            -- next case is not possible
+            _ -> return . Left $ newErrorMessage (UnExpect $ "variable and function symbols declaration " ++ id) (newPos "" 0 0)
+        }
+checkTerm (XTerm (Tfun id terms)) = 
+     do { myTRS <- get
+        ; let funcs = trsSignature myTRS
+        ; let signature = signatureBlock myTRS
+        ; let arglen = length terms
+        ; case (M.lookup id funcs) of
+            Nothing -> do {if (signature) then
+                            return . Left $ newErrorMessage (UnExpect $ "symbol: '" ++ id ++ "' not declared in signature ") (newPos "" 0 0)
+                            else
+                            do { put $ myTRS { trsSignature = M.insert id (length terms) $ funcs }
+                                ; checkTerms terms
+                                }
+                          }
+            (Just len) -> if (arglen == len) then 
+                            checkTerms terms 
+                          else
+                            return . Left $ newErrorMessage (UnExpect $ "symbol " ++ id ++ " with arity " ++ (show arglen) ++ " in term " ++ (show $ T id terms)) (newPos "" 0 0)
+        }
 checkTerm (XTerm (Tvar id)) = do { myTRS <- get
                                  ; let vars = trsVariables myTRS
                                  ; case (S.member id vars) of
@@ -531,14 +532,11 @@ checkTerm (XTerm (Tvar id)) = do { myTRS <- get
 -- | Checks if the replacement map satisfies arity restriction and increasing order
 checkRMap :: [(Id, [Int])] -> State TRS (Either ParseError ())
 checkRMap [] = return . Right $ ()
-checkRMap ((f,[]):rmaps) = checkRMap rmaps
-{-
 checkRMap ((f,[]):rmaps) = do { myTRS <- get 
                               ; case M.lookup f (trsSignature myTRS) of 
                                   Just arity -> checkRMap rmaps 
-                                  Nothing -> return . Left $ newErrorMessage (UnExpect $ "function symbol " ++ f ++ " in replacement map (the symbol does not appear in rules)") (newPos "" 0 0)
+                                  Nothing -> checkRMap rmaps  --return . Left $ newErrorMessage (UnExpect $ "function symbol " ++ f ++ " in replacement map (the symbol does not appear in rules)") (newPos "" 0 0)
                               }
--}
 checkRMap ((f,rmap):rmaps) = do { myTRS <- get 
                                 ; case M.lookup f (trsSignature myTRS) of
                                     (Just arity) -> let srmap = sort rmap in
