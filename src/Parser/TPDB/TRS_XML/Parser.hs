@@ -136,7 +136,7 @@ other = reserved "OTHER" >> return OTHER
 
 -- | Signature declaration is formed by list of functions with arity
 declSignature :: Parser Decl
-declSignature = reservedLb "signature" $ liftM Signature (many (reservedLb "funcsym" fun)) --reserved "SIG" >> liftM Signature (many (parens fun))
+declSignature = reservedLb "signature" $ liftM Signature (many (try $ reservedLb "funcsym" fun)) --reserved "SIG" >> liftM Signature (many (parens fun))
 
 -- | Function symbol
 fun :: Parser Signdecl -- (Id,Int)
@@ -229,22 +229,22 @@ declComment = liftM Comment (reservedLb "comment" (many $ noneOf "<"))
 --reservedLb :: CharParser st a -> CharParser st a
 reservedLb q p=between (try $ aux1 q) (try $ aux2 q) p -- (try(aux1 q)) (aux2 q) p
 
-aux1 q=do{ (symbol "<")
-         ; (reserved q)
+aux1 q=do{ (try $ symbol "<")
+         ; (try $ reserved q)
          ; manyTill anyChar (try (symbol ">")) -- (symbol ">")
          }
 
-aux2 q=do{ (symbol "<")
-         ; (symbol "/")
-         ; (reserved q)
+aux2 q=do{ (try $ symbol "<")
+         ; (try $ symbol "/")
+         ; (try $ reserved q)
          ; (symbol ">")
          }
 
-emptyReservedLb q = do { (symbol "<")
-                        ; (reserved q)
-                        ; (symbol "/")
-                        ; (symbol ">")
-                        }
+emptyReservedLb q = do { (try $ symbol "<")
+                       ; (try $ reserved q)
+                       ; (symbol "/")
+                       ; (symbol ">")
+                       }
 
 metainf = try (do{ whiteSpace
                  ; string "<?"
