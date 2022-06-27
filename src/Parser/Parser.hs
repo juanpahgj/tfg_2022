@@ -537,14 +537,15 @@ checkRMap ((f,[]):rmaps) = do { myTRS <- get
                                   Just arity -> checkRMap rmaps 
                                   Nothing -> checkRMap rmaps  --return . Left $ newErrorMessage (UnExpect $ "function symbol " ++ f ++ " in replacement map (the symbol does not appear in rules)") (newPos "" 0 0)
                               }
-checkRMap ((f,rmap):rmaps) = do { myTRS <- get 
-                                ; case M.lookup f (trsSignature myTRS) of
-                                    (Just arity) -> let srmap = sort rmap in
-                                                  if (rmap == srmap) && (head rmap >= 1) && (last rmap <= arity) then
-                                                    checkRMap rmaps 
-                                                  else
-                                                    return . Left $ newErrorMessage (UnExpect $ "replacement map for symbol " ++ f ++ " (must be empty" ++ (if arity > 0 then " or an ordered list of numbers in [1.." ++ (show arity) ++ "] " else "") ++ ")") (newPos "" 0 0) 
-                                                  --return . Left $ newErrorMessage (UnExpect $ "replacement map for symbol " ++ f ++ " (must be empty" ++ (if arity > 0 then " or an ordered list of numbers in [1.." ++ (show arity) ++ "] separated by commas" else "") ++ ")") (newPos "" 0 0) 
-                                    --Nothing -> return . Left $ newErrorMessage (UnExpect $ "function symbol " ++ f ++ " in replacement map (the symbol does not appear in rules)") (newPos "" 0 0)
-                                    Nothing -> checkRMap rmaps              
-                                }
+checkRMap ((f,rmap):rmaps) = 
+     do { myTRS <- get 
+        ; case M.lookup f (trsSignature myTRS) of
+            (Just arity) -> let srmap = sort rmap in
+                          if (rmap == srmap) && (head rmap >= 1) && (last rmap <= arity) then
+                            checkRMap rmaps 
+                          else
+                            return . Left $ newErrorMessage (UnExpect $ "replacement map for symbol " ++ f ++ " (must be empty" ++ (if arity > 0 then " or an ordered list of numbers in [1.." ++ (show arity) ++ "] " else "") ++ ")") (newPos "" 0 0) 
+                          --return . Left $ newErrorMessage (UnExpect $ "replacement map for symbol " ++ f ++ " (must be empty" ++ (if arity > 0 then " or an ordered list of numbers in [1.." ++ (show arity) ++ "] separated by commas" else "") ++ ")") (newPos "" 0 0) 
+            --Nothing -> return . Left $ newErrorMessage (UnExpect $ "function symbol " ++ f ++ " in replacement map (the symbol does not appear in rules)") (newPos "" 0 0)
+            Nothing -> checkRMap rmaps              
+        }

@@ -22,7 +22,7 @@ main
 
 ) where
 
-import Interface.CLI (Opt (..), Format (..), parseOptions, autoparse, anyParse)
+import Interface.CLI (Opt (..), Format (..), parseOptions, autoparse)
 import Parser.Parser (parseTPDB, parseTRS, parseTPDB_XML, parseTRS_XML, parseCOPS, parseTRS_COPS)
 
 import System.IO (hPutStr, stdout)
@@ -93,7 +93,7 @@ main =
                               -> error$ "Parse Error (Main): " ++ show parseerror
                            Right sys
                               -> sys --"Success: " ++ show sys
-                  Nothing -> anyParse filedata --autoparse filename filedata
+                  Nothing -> autoparse filename filedata
 
          hPutStr stdout ("\n Success:\n" ++ show trs ++ "\n\n") --printOp spec
          --
