@@ -106,6 +106,7 @@ checkTPDBDeclaration (Right (Spec (Strategy st:rest))) (Theory th) = Right . Spe
 checkTPDBDeclaration (Right (Spec (Strategy st:rest))) (Rules rs) = Right . Spec $ (Rules rs:Strategy st:rest)
 checkTPDBDeclaration (Right (Spec (Theory th:rest))) (Theory thh) = Right . Spec $ (Theory thh:Theory th:rest)
 checkTPDBDeclaration (Right (Spec (Theory th:rest))) (Rules rs) = Right . Spec $ (Rules rs:Theory th:rest)
+checkTPDBDeclaration (Right (Spec (Rules rs:rest))) (Rules rss) = Right . Spec $ (Rules rss:Rules rs:rest)
 checkTPDBDeclaration (Right (Spec (Rules rs:rest))) (AnyList id al) = Right . Spec $ ((AnyList id al):Rules rs:rest)
 checkTPDBDeclaration (Right (Spec ((AnyList id al):rest))) (AnyList idd all) = Right . Spec $ ((AnyList idd all):(AnyList id al):rest)
 checkTPDBDeclaration _ (Var _) = Left $ newErrorMessage (UnExpect "VAR block") (newPos "" 0 0)
@@ -119,11 +120,10 @@ checkXMLDeclaration :: Either ParseError Spec -> Decl -> Either ParseError Spec
 checkXMLDeclaration (Left parseError) _ = Left parseError
 checkXMLDeclaration (Right (Spec [])) (CType ctype) = Right . Spec $ [CType ctype]
 checkXMLDeclaration (Right (Spec [])) (Strategy stgy) = Right . Spec $ [Strategy stgy]
---checkXMLDeclaration (Right (Spec [])) (Signature sg) = Right . Spec $ [Signature sg]
 checkXMLDeclaration (Right (Spec [CType ctype])) (Strategy stgy) = Right . Spec $ [Strategy stgy, CType ctype]
-checkXMLDeclaration (Right (Spec [CType ctype])) (Rules rs) = Right . Spec $ [Rules rs, CType ctype]
 checkXMLDeclaration (Right (Spec (Strategy stgy:rest))) (Signature sg) = Right . Spec $ (Signature sg:Strategy stgy:rest)
 checkXMLDeclaration (Right (Spec (Signature sg:rest))) (Rules rs) = Right . Spec $ (Rules rs:Signature sg:rest)
+checkXMLDeclaration (Right (Spec (Rules rs:rest))) (Rules rss) = Right . Spec $ (Rules rss:Rules rs:rest)
 checkXMLDeclaration (Right (Spec (Rules rs:rest))) (Comment c) = Right . Spec $ (Comment c:Rules rs:rest)
 checkXMLDeclaration _ (CType _) = Left $ newErrorMessage (UnExpect "CONDITIONTYPE block") (newPos "" 0 0)
 checkXMLDeclaration _ (Strategy _) = Left $ newErrorMessage (UnExpect "STRATEGY block") (newPos "" 0 0)
@@ -139,17 +139,18 @@ checkCOPSDeclaration (Right (Spec [])) (CType ctype) = Right . Spec $ [CType cty
 checkCOPSDeclaration (Right (Spec [])) (Context rmap) = Right . Spec $ [Context rmap]
 checkCOPSDeclaration (Right (Spec [])) (Signature sg) = Right . Spec $ [Signature sg]
 checkCOPSDeclaration (Right (Spec [])) (Rules rs) = Right . Spec $ [Rules rs]
+checkCOPSDeclaration (Right (Spec (Var vs:rest))) (Var vss) = Right . Spec $ (Var vss:Var vs:rest)
+checkCOPSDeclaration (Right (Spec (Var vs:rest))) (CType ctype) = Right . Spec $ (CType ctype:Var vs:rest)
+checkCOPSDeclaration (Right (Spec (Var vs:rest))) (Context rmap) = Right . Spec $ (Context rmap:Var vs:rest)
+checkCOPSDeclaration (Right (Spec (Var vs:rest))) (Signature sg) = Right . Spec $ (Signature sg:Var vs:rest)
+checkCOPSDeclaration (Right (Spec (Var vs:rest))) (Rules rs) = Right . Spec $ (Rules rs:Var vs:rest)
 checkCOPSDeclaration (Right (Spec (CType ctype:rest))) (Var vs) = Right . Spec $ (Var vs:CType ctype:rest)
 checkCOPSDeclaration (Right (Spec (CType ctype:rest))) (Context rmap) = Right . Spec $ (Context rmap:CType ctype:rest)
 checkCOPSDeclaration (Right (Spec (CType ctype:rest))) (Rules rs) = Right . Spec $ (Rules rs:CType ctype:rest)
-checkCOPSDeclaration (Right (Spec (Var vs:rest))) (Context rmap) = Right . Spec $ (Context rmap:Var vs:rest)
-checkCOPSDeclaration (Right (Spec (Var vs:rest))) (Rules rs) = Right . Spec $ (Rules rs:Var vs:rest)
-checkCOPSDeclaration (Right (Spec (Var vs:rest))) (Signature sg) = Right . Spec $ (Signature sg:Var vs:rest)
-checkCOPSDeclaration (Right (Spec (Var vs:rest))) (CType ctype) = Right . Spec $ (CType ctype:Var vs:rest)
 checkCOPSDeclaration (Right (Spec (Context rmap:rest))) (Rules rs) = Right . Spec $ (Rules rs:Context rmap:rest)
-checkCOPSDeclaration (Right (Spec (Rules rs:rest))) (Comment c) = Right . Spec $ (Comment c:Rules rs:rest)
 checkCOPSDeclaration (Right (Spec (Signature sg:rest))) (Rules rs) = Right . Spec $ (Rules rs:Signature sg:rest)
-checkCOPSDeclaration (Right (Spec (Signature sg:rest))) (Comment c) = Right . Spec $ (Comment c:Signature sg:rest)
+checkCOPSDeclaration (Right (Spec (Rules rs:rest))) (Rules rss) = Right . Spec $ (Rules rss:Rules rs:rest)
+checkCOPSDeclaration (Right (Spec (Rules rs:rest))) (Comment c) = Right . Spec $ (Comment c:Rules rs:rest)
 checkCOPSDeclaration _ (CType _) = Left $ newErrorMessage (UnExpect "CONDITIONTYPE block") (newPos "" 0 0)
 checkCOPSDeclaration _ (Var _) = Left $ newErrorMessage (UnExpect "VAR block") (newPos "" 0 0)
 checkCOPSDeclaration _ (Context _) = Left $ newErrorMessage (UnExpect "REPLACEMENT-MAP block") (newPos "" 0 0)
@@ -181,22 +182,23 @@ checkWellFormed [] = do { myTRS <- get
                         ; return . Right $ myTRS}
 
 checkWellFormed ((Var vs):rest) = do { myTRS <- get
-                                   ; let vars = trsVariables myTRS -- Set Char
-                                   ; let vsSet = S.fromList vs -- Set Char
-                                   ; let duplicated = S.intersection vsSet vars
-                                   ; if (not . S.null $ duplicated) then
-                                      return . Left $ newErrorMessage (UnExpect $ "variable(s) already declared: " ++ (concat . intersperse ", " . S.elems $ duplicated)) (newPos "" 0 0)
-                                     else
-                                      do{ put $ myTRS { trsVariables = S.union vars vsSet }
-                                        ; checkWellFormed rest
-                                        }
-                                   }
+                                     ; let vars = trsVariables myTRS -- Set Char
+                                     ; let vsSet = S.fromList vs -- Set Char
+                                     ; let duplicated = S.intersection vsSet vars
+                                     ; if (not . S.null $ duplicated) then
+                                         return . Left $ newErrorMessage (UnExpect $ "variable(s) already declared: " ++ (concat . intersperse ", " . S.elems $ duplicated)) (newPos "" 0 0)
+                                       else
+                                         do{ put $ myTRS { trsVariables = S.union vars vsSet }
+                                           ; checkWellFormed rest
+                                           }
+                                     }
 
 checkWellFormed ((Rules rs):rest) = do {result <- checkRules rs
                                        ; case result of
                                            Left parseError -> return . Left $ parseError
                                            Right _ -> do { myTRS <- get
-                                                         ; put $ myTRS {trsRules = rs}
+                                                         ; let rules = trsRules myTRS
+                                                         ; put $ myTRS {trsRules = (rs ++ rules) }
                                                          ; checkWellFormed rest
                                                          }
                                        }
@@ -290,11 +292,11 @@ checkWellFormed (Theory th:rest) =
               _ -> return . Left $ newErrorMessage (UnExpect $ "replacementmap or condition type in equational type") (newPos "" 0 0)
         }
 {-
-checkWellFormed (Theory th:rest) =
-    do { myTRS <- get 
-        ;put $ myTRS { trsType = TRSEquational } -- Comprobar si esta en context sensitive?? o conditional???
-        ;checkWellFormed rest
-        }
+  checkWellFormed (Theory th:rest) =
+      do { myTRS <- get 
+          ;put $ myTRS { trsType = TRSEquational } -- Comprobar si esta en context sensitive?? o conditional???
+          ;checkWellFormed rest
+          }
 -}
 
 checkWellFormed (Signature sg:rest) = do { myTRS <- get 
@@ -350,26 +352,29 @@ checkSignature (S id arity) =
                                               _ -> return . Left $ newErrorMessage (UnExpect $ "signature of function not in rules " ++ id) (newPos "" 0 0)
                                           }
 -}   
-checkSignature (Sth id arity _) = 
-     do { myTRS <- get
-        ; let vars = trsVariables myTRS
-        ; let funcs = trsSignature myTRS
-        ; case (S.member id vars, M.lookup id funcs) of 
-            (False, Nothing) -> 
-                  do { case trsType myTRS of
-                          TRSStandard -> do { put $ myTRS {trsSignature = M.insert id arity $ funcs
-                                                          , trsType = TRSEquational
-                                                          }
-                                            ; return . Right $ ()
-                                            }
-                          TRSEquational -> do { put $ myTRS {trsSignature = M.insert id arity $ funcs}
+checkSignature (Sth id arity thId) =
+    if (thId == "A") || (thId == "C") || (thId == "AC") then
+      do { myTRS <- get
+          ; let vars = trsVariables myTRS
+          ; let funcs = trsSignature myTRS
+          ; case (S.member id vars, M.lookup id funcs) of 
+              (False, Nothing) -> 
+                    do { case trsType myTRS of
+                            TRSStandard -> do { put $ myTRS {trsSignature = M.insert id arity $ funcs
+                                                            , trsType = TRSEquational
+                                                            }
                                               ; return . Right $ ()
                                               }
-                          _ -> return . Left $ newErrorMessage (UnExpect $ "found theory in non equational type") (newPos "" 0 0)
-                                    }
-            (False, Just len) -> return . Left $ newErrorMessage (UnExpect $ "symbol " ++ id ++ " with arity " ++ (show arity) ++ " already in signature ") (newPos "" 0 0)
-            _ -> return . Left $ newErrorMessage (UnExpect $ "symbols declaration in variables " ++ id) (newPos "" 0 0)
-        }
+                            TRSEquational -> do { put $ myTRS {trsSignature = M.insert id arity $ funcs}
+                                                ; return . Right $ ()
+                                                }
+                            _ -> return . Left $ newErrorMessage (UnExpect $ "found theory in non equational type") (newPos "" 0 0)
+                                      }
+              (False, Just len) -> return . Left $ newErrorMessage (UnExpect $ "symbol " ++ id ++ " with arity " ++ (show arity) ++ " already in signature ") (newPos "" 0 0)
+              _ -> return . Left $ newErrorMessage (UnExpect $ "symbols declaration in variables " ++ thId) (newPos "" 0 0)
+          }
+    else
+      return . Left $ newErrorMessage (UnExpect $ "identifier '" ++ thId ++ "' is not valid theory declaration") (newPos "" 0 0)
 {-                                                                                                                
   checkSignature (Sth id arity _) = do { myTRS <- get
                                           ; let funcs = trsSignature myTRS

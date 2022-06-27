@@ -161,10 +161,10 @@ sig = try (do{ n <- reservedLb "name" identifier
 
 sigTh = try (do { n <- reservedLb "name" identifier
                 ; m <- reservedLb "arity" natural -- (many1 digit)
-                ; th <- reservedLb "theory" thsig
+                ; th <- reservedLb "theory" identifier   --th <- reservedLb "theory" thsig
                 ; return (Sth n (fromInteger m) th) -- return (Sth n (read m) th)
                 })
-
+{-
 thsig = (thSigA <|> thSigC <|> thSigAC)
 
 thSigA :: Parser Signthry 
@@ -175,7 +175,7 @@ thSigC = reserved "C" >> return C
 
 thSigAC :: Parser Signthry 
 thSigAC = reserved "AC" >> return AC
-
+-}
 
 -- | Extra information
 declComment = liftM Comment (reservedLb "comment" (many $ noneOf "<"))

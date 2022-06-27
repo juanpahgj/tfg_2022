@@ -7,7 +7,7 @@ module Parser.Grammar (
 Spec(..), Decl(..), Thdecl (..), SimpleThdecl (..), Equation (..) --, SimpleEquation (..)
 , Term (..), XmlTerm (..), Rule(..), SimpleRule (..), Cond (..), Strategydecl (..)
 , AnyContent (..), Id, TRSType (..), TRS (..), CondType (..) --, Csstrat (..)
-, Signdecl (..), Signthry (..)
+, Signdecl (..) --, Signthry (..)
 
 
 -- * Exported functions
@@ -116,14 +116,16 @@ data CondType = JOIN
 
 -- | Signature declaration (for xml)
 data Signdecl = S Id Int
-  | Sth Id Int Signthry
+  | Sth Id Int Id --Sth Id Int Signthry
   | Srp Id Int [Int]  -- | Srp Csstrat  --replacementmap  
     deriving (Eq, Ord, Data, Typeable)
 
+{-
 data Signthry = A
   | C
   | AC
   deriving (Eq, Ord, Show, Data, Typeable)
+-}
 
 -- | Identifier
 type Id = String
