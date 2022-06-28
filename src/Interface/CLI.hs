@@ -26,7 +26,7 @@ Opt(..), Format (..)
 
 -- * Exported functions
 
-, parseOptions, autoparse
+, parseOptions --, autoparse
 
 ) where
 
@@ -36,7 +36,7 @@ import System.Environment (getProgName, getArgs)
 import System.Exit (ExitCode(ExitSuccess,ExitFailure), exitWith, exitFailure)
 import System.IO (hPutStrLn, stderr, hFlush)
 import System.Console.GetOpt (OptDescr(Option), ArgDescr(NoArg, ReqArg), ArgOrder(RequireOrder), usageInfo, getOpt)
-import Text.ParserCombinators.Parsec.Error(ParseError)
+--import Text.ParserCombinators.Parsec.Error(ParseError)
 import Control.Monad (msum, MonadPlus (..))
 import Data.List (isSuffixOf)
 import Control.Monad (when)
@@ -51,7 +51,7 @@ data Format = TPDB | COPS | XMLTPDB
 -- | Command line options
 data Opt = Opt { inputName :: String -- ^ Input file name
                , inputContent :: IO String -- ^ Input file content
-               , inputDir :: FilePath
+               , inputDir :: FilePath   -- ^ Input dir path
                , inputFormat :: Maybe Format -- ^ Input format (Nothing implies automatic)
                }
 
@@ -133,35 +133,3 @@ parseOptions = do (optsActions, rest, errors) <- getArgs
                   opts <- foldl (>>=) (return startOpt) optsActions
                   -- apply actions to the default parameters
                   return (opts, rest)
-
-----------------
-
--- | File extensions
-aivailableFormats :: [(String, String -> Either ParseError TRS)]
-aivailableFormats = [(".trs", parseTPDB), (".xml", parseTPDB_XML), (".trs", parseCOPS)]
-
--- | Parse file into a TRS
-autoparse :: String -> String -> TRS
-autoparse fname = maybe (error "Error (CLI): File Extension not supported")
-                        parseWithFailure
-                        matchParser
-   where matchParser
-             = msum $ map (\(ext,p)-> if fname `endsWith` ext then Just p else Nothing) aivailableFormats
-         endsWith
-             = flip isSuffixOf
-         parseWithFailure parser contents
-             = case parser contents of
-                 Left parseerror
-                     -> error$ "Parse Error (CLI): " ++ show parseerror
-                 Right sys
-                     -> sys
-
-{-
--- | Parse file
-anyParse :: String -> TRS  --String
-anyParse fdata = checkParser $ map (\(_, p) -> p fdata) aivailableFormats
-
-checkParser [] = (error "Error (CLI): Format not supported") 
-checkParser ((Right x):_) = x --"Success: " ++ show x
-checkParser ((Left _):xs) = checkParser xs
--}
