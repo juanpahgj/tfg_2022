@@ -15,7 +15,7 @@ module Parser.COPS.TRS.Parser (
 
 -- * Exported functions
 
-trsCOPSParser, term
+trsCOPSParser
 
 ) where
 
@@ -35,21 +35,17 @@ import Control.Monad (liftM)
 trsCOPSParser :: Parser Spec
 trsCOPSParser = liftM Spec (many1 (whiteSpace >> parens decl))
 
--- | A declaration is form by a set of variables, a theory, a set of
--- rules, a strategy an extra information
+-- | A declaration is form by a set of variables, a signature, a set of rules, a strategy, a condition, an extra information
 decl :: Parser Decl
 decl = declVar <|> declRules <|>  declCSStrategy <|> declCondType <|> declSignature <|> declComment
 
--- | Variables declaration is formed by a reserved word plus a set of
---   variables
+-- | Variables declaration is formed by a reserved word plus a set of variables
 declVar :: Parser Decl
 declVar = reserved "VAR" >> do { idList <- phrase
                                ; return . Var $ idList
                                }
 
-
--- | Rules declaration is formed by a reserved word plus a set of
---   rules
+-- | Rules declaration is formed by a reserved word plus a set of rules
 declRules :: Parser Decl
 declRules = reserved "RULES" >> liftM Rules (many rule)
 
@@ -58,7 +54,7 @@ rule :: Parser Rule
 rule =
  do sr <- simpleRule
     conds <- option [] (reservedOp "|" >> commaSep' cond)
-    return (COPSrule sr conds) --return (Rule sr conds)
+    return (COPSrule sr conds)
 
 -- | Simple rule
 simpleRule =
@@ -72,7 +68,7 @@ ruleOps = (reservedOp "->" >> return (:->))
 
 -- | Condition
 cond =
- do -- option 1 (brackets natural)
+ do
     t1 <- term
     op <- condOps
     t2 <- term
@@ -106,15 +102,15 @@ declCondType = reserved "CONDITIONTYPE" >> liftM CType (semiEq <|> join <|> orie
 
 -- | Semi-equational conditions
 semiEq :: Parser CondType
-semiEq = reserved "SEMI-EQUATIONAL" >> return SEMIEQUATIONAL --SemiEquational
+semiEq = reserved "SEMI-EQUATIONAL" >> return SEMIEQUATIONAL
 
 -- | Join conditions
 join :: Parser CondType
-join = reserved "JOIN" >> return JOIN --Join
+join = reserved "JOIN" >> return JOIN
 
 -- | Oriented conditions
 oriented :: Parser CondType
-oriented = reserved "ORIENTED" >> return ORIENTED --Oriented
+oriented = reserved "ORIENTED" >> return ORIENTED
 
 
 -- | Signature declaration is formed by list of functions with arity
@@ -122,11 +118,11 @@ declSignature :: Parser Decl
 declSignature = reserved "SIG" >> liftM Signature (many (parens fun))
 
 -- | Function symbol
-fun :: Parser Signdecl  --fun :: Parser (Id,Int)
+fun :: Parser Signdecl
 fun =
  do n <- identifier
     m <- many1 digit
-    return (S n (read m))   --return (n,read m)
+    return (S n (read m))
 
 
 declComment =

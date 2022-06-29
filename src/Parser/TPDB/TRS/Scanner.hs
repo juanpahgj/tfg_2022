@@ -28,7 +28,7 @@ trsDef = emptyDef {
    , P.opStart = oneOf ")(\"-"
    , P.opLetter = oneOf ")(\",><="
    , P.reservedNames= [ "CONTEXTSENSITIVE", "EQUATIONS", "INNERMOST", "OUTERMOST" , "RULES"
-                      , "STRATEGY", "THEORY", "VAR"] --,"->", "==", "->=", "-><-", "|"]
+                      , "STRATEGY", "THEORY", "VAR"]
    , P.reservedOpNames = ["->","==", "->=", "-><-", "|"]
    , P.caseSensitive = True
    }

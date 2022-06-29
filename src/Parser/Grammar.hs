@@ -4,11 +4,9 @@ module Parser.Grammar (
 
 -- * Exported data
 
-Spec(..), Decl(..), Thdecl (..), SimpleThdecl (..), Equation (..) --, SimpleEquation (..)
+Spec (..), Decl (..), Thdecl (..), SimpleThdecl (..), Equation (..)
 , Term (..), XmlTerm (..), Rule(..), SimpleRule (..), Cond (..), Strategydecl (..)
-, AnyContent (..), Id, TRSType (..), TRS (..), CondType (..) --, Csstrat (..)
-, Signdecl (..) --, Signthry (..)
-
+, AnyContent (..), Id, TRSType (..), TRS (..), CondType (..), Signdecl (..)
 
 -- * Exported functions
 
@@ -55,16 +53,6 @@ data SimpleThdecl = Id Id [Id]
 data Equation = Term :==: Term -- ^ Equation
       deriving (Eq, Ord, Data, Typeable)
 
-{-
-  -- | Equation declaration (para obligar a que haya min. uno??)
-  data Equation = Equation SimpleEquation [Equation]
-        deriving (Eq, Data, Typeable)
-
-  -- | Simple equation declaration
-  data SimpleEquation = Term :==: Term -- ^ Equation
-        deriving (Eq, Data, Typeable)
--}
-
 -- | Term declaration
 data Term = T Id [Term] -- ^ Term
     | XTerm XmlTerm
@@ -81,8 +69,8 @@ data Rule = Rule SimpleRule [Cond] -- ^ Conditional rewriting rule
       deriving (Eq, Ord, Data, Typeable)
 
 -- | Simple rule declaration
-data SimpleRule = Term :-> Term  -- [Cond] -- Flecha Term Term [Cond] -- ^ Rewriting rule   
-    | Term :->= Term -- [Cond] -- FlechaIgual Term Term [Cond] 
+data SimpleRule = Term :-> Term
+    | Term :->= Term
     deriving (Eq, Ord, Data, Typeable)
 
 data Cond = Term :-><- Term --
@@ -92,15 +80,9 @@ data Cond = Term :-><- Term --
 -- | Strategy Declaration
 data Strategydecl = INNERMOST
   | OUTERMOST
-  | CONTEXTSENSITIVE [(Id, [Int])] -- [Csstrat] --replacementmap
+  | CONTEXTSENSITIVE [(Id, [Int])]
   | FULL -- Added for XML format. Equivalent to CONTEXTSENSITIVE
     deriving (Eq, Ord, Show, Data, Typeable)
-
-{-
--- | Context-Sensitive strategy
-data Csstrat = Csstrat (Id, [Int]) --replacementmap
-    deriving (Eq, Ord, {-Show,-} Data, Typeable)
--}
 
 data AnyContent = AnyId Id
   | AnySt String
@@ -116,16 +98,9 @@ data CondType = JOIN
 
 -- | Signature declaration (for xml)
 data Signdecl = S Id Int
-  | Sth Id Int Id --Sth Id Int Signthry
-  | Srp Id Int [Int]  -- | Srp Csstrat  --replacementmap  
+  | Sth Id Int Id
+  | Srp Id Int [Int] --replacementmap  
     deriving (Eq, Ord, Data, Typeable)
-
-{-
-data Signthry = A
-  | C
-  | AC
-  deriving (Eq, Ord, Show, Data, Typeable)
--}
 
 -- | Identifier
 type Id = String
@@ -188,38 +163,13 @@ instance Show Rule where
 
 instance Show Cond where
   show (t1 :-><- t2) = show t1 ++ " -><- " ++ show t2
-  show (Arrow t1 t2) = show t1 ++ " -> " ++ show t2 -- show (t1 :-> t2) = show t1 ++ " -> " ++ show t2
-
-{-
-instance Show Csstrat where
-  show (Csstrat (id, [])) = "(" ++ id ++ ")"
-  show (Csstrat (id, nums)) = "(" ++ id ++  (concat . intersperse " " . map show $ nums) ++ ")"
--}
+  show (Arrow t1 t2) = show t1 ++ " -> " ++ show t2
 
 instance Show Signdecl where 
   show (S t i) = show t ++ " arity: " ++ show i
   show (Sth t i th) = show t ++ " arity: " ++ show i ++ " theory: " ++ show th
   show (Srp t i rps) = show t ++ " arity: " ++ show i ++ " rpmap: " ++ (concat . intersperse " " . map show $ rps)
 
-
-{-
-  instance Eq Decl where
-    Var == Var = True
-    Theory == Theory = True
-    Rules == Rules = True
-    Strategy == Strategy = True
-    AnyList == AnyList = True
-    _ == _ = False
--}
-{-
-  instance Ord Decl where
-    -- Var _ <= _ = True
-    Theory _ <= Var _ = True
-    Rules _ <= Theory _ = True
-    Strategy _ <= Rules _ = True
-    AnyList _ _ <= _ = True
-    _ < _ = False
--}
 
 -----------------------------------------------------------------------------
 -- Functions
@@ -276,4 +226,3 @@ hasExtraVars vs (Rule (l :-> r) []) = not . S.null $ getVars vs r \\ getVars vs 
 hasExtraVars vs (Rule (l :->= r) []) = not . S.null $ getVars vs r \\ getVars vs l
 hasExtraVars vs (COPSrule (l :-> r) []) = not . S.null $ getVars vs r \\ getVars vs l
 hasExtraVars _ _ = error $ "Error: hasExtraVars only applies to non-conditional rules"
-

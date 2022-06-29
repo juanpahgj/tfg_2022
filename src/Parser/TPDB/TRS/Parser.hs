@@ -3,7 +3,7 @@ module Parser.TPDB.TRS.Parser (
 
 -- * Exported functions
 
-trsParser, term
+trsParser
 
 ) where
 
@@ -22,23 +22,18 @@ import Control.Monad (liftM)
 -- |parse TRS specification
 trsParser :: Parser Spec
 trsParser = liftM Spec (many1 (whiteSpace >> parens decl))
---trsParser = liftM Spec (many1 (whiteSpace >> parens decl))
 
--- | A declaration is form by a set of variables, a theory, a set of
--- rules, a strategy an extra information
+-- | A declaration is form by a set of variables, a theory, a set of rules, a strategy an extra information
 decl :: Parser Decl
 decl = declVar <|> declRules <|> declStrategy <|> declTheory <|> declAnylist
 
--- | Variables declaration is formed by a reserved word plus a set of
---   variables
+-- | Variables declaration is formed by a reserved word plus a set of variables
 declVar :: Parser Decl
 declVar = reserved "VAR" >> do { idList <- phrase
                                ; return . Var $ idList
                                }
 
-
--- | Rules declaration is formed by a reserved word plus a set of
---   rules
+-- | Rules declaration is formed by a reserved word plus a set of rules
 declRules :: Parser Decl
 declRules = reserved "RULES" >> liftM Rules (many rule)
 
@@ -57,12 +52,12 @@ simpleRule =
     return (op t1 t2)
 
 -- | Rule options
-ruleOps = try (reservedOp "->" >> return (:->){-(Flecha)-}) --do{ try (reservedOp "->"; return (:->) }
-        <|> (reservedOp "->=" >> return (:->=){-(FlechaIgual)-})
+ruleOps = try (reservedOp "->" >> return (:->))
+        <|> (reservedOp "->=" >> return (:->=))
 
 -- | Condition
 cond =
- do -- option 1 (brackets natural)
+ do
     t1 <- term
     op <- condOps
     t2 <- term
@@ -70,14 +65,13 @@ cond =
 
 -- | Condition options
 condOps = try (reservedOp "-><-" >> return (:-><-))
-        <|> (reservedOp "->" >> return (Arrow)) --do{ try (reservedOp "->"; return (:->) }
---        <|> (reservedOp "-><-" >> return (:-><-)) 
+        <|> (reservedOp "->" >> return (Arrow))
 
 -- | A term
 term :: Parser Term
 term =
  do n <- identifier
-    terms <- option [] (parens (commaSep' term)) -- terms <- parens (many (commaSep' term) ) 
+    terms <- option [] (parens (commaSep' term))
     return (T n terms)
 
 
@@ -99,26 +93,11 @@ contextsensitive =
         strats <- many$ parens (do a <- identifier
                                    b <- many natural
                                    return (a, map fromInteger b)
-                                   -- return $ Csstrat (a, map fromInteger b) -- !!
                                 )
         return $ CONTEXTSENSITIVE strats
 
-{- 
--- | contextsensitive strategy - Option 2
-contextsensitive :: Parser Strategydecl
-contextsensitive = reserved "CONTEXTSENSITIVE" >> liftM CONTEXTSENSITIVE (many csstrat)
-csstrat :: Parser Csstrat
-csstrat =
-    do strats <- parens (do a <- identifier
-                            b <- many natural
-                            return (a, map fromInteger b) -- !!
-                        )
-    return$ Csstrat strats
--}
 
-
--- | Theory declaration is formed by a reserved word plus a set of
---   theory declarations
+-- | Theory declaration is formed by a reserved word plus a set of theory declarations
 declTheory :: Parser Decl
 declTheory = reserved "THEORY" >> liftM Theory (many thdecl)
 
@@ -126,7 +105,7 @@ declTheory = reserved "THEORY" >> liftM Theory (many thdecl)
 thdecl :: Parser Thdecl
 thdecl =
  do sthd <- parens $ simpleThdecl
-    listofthdecl <- option [] (many thdecl) --listofthdecl <- many thdecl
+    listofthdecl <- option [] (many thdecl)
     return (Thdecl sthd listofthdecl)
 
 -- | Simple theory declaration
@@ -189,16 +168,3 @@ commaSep' = (`sepEndBy` comma)
 semicolonSep' :: Text.ParserCombinators.Parsec.Prim.GenParser Char () a
              -> Text.ParserCombinators.Parsec.Prim.GenParser Char () [a]
 semicolonSep' = (`sepBy` semi)
-
-
-{-- | Signature declaration is formed by list of functions with arity
-declSignature :: Parser Decl
-declSignature = reserved "SIG" >> liftM Signature (many (parens fun))
-
--- | Function symbol
-fun :: Parser (Id,Int)
-fun =
- do n <- identifier
-    m <- many1 digit
-    return (n,read m)
---}

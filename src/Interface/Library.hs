@@ -13,7 +13,7 @@ import Text.ParserCombinators.Parsec.Error(ParseError)
 -- | Accepted formats
 data Format = TPDB | COPS | XMLTPDB
 
-parser :: String -> Maybe Format -> TRS --String
+parser :: String -> Maybe Format -> TRS
 parser s format =
     do
         case format of 
@@ -47,4 +47,3 @@ anyParse fdata = checkParser $ map (\(p) -> p fdata) aivailableFormats
 checkParser [] = (error "Error (CLI): Format not supported") 
 checkParser ((Right x):_) = x
 checkParser ((Left _):xs) = checkParser xs
-

@@ -3,7 +3,7 @@ module Parser.TPDB.TRS_XML.Parser (
 
 -- * Exported functions
 
-trsXmlParser, term
+trsXmlParser
 
 ) where
 
@@ -27,25 +27,11 @@ trsXmlParser = whiteSpace >> (many $ try metainf) >> whiteSpace >>
                              ; st <- strategy
                              ; (many $ try metainf)
                              ; whiteSpace
-                             ; return $ Spec (st:d) --Spec (insert st d)
+                             ; return $ Spec (st:d)
                              })
 
-{-
-    -- (liftM Spec . insert) (strategy (reservedLb "trs" (many decl)) ) )
 
-    --trsXmlParser = whiteSpace >> (reservedLb "problem" $ 
-    --  (reservedLb "trs" (liftM Spec (many decl) )) >> (liftM Spec (many strategy) ))
-
-    --trsXmlParser = whiteSpace >> (reservedLb "problem" $ liftM Spec . concat $ many $ decls)
-
-    --aplanar :: Parser [[Decl]] -> Parser [Decl]
-    --aplanar l = concat l
-
-    --decls :: Parser [[Decl]]
-    --decls = decl <|> strategy
--}
-
--- | A declaration is form by a set of variables, a signatures and a condition type
+-- | A declaration is form by a set of rules, signatures, a condition type and comments
 decl :: Parser Decl
 decl = declRules <|> declSignature <|> ctypeDecl <|> declComment
 
@@ -55,7 +41,8 @@ declRules = reservedLb "rules" $ liftM Rules (many $ reservedLb "rule" rule) --(
 
 --rulesType =(try $ reservedLb "relrules" $ (many (reservedLb "rule" relRule)) )
 --        <|> (try $ many (try $ reservedLb "rule" rule)) 
-    
+
+
 -- | Rule
 rule :: Parser Rule
 rule =
@@ -91,7 +78,7 @@ simpleRule =
 
 -- | Condition
 cond =
- do -- option 1 (brackets natural)
+ do
     t1 <- reservedLb "lhs" term
     op <- condOps
     t2 <- reservedLb "rhs" term
@@ -102,7 +89,7 @@ condOps = try (return (Arrow))
 
 -- | A term
 term :: Parser Term
-term =                                         -- !!!!!!!ests mal-incompleto
+term =
  do xmlTerm <- (try termVar) <|> (reservedLb "funapp" termFun)
     return (XTerm xmlTerm)
 
@@ -110,9 +97,9 @@ termVar :: Parser XmlTerm
 termVar = liftM Tvar (reservedLb "var" identifier)
 
 termFun :: Parser XmlTerm
-termFun =                                              -- !!!!!!!ests mal-incompleto
+termFun =
  do n <- reservedLb "name" identifier
-    terms <- (many (try $ reservedLb "arg" term)) -- terms <- parens (many (commaSep' term) ) 
+    terms <- (many (try $ reservedLb "arg" term))
     return (Tfun n terms)
 
 
@@ -130,13 +117,7 @@ outermost = reserved "OUTERMOST" >> return OUTERMOST
 -- | full strategy
 contextsensitive :: Parser Strategydecl
 contextsensitive = reserved "FULL" >> return FULL
- {-do reserved "CONTEXTSENSITIVE"
-    strats <- many$ parens (do a <- identifier
-                               b <- many natural
-                               return $ Csstrat (a, map fromInteger b) -- !!
-                           )
-    return $ CONTEXTSENSITIVE strats
- -}
+
 
 ctypeDecl :: Parser Decl
 ctypeDecl = reservedLb "conditiontype" $ liftM CType (join <|> oriented <|> other)
@@ -155,91 +136,38 @@ other = reserved "OTHER" >> return OTHER
 
 -- | Signature declaration is formed by list of functions with arity
 declSignature :: Parser Decl
-declSignature = reservedLb "signature" $ liftM Signature (many (try $ reservedLb "funcsym" fun)) --reserved "SIG" >> liftM Signature (many (parens fun))
+declSignature = reservedLb "signature" $ liftM Signature (many (try $ reservedLb "funcsym" fun))
 
 -- | Function symbol
 fun :: Parser Signdecl -- (Id,Int)
 fun = (sigTh) <|> (sigRpNull) <|> (sigRp)  <|> (sig)
 
 sigRpNull = try (do{ n <- reservedLb "name" identifier
-                   ; m <- reservedLb "arity" natural -- m <- reservedLb "arity" (many1 digit)
+                   ; m <- reservedLb "arity" natural
                    ; try $ emptyReservedLb "replacementmap"
                    ; return (Srp n (fromInteger m) [])
                    })
 
 sigRp = try (do { n <- reservedLb "name" identifier
-                ; m <- reservedLb "arity" natural -- m <- reservedLb "arity" (many1 digit)
+                ; m <- reservedLb "arity" natural
                 ; rp <- reservedLb "replacementmap" (many1 $ reservedLb "entry" natural)
-                ; return (Srp n (fromInteger m) (map fromInteger rp)) -- return (Srp n (read m) (rp))
+                ; return (Srp n (fromInteger m) (map fromInteger rp))
                 })
 
 sig = try (do{ n <- reservedLb "name" identifier
-             ; m <- reservedLb "arity" natural -- m <- reservedLb "arity" (many1 digit)
-             ; return (S n (fromInteger m)) -- return (S n (read m))
+             ; m <- reservedLb "arity" natural
+             ; return (S n (fromInteger m))
              })
 
 sigTh = try (do { n <- reservedLb "name" identifier
-                ; m <- reservedLb "arity" natural -- (many1 digit)
-                ; th <- reservedLb "theory" identifier   --th <- reservedLb "theory" thsig
-                ; return (Sth n (fromInteger m) th) -- return (Sth n (read m) th)
+                ; m <- reservedLb "arity" natural
+                ; th <- reservedLb "theory" identifier
+                ; return (Sth n (fromInteger m) th)
                 })
-{-
-thsig = (thSigA <|> thSigC <|> thSigAC)
-
-thSigA :: Parser Signthry 
-thSigA = reserved "A" >> return A
-
-thSigC :: Parser Signthry 
-thSigC = reserved "C" >> return C
-
-thSigAC :: Parser Signthry 
-thSigAC = reserved "AC" >> return AC
--}
+                
 
 -- | Extra information
 declComment = liftM Comment (reservedLb "comment" (many $ noneOf "<"))
-
-{-
-    -- | Theory identificator list
-    thlId =
-    do id <- identifier
-        idlist <- option [] phrase 
-        return (Id id idlist)
-
--}
-
-{-
-    -- | Variables declaration is formed by a reserved word plus a set of
-    --   variables
-    declVar :: Parser Decl
-    declVar = reserved "VAR" >> do { idList <- phrase
-                                ; return . Var $ idList
-                                }
--}
-
-{-
-    declAnylist :: Parser Decl
-    declAnylist=
-    do 
-        name <- identifier
-        decls <- many anyContent
-        return $ AnyList name decls
-
-    anyContent :: Parser AnyContent
-    anyContent = anyId <|> anySt <|> anyAC <|> (comma >> anyContent)
-        
-    -- | Identifiers
-    anyId :: Parser AnyContent
-    anyId = liftM AnyId identifier
-
-    -- | Strings
-    anySt :: Parser AnyContent
-    anySt = liftM AnySt stringLiteral
-
-    -- | Others
-    anyAC :: Parser AnyContent
-    anyAC = liftM AnyAC (parens $ many anyContent)
--}
 
 
 -- | Extra information
@@ -248,19 +176,19 @@ declComment = liftM Comment (reservedLb "comment" (many $ noneOf "<"))
 --reservedLb :: CharParser st a -> CharParser st a
 reservedLb q p=between (try $ aux1 q) (try $ aux2 q) p -- (try(aux1 q)) (aux2 q) p
 
-aux1 q=do{ (try $ symbol "<")
-         ; (try $ reserved q)
+aux1 q=do{ (symbol "<")
+         ; (reserved q)
          ; manyTill anyChar (try (symbol ">")) -- (symbol ">")
          }
 
-aux2 q=do{ (try $ symbol "<")
-         ; (try $ symbol "/")
-         ; (try $ reserved q)
+aux2 q=do{ (symbol "<")
+         ; (symbol "/")
+         ; (reserved q)
          ; (symbol ">")
          }
 
-emptyReservedLb q = do { (try $ symbol "<")
-                       ; (try $ reserved q)
+emptyReservedLb q = do { (symbol "<")
+                       ; (reserved q)
                        ; (symbol "/")
                        ; (symbol ">")
                        }
@@ -286,4 +214,3 @@ commaSep' = (`sepEndBy` comma)
 semicolonSep' :: Text.ParserCombinators.Parsec.Prim.GenParser Char () a
              -> Text.ParserCombinators.Parsec.Prim.GenParser Char () [a]
 semicolonSep' = (`sepBy` semi)
-

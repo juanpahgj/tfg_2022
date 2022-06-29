@@ -26,12 +26,10 @@ Opt(..), Format (..)
 
 -- * Exported functions
 
-, parseOptions --, autoparse
+, parseOptions
 
 ) where
 
-import Parser.Parser (parseTPDB, parseTPDB_XML, parseCOPS)
-import Parser.Grammar (TRS)
 import System.Environment (getProgName, getArgs)
 import System.Exit (ExitCode(ExitSuccess,ExitFailure), exitWith, exitFailure)
 import System.IO (hPutStrLn, stderr, hFlush)

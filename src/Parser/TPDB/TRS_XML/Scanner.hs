@@ -5,7 +5,6 @@ module Parser.TPDB.TRS_XML.Scanner (
 
 lexer, whiteSpace, lexeme, symbol, natural, parens, comma, semi
 , identifier, reserved, reservedOp, commaSep, stringLiteral, brackets
---,reservedLb
 
 ) where
 
@@ -31,9 +30,8 @@ trsXMLDef = emptyDef {
    , P.reservedNames= ["problem", "trs", "rules", "rule", "lhs", "rhs", "conditions", 
               "condition", "var", "funapp", "name", "arg", "strategy", "signature", 
               "conditiontype", "INNERMOST", "OUTERMOST", "FULL", "funcsym", "arity",
-              "theory", {-"A", "C", "AC",-} "replacementmap", "entry", "comment", "relrules"]
---"CONTEXTSENSITIVE", "EQUATIONS", "INNERMOST", "OUTERMOST" , "RULES", "STRATEGY", "THEORY", "VAR"]
-   , P.reservedOpNames = [] --"->","==", "->=", "-><-", "|"]
+              "theory", "replacementmap", "entry", "comment", "relrules"]
+   , P.reservedOpNames = []
    , P.caseSensitive = True
    }
 

@@ -4,7 +4,7 @@ module Parser.Parser (
 
 -- * Exported functions
 
-parseTPDB, parseTPDB_XML, parseTRS, parseTRS_XML, parseCOPS, parseTRS_COPS
+parseTPDB, parseTPDB_XML, parseCOPS
 
 )  where
 
@@ -30,25 +30,21 @@ import Control.Monad.State (State, evalState, get, put)
 
 -- | Parses a TPDB problem
 parseTPDB :: String -> Either ParseError TRS
-parseTPDB = (checkConsistency (checkTPDBDeclaration)) . parseTRS -- . checkSortBlocks . parseTRS
---parseTPDB = checkConsistencyWithoutcheckDcl . parseTRS
---parseTPDB = checkConsistency . parseTRS 
+parseTPDB = (checkConsistency (checkTPDBDeclaration)) . parseTRS
 
 -- | Parses a term rewriting system in TPDB format
 parseTRS :: String -> Either ParseError Spec
 parseTRS s = sortSpec (doParse s trsParser)
 
------------------------------------------------------------------------------
 
 -- | Parses a TPDB-XML problem
 parseTPDB_XML :: String -> Either ParseError TRS
 parseTPDB_XML = (checkConsistency (checkXMLDeclaration)) . parseTRS_XML
 
--- | Parses a term rewriting system in TPDB format
+-- | Parses a term rewriting system in TPDB-XML format
 parseTRS_XML :: String -> Either ParseError Spec
 parseTRS_XML s = sortSpec (doParse s trsXmlParser)
 
------------------------------------------------------------------------------
 
 -- | Parses a COPS problem
 parseCOPS :: String -> Either ParseError TRS
@@ -58,40 +54,18 @@ parseCOPS = (checkConsistency (checkCOPSDeclaration)) . parseTRS_COPS
 parseTRS_COPS :: String -> Either ParseError Spec
 parseTRS_COPS s = sortSpec (doParse s trsCOPSParser)
 
------------------------------------------------------------------------------
 
--- | Parses the system and returns the parsing error or the succesful
--- parsed system.
+-- | Parses the system and returns the parsing error or the succesful parsed system.
+-- (parse p filePath input) runs a character parser p without user state.
+-- The filePath is only used in error messages and may be the empty string.
 doParse :: String -> Parser a -> Either ParseError a
 doParse s p = parse p "" s
---(parse p filePath input) runs a character parser p without user state.
---The filePath is only used in error messages and may be the empty string.
 
+-----------------------------------------------------------------------------
 
 sortSpec :: Either ParseError Spec -> Either ParseError Spec
 sortSpec (Left parseError) = Left parseError
 sortSpec (Right (Spec decls))=  Right (Spec $ sort decls)
-
-{-
-  -- | Must have at least one Var and one Rules block
-  checkSortBlocks :: Either ParseError Spec -> Either ParseError Spec
-  checkSortBlocks (Left parseError) = Left parseError
-  checkSortBlocks (Right (Spec decls))= do{ let sortedDecls = sort decls
-                                          ;  if (hasVar sortedDecls) then 
-                                              Right (Spec sortedDecls)
-                                            else
-                                              Left $ newErrorMessage (UnExpect $ "there is no required blocks") (newPos "" 0 0)
-                                          }
-
-  hasVar :: [Decl] -> Bool
-  hasVar [] = False
-  hasVar (Var vs:rest)= hasRule rest
-  hasVar (d:ds) = hasVar ds
-        
-  hasRule [] = False
-  hasRule (Rules r:_) = True
-  hasRule (d:ds) = hasRule ds
--}
 
 
 -- | Checks declaration order for TPDB
@@ -165,13 +139,8 @@ checkConsistency _ (Left parseError) = Left parseError
 checkConsistency checkDclFun (Right (Spec decls)) 
   = case foldl checkDclFun (Right (Spec [])) decls of
         Left parseError -> Left parseError
-        Right (Spec _) -> evalState (checkWellFormed decls) (TRS M.empty S.empty [] [] TRSStandard Nothing False) -- (TRS M.empty S.empty [] [] TRSStandard)
-{-
-  ---- >>> borrar >>>
-  checkConsistencyWithoutcheckDcl (Right (Spec decls)) 
-    = evalState (checkWellFormed decls) (TRS M.empty S.empty [] [] TRSStandard Nothing) -- (TRS M.empty S.empty [] [] TRSStandard)
-  -- <<<<<<<<<<
--}
+        Right (Spec _) -> evalState (checkWellFormed decls) (TRS M.empty S.empty [] [] TRSStandard Nothing False)
+
 
 -- | Extracts the signature and checks if the rules are well-formed wrt that
 -- signature. Precondition: Declarations are in order.
@@ -182,8 +151,8 @@ checkWellFormed [] = do { myTRS <- get
                         ; return . Right $ myTRS}
 
 checkWellFormed ((Var vs):rest) = do { myTRS <- get
-                                     ; let vars = trsVariables myTRS -- Set Char
-                                     ; let vsSet = S.fromList vs -- Set Char
+                                     ; let vars = trsVariables myTRS
+                                     ; let vsSet = S.fromList vs
                                      ; let duplicated = S.intersection vsSet vars
                                      ; if (not . S.null $ duplicated) then
                                          return . Left $ newErrorMessage (UnExpect $ "variable(s) already declared: " ++ (concat . intersperse ", " . S.elems $ duplicated)) (newPos "" 0 0)
@@ -232,21 +201,6 @@ checkWellFormed (Strategy FULL:rest) = do { myTRS <- get
                                           ; put $ myTRS { trsStrategy = Just FULL }
                                           ; checkWellFormed rest
                                           }
-{-
-  checkWellFormed (Strategy FULL:rest) = do { myTRS <- get 
-                                            ; case trsType myTRS of
-                                              TRSEquational -> return . Left $ newErrorMessage (UnExpect $ "found theory in non equational type") (newPos "" 0 0)
-                                              _ -> do{put $ myTRS { trsStrategy = Just FULL
-                                                                    , trsType = case trsType myTRS of
-                                                                                  TRSStandard -> TRSContextSensitive
-                                                                                  TRSConditional typ -> TRSContextSensitiveConditional typ
-                                                                                  TRSContextSensitive -> TRSContextSensitive
-                                                                                  TRSContextSensitiveConditional typ -> TRSContextSensitiveConditional typ
-                                                                  }
-                                                      ;checkWellFormed rest
-                                                    } 
-                                            }
--}
 checkWellFormed (Strategy (CONTEXTSENSITIVE rmap):rest) = 
      do { myTRS <- get
         ; if (length . nub . map fst $ rmap) == length rmap then
@@ -266,7 +220,6 @@ checkWellFormed (Strategy (CONTEXTSENSITIVE rmap):rest) =
             return . Left $ newErrorMessage (UnExpect $ "duplicated symbols in replacement map declaration") (newPos "" 0 0)
         }
 
--- checkWellFormed (Context rmap:rest) = addContextSensitive rmap
 checkWellFormed (Context rmap:rest) = 
      do { myTRS <- get 
         ; if (length . nub . map fst $ rmap) == length rmap then
@@ -291,13 +244,6 @@ checkWellFormed (Theory th:rest) =
               TRSEquational -> checkWellFormed rest
               _ -> return . Left $ newErrorMessage (UnExpect $ "replacementmap or condition type in equational type") (newPos "" 0 0)
         }
-{-
-  checkWellFormed (Theory th:rest) =
-      do { myTRS <- get 
-          ;put $ myTRS { trsType = TRSEquational } -- Comprobar si esta en context sensitive?? o conditional???
-          ;checkWellFormed rest
-          }
--}
 
 checkWellFormed (Signature sg:rest) = do { myTRS <- get 
                                          ; put $ myTRS { signatureBlock = True}
@@ -311,17 +257,12 @@ checkWellFormed (Comment _:rest) = checkWellFormed rest
 checkWellFormed ((AnyList _ _):rest ) = checkWellFormed rest
 
 
--- | Checks if the signature agree wrt the extracted rules signature
+-- | Aux. functions
+
+-- | Checks the signature agree
 checkSignatures :: [Signdecl] -> State TRS (Either ParseError ())
 checkSignatures [] = do { myTRS <- get
                         ; return . Right $ ()
-                        {-
-                            -- first, we extract the arity of symbols, then we check RMap 
-                        ; case trsType myTRS of
-                            TRSContextSensitive -> checkRMap . trsRMap $ myTRS
-                            TRSContextSensitiveConditional _ -> checkRMap . trsRMap $ myTRS
-                            _ -> return . Right $ ()
-                        -}
                         }
 checkSignatures (s:ss) = do { result <- checkSignature s 
                             ; case result of
@@ -340,18 +281,7 @@ checkSignature (S id arity) =
             (False, Just len) -> return . Left $ newErrorMessage (UnExpect $ "symbol " ++ id ++ " with arity " ++ (show arity) ++ " already in signature ") (newPos "" 0 0)
             _ -> return . Left $ newErrorMessage (UnExpect $ "symbol declaration in variables " ++ id) (newPos "" 0 0)
         }
-{-
-  checkSignature (S id arity) = do { myTRS <- get
-                                          ; let funcs = trsSignature myTRS
-                                          --; case (M.lookup id funcs) of 
-                                              (Just len) -> if (arity == len) then 
-                                                      return . Right $ ()
-                                                    else
-                                                      return . Left $ newErrorMessage (UnExpect $ "arity in signature does not match " ++ id) (newPos "" 0 0)
-                                              -- next case is not possible
-                                              _ -> return . Left $ newErrorMessage (UnExpect $ "signature of function not in rules " ++ id) (newPos "" 0 0)
-                                          }
--}   
+
 checkSignature (Sth id arity thId) =
     if (thId == "A") || (thId == "C") || (thId == "AC") then
       do { myTRS <- get
@@ -375,27 +305,7 @@ checkSignature (Sth id arity thId) =
           }
     else
       return . Left $ newErrorMessage (UnExpect $ "identifier '" ++ thId ++ "' is not valid theory declaration") (newPos "" 0 0)
-{-                                                                                                                
-  checkSignature (Sth id arity _) = do { myTRS <- get
-                                          ; let funcs = trsSignature myTRS
-                                          ; case (M.lookup id funcs) of 
-                                              (Just len) -> if (arity == len) then 
-                                                        --return . Right $ ()
-                                                        do { myTRS <- get 
-                                                          ; case trsType myTRS of
-                                                                TRSStandard -> do { put $ myTRS {trsType = TRSEquational}
-                                                                                  ; return . Right $ ()
-                                                                                  }
-                                                                TRSEquational -> return . Right $ ()
-                                                                _ -> return . Left $ newErrorMessage (UnExpect $ "found theory in non equational type") (newPos "" 0 0)
-                                                          }
-                                                          
-                                                    else
-                                                        return . Left $ newErrorMessage (UnExpect $ "arity in signature does not match " ++ id) (newPos "" 0 0)
-                                              -- next case is not possible
-                                              _ -> return . Left $ newErrorMessage (UnExpect $ "signature of function not in rules " ++ id) (newPos "" 0 0)
-                                          }
--}
+
 checkSignature (Srp id arity intlist) = 
      do { myTRS <- get
         ; let vars = trsVariables myTRS
@@ -418,29 +328,7 @@ checkSignature (Srp id arity intlist) =
                         _ -> return . Left $ newErrorMessage (UnExpect $ "symbols declaration in variables " ++ id) (newPos "" 0 0)
                     }
         }
-{-
-  checkSignature (Srp id arity intlist) = do { myTRS <- get
-                                            ; let funcs = trsSignature myTRS
-                                            ; let rmap = ((id, intlist):(trsRMap myTRS))
-                                            ; case trsType myTRS of
-                                                  TRSEquational -> return . Left $ newErrorMessage (UnExpect $ "found theory in non equational type") (newPos "" 0 0)
-                                                  _ -> do{put $ myTRS { trsRMap = rmap
-                                                                      , trsType = case trsType myTRS of
-                                                                                      TRSStandard -> TRSContextSensitive
-                                                                                      TRSConditional typ -> TRSContextSensitiveConditional typ
-                                                                                      TRSContextSensitive -> TRSContextSensitive
-                                                                                      TRSContextSensitiveConditional typ -> TRSContextSensitiveConditional typ
-                                                                      }
-                                                          ; case (M.lookup id funcs) of 
-                                                              (Just len) -> if (arity == len) then
-                                                                              return . Right $ ()
-                                                                            else
-                                                                              return . Left $ newErrorMessage (UnExpect $ "arity in signature does not match " ++ id) (newPos "" 0 0)
-                                                              -- next case is not possible
-                                                              _ -> return . Left $ newErrorMessage (UnExpect $ "signature of function not in rules " ++ id) (newPos "" 0 0)
-                                                          }
-                                            }
--}
+        
 
 -- | Checks if the rules are well-formed wrt the extracted signature
 checkRules :: [Rule] -> State TRS (Either ParseError ())
@@ -526,26 +414,32 @@ checkTerm (XTerm (Tvar id)) = do { myTRS <- get
                                     False -> do { put $ myTRS { trsVariables = S.insert id $ vars }
                                                 ; return . Right $ ()
                                                 }
-                                    _ -> return . Right $ () -- return . Left $ newErrorMessage (UnExpect $ "variable already declared " ++ id) (newPos "" 0 0)
+                                    _ -> return . Right $ ()
                                   }
 
 -- | Checks if the replacement map satisfies arity restriction and increasing order
 checkRMap :: [(Id, [Int])] -> State TRS (Either ParseError ())
 checkRMap [] = return . Right $ ()
 checkRMap ((f,[]):rmaps) = do { myTRS <- get 
+                              ; let signature = signatureBlock myTRS
                               ; case M.lookup f (trsSignature myTRS) of 
                                   Just arity -> checkRMap rmaps 
-                                  Nothing -> checkRMap rmaps  --return . Left $ newErrorMessage (UnExpect $ "function symbol " ++ f ++ " in replacement map (the symbol does not appear in rules)") (newPos "" 0 0)
+                                  Nothing -> if (signature) then
+                                                return . Left $ newErrorMessage (UnExpect $ "function symbol " ++ f ++ " in replacement map (the symbol does not appear in signature declaration)") (newPos "" 0 0)
+                                             else
+                                                checkRMap rmaps
                               }
 checkRMap ((f,rmap):rmaps) = 
      do { myTRS <- get 
+        ; let signature = signatureBlock myTRS
         ; case M.lookup f (trsSignature myTRS) of
             (Just arity) -> let srmap = sort rmap in
                           if (rmap == srmap) && (head rmap >= 1) && (last rmap <= arity) then
                             checkRMap rmaps 
                           else
-                            return . Left $ newErrorMessage (UnExpect $ "replacement map for symbol " ++ f ++ " (must be empty" ++ (if arity > 0 then " or an ordered list of numbers in [1.." ++ (show arity) ++ "] " else "") ++ ")") (newPos "" 0 0) 
-                          --return . Left $ newErrorMessage (UnExpect $ "replacement map for symbol " ++ f ++ " (must be empty" ++ (if arity > 0 then " or an ordered list of numbers in [1.." ++ (show arity) ++ "] separated by commas" else "") ++ ")") (newPos "" 0 0) 
-            --Nothing -> return . Left $ newErrorMessage (UnExpect $ "function symbol " ++ f ++ " in replacement map (the symbol does not appear in rules)") (newPos "" 0 0)
-            Nothing -> checkRMap rmaps              
+                            return . Left $ newErrorMessage (UnExpect $ "replacement map for symbol " ++ f ++ " (must be empty" ++ (if arity > 0 then " or an ordered list of numbers in [1.." ++ (show arity) ++ "] " else "") ++ ")") (newPos "" 0 0)
+            Nothing -> if (signature) then
+                          return . Left $ newErrorMessage (UnExpect $ "function symbol " ++ f ++ " in replacement map (the symbol does not appear in signature declaration)") (newPos "" 0 0)
+                       else
+                          checkRMap rmaps
         }
