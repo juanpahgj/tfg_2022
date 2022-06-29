@@ -253,3 +253,258 @@ TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",1),("g",1),("h",1)], 
 
 ++ File:".\\tests\\TPDB\\XML_version\\parser_fails\\TRS_Conditional.COPS\\262.xml" :
 TRS {trsSignature = fromList [("0",0),("f",2),("plus",2),("s",1)], trsVariables = fromList ["x","y","z","z'"], trsRMap = [], trsRules = [plus(0,y) -> y,plus(s(x),y) -> plus(x,s(y)),f(x,y) -> z | plus(x,y) -> plus(z,z')], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\411.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("d",0),("e",0),("f",2),("g",1),("h",1),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [g(s(x)) -> x,h(s(x)) -> x,a -> d,b -> d,e -> e,f(x,y) -> g(x) | a -> d,f(x,y) -> h(x) | b -> d], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\410.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("d",0),("f",2),("g",1),("h",1),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [g(s(x)) -> x,h(s(x)) -> x,a -> d,b -> d,f(x,y) -> g(x) | a -> d,f(x,y) -> h(x) | b -> d], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\409.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",1),("f",2),("g",1),("h",1),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [g(s(x)) -> x,h(s(x)) -> x,b -> b,f(x,y) -> g(s(x)) | c(g(x)) -> c(a),f(x,y) -> h(s(x)) | c(h(x)) -> c(a)], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\408.xml" :
+TRS {trsSignature = fromList [("a",0),("c",1),("f",2),("g",1),("h",1),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [g(s(x)) -> x,h(s(x)) -> x,f(x,y) -> g(s(x)) | c(g(x)) -> c(a),f(x,y) -> h(s(x)) | c(h(x)) -> c(a)], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\407.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",1),("f",2),("g",1),("h",1),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [g(s(x)) -> x,h(s(x)) -> x,b -> b,f(x,y) -> g(x) | c(g(x)) -> c(a),f(x,y) -> h(x) | c(h(x)) -> c(a)], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\406.xml" :
+TRS {trsSignature = fromList [("a",0),("c",1),("f",2),("g",1),("h",1),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [g(s(x)) -> x,h(s(x)) -> x,f(x,y) -> g(x) | c(g(x)) -> c(a),f(x,y) -> h(x) | c(h(x)) -> c(a)], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\405.xml" :
+TRS {trsSignature = fromList [("0",0),("dot",2),("false",0),("les",2),("s",1),("true",0)], trsVariables = fromList ["l","x","y"], trsRMap = [], trsRules = [les(0,0) -> false,les(0,s(0)) -> true,les(0,s(s(x))) -> les(0,s(x)),les(s(0),0) -> false,les(s(s(x)),0) -> les(s(x),0),les(s(x),s(y)) -> les(x,y),dot(x,dot(y,l)) -> dot(y,dot(x,l)) | les(x,y) -> true], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\404.xml" :
+TRS {trsSignature = fromList [("0",0),("e",1),("false",0),("o",1),("s",1),("true",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [e(0) -> true,o(0) -> true,e(s(x)) -> true | o(x) -> true,e(s(x)) -> false | e(x) -> true,o(s(x)) -> true | e(x) -> true,o(s(x)) -> false | o(x) -> true], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\403.xml" :
+TRS {trsSignature = fromList [("0",0),("e",1),("false",0),("s",1),("true",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [e(0) -> true,e(s(x)) -> true | e(x) -> false,e(s(x)) -> false | e(x) -> true], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\391.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("pin",1),("pout",1),("tc",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [pin(a) -> pout(b),pin(b) -> pout(c),tc(x) -> x,tc(x) -> y | pin(x) -> pout(z), tc(z) -> y], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\390.xml" :
+TRS {trsSignature = fromList [("f",1),("g",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [f(x) -> g(y) | x -> y], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\389.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1)], trsVariables = fromList ["x","z"], trsRMap = [], trsRules = [a -> f(a),f(x) -> b | f(x) -> z, x -> z], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\388.xml" :
+TRS {trsSignature = fromList [("0",0),("add",2),("quad",1),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [add(x,0) -> x,add(x,s(y)) -> s(add(x,y)),quad(x) -> z | add(x,x) -> y, add(y,y) -> z], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\387.xml" :
+TRS {trsSignature = fromList [("0",0),("f",1),("g",1),("s",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [g(s(x)) -> g(x),f(g(x)) -> x | x -> s(0)], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\385.xml" :
+TRS {trsSignature = fromList [("a",0),("c",0),("d",0),("f",1),("k",0),("s",1),("t",1)], trsVariables = fromList ["x","z"], trsRMap = [], trsRules = [a -> c,a -> d,s(c) -> t(k),f(x) -> z | s(x) -> t(z)], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\384.xml" :
+TRS {trsSignature = fromList [("A",0),("B",0),("a",0),("b",0),("c",0),("f",1),("g",2),("h",2),("s",1),("t",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [s(a) -> t,s(b) -> t,a -> c,b -> c,g(x,x) -> h(x,x),f(x) -> A | s(x) -> t,f(x) -> B | s(x) -> t], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\383.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("d",0),("f",1),("g",2),("h",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> c,a -> d,b -> c,b -> d,g(x,x) -> h(x,x),h(x,f(x)) -> x,f(x) -> x | x -> c], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\382.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",1),("g",2),("h",2),("k",0),("l",0),("s",1),("t",1)], trsVariables = fromList ["x","z"], trsRMap = [], trsRules = [s(a) -> c,s(b) -> c,c -> t(k),c -> t(l),g(x,x) -> h(x,x),f(x) -> z | s(x) -> z], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\381.xml" :
+TRS {trsSignature = fromList [("A",0),("B",0),("C",0),("a",0),("b",0),("c",0),("d",0),("e",0),("f",1),("g",2),("h",1),("i",2),("k",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> c,a -> d,b -> c,b -> d,c -> e,c -> k,d -> k,h(x) -> i(x,x),f(x) -> x | x -> e,g(x,x) -> C | A -> B], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\380.xml" :
+TRS {trsSignature = fromList [("a",0),("f",1),("g",1),("h",2),("i",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [g(x) -> h(x,x),h(x,y) -> i(x),f(x) -> x | x -> a], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\379.xml" :
+TRS {trsSignature = fromList [("between",3),("down",1),("s",1),("true",0),("up",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [up(x) -> x,down(x) -> x,up(x) -> up(s(x)),down(s(x)) -> down(x),between(x,y,z) -> true | up(x) -> y, down(z) -> y], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\378.xml" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("orient",2),("pair",2),("s",1)], trsVariables = fromList ["rest","x","y","z1","z2"], trsRMap = [], trsRules = [cons(x,cons(x,rest)) -> cons(x,rest),orient(s(x),0) -> pair(0,s(x)),cons(x,cons(y,rest)) -> cons(z1,cons(z2,rest)) | orient(x,y) -> pair(z1,z2),orient(s(x),s(y)) -> pair(s(z1),s(z2)) | orient(x,y) -> pair(z1,z2)], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\377.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("d",0),("f",1),("g",2),("h",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> c,a -> d,b -> c,b -> d,g(x,x) -> h(x,x),f(x) -> x | x -> c], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\376.xml" :
+TRS {trsSignature = fromList [("A",0),("B",0),("C",0),("a",0),("f",1),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [A -> B,f(x) -> x | x -> a,g(x) -> C | A -> B], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\375.xml" :
+TRS {trsSignature = fromList [("A",0),("a",0),("b",0),("f",1),("g",2),("h",1),("i",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> b,g(x,x) -> h(x),h(x) -> i(x),f(x) -> A | x -> b], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\374.xml" :
+TRS {trsSignature = fromList [("a",0),("c",0),("d",0),("f",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [a -> c,a -> d,f(x,y) -> z | c -> x, y -> z], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\373.xml" :
+TRS {trsSignature = fromList [("a",0),("c",0),("d",0),("f",2),("g",2),("h",2),("t",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [a -> t(c),a -> t(d),g(x,x) -> h(x,x),f(x,y) -> z | x -> t(z)], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\372.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("d",0),("f",2),("g",2),("h",2),("k",0),("l",0),("s",1),("t",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [a -> c,a -> d,b -> c,b -> d,s(k) -> t(a),s(l) -> t(a),g(x,x) -> h(x,x),f(x,y) -> y | s(x) -> t(y)], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\371.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> c,b -> c,f(x) -> x | a -> x], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\370.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("d",0),("e",0),("f",1),("g",2),("h",2),("k",0),("l",0),("pair",2),("s",1),("t",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [a -> c,a -> d,b -> c,b -> d,c -> e,d -> e,k -> e,l -> e,s(c) -> t(k),s(c) -> t(l),s(e) -> t(e),g(x,x) -> h(x,x),f(x) -> pair(x,y) | s(x) -> t(y)], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\369.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("d",0),("f",1),("g",2),("h",2),("k",0),("l",0),("pair",2),("s",1),("t",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [a -> c,a -> d,b -> c,b -> d,s(c) -> t(k),s(c) -> t(l),g(x,x) -> h(x,x),f(x) -> pair(x,y) | s(x) -> t(y)], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\368.xml" :
+TRS {trsSignature = fromList [("a",0),("c",0),("d",0),("f",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> c,a -> d,f(x) -> x | x -> c], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\367.xml" :
+TRS {trsSignature = fromList [("a",0),("c",0),("d",0),("f",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> c,a -> d,f(x) -> x | x -> c, d -> x], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\366.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1),("s",1),("t",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [s(a) -> t(b),a -> b,f(x) -> x | s(x) -> t(x)], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\365.xml" :
+TRS {trsSignature = fromList [("0",0),("false",0),("p",1),("pos",1),("s",1),("true",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [s(p(x)) -> x,p(s(x)) -> x,pos(0) -> false,pos(s(0)) -> true,pos(s(x)) -> true | pos(x) -> true,pos(p(x)) -> false | pos(x) -> false], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\364.xml" :
+TRS {trsSignature = fromList [("0",0),("even",1),("odd",1),("s",1),("true",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [even(0) -> true,even(s(x)) -> true | odd(x) -> true,odd(s(x)) -> true | even(x) -> true], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\361.xml" :
+TRS {trsSignature = fromList [("0",0),("div",2),("greater",2),("leq",2),("m",2),("pair",2),("s",1),("true",0)], trsVariables = fromList ["q","r","x","y"], trsRMap = [], trsRules = [m(x,0) -> x,m(0,y) -> 0,m(s(x),s(y)) -> m(x,y),greater(s(x),s(y)) -> greater(x,y),greater(s(x),0) -> true,leq(s(x),s(y)) -> leq(x,y),leq(0,x) -> true,div(x,y) -> pair(0,y) | greater(y,x) -> true,div(x,y) -> pair(s(q),r) | leq(y,x) -> true, div(m(x,y),y) -> pair(q,r)], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\359.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1),("g",2)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x) -> b | g(x,x) -> a], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\358.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> b,a -> c,f(x) -> a | x -> b], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\356.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x) -> a | x -> b], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\355.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0)], trsVariables = fromList [], trsRMap = [], trsRules = [a -> b | a -> b], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\354.xml" :
+TRS {trsSignature = fromList [("0",0),("false",0),("p",1),("pos",1),("s",1),("true",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [pos(s(0)) -> true,pos(0) -> false,pos(s(x)) -> true | pos(x) -> true,pos(p(x)) -> false | pos(x) -> false], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\353.xml" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("get",1),("nil",0),("s",1),("ssp'",2),("sub",2),("tp2",2)], trsVariables = fromList ["v","w","ws","x'","xs","xs'","y","y'","ys","ys'","z","zs"], trsRMap = [], trsRules = [ssp'(xs,0) -> nil,sub(z,0) -> z,get(cons(y,ys)) -> tp2(y,ys),ssp'(cons(y',ws),v) -> cons(y',ys') | sub(v,y') -> w, ssp'(ws,w) -> ys',ssp'(cons(x',xs'),v) -> cons(y',ys') | get(xs') -> tp2(y',zs), sub(v,y') -> w, ssp'(cons(x',zs),w) -> ys',sub(s(v),s(w)) -> z | sub(v,w) -> z,get(cons(x',xs')) -> tp2(y,cons(x',zs)) | get(xs') -> tp2(y,zs)], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\351.xml" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("nil",0),("s",1),("ssp",2),("sub",2)], trsVariables = fromList ["v","w","xs","xs'","y","ys'","z"], trsRMap = [], trsRules = [ssp(nil,0) -> nil,sub(z,0) -> z,ssp(cons(y,ys'),v) -> xs | ssp(ys',v) -> xs,ssp(cons(y,ys'),v) -> cons(y,xs') | sub(v,y) -> w, ssp(ys',w) -> xs',sub(s(v),s(w)) -> z | sub(v,w) -> z], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\344.xml" :
+TRS {trsSignature = fromList [("0",0),("s",1),("sub",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [sub(z,0) -> z,sub(s(z),s(y)) -> x | sub(z,y) -> x], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\343.xml" :
+TRS {trsSignature = fromList [("0",0),("add",2),("s",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [add(x,0) -> x,add(x,s(y)) -> s(z) | add(x,y) -> z], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\342.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",2),("g",1),("h",2)], trsVariables = fromList ["x","x'","x''","y","y'","y''"], trsRMap = [], trsRules = [a -> b,f(x',x'') -> h(x,f(x,b)) | x' -> x, x'' -> x,f(g(y'),y'') -> h(y,f(g(y),a)) | y' -> y, y'' -> y], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\341.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",1),("g",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [a -> c,b -> c,f(x) -> g(y) | x -> y], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\340.xml" :
+TRS {trsSignature = fromList [("f",2),("g",1),("h",1)], trsVariables = fromList ["x","x'","x''","y","y'","y''"], trsRMap = [], trsRules = [f(x',x'') -> g(x) | x' -> x, x'' -> x,f(y',h(y'')) -> g(y) | y' -> y, y'' -> y], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\339.xml" :
+TRS {trsSignature = fromList [("c",0),("f",2),("g",2),("h",3)], trsVariables = fromList ["x","x'","x''","y"], trsRMap = [], trsRules = [f(x,x') -> g(y,y) | x -> y, x' -> y,h(x,x',x'') -> c | x -> y, x' -> y, x'' -> y], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\337.xml" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("false",0),("lt",2),("s",1),("true",0)], trsVariables = fromList ["x","y","ys"], trsRMap = [], trsRules = [lt(x,0) -> false,lt(0,s(y)) -> true,lt(s(x),s(y)) -> lt(x,y),cons(x,cons(y,ys)) -> cons(y,cons(x,ys)) | lt(x,y) -> true], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\334.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [a -> b,b -> c,f(x) -> y | x -> y], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\333.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("d",0),("f",1),("g",3),("h",2),("i",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [h(a,a) -> i(b),h(a,b) -> i(c),h(b,b) -> i(d),f(x) -> g(x,y,z) | h(a,x) -> i(y), h(a,y) -> i(z)], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\332.xml" :
+TRS {trsSignature = fromList [("0",0),("even",1),("false",0),("odd",1),("s",1),("true",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [even(0) -> true,odd(0) -> false,even(s(x)) -> false | odd(x) -> false,even(s(x)) -> true | odd(x) -> true,odd(s(x)) -> false | even(x) -> false,odd(s(x)) -> true | even(x) -> true], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\330.xml" :
+TRS {trsSignature = fromList [("f",1),("g",1),("pin",1),("pout",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [pin(x) -> pout(g(x)),pin(x) -> pout(f(y)) | pin(x) -> pout(g(y))], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\329.xml" :
+TRS {trsSignature = fromList [("0",0),("app",2),("cons",2),("false",0),("le",2),("nil",0),("pair",2),("qsort",1),("s",1),("split",2),("true",0)], trsVariables = fromList ["x","xs","y","ys","zs"], trsRMap = [], trsRules = [le(0,x) -> true,le(s(x),0) -> false,le(s(x),s(y)) -> le(x,y),app(nil,x) -> x,app(cons(x,xs),ys) -> cons(x,app(xs,ys)),split(x,nil) -> pair(nil,nil),qsort(nil) -> nil,split(x,cons(y,ys)) -> pair(xs,cons(y,zs)) | split(x,ys) -> pair(xs,zs), le(x,y) -> true,split(x,cons(y,ys)) -> pair(cons(y,xs),zs) | split(x,ys) -> pair(xs,zs), le(x,y) -> false,qsort(cons(x,xs)) -> app(qsort(ys),cons(x,qsort(zs))) | split(x,xs) -> pair(ys,zs)], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\326.xml" :
+TRS {trsSignature = fromList [("cons",2),("isnoc",1),("nil",0),("tp2",2)], trsVariables = fromList ["x","xs","y","ys"], trsRMap = [], trsRules = [isnoc(cons(y,nil)) -> tp2(nil,y),isnoc(cons(x,ys)) -> tp2(cons(x,xs),y) | isnoc(ys) -> tp2(xs,y)], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\325.xml" :
+TRS {trsSignature = fromList [("A",0),("a",0),("b",0),("c",0),("d",0),("e",0),("e'",0),("f",1),("g",3),("h",2),("k",0),("l",0),("m",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [g(d,x,x) -> A,h(x,x) -> g(x,x,f(k)),c -> e',a -> c,a -> d,b -> c,b -> d,c -> e,c -> l,k -> l,k -> m,d -> m,f(x) -> x | x -> e, x -> e'], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\324.xml" :
+TRS {trsSignature = fromList [("0",0),("T",0),("eq",2),("even",1),("false",0),("odd",1),("s",1),("true",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [odd(0) -> false,even(0) -> true,eq(x,x) -> eq(T,T),odd(s(x)) -> true | eq(even(x),true) -> eq(T,T),odd(s(x)) -> false | eq(even(x),false) -> eq(T,T),even(s(x)) -> true | eq(odd(x),true) -> eq(T,T),even(s(x)) -> false | eq(odd(x),false) -> eq(T,T)], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\323.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",2),("f",1),("g",1),("h",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [a -> b,g(a) -> h(b),f(x) -> c(x,y) | g(x) -> y, y -> h(x)], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\322.xml" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("false",0),("le",2),("nil",0),("s",1),("split",2),("tp2",2),("true",0)], trsVariables = fromList ["x","y","ys","zs1","zs2"], trsRMap = [], trsRules = [split(x,nil) -> tp2(nil,nil),le(0,y) -> true,le(s(x),0) -> false,le(s(x),s(y)) -> le(x,y),split(x,cons(y,ys)) -> tp2(zs1,cons(y,zs2)) | split(x,ys) -> tp2(zs1,zs2), le(x,y) -> true,split(x,cons(y,ys)) -> tp2(cons(y,zs1),zs2) | split(x,ys) -> tp2(zs1,zs2), le(x,y) -> false], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\321.xml" :
+TRS {trsSignature = fromList [("A",0),("a",0),("b",0),("c",0),("d",0),("e",0),("f",1),("g",3),("h",2),("k",0),("l",0),("m",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [a -> c,a -> d,b -> c,b -> d,c -> e,c -> l,k -> l,k -> m,d -> m,f(x) -> x | x -> e,g(d,x,y) -> A | y -> x,h(x,y) -> g(x,y,f(k)) | y -> x], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\319.xml" :
+TRS {trsSignature = fromList [("A",0),("d",0),("e",0),("f",1),("h",2),("l",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [h(x,x) -> A,f(x) -> e | d -> l], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\317.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> b,f(x) -> x | x -> a, b -> x], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\316.xml" :
+TRS {trsSignature = fromList [("c",0),("d",0),("f",2),("g",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [f(x,y) -> x | g(x) -> z, g(y) -> z,g(x) -> c | d -> c], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\315.xml" :
+TRS {trsSignature = fromList [("A",0),("a",0),("b",0),("c",0),("d",0),("e",0),("f",1),("g",3),("h",2),("k",0),("l",0),("m",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [g(d,x,x) -> A,h(x,x) -> g(x,x,f(k)),a -> c,a -> d,b -> c,b -> d,c -> e,c -> l,k -> l,k -> m,d -> m,f(x) -> x | x -> e], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\312.xml" :
+TRS {trsSignature = fromList [("0",0),("add",2),("gcd",2),("iadd",1),("s",1),("tp2",2),("u1",1)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [gcd(x,0) -> x,gcd(0,x) -> x,iadd(y) -> tp2(0,y),iadd(s(z)) -> u1(iadd(z)),u1(tp2(x,y)) -> tp2(s(x),y),iadd(add(x,y)) -> tp2(x,y),gcd(z,y) -> gcd(x,y) | iadd(z) -> tp2(x,y),gcd(y,z) -> gcd(x,y) | iadd(z) -> tp2(x,y)], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\311.xml" :
+TRS {trsSignature = fromList [("0",0),("add",2),("gcd",2),("iadd",1),("s",1),("tp2",2)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [gcd(x,0) -> x,gcd(0,x) -> x,iadd(y) -> tp2(0,y),iadd(add(x,y)) -> tp2(x,y),gcd(z,y) -> gcd(x,y) | iadd(z) -> tp2(x,y),gcd(y,z) -> gcd(x,y) | iadd(z) -> tp2(x,y),iadd(s(z)) -> tp2(s(x),y) | iadd(z) -> tp2(x,y)], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\310.xml" :
+TRS {trsSignature = fromList [("0",0),("add",2),("false",0),("gcd",2),("leq",2),("s",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [gcd(add(x,y),y) -> gcd(x,y),gcd(y,add(x,y)) -> gcd(x,y),gcd(x,0) -> x,gcd(0,x) -> x,add(0,y) -> y,add(s(x),y) -> s(add(x,y)),gcd(x,y) -> gcd(y,x) | leq(y,x) -> false], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\308.xml" :
+TRS {trsSignature = fromList [("false",0),("not",1),("true",0)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [not(x) -> false | x -> true,not(x) -> true | x -> false], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\307.xml" :
+TRS {trsSignature = fromList [("0",0),("fib",1),("pair",2),("plus",2),("s",1)], trsVariables = fromList ["W","X","Y","Z"], trsRMap = [], trsRules = [plus(0,X) -> X,plus(s(X),Y) -> plus(X,s(Y)),fib(0) -> pair(s(0),0),fib(s(X)) -> pair(W,Y) | fib(X) -> pair(Y,Z), plus(Y,Z) -> W], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\294.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [a -> b,f(x) -> x | x -> b], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\293.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0)], trsVariables = fromList [], trsRMap = [], trsRules = [a -> b,a -> c,b -> c | b -> c], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\292.xml" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("false",0),("le",2),("min",1),("nil",0),("s",1),("true",0)], trsVariables = fromList ["l","x","y"], trsRMap = [], trsRules = [le(0,s(x)) -> true,le(x,0) -> false,le(s(x),s(y)) -> le(x,y),min(cons(x,nil)) -> x,min(cons(x,l)) -> x | le(x,min(l)) -> true,min(cons(x,l)) -> min(l) | le(x,min(l)) -> false,min(cons(x,l)) -> min(l) | min(l) -> x], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\289.xml" :
+TRS {trsSignature = fromList [("App",2),("C",0),("F",0),("I",0),("K",0),("S",0),("T",0)], trsVariables = fromList ["x","y","z"], trsRMap = [], trsRules = [App(App(App(S,x),y),z) -> App(App(x,z),App(y,z)),App(App(K,x),y) -> x,App(I,x) -> x,App(App(App(C,T),x),y) -> x,App(App(App(C,F),x),y) -> y,App(App(App(C,z),x),y) -> x | x -> y,App(App(App(C,z),x),y) -> y | x -> y], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\288.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("pin",1),("pout",1),("tc",1),("z",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [pin(a) -> pout(b),pin(b) -> pout(c),tc(x) -> x,tc(x) -> y | pin(x) -> pout(z), tc(z) -> y], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\286.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",2),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x,x) -> a,a -> b,b -> a,g(x) -> a | g(x) -> b], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\272.xml" :
+TRS {trsSignature = fromList [("0",0),("cons",2),("false",0),("insert",2),("lte",2),("nil",0),("ordered",1),("s",1),("true",0)], trsVariables = fromList ["l","m","n"], trsRMap = [], trsRules = [lte(0,n) -> true,lte(s(m),0) -> false,lte(s(m),s(n)) -> lte(m,n),insert(nil,m) -> cons(m,nil),ordered(nil) -> true,ordered(cons(m,nil)) -> true,insert(cons(n,l),m) -> cons(m,cons(n,l)) | lte(m,n) -> true,insert(cons(n,l),m) -> cons(n,insert(l,m)) | lte(m,n) -> false,ordered(cons(m,cons(n,l))) -> ordered(cons(n,l)) | lte(m,n) -> true,ordered(cons(m,cons(n,l))) -> false | lte(m,n) -> false], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\271.xml" :
+TRS {trsSignature = fromList [("0",0),("1",0),("h",1),("p",1),("q",1),("r",1),("s",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [p(q(x)) -> p(r(x)),q(h(x)) -> r(x),s(x) -> 1,r(x) -> r(h(x)) | s(x) -> 0], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\268.xml" :
+TRS {trsSignature = fromList [("0",0),("a",1),("b",0),("c",0),("p",1),("q",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [p(q(x)) -> 0,c -> c,a(x) -> b | p(x) -> 0], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\267.xml" :
+TRS {trsSignature = fromList [("0",0),("eentry",0),("empty",0),("false",0),("le",2),("m",0),("pop",1),("push",2),("s",1),("size",1),("top",1),("true",0)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [size(empty) -> 0,size(push(x,y)) -> s(size(x)),m -> s(s(s(s(0)))),pop(empty) -> empty,top(empty) -> eentry,le(x,0) -> false,le(0,s(x)) -> true,le(s(x),s(y)) -> le(x,y),pop(push(x,y)) -> x | le(size(x),m) -> true,top(push(x,y)) -> y | le(size(x),m) -> true], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\266.xml" :
+TRS {trsSignature = fromList [("App",2),("I",0),("K",0),("S",0)], trsVariables = fromList ["a","b","c"], trsRMap = [], trsRules = [App(App(App(S,a),b),c) -> App(App(a,c),App(b,c)) | a -> I, b -> I, c -> I,App(App(K,a),b) -> a | a -> I, b -> I,App(I,a) -> a | a -> I], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\264.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("f",2),("g",1)], trsVariables = fromList ["x"], trsRMap = [], trsRules = [f(x,x) -> a | g(x) -> b], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\263.xml" :
+TRS {trsSignature = fromList [("a",0),("b",0),("c",0),("f",1),("g",1),("h",1)], trsVariables = fromList ["x","z"], trsRMap = [], trsRules = [a -> c,g(a) -> h(b),h(b) -> g(c),f(x) -> z | g(x) -> h(z)], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}
+
+++ File:".\\tests\\TPDB\\XML_version\\TRS_Conditional.COPS\\262.xml" :
+TRS {trsSignature = fromList [("0",0),("f",2),("plus",2),("s",1)], trsVariables = fromList ["x","y","z","z'"], trsRMap = [], trsRules = [plus(0,y) -> y,plus(s(x),y) -> plus(x,s(y)),f(x,y) -> z | plus(x,y) -> plus(z,z')], trsType = TRSConditional ORIENTED, trsStrategy = Just FULL, signatureBlock = True}

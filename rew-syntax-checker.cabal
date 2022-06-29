@@ -46,5 +46,5 @@ Library
     Parser.Parser
   build-depends: 	base > 4, pretty, parsec, syb, containers, mtl
   hs-source-dirs: 	src
-  ghc-options: -O2 -threaded
+  ghc-options: -O2
   extensions:

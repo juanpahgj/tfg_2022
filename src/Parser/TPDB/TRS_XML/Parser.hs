@@ -51,8 +51,11 @@ decl = declRules <|> declSignature <|> ctypeDecl <|> declComment
 
 -- | Rules declaration is formed by reserved tags plus a set of rules
 declRules :: Parser Decl
-declRules = reservedLb "rules" $ liftM Rules (many $ reservedLb "rule" rule)
+declRules = reservedLb "rules" $ liftM Rules (many $ reservedLb "rule" rule) --(rulesType)
 
+--rulesType =(try $ reservedLb "relrules" $ (many (reservedLb "rule" relRule)) )
+--        <|> (try $ many (try $ reservedLb "rule" rule)) 
+    
 -- | Rule
 rule :: Parser Rule
 rule =
@@ -63,12 +66,28 @@ rule =
 -- | Simple rule
 simpleRule =
  do t1 <- reservedLb "lhs" term
-    op <- ruleOps
+    op <- return (:->)  --ruleOps
     t2 <- reservedLb "rhs" term
     return (op t1 t2)
 
 -- | Rule options
-ruleOps = try (return (:->)) 
+--ruleOps = try (return (:->)) 
+
+{-
+    -- | Relative rule
+    relRule :: Parser Rule
+    relRule =
+    do sr <- simpleRelRule
+        conds <- option [] (reservedLb "conditions" (many $ reservedLb "condition" cond))
+        return (Rule sr conds)
+
+    -- | Simple relative rule
+    simpleRelRule =
+    do t1 <- reservedLb "lhs" term
+        op <- return (:->=)
+        t2 <- reservedLb "rhs" term
+        return (op t1 t2)
+-}
 
 -- | Condition
 cond =

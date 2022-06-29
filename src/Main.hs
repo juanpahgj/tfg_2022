@@ -111,8 +111,6 @@ callParse filename filedata format= do
             Nothing -> autoparse filename filedata
 
 
-----------------
-
 -- | File extensions
 aivailableFormats :: [(String, String -> Either ParseError TRS)]
 aivailableFormats = [(".trs", parseTPDB), (".xml", parseTPDB_XML), (".trs", parseCOPS)]

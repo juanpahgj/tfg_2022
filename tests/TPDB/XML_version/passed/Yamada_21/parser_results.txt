@@ -1,3 +1,3 @@
 
-++ File:".\\tests\\TPDB\\XML_version\\parser_fails\\Yamada_21\\collatz.xml" :
+++ File:".\\tests\\TPDB\\XML_version\\Yamada_21\\collatz.xml" :
 TRS {trsSignature = fromList [(".0",1),(".1",1),("1",0),("C",1),("add",2),("suc",1)], trsVariables = fromList ["x","y"], trsRMap = [], trsRules = [suc(1) -> .0(1),suc(.0(x)) -> .1(x),suc(.1(x)) -> .0(suc(x)),add(x,1) -> suc(x),add(1,y) -> suc(y),add(.0(x),.0(y)) -> .0(add(x,y)),add(.1(x),.0(y)) -> .1(add(x,y)),add(.0(x),.1(y)) -> .1(add(x,y)),add(.1(x),.1(y)) -> .0(suc(add(x,y))),C(.0(x)) -> C(x),C(.1(x)) -> C(add(.1(x),.1(.1(x))))], trsType = TRSStandard, trsStrategy = Just FULL, signatureBlock = True}
