@@ -1,7 +1,0 @@
-(RULES
-f -> n c n a ,
-c f -> f n a c ,
-n a -> c,
-c c -> c,
-n s -> f s s ,
-n f -> f n )

@@ -1,7 +1,0 @@
-(RULES
-a c  -> a ,
-d a  -> a c b c d ,
-a c b c  -> c b c c ,
-c  -> b a a ,
-d c  -> a c d a
-)

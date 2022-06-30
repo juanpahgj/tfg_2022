@@ -1,5 +1,0 @@
-(RULES
-a b c a b c a a a  -> a a a a b c a b c a b c 
-)
-(COMMENT: homomorphism applied to z028.srs)
-

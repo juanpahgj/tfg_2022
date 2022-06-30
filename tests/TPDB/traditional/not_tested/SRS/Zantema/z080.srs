@@ -1,6 +1,0 @@
-(RULES
-A b -> b a B A ,
-B a -> a b A B ,
-A a -> ,
-B b -> )
-(COMMENT: braid problem, challenge of WST'97)

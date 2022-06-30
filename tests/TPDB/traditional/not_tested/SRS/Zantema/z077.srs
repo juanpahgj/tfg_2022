@@ -1,6 +1,0 @@
-(RULES
-f 0 -> s 0 ,
-d 0 -> 0 ,
-d s -> s s d ,
-f s -> d f )
-(COMMENT: computation of exponential function)

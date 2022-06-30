@@ -1,4 +1,0 @@
-(RULES b b a a b a b -> b a b b a b b ,
-       b a b ->= b a b a a b ,
-       b b b -> b b a b b)
-(COMMENT: encoding of zr07.srs)

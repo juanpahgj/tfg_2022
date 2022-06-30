@@ -1,5 +1,0 @@
-(RULES
-f s -> s s f p s ,
-f 0 -> 0 ,
-p s ->  )
-(COMMENT: doubling in functional program)

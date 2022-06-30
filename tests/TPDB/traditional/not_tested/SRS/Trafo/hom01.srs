@@ -1,6 +1,0 @@
-(RULES
-a a b d b d a -> a a c a a b d ,
-a a c -> c c a a ,
-c c c -> b d c b d 
-)
-(COMMENT: homomorphism on z089.srs)

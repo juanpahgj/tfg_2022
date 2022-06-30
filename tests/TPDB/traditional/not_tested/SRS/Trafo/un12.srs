@@ -1,3 +1,0 @@
-(RULES b b b a b a b b a b -> b b a b a b b b a b a b b)
-(COMMENT: encoding of z035.srs)
-

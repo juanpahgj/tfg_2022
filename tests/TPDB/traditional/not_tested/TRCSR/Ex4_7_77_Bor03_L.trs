@@ -1,5 +1,0 @@
-(VAR X XS)
-(RULES 
-zeros -> cons(0)
-tail(cons(X)) -> XS
-)

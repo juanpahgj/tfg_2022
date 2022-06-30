@@ -1,5 +1,0 @@
-(VAR X)
-(RULES 
-f(X) -> f(a)
-b -> a
-)

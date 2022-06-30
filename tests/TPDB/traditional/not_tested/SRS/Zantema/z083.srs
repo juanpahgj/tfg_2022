@@ -1,8 +1,0 @@
-(RULES
-b d b -> c d b ,
-b a c -> b c ,
-a d -> d c ,
-b b b -> a b c ,
-d c -> b d ,
-d c -> d b d ,
-d a c -> b b )

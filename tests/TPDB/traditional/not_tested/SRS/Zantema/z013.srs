@@ -1,6 +1,0 @@
-(RULES
-g c  -> g f c ,
-g f c  -> g f f c, 
-g g  -> g f g ,
-f f g  -> g f ,
-)

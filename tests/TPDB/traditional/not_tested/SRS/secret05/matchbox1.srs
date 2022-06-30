@@ -1,6 +1,0 @@
-( RULES    r    e -> w    r ,  i    t -> e 
-           r ,  e    w -> r    i ,  t    e 
-        -> r    e ,  w    r -> i    t ,  e 
-           r -> e    w ,  r    i    t    e 
-           r -> e    w    r    i    t    e 
-)

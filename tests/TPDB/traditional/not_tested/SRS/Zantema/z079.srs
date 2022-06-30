@@ -1,6 +1,0 @@
-(RULES
-c a a -> a c ,
-a c b -> a d b ,
-a d -> d a a a ,
-b d -> b c )
-(COMMENT: b c a^{2n} b rewrites to  b c a^{3n} b)
