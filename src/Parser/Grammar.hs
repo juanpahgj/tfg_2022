@@ -40,7 +40,7 @@ data Decl = Var [Id] -- ^ Set of variables
     | Comment String -- ^ Extra information
       deriving (Eq, Ord, Show, Data, Typeable)
 
--- | Theory declaration (para obligar a que haya min. uno??)
+-- | Theory declaration
 data Thdecl = Thdecl SimpleThdecl [Thdecl]
       deriving (Eq, Ord, Data, Typeable)
 
@@ -96,7 +96,7 @@ data CondType = JOIN
   | SEMIEQUATIONAL -- COPS
   deriving (Eq, Ord, Show, Data, Typeable)
 
--- | Signature declaration (for xml)
+-- | Signature declaration
 data Signdecl = S Id Int
   | Sth Id Int Id
   | Srp Id Int [Int] --replacementmap  
@@ -106,7 +106,8 @@ data Signdecl = S Id Int
 type Id = String
 
 -- | TSR Type
-data TRSType = TRSStandard
+data TRSType = 
+  TRSStandard
   | TRSEquational
   | TRSConditional CondType
   | TRSContextSensitive 

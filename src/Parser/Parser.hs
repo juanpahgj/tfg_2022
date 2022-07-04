@@ -150,17 +150,18 @@ checkWellFormed :: [Decl] -> State TRS (Either ParseError TRS)
 checkWellFormed [] = do { myTRS <- get 
                         ; return . Right $ myTRS}
 
-checkWellFormed ((Var vs):rest) = do { myTRS <- get
-                                     ; let vars = trsVariables myTRS
-                                     ; let vsSet = S.fromList vs
-                                     ; let duplicated = S.intersection vsSet vars
-                                     ; if (not . S.null $ duplicated) then
-                                         return . Left $ newErrorMessage (UnExpect $ "variable(s) already declared: " ++ (concat . intersperse ", " . S.elems $ duplicated)) (newPos "" 0 0)
-                                       else
-                                         do{ put $ myTRS { trsVariables = S.union vars vsSet }
-                                           ; checkWellFormed rest
-                                           }
-                                     }
+checkWellFormed ((Var vs):rest) = 
+   do { myTRS <- get
+      ; let vars = trsVariables myTRS
+      ; let vsSet = S.fromList vs
+      ; let duplicated = S.intersection vsSet vars
+      ; if (not . S.null $ duplicated) then
+          return . Left $ newErrorMessage (UnExpect $ "variable(s) already declared: " ++ (concat . intersperse ", " . S.elems $ duplicated)) (newPos "" 0 0)
+        else
+          do{ put $ myTRS { trsVariables = S.union vars vsSet }
+            ; checkWellFormed rest
+            }
+      }
 
 checkWellFormed ((Rules rs):rest) = do {result <- checkRules rs
                                        ; case result of
