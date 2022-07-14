@@ -188,7 +188,7 @@ aux2 q=do{ (symbol "<")
          }
 
 emptyReservedLb q = do { (symbol "<")
-                       ; (reserved q)
+                       ; (string q)
                        ; (symbol "/")
                        ; (symbol ">")
                        }
